@@ -1,7 +1,9 @@
 use log::{LevelFilter, info};
 use std::sync::Arc;
 
-use nsd_rs::{self, NsdServiceInfo, SharedRustObject, java_wrapped_object::to_java, jni_env};
+use nsd_rs::{
+    self, DiscoveryRequest, NsdServiceInfo, SharedRustObject, java_wrapped_object::to_java, jni_env,
+};
 
 use std::sync::OnceLock;
 
@@ -36,9 +38,9 @@ pub extern "system" fn Java_com_maticrobots_nsd_1rs_1example_1app_RustNSDExample
     _class: jni::objects::JClass,
 ) -> JObject<'a> {
     let env = jni_env(env);
+    let discovery_request = DiscoveryRequest::new("_matic_hermes._tcp".to_owned(), None, None);
     let manager =
-        nsd_rs::NSDManager::new(env, "_matic_hermes._tcp", Arc::new(()), Box::new(callback))
-            .unwrap();
+        nsd_rs::NSDManager::new(env, discovery_request, Arc::new(()), Box::new(callback)).unwrap();
 
     let java_obj = to_java(env, manager).unwrap();
     unsafe { JObject::from_raw(java_obj.into_raw() as jobject) }

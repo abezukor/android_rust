@@ -3,12 +3,22 @@ include = [
     "com/maticrobots/nsd_rs/*",
 
     "android/net/nsd/*",
+    "android/net/Network",
     "android/content/Context",
+    "android/os/Parcelable/*",
 
     "java/lang/Object",
     "java/lang/Throwable",
     "java/lang/StackTraceElement",
     "java/lang/String",
+    "java/lang/ClassLoader",
+
+    "java/net/InetAddress",
+
+    "java/util/concurrent/Executor",
+    "java/util/Collection",
+    "java/util/Map",
+    "java/util/Set",
 
     "androidx/annotation/NonNull",
     "androidx/annotation/RequiresApi",
@@ -27,7 +37,7 @@ verbose = true
 
 [input]
 files = [
-    # TODO Make this respect environment varibles
+    # TODO Make this respect environment variables
     "/home/abe/Android/Sdk/platforms/android-35/android.jar",
     # Hack so we can use android studio (as opposed to raw javac) to build the jar files.
     # Technically this may change, but I (Abe) think that is unlikely.

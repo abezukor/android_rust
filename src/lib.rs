@@ -1,6 +1,7 @@
-use bindings::{android::content::Context, com::maticrobots::nsd_rs::RustAppContentInitializer};
-use java_spaghetti::{Env, Global, Local, VM};
-use std::fmt::Debug;
+// Re-Export both of these as our API depends on their types
+pub use java_spaghetti;
+use java_spaghetti::{Env, Global, Local};
+pub use jni;
 
 pub type JavaResult<T> = Result<T, JavaError>;
 
@@ -12,11 +13,15 @@ mod nsd_manager;
 
 pub mod java_wrapped_object;
 
+use bindings::com::maticrobots::nsd_rs::RustAppContentInitializer;
 // Regenerate with java-spaghetti-gen generate
 #[rustfmt::skip]
 mod bindings;
 
 mod nsd_resolve_listener;
+
+pub use discovery_request::DiscoveryRequest;
+mod discovery_request;
 
 pub type SharedRustObject = std::sync::Arc<dyn std::any::Any + Send + Sync + 'static>;
 
@@ -44,7 +49,7 @@ impl From<Local<'_, bindings::java::lang::Throwable>> for JavaError {
     }
 }
 
-fn get_application_context(env: Env<'_>) -> Local<'_, Context> {
+fn get_application_context(env: Env<'_>) -> Local<'_, bindings::android::content::Context> {
     RustAppContentInitializer::applicationContext(env).unwrap()
 }
 

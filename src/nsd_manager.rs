@@ -2,7 +2,7 @@ use java_spaghetti::{Env, Global};
 use log::{error, trace};
 
 use crate::{
-    JavaResult, NsdServiceInfo, SharedRustObject,
+    DiscoveryRequest, JavaResult, NsdServiceInfo, SharedRustObject,
     bindings::{
         android::{content::Context, net::nsd::NsdManager},
         java::lang::{String as JString, Throwable},
@@ -18,7 +18,7 @@ pub struct NSDManager {
 impl NSDManager {
     pub fn new(
         env: Env<'_>,
-        service_type: &str,
+        discovery_request: DiscoveryRequest,
         callback_context: SharedRustObject,
         callback: impl Fn(&NsdServiceInfo, SharedRustObject) + Send + Sync + 'static,
     ) -> JavaResult<Self> {
@@ -41,16 +41,14 @@ impl NSDManager {
         let nsd_manager: Global<NsdManager> =
             unsafe { Global::from_raw(env.vm(), nsd_manager.into_raw()) };
 
-        let service_type = JString::from_env_str(env, service_type);
-
         let discovery_listener =
             DiscoveryListener::new(env, nsd_manager.clone(), callback_context, callback)?;
 
         {
             let nsd_manager = nsd_manager.as_local(env);
-            nsd_manager.discoverServices_String_int_DiscoveryListener(
-                service_type,
-                NsdManager::PROTOCOL_DNS_SD,
+            nsd_manager.discoverServices_DiscoveryRequest_Executor_DiscoveryListener(
+                discovery_request.java_object(env)?,
+                app_context.getMainExecutor()?,
                 discovery_listener.as_manager_listener(),
             )?;
         }
