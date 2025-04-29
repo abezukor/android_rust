@@ -11,12 +11,6 @@ pluginManagement {
         gradlePluginPortal()
     }
 
-    plugins {
-        // Apply the foojay-resolver plugin to allow automatic download of JDKs
-        id("org.gradle.toolchains.foojay-resolver-convention") version "0.9.0"
-        id("com.android.library") version "8.9.2" apply false
-    }
-
 }
 
 dependencyResolutionManagement {
@@ -32,4 +26,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "nsd_rs"
 
+include("nsd_rs")
+include("nsd_example_app")
 include("lib") 

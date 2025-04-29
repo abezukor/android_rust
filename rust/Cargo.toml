@@ -1,0 +1,16 @@
+[workspace]
+members = [
+    "nsd-rs",
+    "nsd_example_app",
+    #"rust_android_initialization/src/nsd_rs_initialization",
+]
+
+[workspace.dependencies]
+log = "0.4.27"
+jni = "0.21.1"
+
+nsd-rs.path = "nsd-rs"
+
+[profile.release-with-debug]
+inherits = "release"
+debug = true

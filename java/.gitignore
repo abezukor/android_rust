@@ -3,3 +3,9 @@
 
 # Ignore Gradle build output directory
 build
+
+#Ignore Maven Repo
+matic_android_repo
+
+target/*
+*.hprof
