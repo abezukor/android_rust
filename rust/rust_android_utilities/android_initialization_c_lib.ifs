@@ -1,0 +1,18 @@
+--- !ifs-v1
+IfsVersion:      3.0
+SoName:          librust_android_utilities_setter.so
+NeededLibs:
+  - libandroid.so
+  - liblog.so
+  - libm.so
+  - libdl.so
+  - libc.so
+Symbols:
+  - { Name: APPLICATION_CONTEXT, Type: Object, Size: 8 }
+  - { Name: CLASS_LOADER, Type: Object, Size: 8 }
+  - { Name: Java_com_maticrobots_rust_1android_1initialization_RustInitialization_initialize_1rust, Type: Func }
+  - { Name: VM, Type: Object, Size: 8 }
+  - { Name: android_rust_initialization_application_context, Type: Func }
+  - { Name: android_rust_initialization_class_loader, Type: Func }
+  - { Name: android_rust_initialization_vm, Type: Func }
+...

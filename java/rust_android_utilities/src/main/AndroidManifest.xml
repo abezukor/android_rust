@@ -7,9 +7,8 @@
             android:authorities="${applicationId}.androidx-startup"
             android:exported="false">
             <meta-data
-                android:name="com.maticrobots.nsd_rs.RustAppContentInitializer"
+                android:name="com.maticrobots.rust_android_utilities.RustInitialization"
                 android:value="androidx.startup" />
         </provider>
     </application>
-
 </manifest>

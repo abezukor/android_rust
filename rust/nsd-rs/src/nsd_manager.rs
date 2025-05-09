@@ -1,5 +1,6 @@
-use java_spaghetti::{Env, Global};
+use java_spaghetti::Global;
 use log::{error, trace};
+use rust_android_utilities::get_application_context;
 
 use crate::{
     DiscoveryRequest, JavaResult, NsdServiceInfo, SharedRustObject,
@@ -17,45 +18,49 @@ pub struct NSDManager {
 
 impl NSDManager {
     pub fn new(
-        env: Env<'_>,
         discovery_request: DiscoveryRequest,
         callback_context: SharedRustObject,
         callback: impl Fn(&NsdServiceInfo, SharedRustObject) + Send + Sync + 'static,
     ) -> JavaResult<Self> {
         trace!("Making NSD Manager");
-        let nsd_manager_name = JString::from_env_str(env, Context::NSD_SERVICE);
+        let vm = rust_android_utilities::get_vm();
 
-        let app_context = crate::get_application_context(env);
+        vm.with_env(|env| {
+            let nsd_manager_name = JString::from_env_str(env, Context::NSD_SERVICE);
 
-        let nsd_manager = app_context
-            .getSystemService_String(nsd_manager_name)?
-            .ok_or_else(|| {
-                error!("None in getSystemService_String");
-                Throwable::new_String(
-                    env,
-                    JString::from_env_str(env, "Could not get NSDMANAGER from context"),
-                )
-                .unwrap()
-            })?;
-        let nsd_manager = nsd_manager.as_global();
-        let nsd_manager: Global<NsdManager> =
-            unsafe { Global::from_raw(env.vm(), nsd_manager.into_raw()) };
+            let app_context = unsafe { get_application_context::<Context>() };
+            let app_context_ref = app_context.as_ref(env);
 
-        let discovery_listener =
-            DiscoveryListener::new(env, nsd_manager.clone(), callback_context, callback)?;
+            let nsd_manager = app_context_ref
+                .getSystemService_String(nsd_manager_name)?
+                .ok_or_else(|| {
+                    error!("None in getSystemService_String");
+                    Throwable::new_String(
+                        env,
+                        JString::from_env_str(env, "Could not get NSDMANAGER from context"),
+                    )
+                    .unwrap()
+                })?;
+            let nsd_manager = nsd_manager.as_global();
+            let nsd_manager: Global<NsdManager> =
+                unsafe { Global::from_raw(env.vm(), nsd_manager.into_raw()) };
 
-        {
-            let nsd_manager = nsd_manager.as_local(env);
-            nsd_manager.discoverServices_DiscoveryRequest_Executor_DiscoveryListener(
-                discovery_request.java_object(env)?,
-                app_context.getMainExecutor()?,
-                discovery_listener.as_manager_listener(),
-            )?;
-        }
+            let discovery_listener =
+                DiscoveryListener::new(nsd_manager.clone(), callback_context, callback)?;
 
-        Ok(Self {
-            _manager: nsd_manager,
-            _listener: discovery_listener,
+            {
+                let nsd_manager = nsd_manager.as_local(env);
+                nsd_manager.discoverServices_DiscoveryRequest_Executor_DiscoveryListener(
+                    discovery_request.java_object(env)?,
+                    app_context_ref.getMainExecutor()?,
+                    discovery_listener.as_manager_listener(),
+                )?;
+            }
+
+            Ok(Self {
+                _manager: nsd_manager,
+                _listener: discovery_listener,
+            })
         })
     }
 }

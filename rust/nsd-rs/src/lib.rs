@@ -1,12 +1,6 @@
-use java_spaghetti::{Env, Global, Local, Ref, VM};
-use std::{
-    fmt::{Debug, Display},
-    mem::ManuallyDrop,
-};
-
 // Re-Export both of these as our API depends on their types
 pub use java_spaghetti;
-use java_spaghetti::{Env, Global, Local};
+use java_spaghetti::{Global, Local};
 pub use jni;
 
 pub type JavaResult<T> = Result<T, JavaError>;
@@ -19,7 +13,6 @@ mod nsd_manager;
 
 pub mod java_wrapped_object;
 
-use bindings::com::maticrobots::nsd_rs::RustAppContentInitializer;
 // Regenerate with java-spaghetti-gen generate
 #[rustfmt::skip]
 mod bindings;
@@ -32,7 +25,7 @@ mod discovery_request;
 pub type SharedRustObject = std::sync::Arc<dyn std::any::Any + Send + Sync + 'static>;
 
 /// Global Java Error that can be passed between threads.
-pub struct JavaError(Global<bindings::java::lang::Throwable>)
+pub struct JavaError(Global<bindings::java::lang::Throwable>);
 
 impl std::fmt::Debug for JavaError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
@@ -49,7 +42,7 @@ impl From<Local<'_, bindings::java::lang::Throwable>> for JavaError {
     }
 }
 
-impl Display for JavaError {
+impl std::fmt::Display for JavaError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.write_str(&self.0.vm().with_env(|env| {
             let err = self.0.as_ref(env);
@@ -60,10 +53,6 @@ impl Display for JavaError {
             }
         }))
     }
-}
-
-fn get_application_context(env: Env<'_>) -> Local<'_, bindings::android::content::Context> {
-    RustAppContentInitializer::applicationContext(env).unwrap()
 }
 
 pub fn jni_env(env: jni::JNIEnv<'_>) -> java_spaghetti::Env<'_> {

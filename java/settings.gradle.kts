@@ -28,4 +28,4 @@ rootProject.name = "nsd_rs"
 
 include("nsd_rs")
 include("nsd_example_app")
-include("lib") 
+include("rust_android_utilities")

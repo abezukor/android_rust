@@ -1,11 +1,11 @@
 [package]
-name = "nsd-rs"
+name = "rust_android_utilities"
 version = "0.1.0"
 edition = "2024"
 
-[dependencies]
-java-spaghetti.workspace = true
-jni.workspace = true
-log.workspace = true
 
-rust_android_utilities.workspace = true
+[dependencies]
+android_log-sys.workspace = true
+java-spaghetti.workspace = true
+log.workspace = true
+ctor.workspace = true

@@ -11,6 +11,7 @@ plugins {
 android {
     namespace = "com.maticrobots.nsd_rs_example_app"
     compileSdk = 35
+    ndkVersion = "28.1.13356709"
 
     defaultConfig {
         applicationId = "com.maticrobots.nsd_rs_example_app"
@@ -76,4 +77,5 @@ dependencies {
 
 
     implementation(project(":nsd_rs"))
+    implementation(project(":rust_android_utilities"))
 }

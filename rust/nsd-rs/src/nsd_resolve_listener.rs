@@ -2,8 +2,10 @@ use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc, Mutex};
 
 use java_spaghetti::sys::{jlong, jobject};
-use java_spaghetti::{AsArg, Env, Global, Local, Ref, VM};
+use java_spaghetti::{AsArg, Env, Global, Local, Ref};
 use log::{error, trace};
+
+use rust_android_utilities::get_vm;
 
 use crate::{
     SharedRustObject,
@@ -18,14 +20,12 @@ use crate::{
 pub(crate) struct JavaResolvers {
     resolvers: Mutex<Vec<Arc<JavaResolver>>>,
     shared_context: Arc<SharedContext>,
-    vm: VM,
 }
 
 pub(crate) struct JavaResolver {
     resolver: Global<JavaNSDResolveListener>,
     in_use: Arc<AtomicBool>,
     manager: Global<NsdManager>,
-    vm: VM,
 }
 
 #[allow(clippy::type_complexity)]
@@ -41,7 +41,6 @@ struct ResolverContext {
 
 impl JavaResolvers {
     pub fn new(
-        vm: VM,
         context: SharedRustObject,
         callback: impl Fn(&NsdServiceInfo, SharedRustObject) + Send + Sync + 'static,
     ) -> Self {
@@ -51,7 +50,6 @@ impl JavaResolvers {
                 user_context: context,
                 callback: Box::new(callback),
             }),
-            vm,
         }
     }
 
@@ -69,7 +67,7 @@ impl JavaResolvers {
                     shared_context: self.shared_context.clone(),
                     in_use: in_use.clone(),
                 }));
-                let java_resolver = self.vm.with_env(|env| {
+                let java_resolver = get_vm().with_env(|env| {
                     let java_resolver =
                         JavaNSDResolveListener::new(env, to_java_arc(env, context).unwrap())
                             .unwrap();
@@ -79,7 +77,6 @@ impl JavaResolvers {
                     resolver: java_resolver,
                     in_use,
                     manager: manager.clone(),
-                    vm: self.vm,
                 });
                 resolvers.push(java_resolver.clone());
                 java_resolver
@@ -109,7 +106,7 @@ impl JavaResolver {
 
 impl Drop for JavaResolver {
     fn drop(&mut self) {
-        self.vm.with_env(|env| {
+        get_vm().with_env(|env| {
             let manager = self.manager.as_ref(env);
             let resolver = self.resolver.as_ref(env);
             let casted_resolver = resolver.cast::<NsdManager_ResolveListener>().unwrap();

@@ -1,8 +1,10 @@
 use java_spaghetti::{
-    Env, Global, Local, Ref, VM,
+    Env, Global, Local, Ref,
     sys::{jlong, jobject},
 };
 use log::{error, trace};
+
+use rust_android_utilities::get_vm;
 
 pub use crate::bindings::android::net::nsd::NsdServiceInfo;
 use crate::{
@@ -19,7 +21,6 @@ use crate::{
 pub struct DiscoveryListener {
     java_listener: Global<NSDDiscoveryListener>,
     manager: Global<NsdManager>,
-    vm: VM,
 }
 
 struct Context {
@@ -29,31 +30,31 @@ struct Context {
 
 impl DiscoveryListener {
     pub fn new(
-        env: Env<'_>,
         manager: Global<NsdManager>,
         callback_context: SharedRustObject,
         callback: impl Fn(&NsdServiceInfo, SharedRustObject) + Send + Sync + 'static,
     ) -> JavaResult<Self> {
-        let resolvers = JavaResolvers::new(env.vm(), callback_context, callback);
+        let resolvers = JavaResolvers::new(callback_context, callback);
 
-        let java_inner = to_java(
-            env,
-            Context {
-                manager: manager.clone(),
-                resolvers,
-            },
-        )?;
-        let java_listener = NSDDiscoveryListener::new(env, java_inner)?;
+        get_vm().with_env(|env| {
+            let java_inner = to_java(
+                env,
+                Context {
+                    manager: manager.clone(),
+                    resolvers,
+                },
+            )?;
+            let java_listener = NSDDiscoveryListener::new(env, java_inner)?;
 
-        Ok(Self {
-            java_listener: java_listener.as_global(),
-            manager,
-            vm: env.vm(),
+            Ok(Self {
+                java_listener: java_listener.as_global(),
+                manager,
+            })
         })
     }
 
     pub(crate) fn as_manager_listener(&self) -> Global<NsdManager_DiscoveryListener> {
-        self.vm.with_env(|env| {
+        get_vm().with_env(|env| {
             self.java_listener
                 .as_ref(env)
                 .cast::<NsdManager_DiscoveryListener>()
@@ -66,7 +67,7 @@ impl DiscoveryListener {
 impl Drop for DiscoveryListener {
     fn drop(&mut self) {
         trace!("Stopping Service Discovery");
-        self.vm.with_env(|env| {
+        get_vm().with_env(|env| {
             let manager = self.manager.as_local(env);
             manager
                 .stopServiceDiscovery(self.java_listener.clone())
