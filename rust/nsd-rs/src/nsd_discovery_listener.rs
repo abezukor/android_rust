@@ -1,6 +1,6 @@
 use java_spaghetti::{
-    Env, Global, Local, Ref,
     sys::{jlong, jobject},
+    Env, Global, Local, Ref,
 };
 use log::{error, trace};
 
@@ -8,7 +8,6 @@ use rust_android_utilities::get_vm;
 
 pub use crate::bindings::android::net::nsd::NsdServiceInfo;
 use crate::{
-    JavaResult, SharedRustObject,
     bindings::{
         android::net::nsd::{NsdManager, NsdManager_DiscoveryListener},
         com::maticrobots::nsd_rs::NSDDiscoveryListener,
@@ -16,6 +15,7 @@ use crate::{
     },
     java_wrapped_object::{get_ref, to_java},
     nsd_resolve_listener::JavaResolvers,
+    JavaResult, SharedRustObject,
 };
 
 pub struct DiscoveryListener {
@@ -37,19 +37,10 @@ impl DiscoveryListener {
         let resolvers = JavaResolvers::new(callback_context, callback);
 
         get_vm().with_env(|env| {
-            let java_inner = to_java(
-                env,
-                Context {
-                    manager: manager.clone(),
-                    resolvers,
-                },
-            )?;
+            let java_inner = to_java(env, Context { manager: manager.clone(), resolvers })?;
             let java_listener = NSDDiscoveryListener::new(env, java_inner)?;
 
-            Ok(Self {
-                java_listener: java_listener.as_global(),
-                manager,
-            })
+            Ok(Self { java_listener: java_listener.as_global(), manager })
         })
     }
 
@@ -69,9 +60,7 @@ impl Drop for DiscoveryListener {
         trace!("Stopping Service Discovery");
         get_vm().with_env(|env| {
             let manager = self.manager.as_local(env);
-            manager
-                .stopServiceDiscovery(self.java_listener.clone())
-                .unwrap()
+            manager.stopServiceDiscovery(self.java_listener.clone()).unwrap()
         })
     }
 }

@@ -2,17 +2,14 @@ use java_spaghetti::{Env, Local};
 use log::error;
 
 use crate::{
-    JavaResult,
     bindings::{
         android::net::{
+            nsd::{DiscoveryRequest as JavaDiscoveryRequest, DiscoveryRequest_Builder as JavaDiscoveryRequestBuilder},
             Network,
-            nsd::{
-                DiscoveryRequest as JavaDiscoveryRequest,
-                DiscoveryRequest_Builder as JavaDiscoveryRequestBuilder,
-            },
         },
         java::lang::{String as JString, Throwable},
     },
+    JavaResult,
 };
 
 pub struct DiscoveryRequest {
@@ -23,11 +20,7 @@ pub struct DiscoveryRequest {
 
 impl DiscoveryRequest {
     pub fn new(service_type: String, subtype: Option<String>, network: Option<i64>) -> Self {
-        Self {
-            service_type,
-            subtype,
-            network,
-        }
+        Self { service_type, subtype, network }
     }
 
     pub(crate) fn java_object(self, env: Env<'_>) -> JavaResult<Local<'_, JavaDiscoveryRequest>> {

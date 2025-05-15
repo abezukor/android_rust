@@ -8,13 +8,13 @@ use log::{error, trace};
 use rust_android_utilities::get_vm;
 
 use crate::{
-    SharedRustObject,
     bindings::{
         android::net::nsd::{NsdManager, NsdManager_ResolveListener, NsdServiceInfo},
         com::maticrobots::nsd_rs::NSDServiceResolver as JavaNSDResolveListener,
         java::lang::Throwable,
     },
-    java_wrapped_object::{BoxedRustObj, get_ref, to_java_arc},
+    java_wrapped_object::{get_ref, to_java_arc, BoxedRustObj},
+    SharedRustObject,
 };
 
 pub(crate) struct JavaResolvers {
@@ -46,10 +46,7 @@ impl JavaResolvers {
     ) -> Self {
         Self {
             resolvers: Mutex::new(Vec::new()),
-            shared_context: Arc::new(SharedContext {
-                user_context: context,
-                callback: Box::new(callback),
-            }),
+            shared_context: Arc::new(SharedContext { user_context: context, callback: Box::new(callback) }),
         }
     }
 
@@ -57,9 +54,7 @@ impl JavaResolvers {
         let mut resolvers = self.resolvers.lock().unwrap();
         resolvers
             .iter()
-            .find_map(|resolver| {
-                (!resolver.in_use.load(Ordering::Relaxed)).then_some(resolver.clone())
-            })
+            .find_map(|resolver| (!resolver.in_use.load(Ordering::Relaxed)).then_some(resolver.clone()))
             .unwrap_or_else(|| {
                 trace!("Could not find an open resolver, making a new one");
                 let in_use = Arc::new(AtomicBool::new(false));
@@ -68,16 +63,11 @@ impl JavaResolvers {
                     in_use: in_use.clone(),
                 }));
                 let java_resolver = get_vm().with_env(|env| {
-                    let java_resolver =
-                        JavaNSDResolveListener::new(env, to_java_arc(env, context).unwrap())
-                            .unwrap();
+                    let java_resolver = JavaNSDResolveListener::new(env, to_java_arc(env, context).unwrap()).unwrap();
                     java_resolver.as_global()
                 });
-                let java_resolver = Arc::new(JavaResolver {
-                    resolver: java_resolver,
-                    in_use,
-                    manager: manager.clone(),
-                });
+                let java_resolver =
+                    Arc::new(JavaResolver { resolver: java_resolver, in_use, manager: manager.clone() });
                 resolvers.push(java_resolver.clone());
                 java_resolver
             })
@@ -134,11 +124,7 @@ extern "system" fn Java_com_maticrobots_nsd_1rs_NSDServiceResolver_rustOnResolve
     error_code: i32,
 ) {
     let service_info: Local<'_, NsdServiceInfo> = unsafe { Local::from_raw(env, service_info) };
-    error!(
-        "Got Error {} when resolving {:?}",
-        error_code,
-        service_info.toString()
-    );
+    error!("Got Error {} when resolving {:?}", error_code, service_info.toString());
 }
 
 #[unsafe(no_mangle)]

@@ -2,10 +2,11 @@
 name = "nsd-rs"
 version = "0.1.0"
 edition = "2024"
+license = "MIT"
 
 [dependencies]
-java-spaghetti.workspace = true
-jni.workspace = true
-log.workspace = true
+java-spaghetti = "0.2.0"
+jni = "0.21.1"
+log = "0.4.27"
 
-rust_android_utilities.workspace = true
+rust_android_utilities.path = "../rust_android_utilities"

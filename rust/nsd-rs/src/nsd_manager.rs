@@ -3,12 +3,12 @@ use log::{error, trace};
 use rust_android_utilities::get_application_context;
 
 use crate::{
-    DiscoveryRequest, JavaResult, NsdServiceInfo, SharedRustObject,
     bindings::{
         android::{content::Context, net::nsd::NsdManager},
         java::lang::{String as JString, Throwable},
     },
     nsd_discovery_listener::DiscoveryListener,
+    DiscoveryRequest, JavaResult, NsdServiceInfo, SharedRustObject,
 };
 
 pub struct NSDManager {
@@ -35,18 +35,13 @@ impl NSDManager {
                 .getSystemService_String(nsd_manager_name)?
                 .ok_or_else(|| {
                     error!("None in getSystemService_String");
-                    Throwable::new_String(
-                        env,
-                        JString::from_env_str(env, "Could not get NSDMANAGER from context"),
-                    )
-                    .unwrap()
+                    Throwable::new_String(env, JString::from_env_str(env, "Could not get NSDMANAGER from context"))
+                        .unwrap()
                 })?;
             let nsd_manager = nsd_manager.as_global();
-            let nsd_manager: Global<NsdManager> =
-                unsafe { Global::from_raw(env.vm(), nsd_manager.into_raw()) };
+            let nsd_manager: Global<NsdManager> = unsafe { Global::from_raw(env.vm(), nsd_manager.into_raw()) };
 
-            let discovery_listener =
-                DiscoveryListener::new(nsd_manager.clone(), callback_context, callback)?;
+            let discovery_listener = DiscoveryListener::new(nsd_manager.clone(), callback_context, callback)?;
 
             {
                 let nsd_manager = nsd_manager.as_local(env);
@@ -57,10 +52,7 @@ impl NSDManager {
                 )?;
             }
 
-            Ok(Self {
-                _manager: nsd_manager,
-                _listener: discovery_listener,
-            })
+            Ok(Self { _manager: nsd_manager, _listener: discovery_listener })
         })
     }
 }

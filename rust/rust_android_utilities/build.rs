@@ -10,9 +10,11 @@ const ANDROID_INITIALIZATION_C_LIB: &[u8] = include_bytes!("android_initializati
 const SHARED_LIBRARY_NAME: &str = "rust_android_utilities_setter";
 
 fn main() {
+    if !env::var("TARGET").unwrap().contains("android") {
+        return;
+    }
     let ifs = find_ifs().unwrap();
 
-    //panic!("Target is {}", env::var("TARGET").unwrap());
     let mut ifs = std::process::Command::new(ifs)
         .args(get_target_arch())
         .arg(format!(
@@ -76,22 +78,10 @@ const fn llvm_ifs_name() -> &'static str {
 // --target. So we have to manually construct the target for android targets
 fn get_target_arch() -> [String; 3] {
     match env::var("TARGET").unwrap().as_str() {
-        "x86_64-linux-android" => {
-            ["--arch=X86_64", "--endianness=little", "--bitwidth=64"].map(str::to_owned)
-        }
-        "i686-linux-android" => {
-            ["--arch=X86_64", "--endianness=little", "--bitwidth=32"].map(str::to_owned)
-        }
-        "aarch64-linux-android" => {
-            ["--arch=AARCH64", "--endianness=little", "--bitwidth=64"].map(str::to_owned)
-        }
-        "armv7-linux-androideabi" => {
-            ["--arch=ARM", "--endianness=little", "--bitwidth=32"].map(str::to_owned)
-        }
-        unknown_target => [
-            format!("--target={}", unknown_target),
-            String::new(),
-            String::new(),
-        ],
+        "x86_64-linux-android" => ["--arch=X86_64", "--endianness=little", "--bitwidth=64"].map(str::to_owned),
+        "i686-linux-android" => ["--arch=X86_64", "--endianness=little", "--bitwidth=32"].map(str::to_owned),
+        "aarch64-linux-android" => ["--arch=AARCH64", "--endianness=little", "--bitwidth=64"].map(str::to_owned),
+        "armv7-linux-androideabi" => ["--arch=ARM", "--endianness=little", "--bitwidth=32"].map(str::to_owned),
+        unknown_target => [format!("--target={}", unknown_target), String::new(), String::new()],
     }
 }

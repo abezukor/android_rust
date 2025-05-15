@@ -3,20 +3,17 @@
 use std::{any::Any, mem::ManuallyDrop, ptr::with_exposed_provenance, sync::Arc};
 
 use java_spaghetti::{
-    Env, Local,
     sys::{jlong, jobject},
+    Env, Local,
 };
 
-use crate::{JavaResult, bindings::com::maticrobots::nsd_rs::RustArcBoxDynAny};
+use crate::{bindings::com::maticrobots::nsd_rs::RustArcBoxDynAny, JavaResult};
 
 pub type BoxedRustObj = Box<dyn Any + Send + Sync + 'static>;
 
 // It needs to be Arc<Box<dyn Any>> because we need to be able to use Arc::from_raw and Arc::into_raw,
 // and those need to return thin pointers so that they fit in a java long
-pub fn to_java(
-    env: Env,
-    rust_obj: impl Any + Send + Sync + 'static,
-) -> JavaResult<Local<RustArcBoxDynAny>> {
+pub fn to_java(env: Env, rust_obj: impl Any + Send + Sync + 'static) -> JavaResult<Local<RustArcBoxDynAny>> {
     to_java_arc(env, Arc::new(Box::new(rust_obj)))
 }
 
@@ -25,10 +22,7 @@ pub fn to_java_arc(env: Env, rust_obj: Arc<BoxedRustObj>) -> JavaResult<Local<Ru
     // raw.expose_provenance() can be 32 bit
 
     // Java does not have a concept of unsigned integers so we have to reinterpret this as an i64.
-    Ok(RustArcBoxDynAny::new(
-        env,
-        raw.expose_provenance() as jlong,
-    )?)
+    Ok(RustArcBoxDynAny::new(env, raw.expose_provenance() as jlong)?)
 }
 
 ///# Safety
@@ -54,9 +48,7 @@ extern "system" fn Java_com_maticrobots_nsd_1rs_RustArcBoxDynAny_rust_1object_1d
 }
 
 #[unsafe(no_mangle)]
-extern "system" fn Java_com_maticrobots_nsd_1rs_RustArcBoxDynAny_rust_1object_1clone(
-    rust_ptr: jlong,
-) {
+extern "system" fn Java_com_maticrobots_nsd_1rs_RustArcBoxDynAny_rust_1object_1clone(rust_ptr: jlong) {
     let rust_ptr: *const BoxedRustObj = with_exposed_provenance(rust_ptr as usize);
     unsafe { Arc::increment_strong_count(rust_ptr) }
 }

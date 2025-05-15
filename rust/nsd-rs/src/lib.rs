@@ -16,6 +16,7 @@ pub mod java_wrapped_object;
 // Regenerate with java-spaghetti-gen generate
 #[rustfmt::skip]
 mod bindings;
+pub use bindings::java::lang::{String as JString, Throwable};
 
 mod nsd_resolve_listener;
 

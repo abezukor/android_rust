@@ -1,9 +1,11 @@
-use std::{ffi::CStr, mem::ManuallyDrop};
+use std::mem::ManuallyDrop;
 
-use android_log_sys::c_int;
+#[cfg(target_os = "android")]
 use ctor::ctor;
-use java_spaghetti::{self, Global, ReferenceType, sys::jobject};
 
+use java_spaghetti::{self, sys::jobject, Global, ReferenceType};
+
+#[cfg(target_os = "android")]
 unsafe extern "C" {
     fn android_rust_initialization_vm() -> *mut java_spaghetti::sys::JavaVM;
 
@@ -12,14 +14,15 @@ unsafe extern "C" {
     fn android_rust_initialization_class_loader() -> jobject;
 }
 
-const TAG: &CStr = c"Rust Android Initialization";
-
+#[cfg(target_os = "android")]
 #[ctor]
 fn set_class_loader() {
     use android_log_sys::{
-        __android_log_assert as android_log_assert, __android_log_write as android_log_write,
-        LogPriority,
+        LogPriority, __android_log_assert as android_log_assert, __android_log_write as android_log_write,
     };
+    use std::ffi::{c_int, CStr};
+
+    const TAG: &CStr = c"Rust Android Initialization";
 
     let class_loader = unsafe { android_rust_initialization_class_loader() };
     if class_loader.is_null() {
@@ -27,10 +30,7 @@ fn set_class_loader() {
             android_log_assert(
                 c"Class loader is null".to_bytes().as_ptr().cast(),
                 TAG.to_bytes().as_ptr().cast(),
-                c"Could not initialize rust code."
-                    .to_bytes()
-                    .as_ptr()
-                    .cast(),
+                c"Could not initialize rust code.".to_bytes().as_ptr().cast(),
             )
         }
     }
@@ -39,10 +39,7 @@ fn set_class_loader() {
         android_log_write(
             (LogPriority::VERBOSE as isize) as c_int,
             TAG.to_bytes().as_ptr().cast(),
-            c"Set Class loader from application context"
-                .to_bytes()
-                .as_ptr()
-                .cast(),
+            c"Set Class loader from application context".to_bytes().as_ptr().cast(),
         );
     }
 }
@@ -52,6 +49,12 @@ pub fn get_vm() -> java_spaghetti::VM {
     let vm = unsafe { android_rust_initialization_vm() };
     assert!(!vm.is_null(), "VM is null");
     unsafe { java_spaghetti::VM::from_raw(vm) }
+}
+
+pub fn attach_current_thread() {
+    let vm = get_vm();
+    // `with_env` has a side effect of attaching the current thead if it is not already attached.
+    vm.with_env(|_| ());
 }
 
 /// Returns a global reference to the application context.
@@ -68,4 +71,14 @@ pub unsafe fn get_application_context<T: ReferenceType>() -> Global<T> {
     // Do not drop the stored global reference, instead return a clone that is safe to drop
     let app_context = ManuallyDrop::new(unsafe { Global::from_raw(get_vm(), app_context) });
     Global::clone(&app_context)
+}
+
+#[cfg(not(target_os = "android"))]
+unsafe fn android_rust_initialization_vm() -> *mut java_spaghetti::sys::JavaVM {
+    unimplemented!("This function should never be run on a non-android os");
+}
+
+#[cfg(not(target_os = "android"))]
+unsafe fn android_rust_initialization_application_context() -> jobject {
+    unimplemented!("This function should never be run on a non-android os");
 }
