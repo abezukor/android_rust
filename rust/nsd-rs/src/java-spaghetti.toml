@@ -5,7 +5,7 @@ include = [
     "android/net/nsd/*",
     "android/net/Network",
     "android/content/Context",
-    "android/os/Parcelable/*",
+    "android/os/Build$VERSION",
 
     "java/lang/Object",
     "java/lang/Throwable",
@@ -17,7 +17,9 @@ include = [
 
     "java/util/concurrent/Executor",
     "java/util/Collection",
+    "java/util/Iterator",
     "java/util/Map",
+    "java/util/Map$Entry",
     "java/util/Set",
 
     "androidx/annotation/NonNull",
@@ -41,7 +43,7 @@ files = [
     "/home/abe/Android/Sdk/platforms/android-35/android.jar",
     # Hack so we can use android studio (as opposed to raw javac) to build the jar files.
     # Technically this may change, but I (Abe) think that is unlikely.
-    "../java/lib/build/intermediates/full_jar/debug/createFullJarDebug/full.jar",
+    "../../../java/nsd_rs/build/intermediates/full_jar/debug/createFullJarDebug/full.jar",
 ]
 
 [output]

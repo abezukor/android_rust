@@ -6,15 +6,14 @@ use log::{error, trace};
 
 use rust_android_utilities::get_vm;
 
-pub use crate::bindings::android::net::nsd::NsdServiceInfo;
 use crate::{
     bindings::{
-        android::net::nsd::{NsdManager, NsdManager_DiscoveryListener},
+        android::net::nsd::{NsdManager, NsdManager_DiscoveryListener, NsdServiceInfo as JavaNsdServiceInfo},
         com::maticrobots::nsd_rs::NSDDiscoveryListener,
         java::lang::String as JString,
     },
     java_wrapped_object::{get_ref, to_java},
-    nsd_resolve_listener::JavaResolvers,
+    nsd_resolve_listener::{JavaResolvers, NsdServiceInfo},
     JavaResult, SharedRustObject,
 };
 
@@ -32,7 +31,7 @@ impl DiscoveryListener {
     pub fn new(
         manager: Global<NsdManager>,
         callback_context: SharedRustObject,
-        callback: impl Fn(&NsdServiceInfo, SharedRustObject) + Send + Sync + 'static,
+        callback: impl for<'a> Fn(&'a NsdServiceInfo<'a>, SharedRustObject) + Send + Sync + 'static,
     ) -> JavaResult<Self> {
         let resolvers = JavaResolvers::new(callback_context, callback);
 
@@ -131,7 +130,7 @@ extern "system" fn Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnServi
 
     let this = unsafe { get_ref(rust_ptr) };
     let this = this.downcast_ref::<Context>().unwrap();
-    let info: Ref<NsdServiceInfo> = unsafe { Ref::from_raw(env, service_info) };
+    let info: Ref<JavaNsdServiceInfo> = unsafe { Ref::from_raw(env, service_info) };
     trace!(
         "Got Service {:}",
         info.toString().unwrap().unwrap().to_string().unwrap()

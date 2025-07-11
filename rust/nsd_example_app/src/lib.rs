@@ -11,6 +11,16 @@ pub extern "system" fn Java_com_maticrobots_nsd_1rs_1example_1app_RustNSDExample
     android_logger::init_once(Config::default().with_max_level(LevelFilter::Trace));
 
     info!("Android Logger Started");
+
+    std::panic::set_hook(Box::new(|panic_hook_info| {
+        if let Some(s) = panic_hook_info.payload().downcast_ref::<&str>() {
+            log::error!("Panic Payload: {s:?}");
+        } else if let Some(s) = panic_hook_info.payload().downcast_ref::<String>() {
+            log::error!("Panic Payload: {s:?}");
+        }
+        log::error!("Panic at {:?}", panic_hook_info.location());
+        log::error!("Backtrace: {}", std::backtrace::Backtrace::force_capture());
+    }))
 }
 
 #[unsafe(no_mangle)]

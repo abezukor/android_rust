@@ -5,7 +5,6 @@ pub use jni;
 
 pub type JavaResult<T> = Result<T, JavaError>;
 
-pub use nsd_discovery_listener::NsdServiceInfo;
 mod nsd_discovery_listener;
 
 pub use nsd_manager::NSDManager;
@@ -18,6 +17,7 @@ pub mod java_wrapped_object;
 mod bindings;
 pub use bindings::java::lang::{String as JString, Throwable};
 
+pub use nsd_resolve_listener::NsdServiceInfo;
 mod nsd_resolve_listener;
 
 pub use discovery_request::DiscoveryRequest;
@@ -32,7 +32,7 @@ impl std::fmt::Debug for JavaError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         self.0.vm().with_env(|env| {
             let local_ref = self.0.as_local(env);
-            write!(f, "{:?}", local_ref)
+            write!(f, "{local_ref:?}")
         })
     }
 }
@@ -50,7 +50,7 @@ impl std::fmt::Display for JavaError {
             match err.toString() {
                 Ok(Some(err_str)) => err_str.to_string_lossy(),
                 Ok(None) => "Error Has No String Representation".to_owned(),
-                Err(e) => format!("{:?}", e),
+                Err(e) => format!("{e:?}"),
             }
         }))
     }

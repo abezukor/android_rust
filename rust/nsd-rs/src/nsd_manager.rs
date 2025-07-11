@@ -45,9 +45,10 @@ impl NSDManager {
 
             {
                 let nsd_manager = nsd_manager.as_local(env);
-                nsd_manager.discoverServices_DiscoveryRequest_Executor_DiscoveryListener(
-                    discovery_request.java_object(env)?,
-                    app_context_ref.getMainExecutor()?,
+                discovery_request.discover(
+                    env,
+                    nsd_manager,
+                    &app_context_ref,
                     discovery_listener.as_manager_listener(),
                 )?;
             }
