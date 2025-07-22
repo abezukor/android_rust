@@ -4,10 +4,12 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-nsd-rs.path = "../nsd-rs"
 log = "0.4.27"
 android_logger = "0.15"
 jni = "0.21.1"
+
+nsd-rs.path = "../nsd-rs"
+rust_android_utilities.path = "../rust_android_utilities"
 
 [lib]
 crate-type = ["cdylib"]

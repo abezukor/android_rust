@@ -1,22 +1,31 @@
-use std::collections::HashMap;
-use std::sync::atomic::{AtomicBool, Ordering};
-use std::sync::{Arc, Mutex};
+use std::{
+    collections::HashMap,
+    fmt::Debug,
+    sync::{
+        atomic::{AtomicBool, Ordering},
+        Arc, Mutex,
+    },
+};
 
 use java_spaghetti::sys::{jlong, jobject};
 use java_spaghetti::{AsArg, ByteArray, Env, Global, Local, PrimitiveArray, Ref};
 use log::{error, trace};
 
-use rust_android_utilities::get_vm;
+use rust_android_utilities::{
+    get_vm,
+    java_wrapped_object::{get_ref, to_java_arc, BoxedRustObj},
+};
 
 use crate::bindings::android::os::Build_VERSION;
 use crate::bindings::java::util::Map_Entry;
 use crate::{
     bindings::{
         android::net::nsd::{NsdManager, NsdManager_ResolveListener, NsdServiceInfo as JavaNsdServiceInfo},
-        com::maticrobots::nsd_rs::NSDServiceResolver as JavaNSDResolveListener,
+        com::maticrobots::{
+            nsd_rs::NSDServiceResolver as JavaNSDResolveListener, rust_android_utilities::RustArcBoxDynAny,
+        },
         java::lang::{String as JString, Throwable},
     },
-    java_wrapped_object::{get_ref, to_java_arc, BoxedRustObj},
     SharedRustObject,
 };
 
@@ -68,7 +77,11 @@ impl JavaResolvers {
                     in_use: in_use.clone(),
                 }));
                 let java_resolver = get_vm().with_env(|env| {
-                    let java_resolver = JavaNSDResolveListener::new(env, to_java_arc(env, context).unwrap()).unwrap();
+                    let java_resolver = JavaNSDResolveListener::new(
+                        env,
+                        to_java_arc(env, context).unwrap().cast::<RustArcBoxDynAny>().unwrap(),
+                    )
+                    .unwrap();
                     java_resolver.as_global()
                 });
                 let java_resolver =
@@ -192,6 +205,12 @@ impl<'a> NsdServiceInfo<'a> {
         }
 
         entries_map
+    }
+}
+
+impl<'a> Debug for NsdServiceInfo<'a> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::result::Result<(), std::fmt::Error> {
+        write!(f, "{}", self.0.toString().unwrap().unwrap().to_string().unwrap())
     }
 }
 

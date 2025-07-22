@@ -20,6 +20,7 @@ composeBom = "2024.06.00" # Check for the latest stable Compose BOM version
 lifecycleRuntimeKtx = "2.8.7" # Match lifecycle-viewmodel-compose or use latest
 composeUiTest = "1.6.8" # Check for latest version matching your compose libs
 rust-android-gradle = "0.9.6"
+startupRuntime = "1.2.0"
 
 
 [libraries]
@@ -42,7 +43,8 @@ androidx-ui = { group = "androidx.compose.ui", name = "ui" } # Version managed b
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" } # Version managed by BOM
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" } # Version managed by BOM
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "composeUiTest"} # Often explicitly versioned or use BOM
-androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "composeUiTest"} # Often explicitly versioned or use BOM
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "composeUiTest"}
+androidx-startup-runtime = { group = "androidx.startup", name = "startup-runtime", version.ref = "startupRuntime" } # Often explicitly versioned or use BOM
 
 
 [plugins]

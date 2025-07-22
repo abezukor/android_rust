@@ -5,6 +5,13 @@ use ctor::ctor;
 
 use java_spaghetti::{self, sys::jobject, Global, ReferenceType};
 
+pub mod bindings;
+
+pub mod java_wrapped_object;
+
+mod error;
+pub use error::{JavaError, JavaResult};
+
 #[cfg(target_os = "android")]
 unsafe extern "C" {
     fn android_rust_initialization_vm() -> *mut java_spaghetti::sys::JavaVM;

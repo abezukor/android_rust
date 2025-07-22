@@ -1,4 +1,4 @@
-package com.maticrobots.nsd_rs;
+package com.maticrobots.rust_android_utilities;
 
 import android.util.Log;
 

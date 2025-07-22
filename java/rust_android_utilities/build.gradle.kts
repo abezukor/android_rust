@@ -8,7 +8,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 33
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -51,7 +51,7 @@ publishing {
         register<MavenPublication>("release") {
             groupId = "com.maticrobots"
             artifactId = "rust_android_utilities"
-            version = "0.1.0"
+            version = "0.1.1"
 
             afterEvaluate {
                 from(components["release"])

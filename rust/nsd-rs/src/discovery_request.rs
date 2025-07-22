@@ -1,22 +1,20 @@
 use java_spaghetti::{AsArg, Env, Local, Ref};
 use log::error;
+use rust_android_utilities::{JavaError, JavaResult};
 
-use crate::{
-    bindings::{
-        android::{
-            content::Context as AndroidContext,
-            net::{
-                nsd::{
-                    DiscoveryRequest as JavaDiscoveryRequest, DiscoveryRequest_Builder as JavaDiscoveryRequestBuilder,
-                    NsdManager, NsdManager_DiscoveryListener,
-                },
-                Network,
+use crate::bindings::{
+    android::{
+        content::Context as AndroidContext,
+        net::{
+            nsd::{
+                DiscoveryRequest as JavaDiscoveryRequest, DiscoveryRequest_Builder as JavaDiscoveryRequestBuilder,
+                NsdManager, NsdManager_DiscoveryListener,
             },
-            os::Build_VERSION,
+            Network,
         },
-        java::lang::{String as JString, Throwable},
+        os::Build_VERSION,
     },
-    JavaError, JavaResult,
+    java::lang::{String as JString, Throwable},
 };
 
 pub struct DiscoveryRequest {
@@ -83,13 +81,12 @@ impl DiscoveryRequest {
             }
             false => {
                 if self.subtype.is_some() {
-                    return Err(JavaError(
+                    return Err(JavaError::from(
                         Throwable::new_String(
                             env,
                             JString::from_env_str(env, "Cannot use subtypes before android 33."),
                         )
-                        .unwrap()
-                        .as_global(),
+                        .unwrap(),
                     ));
                 }
 

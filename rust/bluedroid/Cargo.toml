@@ -1,0 +1,17 @@
+[package]
+name = "bluedroid"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+java-spaghetti = "0.2.0"
+futures-core = "0.3.28"
+futures-channel = "0.3.28"
+futures-io = "0.3.31"
+uuid = "1.17.0"
+futures-lite = { version = "1.13.0", default-features = false }
+log = "0.4.27"
+thiserror = "2.0.12"
+
+
+rust_android_utilities.path = "../rust_android_utilities"

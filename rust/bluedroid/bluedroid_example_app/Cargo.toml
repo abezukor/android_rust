@@ -1,0 +1,31 @@
+[package]
+name = "bluedroid_example_app"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+log = "0.4.27"
+tokio = {version = "1.45.1", features = ["rt", "rt-multi-thread"]}
+java-spaghetti = "0.2.0"
+futures-core = "0.3.28"
+futures-lite = { version = "1.13.0", default-features = false }
+futures = "0.3.31"
+uuid = "1.17.0"
+
+bluedroid.path = "../"
+rust_android_utilities.path = "../../rust_android_utilities"
+
+
+[target.'cfg(target_os = "android")'.dependencies]
+android_logger = "0.15"
+ctor = "0.4.2"
+
+
+[dev-dependencies]
+env_logger = "0.11.8"
+
+[target.'cfg(target_os = "linux")'.dev-dependencies]
+bluer = {version = "0.17.3", features = ["bluetoothd", "l2cap"]}
+
+[lib]
+crate-type = ["lib", "cdylib"]

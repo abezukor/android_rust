@@ -7,7 +7,7 @@ use java_spaghetti::{
     Env, Local,
 };
 
-use crate::{bindings::com::maticrobots::nsd_rs::RustArcBoxDynAny, JavaResult};
+use crate::{bindings::com::maticrobots::rust_android_utilities::RustArcBoxDynAny, JavaResult};
 
 pub type BoxedRustObj = Box<dyn Any + Send + Sync + 'static>;
 
@@ -36,7 +36,7 @@ pub unsafe fn get_ref(raw_ptr: jlong) -> Arc<BoxedRustObj> {
 }
 
 #[unsafe(no_mangle)]
-extern "system" fn Java_com_maticrobots_nsd_1rs_RustArcBoxDynAny_rust_1object_1destruct(
+extern "system" fn Java_com_maticrobots_rust_1android_1utilities_RustArcBoxDynAny_rust_1object_1destruct(
     _env: Env<'_>,
     _class: jobject,
     rust_ptr: jlong,
@@ -48,7 +48,7 @@ extern "system" fn Java_com_maticrobots_nsd_1rs_RustArcBoxDynAny_rust_1object_1d
 }
 
 #[unsafe(no_mangle)]
-extern "system" fn Java_com_maticrobots_nsd_1rs_RustArcBoxDynAny_rust_1object_1clone(rust_ptr: jlong) {
+extern "system" fn Java_com_maticrobots_rust_1android_1utilities_RustArcBoxDynAny_rust_1object_1clone(rust_ptr: jlong) {
     let rust_ptr: *const BoxedRustObj = with_exposed_provenance(rust_ptr as usize);
     unsafe { Arc::increment_strong_count(rust_ptr) }
 }

@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.startup.Initializer;
 
-import com.maticrobots.nsd_rs.RustArcBoxDynAny;
+import com.maticrobots.rust_android_utilities.RustArcBoxDynAny;
 import com.maticrobots.rust_android_utilities.RustInitialization;
 
 import java.util.List;

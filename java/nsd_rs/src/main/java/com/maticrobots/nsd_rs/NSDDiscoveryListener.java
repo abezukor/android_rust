@@ -3,6 +3,8 @@ package com.maticrobots.nsd_rs;
 import android.net.nsd.NsdManager;
 import android.net.nsd.NsdServiceInfo;
 
+import com.maticrobots.rust_android_utilities.RustArcBoxDynAny;
+
 public class NSDDiscoveryListener implements NsdManager.DiscoveryListener {
     private final RustArcBoxDynAny rustDiscoveryListener;
 

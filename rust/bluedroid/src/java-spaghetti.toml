@@ -1,0 +1,72 @@
+
+include = [
+    "com/maticrobots/rust_bluedroid/*",
+    "com/maticrobots/rust_android_utilities/*",
+
+    "android/bluetooth/*",
+    "android/content/BroadcastReceiver",
+    "android/content/Context",
+
+    "android/os/ParcelUuid",
+
+    "android/util/SparseArray",
+
+    "java/io/IOException",
+    "java/io/InputStream",
+    "java/io/OutputStream",
+    "java/lang/Exception",
+    "java/lang/Object",
+    "java/lang/Throwable",
+    "java/lang/StackTraceElement",
+    "java/lang/String",
+    "java/lang/ClassLoader",
+
+    "java/util/AbstractCollection",
+    "java/util/AbstractList",
+    "java/util/Arrays",
+    "java/util/ArrayList",
+    "java/util/Collection",
+    "java/util/List",
+    "java/util/Map",
+    "java/util/Map$Entry",
+    "java/util/Set",
+    "java/util/UUID",
+
+    "androidx/annotation/NonNull",
+    "androidx/annotation/RequiresApi",
+]
+
+[[documentation.pattern]]
+class_url_pattern = "https://developer.android.com/reference/{CLASS}.html"
+method_url_pattern = "https://developer.android.com/reference/{CLASS}.html#{METHOD}({ARGUMENTS})"
+constructor_url_pattern = "https://developer.android.com/reference/{CLASS}.html#{CLASS.INNER}({ARGUMENTS})"
+field_url_pattern = "https://developer.android.com/reference/{CLASS}.html#{FIELD}"
+argument_seperator = ",%20"
+
+
+[logging]
+verbose = true
+
+[input]
+files = [
+    # TODO Make this respect environment variables
+    "/home/abe/Android/Sdk/platforms/android-35/android.jar",
+    # Hack so we can use android studio (as opposed to raw javac) to build the jar files.
+    # Technically this may change, but I (Abe) think that is unlikely.
+    "../../../java/rust_bluedroid/build/intermediates/full_jar/debug/createFullJarDebug/full.jar",
+    "../../../java/rust_android_utilities/build/intermediates/full_jar/debug/createFullJarDebug/full.jar",
+]
+
+[output]
+path = "bindings.rs"
+
+[codegen]
+method_naming_style = "java"
+method_naming_style_collision = "java_short_signature"
+keep_rejected_emits = false
+
+[codegen.field_naming_style]
+const_finals = true
+rustify_names = false
+getter_pattern = "{NAME}"
+setter_pattern = "set_{NAME}"

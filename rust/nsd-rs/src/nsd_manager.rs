@@ -1,6 +1,6 @@
 use java_spaghetti::Global;
 use log::{error, trace};
-use rust_android_utilities::get_application_context;
+use rust_android_utilities::{get_application_context, JavaResult};
 
 use crate::{
     bindings::{
@@ -8,7 +8,7 @@ use crate::{
         java::lang::{String as JString, Throwable},
     },
     nsd_discovery_listener::DiscoveryListener,
-    DiscoveryRequest, JavaResult, NsdServiceInfo, SharedRustObject,
+    DiscoveryRequest, NsdServiceInfo, SharedRustObject,
 };
 
 pub struct NSDManager {

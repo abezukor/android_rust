@@ -4,17 +4,20 @@ use java_spaghetti::{
 };
 use log::{error, trace};
 
-use rust_android_utilities::get_vm;
+use rust_android_utilities::{
+    get_vm,
+    java_wrapped_object::{get_ref, to_java},
+    JavaResult,
+};
 
 use crate::{
     bindings::{
         android::net::nsd::{NsdManager, NsdManager_DiscoveryListener, NsdServiceInfo as JavaNsdServiceInfo},
-        com::maticrobots::nsd_rs::NSDDiscoveryListener,
+        com::maticrobots::{nsd_rs::NSDDiscoveryListener, rust_android_utilities::RustArcBoxDynAny},
         java::lang::String as JString,
     },
-    java_wrapped_object::{get_ref, to_java},
-    nsd_resolve_listener::{JavaResolvers, NsdServiceInfo},
-    JavaResult, SharedRustObject,
+    nsd_resolve_listener::JavaResolvers,
+    NsdServiceInfo, SharedRustObject,
 };
 
 pub struct DiscoveryListener {
@@ -37,7 +40,7 @@ impl DiscoveryListener {
 
         get_vm().with_env(|env| {
             let java_inner = to_java(env, Context { manager: manager.clone(), resolvers })?;
-            let java_listener = NSDDiscoveryListener::new(env, java_inner)?;
+            let java_listener = NSDDiscoveryListener::new(env, java_inner.cast::<RustArcBoxDynAny>().unwrap())?;
 
             Ok(Self { java_listener: java_listener.as_global(), manager })
         })

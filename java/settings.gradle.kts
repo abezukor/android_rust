@@ -29,3 +29,5 @@ rootProject.name = "nsd_rs"
 include("nsd_rs")
 include("nsd_example_app")
 include("rust_android_utilities")
+include(":rust_bluedroid")
+include(":rust_bluedroid:bluedroid_example_app")

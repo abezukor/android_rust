@@ -2,7 +2,8 @@ use log::{info, LevelFilter};
 use std::sync::Arc;
 
 use jni::{objects::JObject, sys::jobject};
-use nsd_rs::{self, java_wrapped_object::to_java, jni_env, DiscoveryRequest, NsdServiceInfo, SharedRustObject};
+use nsd_rs::{self, jni_env, DiscoveryRequest, NsdServiceInfo, SharedRustObject};
+use rust_android_utilities::java_wrapped_object::to_java;
 
 #[unsafe(no_mangle)]
 pub extern "system" fn Java_com_maticrobots_nsd_1rs_1example_1app_RustNSDExample_init_1logging() {
@@ -36,6 +37,6 @@ pub extern "system" fn Java_com_maticrobots_nsd_1rs_1example_1app_RustNSDExample
     unsafe { JObject::from_raw(java_obj.into_raw() as jobject) }
 }
 
-fn callback(service_inf: &NsdServiceInfo, _context: SharedRustObject) {
-    info!("Library Callback {:?}", service_inf.toString().unwrap())
+fn callback(service_info: &NsdServiceInfo, _context: SharedRustObject) {
+    info!("Library Callback {:?}", service_info)
 }

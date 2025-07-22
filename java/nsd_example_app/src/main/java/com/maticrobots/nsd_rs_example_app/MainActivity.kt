@@ -1,6 +1,5 @@
 package com.maticrobots.nsd_rs_example_app
 
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -23,8 +22,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.maticrobots.nsd_rs.RustArcBoxDynAny
 import com.maticrobots.nsd_rs_example_app.ui.theme.Example_appTheme
+import com.maticrobots.rust_android_utilities.RustArcBoxDynAny
 
 class MainActivity : ComponentActivity() {
 
