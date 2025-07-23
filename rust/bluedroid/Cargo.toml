@@ -2,6 +2,7 @@
 name = "bluedroid"
 version = "0.1.0"
 edition = "2024"
+license = "MIT"
 
 [dependencies]
 java-spaghetti = "0.2.0"
