@@ -38,5 +38,5 @@ pub extern "system" fn Java_com_maticrobots_nsd_1rs_1example_1app_RustNSDExample
 }
 
 fn callback(service_info: &NsdServiceInfo, _context: SharedRustObject) {
-    info!("Library Callback {:?}", service_info)
+    info!("Library Callback {service_info:?}")
 }

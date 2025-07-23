@@ -16,12 +16,12 @@ use futures_channel::oneshot::{self, Canceled};
 use futures_io::{AsyncRead, AsyncWrite};
 use futures_lite::FutureExt;
 use java_spaghetti::{ByteArray, Global, Local, PrimitiveArray};
-use log::{debug, trace, warn};
+use log::{debug, trace};
 use rust_android_utilities::{JavaError, JavaResult};
 
 use crate::{
     bindings::{
-        android::bluetooth::{BluetoothDevice as JavaBluetoothDevice, BluetoothSocket},
+        android::bluetooth::BluetoothDevice as JavaBluetoothDevice,
         java::io::{InputStream, OutputStream},
     },
     rust_slice_to_java_byte_array,
@@ -31,6 +31,13 @@ pub struct Channel<H: Hasher + Default = DefaultHasher> {
     reader: Reader,
     writer: Writer<H>,
 }
+
+#[cfg(not(test))]
+mod closer;
+#[cfg(not(test))]
+use closer::L2capCloser;
+#[cfg(test)]
+use tests::L2capCloser;
 
 type ReaderResponse = io::Result<Box<[u8]>>;
 type ReaderRequest = (usize, oneshot::Sender<ReaderResponse>);
@@ -42,7 +49,6 @@ pub struct Reader {
     /// smaller read request comes through. When that happens we may get a packet that is bigger
     /// then the new read, and thus we need to buffer the rest of the result until another read comes and can finish reading it.
     cancel_buffer: VecDeque<u8>,
-    #[cfg(not(test))]
     _closer: Arc<L2capCloser>,
 }
 
@@ -53,7 +59,6 @@ pub struct Writer<H: Hasher + Default = DefaultHasher> {
     request: mpsc::Sender<WriterRequest>,
     done: Option<oneshot::Receiver<WriterResponse>>,
     _hasher: PhantomMarker<H>,
-    #[cfg(not(test))]
     closer: Arc<L2capCloser>,
 }
 
@@ -91,6 +96,8 @@ impl<H: Hasher + Default> Channel<H> {
                 cancel_buffer: VecDeque::new(),
                 #[cfg(not(test))]
                 _closer: closer.clone(),
+                #[cfg(test)]
+                _closer: Default::default(),
             };
 
             let (writer_request_tx, writer_request_rx) = mpsc::channel();
@@ -100,6 +107,8 @@ impl<H: Hasher + Default> Channel<H> {
                 _hasher: Default::default(),
                 #[cfg(not(test))]
                 closer,
+                #[cfg(test)]
+                closer: Default::default(),
             };
 
             // Unfortunately, Android's API for L2CAP channels is only blocking. Only way to deal with it
@@ -138,10 +147,9 @@ fn read_thread(request: mpsc::Receiver<ReaderRequest>, input_stream: Global<Inpu
             let arr: Local<ByteArray> = ByteArray::new(env, size);
             let response = match stream.read_byte_array(&arr) {
                 Ok(err) if err < 0 => Err(io::Error::other(format!(
-                    "Got an invalid number of bytes {} from the channel",
-                    err
+                    "Got an invalid number of bytes {err} from the channel"
                 ))),
-                Err(e) => Err(io::Error::other(format!("failed to read from l2cap channel: {:?}", e))),
+                Err(e) => Err(io::Error::other(format!("failed to read from l2cap channel: {e:?}"))),
                 Ok(received_size) => {
                     let received_size = received_size as usize;
                     assert!(received_size <= size, "Read buffer must be less then data length");
@@ -180,7 +188,7 @@ fn write_thread(request: mpsc::Receiver<WriterRequest>, output_stream: Global<Ou
                 hash,
                 match stream.write_byte_array(b) {
                     Ok(()) => Ok(()),
-                    Err(e) => Err(io::Error::other(format!("failed to read from l2cap channel: {:?}", e))),
+                    Err(e) => Err(io::Error::other(format!("failed to read from l2cap channel: {e:?}"))),
                 },
             );
             if responder.send(response).is_err() {
@@ -293,7 +301,6 @@ impl<H: Hasher + Default + Unpin> AsyncWrite for Writer<H> {
     }
 
     fn poll_close(self: Pin<&mut Self>, _cx: &mut Context<'_>) -> Poll<io::Result<()>> {
-        #[cfg(not(test))]
         self.closer.close();
         Poll::Ready(Ok(()))
     }
@@ -319,29 +326,6 @@ impl AsyncWrite for Channel {
     }
 }
 
-/// Utility struct to close the channel on drop.
-struct L2capCloser {
-    channel: Global<BluetoothSocket>,
-}
-
-impl L2capCloser {
-    fn close(&self) {
-        self.channel.vm().with_env(|env| {
-            let channel = self.channel.as_local(env);
-            match channel.close() {
-                Ok(()) => debug!("l2cap channel closed"),
-                Err(e) => warn!("failed to close channel: {:?}", e),
-            };
-        });
-    }
-}
-
-impl Drop for L2capCloser {
-    fn drop(&mut self) {
-        self.close()
-    }
-}
-
 fn u8toi8_mut(slice: &mut [u8]) -> &mut [i8] {
     let len = slice.len();
     let data = slice.as_mut_ptr() as *mut i8;
@@ -360,6 +344,12 @@ mod tests {
 
     use futures_io::{AsyncRead, AsyncWrite};
 
+    #[derive(Debug, Default)]
+    pub struct L2capCloser {}
+    impl L2capCloser {
+        pub const fn close(&self) {}
+    }
+
     #[test]
     fn read_cancel_overflow_test() {
         let (request_tx, request_rx) = mpsc::channel();
@@ -367,6 +357,7 @@ mod tests {
             request: request_tx,
             data_recv: None,
             cancel_buffer: VecDeque::new(),
+            _closer: Default::default(),
         };
 
         let mut reader = std::pin::pin!(reader);
@@ -413,7 +404,12 @@ mod tests {
     #[test]
     fn write_len_changed_test() {
         let (request_tx, request_rx) = mpsc::channel();
-        let writer = super::Writer::<DefaultHasher> { request: request_tx, done: None, _hasher: Default::default() };
+        let writer = super::Writer::<DefaultHasher> {
+            request: request_tx,
+            done: None,
+            _hasher: Default::default(),
+            closer: Default::default(),
+        };
 
         let mut writer = std::pin::pin!(writer);
         let mut cx = Context::from_waker(Waker::noop());

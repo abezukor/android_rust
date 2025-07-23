@@ -60,7 +60,7 @@ pub(crate) extern "system" fn Java_com_matician_bluerdroid_1example_1app_RustIni
                 let device: Device = scan_result.unwrap().device();
                 let id = device.id();
 
-                log::info!("Found device with id {}", id);
+                log::info!("Found device with id {id}");
                 if id == mac_address {
                     device_lock.get_or_init(|| device);
                     return;
@@ -147,7 +147,7 @@ pub(crate) extern "system" fn Java_com_matician_bluerdroid_1example_1app_RustIni
             .find(|descriptor| descriptor.uuid() == DESCRIPTOR_UUID)
             .unwrap();
         let descriptor_value = descriptor.read().await.unwrap();
-        info!("Read descriptor {:?}", descriptor_value);
+        info!("Read descriptor {descriptor_value:?}");
         assert_eq!(DESCRIPTOR_INITIAL_VALUE, &descriptor_value as &[u8]);
 
         let mut stream = device.open_l2cap_channel(PSM, false).unwrap();

@@ -13,6 +13,7 @@ pub use adapter::Adapter;
 mod adapter;
 
 use bindings::com::maticrobots::rust_android_utilities::RustArcBoxDynAny;
+#[rustfmt::skip]
 mod bindings;
 
 pub mod scan;
@@ -56,7 +57,7 @@ impl ConnectionState {
             BluetoothAdapter::STATE_CONNECTING => Some(Self::Connecting),
             BluetoothAdapter::STATE_CONNECTED => Some(Self::Connected),
             other => {
-                warn!("Trying to get connection state from invalid {:?}", other);
+                warn!("Trying to get connection state from invalid {other:?}");
                 None
             }
         }

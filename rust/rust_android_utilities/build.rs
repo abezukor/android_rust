@@ -34,7 +34,7 @@ fn main() {
     }
 
     println!("cargo::rustc-link-search={}", env::var("OUT_DIR").unwrap());
-    println!("cargo::rustc-link-lib=dylib={}", SHARED_LIBRARY_NAME);
+    println!("cargo::rustc-link-lib=dylib={SHARED_LIBRARY_NAME}");
 }
 
 fn find_ifs() -> Option<OsString> {
@@ -82,6 +82,6 @@ fn get_target_arch() -> [String; 3] {
         "i686-linux-android" => ["--arch=X86_64", "--endianness=little", "--bitwidth=32"].map(str::to_owned),
         "aarch64-linux-android" => ["--arch=AARCH64", "--endianness=little", "--bitwidth=64"].map(str::to_owned),
         "armv7-linux-androideabi" => ["--arch=ARM", "--endianness=little", "--bitwidth=32"].map(str::to_owned),
-        unknown_target => [format!("--target={}", unknown_target), String::new(), String::new()],
+        unknown_target => [format!("--target={unknown_target}"), String::new(), String::new()],
     }
 }

@@ -69,7 +69,7 @@ impl Device {
 
     pub async fn connect(&self) -> GattResult<()> {
         let id = self.id();
-        trace!("Connecting to {:?}", id);
+        trace!("Connecting to {id:?}");
         if self.check_connected().is_ok() {
             return Ok(());
         }
@@ -83,13 +83,13 @@ impl Device {
         })?;
         match connection_state
             .find(|cs| {
-                trace!("Connect got state {:?} for {}", cs, id);
+                trace!("Connect got state {cs:?} for {id}");
                 matches!(cs, Ok(ConnectionState::Connected) | Err(_))
             })
             .await
         {
             Some(connection_result) => {
-                trace!("Connection result {:?} for {}", connection_result, id);
+                trace!("Connection result {connection_result:?} for {id}");
                 connection_result.map(|_| ())
             }
             None => Err(GattError::NotConnected),
@@ -301,7 +301,7 @@ extern "system" fn Java_com_maticrobots_rust_1bluedroid_GattCallback_rustOnConne
         Err(err) => Err(err),
     };
 
-    trace!("Got connection state {:?}", connection_state);
+    trace!("Got connection state {connection_state:?}");
 
     callback_mpsc_channel_send::<ConnectionStateChannelData>(env, rust_obj, connection_state).is_ok()
 }
