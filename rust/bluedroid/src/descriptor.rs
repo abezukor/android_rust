@@ -5,14 +5,12 @@ use java_spaghetti::{
 use uuid::{uuid, Uuid};
 
 use crate::{
-    bindings::{
-        android::bluetooth::BluetoothGattDescriptor as JavaDescriptor,
-        com::maticrobots::rust_bluedroid::BluetoothDevice as JavaBluetoothDevice,
-    },
+    bindings::android::bluetooth::BluetoothGattDescriptor as JavaDescriptor,
     characteristic::{
         rust_on_characteristic_read, rust_on_characteristic_write, CharacteristicReadReturnValue,
         CharacteristicWriteReturnValue,
     },
+    device::DeviceWithGattLock,
     error::{BluetoothStatusCode, GattResult},
     java_debug_eq_hash, java_uuid_to_rust, rust_slice_to_java_byte_array, CallBackFuture, GattError,
 };
@@ -21,7 +19,7 @@ use crate::{
 pub struct Descriptor {
     pub(crate) descriptor: Global<JavaDescriptor>,
     // doing GATT operations requires a reference the the device
-    pub(crate) device: Global<JavaBluetoothDevice>,
+    pub(crate) device: DeviceWithGattLock,
 }
 java_debug_eq_hash!(Descriptor, descriptor);
 
@@ -36,11 +34,13 @@ impl Descriptor {
     }
 
     pub async fn read(&self) -> GattResult<Box<[u8]>> {
+        let gatt_lock = self.device.gatt_lock.lock_arc().await;
+
         let finished = self.descriptor.vm().with_env(|env| {
-            let (rust_obj, future) = CallBackFuture::<CharacteristicReadReturnValue>::new(env);
+            let (rust_obj, future) = CallBackFuture::<CharacteristicReadReturnValue>::new_locked(env, gatt_lock);
 
             let this = self.descriptor.as_ref(env);
-            let device = self.device.as_ref(env);
+            let device = self.device.device.as_ref(env);
 
             if !device.readDescriptor(this, rust_obj)? {
                 return Err(GattError::NotExecuted);
@@ -59,11 +59,13 @@ impl Descriptor {
     }
 
     pub(crate) async fn write_unchecked(&self, value: &[u8]) -> CharacteristicWriteReturnValue {
+        let gatt_lock = self.device.gatt_lock.lock_arc().await;
+
         let finished = self.descriptor.vm().with_env(|env| {
-            let (rust_obj, future) = CallBackFuture::<CharacteristicWriteReturnValue>::new(env);
+            let (rust_obj, future) = CallBackFuture::<CharacteristicWriteReturnValue>::new_locked(env, gatt_lock);
 
             let this = self.descriptor.as_ref(env);
-            let device = self.device.as_ref(env);
+            let device = self.device.device.as_ref(env);
 
             let value = rust_slice_to_java_byte_array(env, value);
 

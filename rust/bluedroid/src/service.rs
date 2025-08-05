@@ -6,8 +6,9 @@ use crate::{
         android::bluetooth::{
             BluetoothGattCharacteristic as RawJavaCharacteristic, BluetoothGattService as RawJavaService,
         },
-        com::maticrobots::rust_bluedroid::{BluetoothDevice as JavaBluetoothDevice, Service as JavaService},
+        com::maticrobots::rust_bluedroid::Service as JavaService,
     },
+    device::DeviceWithGattLock,
     java_debug_eq_hash, java_uuid_to_rust, local_array_to_global_vec, Characteristic,
 };
 
@@ -15,7 +16,7 @@ use crate::{
 pub struct Service {
     pub(crate) service: Global<JavaService>,
     // doing GATT operations requires a reference the the device
-    pub(crate) device: Global<JavaBluetoothDevice>,
+    pub(crate) device: DeviceWithGattLock,
 }
 
 java_debug_eq_hash!(Service, service);

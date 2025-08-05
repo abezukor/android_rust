@@ -1,3 +1,5 @@
+use std::sync::Arc;
+
 use futures_channel::mpsc::UnboundedReceiver;
 use futures_core::Stream;
 use futures_lite::StreamExt;
@@ -29,10 +31,16 @@ type ConnectionStateChannelData = GattResult<ConnectionState>;
 
 #[derive(Clone)]
 pub struct Device {
-    device: Global<JavaBluetoothDevice>,
+    device: DeviceWithGattLock,
     adapter: Global<JavaAdapter>,
 }
-java_debug_eq_hash!(Device, device);
+java_debug_eq_hash!(Device, device.device);
+
+#[derive(Clone)]
+pub(crate) struct DeviceWithGattLock {
+    pub(crate) device: Global<JavaBluetoothDevice>,
+    pub(crate) gatt_lock: Arc<async_lock::Mutex<()>>,
+}
 
 #[derive(Error, Debug)]
 pub enum PairingError {
@@ -48,20 +56,23 @@ pub enum PairingError {
 
 impl Device {
     pub(crate) fn new(device: Global<JavaBluetoothDevice>, adapter: Global<JavaAdapter>) -> Self {
-        Self { device, adapter }
+        Self {
+            device: DeviceWithGattLock { device, gatt_lock: Default::default() },
+            adapter,
+        }
     }
 
     pub fn id(&self) -> String {
-        self.device.vm().with_env(|env| {
-            let device = self.device.as_ref(env);
+        self.device.device.vm().with_env(|env| {
+            let device = self.device.device.as_ref(env);
             let id = device.id().unwrap().unwrap();
             id.to_string().unwrap()
         })
     }
 
     pub fn name(&self) -> Option<String> {
-        self.device.vm().with_env(|env| {
-            let device = self.device.as_ref(env);
+        self.device.device.vm().with_env(|env| {
+            let device = self.device.device.as_ref(env);
             let name = device.name().unwrap()?;
             Some(name.to_string().unwrap())
         })
@@ -74,8 +85,8 @@ impl Device {
             return Ok(());
         }
         let mut connection_state = self.connection_events();
-        self.device.vm().with_env(|env| {
-            let device = self.device.as_ref(env);
+        self.device.device.vm().with_env(|env| {
+            let device = self.device.device.as_ref(env);
             if !device.connect()? {
                 return Err(GattError::NotExecuted);
             }
@@ -105,8 +116,8 @@ impl Device {
             return Ok(());
         }
 
-        self.device.vm().with_env(|env| {
-            let device = self.device.as_ref(env);
+        self.device.device.vm().with_env(|env| {
+            let device = self.device.device.as_ref(env);
 
             device.disconnect()?;
             Ok::<_, GattError>(())
@@ -125,10 +136,10 @@ impl Device {
         let (state_send, state_recv) = futures_channel::mpsc::unbounded();
         let state_recv: UnboundedReceiver<ConnectionStateChannelData> = state_recv; // Enforce channel type
         state_send.unbounded_send(Ok(self.client_connection_state())).unwrap(); // Start the channel off with the current client connection state
-        self.device.vm().with_env(|env| {
+        self.device.device.vm().with_env(|env| {
             let rust_obj: Local<RustArcBoxDynAny> = to_java(env, state_send).unwrap().cast().unwrap();
 
-            let device = self.device.as_ref(env);
+            let device = self.device.device.as_ref(env);
 
             device.connectionStateChange(rust_obj).unwrap();
         });
@@ -136,8 +147,8 @@ impl Device {
     }
 
     pub fn paired(&self) -> bool {
-        self.device.vm().with_env(|env| {
-            let device = self.device.as_ref(env);
+        self.device.device.vm().with_env(|env| {
+            let device = self.device.device.as_ref(env);
             device.isPaired().unwrap()
         })
     }
@@ -154,8 +165,8 @@ impl Device {
 
         let app_context = unsafe { get_application_context::<Context>() };
         let (event_send, mut event_recv) = futures_channel::mpsc::unbounded::<i32>();
-        let _broadcast_receiver = self.device.vm().with_env(|env| {
-            let device = self.device.as_ref(env);
+        let _broadcast_receiver = self.device.device.vm().with_env(|env| {
+            let device = self.device.device.as_ref(env);
             let context = app_context.as_ref(env);
             let rust_obj: Local<'_, RustArcBoxDynAny> = to_java(env, event_send)?.cast().unwrap();
             Ok::<_, JavaError>(device.pair(context, rust_obj)?.unwrap().as_global())
@@ -178,10 +189,10 @@ impl Device {
     pub async fn discover_services(&self) -> Result<Vec<Service>, GattError> {
         self.check_connected()?;
 
-        let finished = self.device.vm().with_env(|env| {
+        let finished = self.device.device.vm().with_env(|env| {
             let (rust_obj, future) = CallBackFuture::<DiscoverServicesFutureValue>::new(env);
 
-            let device = self.device.as_ref(env);
+            let device = self.device.device.as_ref(env);
             if !device.discoverServices(rust_obj)? {
                 return Err(GattError::NotExecuted);
             }
@@ -198,8 +209,8 @@ impl Device {
     ///
     /// This function requires that service discovery has been completed for the given device.
     pub fn cached_services(&self) -> JavaResult<Vec<Service>> {
-        self.device.vm().with_env(|env| {
-            let device = self.device.as_ref(env);
+        self.device.device.vm().with_env(|env| {
+            let device = self.device.device.as_ref(env);
             // Exception if gatt is uninitialized
             let services = device.cachedServices()?.unwrap();
             Ok(services
@@ -216,10 +227,10 @@ impl Device {
     pub async fn rssi(&self) -> ReadRemoteRssiReturnValue {
         self.check_connected()?;
 
-        let finished = self.device.vm().with_env(|env| {
+        let finished = self.device.device.vm().with_env(|env| {
             let (rust_obj, future) = CallBackFuture::<ReadRemoteRssiReturnValue>::new(env);
 
-            let device = self.device.as_ref(env);
+            let device = self.device.device.as_ref(env);
             if !device.rssi(rust_obj)? {
                 return Err(GattError::NotExecuted);
             }
@@ -229,8 +240,8 @@ impl Device {
     }
 
     pub fn open_l2cap_channel(&self, psm: u16, secure: bool) -> JavaResult<Channel> {
-        let device = self.device.vm().with_env(|env| {
-            let device = self.device.as_ref(env);
+        let device = self.device.device.vm().with_env(|env| {
+            let device = self.device.device.as_ref(env);
             Ok::<_, JavaError>(device.getDevice()?.unwrap().as_global())
         })?;
         Channel::open_l2cap_channel(device, psm, secure)
@@ -238,10 +249,10 @@ impl Device {
 
     pub fn services_changed(&self) -> impl Stream<Item = ()> {
         let (services_changed_send, services_changed_recv) = futures_channel::mpsc::unbounded();
-        self.device.vm().with_env(|env| {
+        self.device.device.vm().with_env(|env| {
             let rust_obj: Local<RustArcBoxDynAny> = to_java(env, services_changed_send).unwrap().cast().unwrap();
 
-            let device = self.device.as_ref(env);
+            let device = self.device.device.as_ref(env);
 
             device.services_changed(rust_obj).unwrap();
         });
@@ -253,7 +264,7 @@ impl Device {
     pub fn device_connection_state(&self) -> GattResult<ConnectionState> {
         let connection_state = self.adapter.vm().with_env(|env| {
             let adapter = self.adapter.as_ref(env);
-            let device = self.device.as_ref(env);
+            let device = self.device.device.as_ref(env);
 
             Ok::<_, JavaError>(adapter.connectionState(device)?)
         })?;
@@ -264,8 +275,8 @@ impl Device {
     /// GATT client (app) connection state.
     /// `self.device_connection_state() == true` is required but not sufficiant to imply that this GATT client is connected
     pub fn client_connection_state(&self) -> ConnectionState {
-        self.device.vm().with_env(|env| {
-            let device = self.device.as_ref(env);
+        self.device.device.vm().with_env(|env| {
+            let device = self.device.device.as_ref(env);
             ConnectionState::from_java(device.clientConnectionState().unwrap())
                 .expect("Value should be a connection state")
         })
@@ -281,8 +292,8 @@ impl Device {
 
 impl Drop for Device {
     fn drop(&mut self) {
-        self.device.vm().with_env(|env| {
-            let device = self.device.as_ref(env);
+        self.device.device.vm().with_env(|env| {
+            let device = self.device.device.as_ref(env);
             device.close().unwrap();
         })
     }

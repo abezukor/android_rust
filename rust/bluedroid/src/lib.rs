@@ -115,14 +115,14 @@ fn rust_slice_to_java_byte_array<'a>(env: Env<'a>, slice: &[u8]) -> Local<'a, By
 pub(crate) mod java_macros {
     #[macro_export]
     macro_rules! java_debug_eq_hash {
-        ($object:ident,$this_object:tt) => {
+        ($object:ident,$($this_object:tt)+) => {
             impl std::fmt::Debug for $object {
                 fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                     write!(
                         f,
                         "{}",
-                        self.$this_object.vm().with_env(|env| {
-                            let adapter = self.$this_object.as_ref(env);
+                        self.$($this_object)+.vm().with_env(|env| {
+                            let adapter = self.$($this_object)+.as_ref(env);
                             adapter.toString().unwrap().unwrap().to_string().unwrap()
                         })
                     )
@@ -130,9 +130,9 @@ pub(crate) mod java_macros {
             }
             impl PartialEq for $object {
                 fn eq(&self, other: &Self) -> bool {
-                    self.$this_object.vm().with_env(|env| {
-                        let this = self.$this_object.as_ref(env);
-                        let other = other.$this_object.as_ref(env);
+                    self.$($this_object)+.vm().with_env(|env| {
+                        let this = self.$($this_object)+.as_ref(env);
+                        let other = other.$($this_object)+.as_ref(env);
                         this.equals(other).unwrap()
                     })
                 }
@@ -142,8 +142,8 @@ pub(crate) mod java_macros {
 
             impl std::hash::Hash for $object {
                 fn hash<H: std::hash::Hasher>(&self, state: &mut H) {
-                    let hashcode = self.$this_object.vm().with_env(|env| {
-                        let this = self.$this_object.as_ref(env);
+                    let hashcode = self.$($this_object)+.vm().with_env(|env| {
+                        let this = self.$($this_object)+.as_ref(env);
                         this.hashCode().unwrap()
                     });
                     hashcode.hash(state);

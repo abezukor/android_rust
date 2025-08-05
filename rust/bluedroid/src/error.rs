@@ -48,8 +48,7 @@ pub enum GattError {
     #[error("Java Exception thrown: {0:?}")]
     JavaError(#[from] JavaError),
 
-    //TODO Create a rust async lock on each device so concurrent calls wait for the previous ones to finish before starting execution
-    #[error("Java Gatt Function did not execute (returned false). This happens when there are concurrent read/write requests to characteristics and descripters on a device")]
+    #[error("Java Gatt Function did not execute (returned false).")]
     NotExecuted,
 
     #[error("The device must be connected to execcute this operation.")]
