@@ -9,7 +9,9 @@ import android.content.Context;
 import android.content.IntentFilter;
 import android.system.SystemCleaner;
 import android.util.Log;
+
 import com.maticrobots.rust_android_utilities.RustArcBoxDynAny;
+
 import java.lang.ref.Cleaner;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -19,15 +21,14 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class BluetoothDevice implements AutoCloseable {
 
     private static final Cleaner cleaner = SystemCleaner.cleaner();
 
     public static UUID CCC_DESCRIPTOR = new UUID(
-        0x290200001000L,
-        0x800000805f9b34fbL
+            0x290200001000L,
+            0x800000805f9b34fbL
     );
     android.bluetooth.BluetoothDevice device;
 
@@ -36,13 +37,13 @@ public class BluetoothDevice implements AutoCloseable {
     GattCallback gattCB;
 
     public BluetoothDevice(
-        android.bluetooth.BluetoothDevice device,
-        Context context
+            android.bluetooth.BluetoothDevice device,
+            Context context
     ) {
         this.device = device;
         this.gattCB = new GattCallback(this.device.getAddress());
         Optional<BluetoothGatt> bluetoothGatt = new Optional<>(
-            this.device.connectGatt(context, false, this.gattCB)
+                this.device.connectGatt(context, false, this.gattCB)
         );
         cleaner.register(this, () -> drop(bluetoothGatt));
         gatt = bluetoothGatt;
@@ -53,7 +54,8 @@ public class BluetoothDevice implements AutoCloseable {
             BluetoothGatt gatt = possibleGatt.get().orElseThrow();
             gatt.close();
             possibleGatt.clear();
-        } catch (NoSuchElementException ignored) {}
+        } catch (NoSuchElementException ignored) {
+        }
     }
 
     public String id() {
@@ -66,20 +68,20 @@ public class BluetoothDevice implements AutoCloseable {
 
     public boolean isPaired() {
         return (
-            device.getBondState() ==
-            android.bluetooth.BluetoothDevice.BOND_BONDED
+                device.getBondState() ==
+                        android.bluetooth.BluetoothDevice.BOND_BONDED
         );
     }
 
     public BroadcastReceiver pair(Context context, RustArcBoxDynAny rust_obj) {
         BroadcastReceiver recv = new PairingReceiver(rust_obj);
         IntentFilter pairingFilter = new IntentFilter(
-            android.bluetooth.BluetoothDevice.ACTION_BOND_STATE_CHANGED
+                android.bluetooth.BluetoothDevice.ACTION_BOND_STATE_CHANGED
         );
         context.registerReceiver(
-            recv,
-            pairingFilter,
-            Context.RECEIVER_EXPORTED
+                recv,
+                pairingFilter,
+                Context.RECEIVER_EXPORTED
         );
 
         device.createBond();
@@ -123,20 +125,20 @@ public class BluetoothDevice implements AutoCloseable {
     }
 
     public boolean readCharacteristic(
-        BluetoothGattCharacteristic characteristic,
-        RustArcBoxDynAny rust_obj
+            BluetoothGattCharacteristic characteristic,
+            RustArcBoxDynAny rust_obj
     ) {
         Collection<RustArcBoxDynAny> callback_objects =
-            gattCB.readRequests.computeIfAbsent(characteristic.getUuid(), k ->
-                new ArrayList<>(1)
-            );
+                gattCB.readRequests.computeIfAbsent(characteristic.getUuid(), k ->
+                        new ArrayList<>(1)
+                );
 
         // Add the callback to the queue to make sure we will not miss a callback
         callback_objects.add(rust_obj);
         boolean toReturn = gatt
-            .get()
-            .orElseThrow()
-            .readCharacteristic(characteristic);
+                .get()
+                .orElseThrow()
+                .readCharacteristic(characteristic);
 
         // Remove from the queue if the read has already failed.
         if (!toReturn) {
@@ -146,20 +148,20 @@ public class BluetoothDevice implements AutoCloseable {
     }
 
     public int writeCharacteristic(
-        BluetoothGattCharacteristic characteristic,
-        RustArcBoxDynAny rust_obj,
-        byte[] value,
-        int writeType
+            BluetoothGattCharacteristic characteristic,
+            RustArcBoxDynAny rust_obj,
+            byte[] value,
+            int writeType
     ) {
         Queue<RustArcBoxDynAny> callback_objects =
-            gattCB.writeRequests.computeIfAbsent(characteristic.getUuid(), k ->
-                new ArrayDeque<>(1)
-            );
+                gattCB.writeRequests.computeIfAbsent(characteristic.getUuid(), k ->
+                        new ArrayDeque<>(1)
+                );
         callback_objects.add(rust_obj);
         int toReturn = gatt
-            .get()
-            .orElseThrow()
-            .writeCharacteristic(characteristic, value, writeType);
+                .get()
+                .orElseThrow()
+                .writeCharacteristic(characteristic, value, writeType);
         if (toReturn != BluetoothStatusCodes.SUCCESS) {
             callback_objects.remove(rust_obj);
         }
@@ -167,30 +169,30 @@ public class BluetoothDevice implements AutoCloseable {
     }
 
     public boolean enableCharacteristicNotification(
-        BluetoothGattCharacteristic characteristic,
-        RustArcBoxDynAny rust_obj
+            BluetoothGattCharacteristic characteristic,
+            RustArcBoxDynAny rust_obj
     ) {
         Set<RustArcBoxDynAny> characteristic_notifications =
-            gattCB.characteristicNotifications.computeIfAbsent(
-                characteristic.getUuid(),
-                k -> ConcurrentHashMap.newKeySet()
-            );
+                gattCB.characteristicNotifications.computeIfAbsent(
+                        characteristic.getUuid(),
+                        k -> ConcurrentHashMap.newKeySet()
+                );
         characteristic_notifications.add(rust_obj);
         return gatt
-            .get()
-            .orElseThrow()
-            .setCharacteristicNotification(characteristic, true);
+                .get()
+                .orElseThrow()
+                .setCharacteristicNotification(characteristic, true);
     }
 
     public boolean readDescriptor(
-        BluetoothGattDescriptor descriptor,
-        RustArcBoxDynAny rust_obj
+            BluetoothGattDescriptor descriptor,
+            RustArcBoxDynAny rust_obj
     ) {
         Collection<RustArcBoxDynAny> callback_objects =
-            gattCB.descriptorReadRequests.computeIfAbsent(
-                descriptor.getUuid(),
-                k -> new ArrayList<>(1)
-            );
+                gattCB.descriptorReadRequests.computeIfAbsent(
+                        descriptor.getUuid(),
+                        k -> new ArrayList<>(1)
+                );
         callback_objects.add(rust_obj);
         boolean toReturn = gatt.get().orElseThrow().readDescriptor(descriptor);
         if (!toReturn) {
@@ -200,20 +202,20 @@ public class BluetoothDevice implements AutoCloseable {
     }
 
     public int writeDescriptor(
-        BluetoothGattDescriptor descriptor,
-        RustArcBoxDynAny rust_obj,
-        byte[] value
+            BluetoothGattDescriptor descriptor,
+            RustArcBoxDynAny rust_obj,
+            byte[] value
     ) {
         Queue<RustArcBoxDynAny> callback_objects =
-            gattCB.descriptorWriteRequests.computeIfAbsent(
-                descriptor.getUuid(),
-                k -> new ArrayDeque<>(1)
-            );
+                gattCB.descriptorWriteRequests.computeIfAbsent(
+                        descriptor.getUuid(),
+                        k -> new ArrayDeque<>(1)
+                );
         callback_objects.add(rust_obj);
         int toReturn = gatt
-            .get()
-            .orElseThrow()
-            .writeDescriptor(descriptor, value);
+                .get()
+                .orElseThrow()
+                .writeDescriptor(descriptor, value);
         if (toReturn != BluetoothStatusCodes.SUCCESS) {
             callback_objects.remove(rust_obj);
         }
@@ -222,12 +224,12 @@ public class BluetoothDevice implements AutoCloseable {
 
     public Service[] cachedServices() {
         return gatt
-            .get()
-            .orElseThrow()
-            .getServices()
-            .stream()
-            .map(service -> new Service(service, gattCB))
-            .toArray(Service[]::new);
+                .get()
+                .orElseThrow()
+                .getServices()
+                .stream()
+                .map(service -> new Service(service, gattCB))
+                .toArray(Service[]::new);
     }
 
     public int clientConnectionState() {

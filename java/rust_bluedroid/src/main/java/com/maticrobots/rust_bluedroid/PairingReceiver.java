@@ -3,8 +3,8 @@ package com.maticrobots.rust_bluedroid;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+
 import com.maticrobots.rust_android_utilities.RustArcBoxDynAny;
-import com.maticrobots.rust_bluedroid.BluetoothDevice;
 
 public class PairingReceiver extends BroadcastReceiver {
 
@@ -15,8 +15,8 @@ public class PairingReceiver extends BroadcastReceiver {
     }
 
     private static native boolean rustPairingEvent(
-        RustArcBoxDynAny rust_obj,
-        int bondState
+            RustArcBoxDynAny rust_obj,
+            int bondState
     );
 
     @Override
@@ -24,18 +24,18 @@ public class PairingReceiver extends BroadcastReceiver {
         String action = intent.getAction();
         assert action != null;
         if (
-            action.equals(
-                android.bluetooth.BluetoothDevice.ACTION_BOND_STATE_CHANGED
-            )
+                action.equals(
+                        android.bluetooth.BluetoothDevice.ACTION_BOND_STATE_CHANGED
+                )
         ) {
             android.bluetooth.BluetoothDevice device =
-                intent.getParcelableExtra(
-                    android.bluetooth.BluetoothDevice.EXTRA_DEVICE,
-                    android.bluetooth.BluetoothDevice.class
-                );
+                    intent.getParcelableExtra(
+                            android.bluetooth.BluetoothDevice.EXTRA_DEVICE,
+                            android.bluetooth.BluetoothDevice.class
+                    );
             int bondState = intent.getIntExtra(
-                android.bluetooth.BluetoothDevice.EXTRA_BOND_STATE,
-                -1
+                    android.bluetooth.BluetoothDevice.EXTRA_BOND_STATE,
+                    -1
             );
             // Rust channel closed
             if (!rustPairingEvent(rust_obj, bondState)) {
@@ -43,8 +43,8 @@ public class PairingReceiver extends BroadcastReceiver {
             }
         } else {
             throw new RuntimeException(
-                action +
-                " is not a valid event to receive on the pairing BroadcastReceiver"
+                    action +
+                            " is not a valid event to receive on the pairing BroadcastReceiver"
             );
         }
     }

@@ -16,7 +16,6 @@ import com.maticrobots.rust_android_utilities.RustArcBoxDynAny;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Deque;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Queue;
@@ -143,7 +142,7 @@ public class GattCallback extends BluetoothGattCallback {
             return;
         }
         synchronized (requests) {
-            for (RustArcBoxDynAny rust_cb: requests) {
+            for (RustArcBoxDynAny rust_cb : requests) {
                 rustOnCharacteristicRead(rust_cb, value, status);
             }
             requests.clear();
@@ -212,7 +211,7 @@ public class GattCallback extends BluetoothGattCallback {
         }
 
         synchronized (requests) {
-            for (RustArcBoxDynAny rust_cb: requests) {
+            for (RustArcBoxDynAny rust_cb : requests) {
                 rustOnCharacteristicRead(rust_cb, value, status);
             }
             requests.clear();

@@ -3,8 +3,6 @@ package com.maticrobots.rust_bluedroid;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
 
-import com.maticrobots.rust_bluedroid.GattCallback;
-
 import java.util.UUID;
 
 public class Service {

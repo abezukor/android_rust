@@ -1,7 +1,6 @@
 package com.maticrobots.rust_bluedroid;
 
 
-import android.annotation.SuppressLint;
 import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanFilter;
@@ -11,7 +10,6 @@ import android.system.SystemCleaner;
 import android.util.Log;
 
 import com.maticrobots.rust_android_utilities.RustArcBoxDynAny;
-import com.maticrobots.rust_bluedroid.Optional;
 
 import java.lang.ref.Cleaner;
 import java.util.List;
@@ -77,11 +75,12 @@ class LEScanCallback extends ScanCallback {
     }
 
     private static native void processScanResult(RustArcBoxDynAny rust_obj, ScanResult scanResult);
+
     private static native void processScanError(RustArcBoxDynAny rust_obj, int errorCode);
 
     @Override
     public void onScanResult(int callbackType, ScanResult result) {
-        processScanResult(rust_obj,  result);
+        processScanResult(rust_obj, result);
         super.onScanResult(callbackType, result);
     }
 
@@ -89,7 +88,7 @@ class LEScanCallback extends ScanCallback {
     public void onBatchScanResults(List<ScanResult> results) {
 
         for (ScanResult result : results) {
-            processScanResult(rust_obj,  result);
+            processScanResult(rust_obj, result);
         }
         super.onBatchScanResults(results);
     }
