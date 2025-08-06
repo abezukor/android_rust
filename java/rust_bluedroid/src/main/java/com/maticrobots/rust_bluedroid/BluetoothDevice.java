@@ -11,7 +11,11 @@ import android.system.SystemCleaner;
 import android.util.Log;
 import com.maticrobots.rust_android_utilities.RustArcBoxDynAny;
 import java.lang.ref.Cleaner;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.NoSuchElementException;
+import java.util.Queue;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -122,9 +126,9 @@ public class BluetoothDevice implements AutoCloseable {
         BluetoothGattCharacteristic characteristic,
         RustArcBoxDynAny rust_obj
     ) {
-        ConcurrentLinkedDeque<RustArcBoxDynAny> callback_objects =
+        Collection<RustArcBoxDynAny> callback_objects =
             gattCB.readRequests.computeIfAbsent(characteristic.getUuid(), k ->
-                new ConcurrentLinkedDeque<RustArcBoxDynAny>()
+                new ArrayList<>(1)
             );
 
         // Add the callback to the queue to make sure we will not miss a callback
@@ -147,9 +151,9 @@ public class BluetoothDevice implements AutoCloseable {
         byte[] value,
         int writeType
     ) {
-        ConcurrentLinkedDeque<RustArcBoxDynAny> callback_objects =
+        Queue<RustArcBoxDynAny> callback_objects =
             gattCB.writeRequests.computeIfAbsent(characteristic.getUuid(), k ->
-                new ConcurrentLinkedDeque<RustArcBoxDynAny>()
+                new ArrayDeque<>(1)
             );
         callback_objects.add(rust_obj);
         int toReturn = gatt
@@ -182,10 +186,10 @@ public class BluetoothDevice implements AutoCloseable {
         BluetoothGattDescriptor descriptor,
         RustArcBoxDynAny rust_obj
     ) {
-        ConcurrentLinkedDeque<RustArcBoxDynAny> callback_objects =
+        Collection<RustArcBoxDynAny> callback_objects =
             gattCB.descriptorReadRequests.computeIfAbsent(
                 descriptor.getUuid(),
-                k -> new ConcurrentLinkedDeque<RustArcBoxDynAny>()
+                k -> new ArrayList<>(1)
             );
         callback_objects.add(rust_obj);
         boolean toReturn = gatt.get().orElseThrow().readDescriptor(descriptor);
@@ -200,10 +204,10 @@ public class BluetoothDevice implements AutoCloseable {
         RustArcBoxDynAny rust_obj,
         byte[] value
     ) {
-        ConcurrentLinkedDeque<RustArcBoxDynAny> callback_objects =
-            gattCB.descriptorWrtieRequests.computeIfAbsent(
+        Queue<RustArcBoxDynAny> callback_objects =
+            gattCB.descriptorWriteRequests.computeIfAbsent(
                 descriptor.getUuid(),
-                k -> new ConcurrentLinkedDeque<RustArcBoxDynAny>()
+                k -> new ArrayDeque<>(1)
             );
         callback_objects.add(rust_obj);
         int toReturn = gatt

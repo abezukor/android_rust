@@ -15,6 +15,11 @@ import androidx.annotation.NonNull;
 import com.maticrobots.rust_android_utilities.RustArcBoxDynAny;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Deque;
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -28,32 +33,20 @@ public class GattCallback extends BluetoothGattCallback {
     public ConcurrentLinkedDeque<RustArcBoxDynAny> serviceDiscoveredRequests = new ConcurrentLinkedDeque<>();
     public Set<RustArcBoxDynAny> serviceChangedRequests = ConcurrentHashMap.newKeySet();
     public ConcurrentLinkedDeque<RustArcBoxDynAny> rssiRequests = new ConcurrentLinkedDeque<>();
-    public ConcurrentHashMap<
-            UUID,
-            ConcurrentLinkedDeque<RustArcBoxDynAny>
-            > readRequests = new ConcurrentHashMap<>();
-    public ConcurrentHashMap<
-            UUID,
-            ConcurrentLinkedDeque<RustArcBoxDynAny>
-            > writeRequests = new ConcurrentHashMap<>();
+    public Map<UUID, Collection<RustArcBoxDynAny>> readRequests = new Hashtable<>();
+    public Map<UUID, Queue<RustArcBoxDynAny>> writeRequests = new Hashtable<>();
     public ConcurrentHashMap<
             UUID,
             Set<RustArcBoxDynAny>
             > characteristicNotifications = new ConcurrentHashMap<>();
-    public ConcurrentHashMap<
-            UUID,
-            ConcurrentLinkedDeque<RustArcBoxDynAny>
-            > descriptorReadRequests = new ConcurrentHashMap<>();
-    public ConcurrentHashMap<
-            UUID,
-            ConcurrentLinkedDeque<RustArcBoxDynAny>
-            > descriptorWrtieRequests = new ConcurrentHashMap<>();
+    public Map<UUID, Collection<RustArcBoxDynAny>> descriptorReadRequests = new Hashtable<>();
+    public Map<UUID, Queue<RustArcBoxDynAny>> descriptorWriteRequests = new Hashtable<>();
     private AtomicInteger connectionState = new AtomicInteger(BluetoothProfile.STATE_DISCONNECTED);
 
     public GattCallback(String macAddress) {
         this.macAddress = macAddress;
     }
-    
+
 
     private static native boolean rustOnConnectionChangeState(
             RustArcBoxDynAny rust_obj, int status, int new_state
@@ -119,17 +112,20 @@ public class GattCallback extends BluetoothGattCallback {
     ) {
         // Android does not provide a guarantee, but this logic assumes that writes for each characteristic are processed
         // in the order they are received
-        ConcurrentLinkedDeque<RustArcBoxDynAny> characteristicWriteRequests =
+        Queue<RustArcBoxDynAny> characteristicWriteRequests =
                 writeRequests.get(characteristic.getUuid());
         if (characteristicWriteRequests == null) {
             return;
         }
-        RustArcBoxDynAny characteristicWriteRequest =
-                characteristicWriteRequests.pollFirst();
-        if (characteristicWriteRequest == null) {
-            return;
+        synchronized (characteristicWriteRequests) {
+            RustArcBoxDynAny characteristicWriteRequest =
+                    characteristicWriteRequests.remove();
+            if (characteristicWriteRequest == null) {
+                return;
+            }
+            rustOnCharacteristicWrite(characteristicWriteRequest, status);
         }
-        rustOnCharacteristicWrite(characteristicWriteRequest, status);
+
         super.onCharacteristicWrite(gatt, characteristic, status);
     }
 
@@ -140,16 +136,19 @@ public class GattCallback extends BluetoothGattCallback {
             @NonNull byte[] value,
             int status
     ) {
-        ConcurrentLinkedDeque<RustArcBoxDynAny> requests = readRequests.get(
+        Collection<RustArcBoxDynAny> requests = readRequests.get(
                 characteristic.getUuid()
         );
         if (requests == null) {
             return;
         }
-        while (!requests.isEmpty()) {
-            RustArcBoxDynAny rust_cb = requests.removeFirst();
-            rustOnCharacteristicRead(rust_cb, value, status);
+        synchronized (requests) {
+            for (RustArcBoxDynAny rust_cb: requests) {
+                rustOnCharacteristicRead(rust_cb, value, status);
+            }
+            requests.clear();
         }
+
         super.onCharacteristicRead(gatt, characteristic, value, status);
     }
 
@@ -206,15 +205,17 @@ public class GattCallback extends BluetoothGattCallback {
             int status,
             @NonNull byte[] value
     ) {
-        ConcurrentLinkedDeque<RustArcBoxDynAny> requests =
+        Collection<RustArcBoxDynAny> requests =
                 descriptorReadRequests.get(descriptor.getUuid());
         if (requests == null) {
             return;
         }
 
-        while (!requests.isEmpty()) {
-            RustArcBoxDynAny rust_cb = requests.removeFirst();
-            rustOnDescriptorRead(rust_cb, value, status);
+        synchronized (requests) {
+            for (RustArcBoxDynAny rust_cb: requests) {
+                rustOnCharacteristicRead(rust_cb, value, status);
+            }
+            requests.clear();
         }
 
         super.onDescriptorRead(gatt, descriptor, status, value);
@@ -228,14 +229,16 @@ public class GattCallback extends BluetoothGattCallback {
     ) {
         // Android does not provide a guarantee, but this logic assumes that writes for each characteristic are processed
         // in the order they are received
-        ConcurrentLinkedDeque<RustArcBoxDynAny> descriptorWriteRequests =
-                descriptorWrtieRequests.get(descriptor.getUuid());
+        Queue<RustArcBoxDynAny> descriptorWriteRequests =
+                this.descriptorWriteRequests.get(descriptor.getUuid());
         assert descriptorWriteRequests != null;
-        RustArcBoxDynAny characteristicWriteRequest =
-                descriptorWriteRequests.pollFirst();
-        // Expected to be null when disabling characteristic notifications
-        if (characteristicWriteRequest != null) {
-            rustOnDescriptorWrite(characteristicWriteRequest, status);
+        synchronized (descriptorWriteRequests) {
+            RustArcBoxDynAny characteristicWriteRequest =
+                    descriptorWriteRequests.remove();
+            // Expected to be null when disabling characteristic notifications
+            if (characteristicWriteRequest != null) {
+                rustOnDescriptorWrite(characteristicWriteRequest, status);
+            }
         }
 
         super.onDescriptorWrite(gatt, descriptor, status);
