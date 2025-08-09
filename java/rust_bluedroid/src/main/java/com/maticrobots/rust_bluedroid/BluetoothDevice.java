@@ -43,7 +43,8 @@ public class BluetoothDevice implements AutoCloseable {
         this.device = device;
         this.gattCB = new GattCallback(this.device.getAddress());
         Optional<BluetoothGatt> bluetoothGatt = new Optional<>(
-                this.device.connectGatt(context, false, this.gattCB)
+                // TODO Take in a parameter for autoconnect
+                this.device.connectGatt(context, false, this.gattCB, android.bluetooth.BluetoothDevice.TRANSPORT_LE)
         );
         cleaner.register(this, () -> drop(bluetoothGatt));
         gatt = bluetoothGatt;
