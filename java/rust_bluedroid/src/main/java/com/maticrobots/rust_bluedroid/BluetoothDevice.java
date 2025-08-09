@@ -23,6 +23,9 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class BluetoothDevice implements AutoCloseable {
+    // This blog post has some good info about gatt clients
+    // https://medium.com/@martijn.van.welie/making-android-ble-work-part-2-47a3cdaade07
+    // (It is available on the wayback machine if unavailable at that URL).
 
     private static final Cleaner cleaner = SystemCleaner.cleaner();
 
@@ -53,7 +56,12 @@ public class BluetoothDevice implements AutoCloseable {
     public static void drop(Optional<BluetoothGatt> possibleGatt) {
         try {
             BluetoothGatt gatt = possibleGatt.get().orElseThrow();
+
+            // This is technically wrong in that we may not get the disconnection callback since the gatt will be closed.
+            // However since the corresponding rust object is being dropped we wont do anything with the callback anyway.
+            gatt.disconnect();
             gatt.close();
+
             possibleGatt.clear();
         } catch (NoSuchElementException ignored) {
         }
