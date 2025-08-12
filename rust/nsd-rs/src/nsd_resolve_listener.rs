@@ -3,7 +3,7 @@ use std::{
     fmt::Debug,
     sync::{
         atomic::{AtomicBool, Ordering},
-        Arc, Mutex,
+        Arc, Mutex, OnceLock,
     },
 };
 
@@ -17,7 +17,10 @@ use rust_android_utilities::{
 };
 
 use crate::bindings::android::os::Build_VERSION;
-use crate::bindings::java::util::Map_Entry;
+use crate::bindings::{
+    android::os::{ext::SdkExtensions, Build_VERSION_CODES},
+    java::util::Map_Entry,
+};
 use crate::{
     bindings::{
         android::net::nsd::{NsdManager, NsdManager_ResolveListener, NsdServiceInfo as JavaNsdServiceInfo},
@@ -135,6 +138,21 @@ impl Drop for JavaResolver {
 
 impl<'a> NsdServiceInfo<'a> {
     pub fn host_name(&self) -> Option<String> {
+        static USE_GET_HOST_NAME: OnceLock<bool> = OnceLock::new();
+
+        if *USE_GET_HOST_NAME.get_or_init(|| {
+            let use_get_host_name = Build_VERSION::SDK_INT(self.0.env()) >= Build_VERSION_CODES::BAKLAVA
+                || SdkExtensions::getExtensionVersion(self.0.env(), Build_VERSION_CODES::TIRAMISU).unwrap() >= 17;
+            trace!("Using getHostname function {use_get_host_name}");
+            use_get_host_name
+        }) {
+            return self
+                .0
+                .getHostname()
+                .unwrap()
+                .map(|host_name| host_name.to_string_lossy());
+        };
+
         #[allow(deprecated)]
         let host = self.0.getHost().unwrap()?;
         let hostname = host.getHostName().unwrap()?;
@@ -163,9 +181,14 @@ impl<'a> NsdServiceInfo<'a> {
     }
 
     pub fn get_subtypes(&self) -> Option<Vec<String>> {
-        // Service types not available before android api 35
-        log::trace!("Build version is {:?}", Build_VERSION::SDK_INT(self.0.env()));
-        if Build_VERSION::SDK_INT(self.0.env()) < 35 {
+        static SUBTYPES_SUPPORTED: OnceLock<bool> = OnceLock::new();
+
+        if *SUBTYPES_SUPPORTED.get_or_init(|| {
+            let subtypes_supported = Build_VERSION::SDK_INT(self.0.env()) < Build_VERSION_CODES::VANILLA_ICE_CREAM
+                && SdkExtensions::getExtensionVersion(self.0.env(), Build_VERSION_CODES::TIRAMISU).unwrap() < 12;
+            trace!("Subtypes supported {subtypes_supported}");
+            subtypes_supported
+        }) {
             return None;
         };
 

@@ -7,6 +7,8 @@ include = [
     "android/net/Network",
     "android/content/Context",
     "android/os/Build$VERSION",
+    "android/os/Build$VERSION_CODES",
+    "android/os/ext/SdkExtensions",
 
     "java/lang/Object",
     "java/lang/Throwable",
@@ -41,7 +43,7 @@ verbose = true
 [input]
 files = [
     # TODO Make this respect environment variables
-    "/home/abe/Android/Sdk/platforms/android-35/android.jar",
+    "/home/abe/Android/Sdk/platforms/android-36-ext19/android.jar",
     # Hack so we can use android studio (as opposed to raw javac) to build the jar files.
     # Technically this may change, but I (Abe) think that is unlikely.
     "../../../java/rust_android_utilities/build/intermediates/full_jar/debug/createFullJarDebug/full.jar",

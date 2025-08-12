@@ -158,266 +158,13 @@ pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>) -> ::std::result::Resul
     }
 }
 
-/// [getMainExecutor](https://developer.android.com/reference/android/content/Context.html#getMainExecutor())
-pub fn getMainExecutor<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::java::util::concurrent::Executor>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC, .name == "getMainExecutor", .descriptor == "()Ljava/util/concurrent/Executor;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getMainExecutor\0", "()Ljava/util/concurrent/Executor;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getApplicationContext](https://developer.android.com/reference/android/content/Context.html#getApplicationContext())
-pub fn getApplicationContext<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Context>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "getApplicationContext", .descriptor == "()Landroid/content/Context;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getApplicationContext\0", "()Landroid/content/Context;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getString](https://developer.android.com/reference/android/content/Context.html#getString(int))
-pub fn getString_int<'env>(&'env self, arg0: i32) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | FINAL, .name == "getString", .descriptor == "(I)Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getString\0", "(I)Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getString](https://developer.android.com/reference/android/content/Context.html#getString(int,%20java.lang.Object...))
-pub fn getString_int_Object_array<'env>(&'env self, arg0: i32, arg1: impl ::java_spaghetti::AsArg<::java_spaghetti::ObjectArray<super::super::java::lang::Object, super::super::java::lang::Throwable>>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | FINAL | VARARGS, .name == "getString", .descriptor == "(I[Ljava/lang/Object;)Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0), arg1.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getString\0", "(I[Ljava/lang/Object;)Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getColor](https://developer.android.com/reference/android/content/Context.html#getColor(int))
-pub fn getColor<'env>(&'env self, arg0: i32) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | FINAL, .name == "getColor", .descriptor == "(I)I"
-    unsafe {
-        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getColor\0", "(I)I\0");
-        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [setTheme](https://developer.android.com/reference/android/content/Context.html#setTheme(int))
-pub fn setTheme<'env>(&'env self, arg0: i32) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "setTheme", .descriptor == "(I)V"
-    unsafe {
-        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "setTheme\0", "(I)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getClassLoader](https://developer.android.com/reference/android/content/Context.html#getClassLoader())
-pub fn getClassLoader<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::java::lang::ClassLoader>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "getClassLoader", .descriptor == "()Ljava/lang/ClassLoader;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getClassLoader\0", "()Ljava/lang/ClassLoader;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getPackageName](https://developer.android.com/reference/android/content/Context.html#getPackageName())
-pub fn getPackageName<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "getPackageName", .descriptor == "()Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getPackageName\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getOpPackageName](https://developer.android.com/reference/android/content/Context.html#getOpPackageName())
-pub fn getOpPackageName<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC, .name == "getOpPackageName", .descriptor == "()Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getOpPackageName\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getAttributionTag](https://developer.android.com/reference/android/content/Context.html#getAttributionTag())
-pub fn getAttributionTag<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC, .name == "getAttributionTag", .descriptor == "()Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getAttributionTag\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getPackageResourcePath](https://developer.android.com/reference/android/content/Context.html#getPackageResourcePath())
-pub fn getPackageResourcePath<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "getPackageResourcePath", .descriptor == "()Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getPackageResourcePath\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getPackageCodePath](https://developer.android.com/reference/android/content/Context.html#getPackageCodePath())
-pub fn getPackageCodePath<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "getPackageCodePath", .descriptor == "()Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getPackageCodePath\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [moveSharedPreferencesFrom](https://developer.android.com/reference/android/content/Context.html#moveSharedPreferencesFrom(android.content.Context,%20java.lang.String))
-pub fn moveSharedPreferencesFrom<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Context>, arg1: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "moveSharedPreferencesFrom", .descriptor == "(Landroid/content/Context;Ljava/lang/String;)Z"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "moveSharedPreferencesFrom\0", "(Landroid/content/Context;Ljava/lang/String;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [deleteSharedPreferences](https://developer.android.com/reference/android/content/Context.html#deleteSharedPreferences(java.lang.String))
-pub fn deleteSharedPreferences<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "deleteSharedPreferences", .descriptor == "(Ljava/lang/String;)Z"
+/// [checkCallingOrSelfPermission](https://developer.android.com/reference/android/content/Context.html#checkCallingOrSelfPermission(java.lang.String))
+pub fn checkCallingOrSelfPermission<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "checkCallingOrSelfPermission", .descriptor == "(Ljava/lang/String;)I"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "deleteSharedPreferences\0", "(Ljava/lang/String;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [deleteFile](https://developer.android.com/reference/android/content/Context.html#deleteFile(java.lang.String))
-pub fn deleteFile<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "deleteFile", .descriptor == "(Ljava/lang/String;)Z"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "deleteFile\0", "(Ljava/lang/String;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [fileList](https://developer.android.com/reference/android/content/Context.html#fileList())
-pub fn fileList<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ObjectArray<super::super::java::lang::String, super::super::java::lang::Throwable>>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "fileList", .descriptor == "()[Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "fileList\0", "()[Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [moveDatabaseFrom](https://developer.android.com/reference/android/content/Context.html#moveDatabaseFrom(android.content.Context,%20java.lang.String))
-pub fn moveDatabaseFrom<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Context>, arg1: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "moveDatabaseFrom", .descriptor == "(Landroid/content/Context;Ljava/lang/String;)Z"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "moveDatabaseFrom\0", "(Landroid/content/Context;Ljava/lang/String;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [deleteDatabase](https://developer.android.com/reference/android/content/Context.html#deleteDatabase(java.lang.String))
-pub fn deleteDatabase<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "deleteDatabase", .descriptor == "(Ljava/lang/String;)Z"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "deleteDatabase\0", "(Ljava/lang/String;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [databaseList](https://developer.android.com/reference/android/content/Context.html#databaseList())
-pub fn databaseList<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ObjectArray<super::super::java::lang::String, super::super::java::lang::Throwable>>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "databaseList", .descriptor == "()[Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "databaseList\0", "()[Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getWallpaperDesiredMinimumWidth](https://developer.android.com/reference/android/content/Context.html#getWallpaperDesiredMinimumWidth())
-#[deprecated] pub fn getWallpaperDesiredMinimumWidth<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "getWallpaperDesiredMinimumWidth", .descriptor == "()I"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getWallpaperDesiredMinimumWidth\0", "()I\0");
-        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getWallpaperDesiredMinimumHeight](https://developer.android.com/reference/android/content/Context.html#getWallpaperDesiredMinimumHeight())
-#[deprecated] pub fn getWallpaperDesiredMinimumHeight<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "getWallpaperDesiredMinimumHeight", .descriptor == "()I"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getWallpaperDesiredMinimumHeight\0", "()I\0");
-        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [clearWallpaper](https://developer.android.com/reference/android/content/Context.html#clearWallpaper())
-#[deprecated] pub fn clearWallpaper<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "clearWallpaper", .descriptor == "()V"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "clearWallpaper\0", "()V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getSystemService](https://developer.android.com/reference/android/content/Context.html#getSystemService(java.lang.String))
-pub fn getSystemService_String<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::java::lang::Object>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "getSystemService", .descriptor == "(Ljava/lang/String;)Ljava/lang/Object;"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getSystemService\0", "(Ljava/lang/String;)Ljava/lang/Object;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [checkPermission](https://developer.android.com/reference/android/content/Context.html#checkPermission(java.lang.String,%20int,%20int))
-pub fn checkPermission<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>, arg1: i32, arg2: i32) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "checkPermission", .descriptor == "(Ljava/lang/String;II)I"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1), ::java_spaghetti::AsJValue::as_jvalue(&arg2)];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "checkPermission\0", "(Ljava/lang/String;II)I\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "checkCallingOrSelfPermission\0", "(Ljava/lang/String;)I\0");
         __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -433,13 +180,13 @@ pub fn checkCallingPermission<'env>(&'env self, arg0: impl ::java_spaghetti::AsA
     }
 }
 
-/// [checkCallingOrSelfPermission](https://developer.android.com/reference/android/content/Context.html#checkCallingOrSelfPermission(java.lang.String))
-pub fn checkCallingOrSelfPermission<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "checkCallingOrSelfPermission", .descriptor == "(Ljava/lang/String;)I"
+/// [checkPermission](https://developer.android.com/reference/android/content/Context.html#checkPermission(java.lang.String,%20int,%20int))
+pub fn checkPermission<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>, arg1: i32, arg2: i32) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "checkPermission", .descriptor == "(Ljava/lang/String;II)I"
     unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1), ::java_spaghetti::AsJValue::as_jvalue(&arg2)];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "checkCallingOrSelfPermission\0", "(Ljava/lang/String;)I\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "checkPermission\0", "(Ljava/lang/String;II)I\0");
         __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -455,68 +202,24 @@ pub fn checkSelfPermission<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<
     }
 }
 
-/// [enforcePermission](https://developer.android.com/reference/android/content/Context.html#enforcePermission(java.lang.String,%20int,%20int,%20java.lang.String))
-pub fn enforcePermission<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>, arg1: i32, arg2: i32, arg3: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "enforcePermission", .descriptor == "(Ljava/lang/String;IILjava/lang/String;)V"
+/// [clearWallpaper](https://developer.android.com/reference/android/content/Context.html#clearWallpaper())
+#[deprecated] pub fn clearWallpaper<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "clearWallpaper", .descriptor == "()V"
     unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1), ::java_spaghetti::AsJValue::as_jvalue(&arg2), arg3.as_arg_jvalue()];
+        let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "enforcePermission\0", "(Ljava/lang/String;IILjava/lang/String;)V\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "clearWallpaper\0", "()V\0");
         __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [enforceCallingPermission](https://developer.android.com/reference/android/content/Context.html#enforceCallingPermission(java.lang.String,%20java.lang.String))
-pub fn enforceCallingPermission<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>, arg1: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "enforceCallingPermission", .descriptor == "(Ljava/lang/String;Ljava/lang/String;)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "enforceCallingPermission\0", "(Ljava/lang/String;Ljava/lang/String;)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [enforceCallingOrSelfPermission](https://developer.android.com/reference/android/content/Context.html#enforceCallingOrSelfPermission(java.lang.String,%20java.lang.String))
-pub fn enforceCallingOrSelfPermission<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>, arg1: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "enforceCallingOrSelfPermission", .descriptor == "(Ljava/lang/String;Ljava/lang/String;)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "enforceCallingOrSelfPermission\0", "(Ljava/lang/String;Ljava/lang/String;)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [revokeSelfPermissionOnKill](https://developer.android.com/reference/android/content/Context.html#revokeSelfPermissionOnKill(java.lang.String))
-pub fn revokeSelfPermissionOnKill<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC, .name == "revokeSelfPermissionOnKill", .descriptor == "(Ljava/lang/String;)V"
+/// [createAttributionContext](https://developer.android.com/reference/android/content/Context.html#createAttributionContext(java.lang.String))
+pub fn createAttributionContext<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Context>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC, .name == "createAttributionContext", .descriptor == "(Ljava/lang/String;)Landroid/content/Context;"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "revokeSelfPermissionOnKill\0", "(Ljava/lang/String;)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [revokeSelfPermissionsOnKill](https://developer.android.com/reference/android/content/Context.html#revokeSelfPermissionsOnKill(java.util.Collection))
-pub fn revokeSelfPermissionsOnKill<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::util::Collection>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC, .name == "revokeSelfPermissionsOnKill", .descriptor == "(Ljava/util/Collection;)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "revokeSelfPermissionsOnKill\0", "(Ljava/util/Collection;)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [createPackageContext](https://developer.android.com/reference/android/content/Context.html#createPackageContext(java.lang.String,%20int))
-pub fn createPackageContext<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>, arg1: i32) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Context>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "createPackageContext", .descriptor == "(Ljava/lang/String;I)Landroid/content/Context;"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "createPackageContext\0", "(Ljava/lang/String;I)Landroid/content/Context;\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "createAttributionContext\0", "(Ljava/lang/String;)Landroid/content/Context;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -543,17 +246,6 @@ pub fn createDeviceContext<'env>(&'env self, arg0: i32) -> ::std::result::Result
     }
 }
 
-/// [createAttributionContext](https://developer.android.com/reference/android/content/Context.html#createAttributionContext(java.lang.String))
-pub fn createAttributionContext<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Context>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC, .name == "createAttributionContext", .descriptor == "(Ljava/lang/String;)Landroid/content/Context;"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "createAttributionContext\0", "(Ljava/lang/String;)Landroid/content/Context;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
 /// [createDeviceProtectedStorageContext](https://developer.android.com/reference/android/content/Context.html#createDeviceProtectedStorageContext())
 pub fn createDeviceProtectedStorageContext<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Context>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
     // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "createDeviceProtectedStorageContext", .descriptor == "()Landroid/content/Context;"
@@ -562,6 +254,149 @@ pub fn createDeviceProtectedStorageContext<'env>(&'env self) -> ::std::result::R
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
         let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "createDeviceProtectedStorageContext\0", "()Landroid/content/Context;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [createPackageContext](https://developer.android.com/reference/android/content/Context.html#createPackageContext(java.lang.String,%20int))
+pub fn createPackageContext<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>, arg1: i32) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Context>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "createPackageContext", .descriptor == "(Ljava/lang/String;I)Landroid/content/Context;"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "createPackageContext\0", "(Ljava/lang/String;I)Landroid/content/Context;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [databaseList](https://developer.android.com/reference/android/content/Context.html#databaseList())
+pub fn databaseList<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ObjectArray<super::super::java::lang::String, super::super::java::lang::Throwable>>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "databaseList", .descriptor == "()[Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "databaseList\0", "()[Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [deleteDatabase](https://developer.android.com/reference/android/content/Context.html#deleteDatabase(java.lang.String))
+pub fn deleteDatabase<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "deleteDatabase", .descriptor == "(Ljava/lang/String;)Z"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "deleteDatabase\0", "(Ljava/lang/String;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [deleteFile](https://developer.android.com/reference/android/content/Context.html#deleteFile(java.lang.String))
+pub fn deleteFile<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "deleteFile", .descriptor == "(Ljava/lang/String;)Z"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "deleteFile\0", "(Ljava/lang/String;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [deleteSharedPreferences](https://developer.android.com/reference/android/content/Context.html#deleteSharedPreferences(java.lang.String))
+pub fn deleteSharedPreferences<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "deleteSharedPreferences", .descriptor == "(Ljava/lang/String;)Z"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "deleteSharedPreferences\0", "(Ljava/lang/String;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [enforceCallingOrSelfPermission](https://developer.android.com/reference/android/content/Context.html#enforceCallingOrSelfPermission(java.lang.String,%20java.lang.String))
+pub fn enforceCallingOrSelfPermission<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>, arg1: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "enforceCallingOrSelfPermission", .descriptor == "(Ljava/lang/String;Ljava/lang/String;)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "enforceCallingOrSelfPermission\0", "(Ljava/lang/String;Ljava/lang/String;)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [enforceCallingPermission](https://developer.android.com/reference/android/content/Context.html#enforceCallingPermission(java.lang.String,%20java.lang.String))
+pub fn enforceCallingPermission<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>, arg1: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "enforceCallingPermission", .descriptor == "(Ljava/lang/String;Ljava/lang/String;)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "enforceCallingPermission\0", "(Ljava/lang/String;Ljava/lang/String;)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [enforcePermission](https://developer.android.com/reference/android/content/Context.html#enforcePermission(java.lang.String,%20int,%20int,%20java.lang.String))
+pub fn enforcePermission<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>, arg1: i32, arg2: i32, arg3: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "enforcePermission", .descriptor == "(Ljava/lang/String;IILjava/lang/String;)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1), ::java_spaghetti::AsJValue::as_jvalue(&arg2), arg3.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "enforcePermission\0", "(Ljava/lang/String;IILjava/lang/String;)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [fileList](https://developer.android.com/reference/android/content/Context.html#fileList())
+pub fn fileList<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ObjectArray<super::super::java::lang::String, super::super::java::lang::Throwable>>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "fileList", .descriptor == "()[Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "fileList\0", "()[Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getApplicationContext](https://developer.android.com/reference/android/content/Context.html#getApplicationContext())
+pub fn getApplicationContext<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Context>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "getApplicationContext", .descriptor == "()Landroid/content/Context;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getApplicationContext\0", "()Landroid/content/Context;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getAttributionTag](https://developer.android.com/reference/android/content/Context.html#getAttributionTag())
+pub fn getAttributionTag<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC, .name == "getAttributionTag", .descriptor == "()Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getAttributionTag\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getClassLoader](https://developer.android.com/reference/android/content/Context.html#getClassLoader())
+pub fn getClassLoader<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::java::lang::ClassLoader>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "getClassLoader", .descriptor == "()Ljava/lang/ClassLoader;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getClassLoader\0", "()Ljava/lang/ClassLoader;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getColor](https://developer.android.com/reference/android/content/Context.html#getColor(int))
+pub fn getColor<'env>(&'env self, arg0: i32) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | FINAL, .name == "getColor", .descriptor == "(I)I"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getColor\0", "(I)I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
@@ -576,14 +411,113 @@ pub fn getDeviceId<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghe
     }
 }
 
-/// [isRestricted](https://developer.android.com/reference/android/content/Context.html#isRestricted())
-pub fn isRestricted<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/content/Context", java.flags == PUBLIC, .name == "isRestricted", .descriptor == "()Z"
+/// [getMainExecutor](https://developer.android.com/reference/android/content/Context.html#getMainExecutor())
+pub fn getMainExecutor<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::java::util::concurrent::Executor>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC, .name == "getMainExecutor", .descriptor == "()Ljava/util/concurrent/Executor;"
     unsafe {
         let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "isRestricted\0", "()Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getMainExecutor\0", "()Ljava/util/concurrent/Executor;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getOpPackageName](https://developer.android.com/reference/android/content/Context.html#getOpPackageName())
+pub fn getOpPackageName<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC, .name == "getOpPackageName", .descriptor == "()Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getOpPackageName\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getPackageCodePath](https://developer.android.com/reference/android/content/Context.html#getPackageCodePath())
+pub fn getPackageCodePath<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "getPackageCodePath", .descriptor == "()Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getPackageCodePath\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getPackageName](https://developer.android.com/reference/android/content/Context.html#getPackageName())
+pub fn getPackageName<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "getPackageName", .descriptor == "()Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getPackageName\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getPackageResourcePath](https://developer.android.com/reference/android/content/Context.html#getPackageResourcePath())
+pub fn getPackageResourcePath<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "getPackageResourcePath", .descriptor == "()Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getPackageResourcePath\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getString](https://developer.android.com/reference/android/content/Context.html#getString(int))
+pub fn getString_int<'env>(&'env self, arg0: i32) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | FINAL, .name == "getString", .descriptor == "(I)Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getString\0", "(I)Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getString](https://developer.android.com/reference/android/content/Context.html#getString(int,%20java.lang.Object...))
+pub fn getString_int_Object_array<'env>(&'env self, arg0: i32, arg1: impl ::java_spaghetti::AsArg<::java_spaghetti::ObjectArray<super::super::java::lang::Object, super::super::java::lang::Throwable>>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | FINAL | VARARGS, .name == "getString", .descriptor == "(I[Ljava/lang/Object;)Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0), arg1.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getString\0", "(I[Ljava/lang/Object;)Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getSystemService](https://developer.android.com/reference/android/content/Context.html#getSystemService(java.lang.String))
+pub fn getSystemService_String<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::java::lang::Object>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "getSystemService", .descriptor == "(Ljava/lang/String;)Ljava/lang/Object;"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getSystemService\0", "(Ljava/lang/String;)Ljava/lang/Object;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getWallpaperDesiredMinimumHeight](https://developer.android.com/reference/android/content/Context.html#getWallpaperDesiredMinimumHeight())
+#[deprecated] pub fn getWallpaperDesiredMinimumHeight<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "getWallpaperDesiredMinimumHeight", .descriptor == "()I"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getWallpaperDesiredMinimumHeight\0", "()I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getWallpaperDesiredMinimumWidth](https://developer.android.com/reference/android/content/Context.html#getWallpaperDesiredMinimumWidth())
+#[deprecated] pub fn getWallpaperDesiredMinimumWidth<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "getWallpaperDesiredMinimumWidth", .descriptor == "()I"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "getWallpaperDesiredMinimumWidth\0", "()I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
@@ -594,6 +528,17 @@ pub fn isDeviceProtectedStorage<'env>(&'env self) -> ::std::result::Result<bool,
         let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
         let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "isDeviceProtectedStorage\0", "()Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [isRestricted](https://developer.android.com/reference/android/content/Context.html#isRestricted())
+pub fn isRestricted<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC, .name == "isRestricted", .descriptor == "()Z"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "isRestricted\0", "()Z\0");
         __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -609,6 +554,61 @@ pub fn isUiContext<'env>(&'env self) -> ::std::result::Result<bool, ::java_spagh
     }
 }
 
+/// [moveDatabaseFrom](https://developer.android.com/reference/android/content/Context.html#moveDatabaseFrom(android.content.Context,%20java.lang.String))
+pub fn moveDatabaseFrom<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Context>, arg1: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "moveDatabaseFrom", .descriptor == "(Landroid/content/Context;Ljava/lang/String;)Z"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "moveDatabaseFrom\0", "(Landroid/content/Context;Ljava/lang/String;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [moveSharedPreferencesFrom](https://developer.android.com/reference/android/content/Context.html#moveSharedPreferencesFrom(android.content.Context,%20java.lang.String))
+pub fn moveSharedPreferencesFrom<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Context>, arg1: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "moveSharedPreferencesFrom", .descriptor == "(Landroid/content/Context;Ljava/lang/String;)Z"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "moveSharedPreferencesFrom\0", "(Landroid/content/Context;Ljava/lang/String;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [revokeSelfPermissionOnKill](https://developer.android.com/reference/android/content/Context.html#revokeSelfPermissionOnKill(java.lang.String))
+pub fn revokeSelfPermissionOnKill<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC, .name == "revokeSelfPermissionOnKill", .descriptor == "(Ljava/lang/String;)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "revokeSelfPermissionOnKill\0", "(Ljava/lang/String;)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [revokeSelfPermissionsOnKill](https://developer.android.com/reference/android/content/Context.html#revokeSelfPermissionsOnKill(java.util.Collection))
+pub fn revokeSelfPermissionsOnKill<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::util::Collection>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC, .name == "revokeSelfPermissionsOnKill", .descriptor == "(Ljava/util/Collection;)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "revokeSelfPermissionsOnKill\0", "(Ljava/util/Collection;)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [setTheme](https://developer.android.com/reference/android/content/Context.html#setTheme(int))
+pub fn setTheme<'env>(&'env self, arg0: i32) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/content/Context", java.flags == PUBLIC | ABSTRACT, .name == "setTheme", .descriptor == "(I)V"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/content/Context\0", "setTheme\0", "(I)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
 /// public static final [ACCESSIBILITY_SERVICE](https://developer.android.com/reference/android/content/Context.html#ACCESSIBILITY_SERVICE)
 pub const ACCESSIBILITY_SERVICE : &'static str = "accessibility";
 
@@ -618,11 +618,17 @@ pub const ACCOUNT_SERVICE : &'static str = "account";
 /// public static final [ACTIVITY_SERVICE](https://developer.android.com/reference/android/content/Context.html#ACTIVITY_SERVICE)
 pub const ACTIVITY_SERVICE : &'static str = "activity";
 
+/// public static final [ADVANCED_PROTECTION_SERVICE](https://developer.android.com/reference/android/content/Context.html#ADVANCED_PROTECTION_SERVICE)
+pub const ADVANCED_PROTECTION_SERVICE : &'static str = "advanced_protection";
+
 /// public static final [ALARM_SERVICE](https://developer.android.com/reference/android/content/Context.html#ALARM_SERVICE)
 pub const ALARM_SERVICE : &'static str = "alarm";
 
 /// public static final [APPWIDGET_SERVICE](https://developer.android.com/reference/android/content/Context.html#APPWIDGET_SERVICE)
 pub const APPWIDGET_SERVICE : &'static str = "appwidget";
+
+/// public static final [APP_FUNCTION_SERVICE](https://developer.android.com/reference/android/content/Context.html#APP_FUNCTION_SERVICE)
+pub const APP_FUNCTION_SERVICE : &'static str = "app_function";
 
 /// public static final [APP_OPS_SERVICE](https://developer.android.com/reference/android/content/Context.html#APP_OPS_SERVICE)
 pub const APP_OPS_SERVICE : &'static str = "appops";
@@ -798,6 +804,9 @@ pub const JOB_SCHEDULER_SERVICE : &'static str = "jobscheduler";
 /// public static final [KEYGUARD_SERVICE](https://developer.android.com/reference/android/content/Context.html#KEYGUARD_SERVICE)
 pub const KEYGUARD_SERVICE : &'static str = "keyguard";
 
+/// public static final [KEYSTORE_SERVICE](https://developer.android.com/reference/android/content/Context.html#KEYSTORE_SERVICE)
+pub const KEYSTORE_SERVICE : &'static str = "keystore";
+
 /// public static final [LAUNCHER_APPS_SERVICE](https://developer.android.com/reference/android/content/Context.html#LAUNCHER_APPS_SERVICE)
 pub const LAUNCHER_APPS_SERVICE : &'static str = "launcherapps";
 
@@ -818,6 +827,9 @@ pub const MEDIA_METRICS_SERVICE : &'static str = "media_metrics";
 
 /// public static final [MEDIA_PROJECTION_SERVICE](https://developer.android.com/reference/android/content/Context.html#MEDIA_PROJECTION_SERVICE)
 pub const MEDIA_PROJECTION_SERVICE : &'static str = "media_projection";
+
+/// public static final [MEDIA_QUALITY_SERVICE](https://developer.android.com/reference/android/content/Context.html#MEDIA_QUALITY_SERVICE)
+pub const MEDIA_QUALITY_SERVICE : &'static str = "media_quality";
 
 /// public static final [MEDIA_ROUTER_SERVICE](https://developer.android.com/reference/android/content/Context.html#MEDIA_ROUTER_SERVICE)
 pub const MEDIA_ROUTER_SERVICE : &'static str = "media_router";
@@ -897,6 +909,9 @@ pub const RESTRICTIONS_SERVICE : &'static str = "restrictions";
 /// public static final [ROLE_SERVICE](https://developer.android.com/reference/android/content/Context.html#ROLE_SERVICE)
 pub const ROLE_SERVICE : &'static str = "role";
 
+/// public static final [SATELLITE_SERVICE](https://developer.android.com/reference/android/content/Context.html#SATELLITE_SERVICE)
+pub const SATELLITE_SERVICE : &'static str = "satellite";
+
 /// public static final [SEARCH_SERVICE](https://developer.android.com/reference/android/content/Context.html#SEARCH_SERVICE)
 pub const SEARCH_SERVICE : &'static str = "search";
 
@@ -933,11 +948,17 @@ pub const TELEPHONY_SERVICE : &'static str = "phone";
 /// public static final [TELEPHONY_SUBSCRIPTION_SERVICE](https://developer.android.com/reference/android/content/Context.html#TELEPHONY_SUBSCRIPTION_SERVICE)
 pub const TELEPHONY_SUBSCRIPTION_SERVICE : &'static str = "telephony_subscription_service";
 
+/// public static final [TETHERING_SERVICE](https://developer.android.com/reference/android/content/Context.html#TETHERING_SERVICE)
+pub const TETHERING_SERVICE : &'static str = "tethering";
+
 /// public static final [TEXT_CLASSIFICATION_SERVICE](https://developer.android.com/reference/android/content/Context.html#TEXT_CLASSIFICATION_SERVICE)
 pub const TEXT_CLASSIFICATION_SERVICE : &'static str = "textclassification";
 
 /// public static final [TEXT_SERVICES_MANAGER_SERVICE](https://developer.android.com/reference/android/content/Context.html#TEXT_SERVICES_MANAGER_SERVICE)
 pub const TEXT_SERVICES_MANAGER_SERVICE : &'static str = "textservices";
+
+/// public static final [TV_AD_SERVICE](https://developer.android.com/reference/android/content/Context.html#TV_AD_SERVICE)
+pub const TV_AD_SERVICE : &'static str = "tv_ad";
 
 /// public static final [TV_INPUT_SERVICE](https://developer.android.com/reference/android/content/Context.html#TV_INPUT_SERVICE)
 pub const TV_INPUT_SERVICE : &'static str = "tv_input";
@@ -993,6 +1014,167 @@ pub mod net {
 
 pub mod nsd {
 
+/// pub final class [AdvertisingRequest](https://developer.android.com/reference/android/net/nsd/AdvertisingRequest.html)
+#[repr(transparent)] pub struct AdvertisingRequest(pub(crate) ::java_spaghetti::ObjectAndEnv);
+                unsafe impl ::java_spaghetti::ReferenceType for AdvertisingRequest {}
+                
+unsafe impl ::java_spaghetti::JniType for AdvertisingRequest {
+                fn static_with_jni_type<R>(callback: impl FnOnce(&str) -> R) -> R {
+                    callback("android/net/nsd/AdvertisingRequest\0")
+                }
+            }
+unsafe impl ::java_spaghetti::AssignableTo<super::super::super::java::lang::Object> for AdvertisingRequest {}
+impl ::std::ops::Deref for AdvertisingRequest {
+                    type Target = super::super::super::java::lang::Object;
+                    fn deref(&self) -> &Self::Target {
+                        unsafe { &*(self as *const Self as *const Self::Target) }
+                    }
+                }
+impl AdvertisingRequest {
+
+/// [describeContents](https://developer.android.com/reference/android/net/nsd/AdvertisingRequest.html#describeContents())
+pub fn describeContents<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/AdvertisingRequest", java.flags == PUBLIC, .name == "describeContents", .descriptor == "()I"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/AdvertisingRequest\0", "describeContents\0", "()I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [equals](https://developer.android.com/reference/android/net/nsd/AdvertisingRequest.html#equals(java.lang.Object))
+pub fn equals<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/AdvertisingRequest", java.flags == PUBLIC, .name == "equals", .descriptor == "(Ljava/lang/Object;)Z"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/AdvertisingRequest\0", "equals\0", "(Ljava/lang/Object;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getFlags](https://developer.android.com/reference/android/net/nsd/AdvertisingRequest.html#getFlags())
+pub fn getFlags<'env>(&'env self) -> ::std::result::Result<i64, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/AdvertisingRequest", java.flags == PUBLIC, .name == "getFlags", .descriptor == "()J"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/AdvertisingRequest\0", "getFlags\0", "()J\0");
+        __jni_env.call_long_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getProtocolType](https://developer.android.com/reference/android/net/nsd/AdvertisingRequest.html#getProtocolType())
+pub fn getProtocolType<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/AdvertisingRequest", java.flags == PUBLIC, .name == "getProtocolType", .descriptor == "()I"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/AdvertisingRequest\0", "getProtocolType\0", "()I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getServiceInfo](https://developer.android.com/reference/android/net/nsd/AdvertisingRequest.html#getServiceInfo())
+pub fn getServiceInfo<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, NsdServiceInfo>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/AdvertisingRequest", java.flags == PUBLIC, .name == "getServiceInfo", .descriptor == "()Landroid/net/nsd/NsdServiceInfo;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/AdvertisingRequest\0", "getServiceInfo\0", "()Landroid/net/nsd/NsdServiceInfo;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [hashCode](https://developer.android.com/reference/android/net/nsd/AdvertisingRequest.html#hashCode())
+pub fn hashCode<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/AdvertisingRequest", java.flags == PUBLIC, .name == "hashCode", .descriptor == "()I"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/AdvertisingRequest\0", "hashCode\0", "()I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [toString](https://developer.android.com/reference/android/net/nsd/AdvertisingRequest.html#toString())
+pub fn toString<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/AdvertisingRequest", java.flags == PUBLIC, .name == "toString", .descriptor == "()Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/AdvertisingRequest\0", "toString\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// public static final [FLAG_SKIP_PROBING](https://developer.android.com/reference/android/net/nsd/AdvertisingRequest.html#FLAG_SKIP_PROBING)
+pub const FLAG_SKIP_PROBING : i64 = 2i64;
+}
+
+/// pub final class [AdvertisingRequest.Builder](https://developer.android.com/reference/android/net/nsd/AdvertisingRequest.Builder.html)
+#[repr(transparent)] pub struct AdvertisingRequest_Builder(pub(crate) ::java_spaghetti::ObjectAndEnv);
+                unsafe impl ::java_spaghetti::ReferenceType for AdvertisingRequest_Builder {}
+                
+unsafe impl ::java_spaghetti::JniType for AdvertisingRequest_Builder {
+                fn static_with_jni_type<R>(callback: impl FnOnce(&str) -> R) -> R {
+                    callback("android/net/nsd/AdvertisingRequest$Builder\0")
+                }
+            }
+unsafe impl ::java_spaghetti::AssignableTo<super::super::super::java::lang::Object> for AdvertisingRequest_Builder {}
+impl ::std::ops::Deref for AdvertisingRequest_Builder {
+                    type Target = super::super::super::java::lang::Object;
+                    fn deref(&self) -> &Self::Target {
+                        unsafe { &*(self as *const Self as *const Self::Target) }
+                    }
+                }
+impl AdvertisingRequest_Builder {
+
+/// [Builder](https://developer.android.com/reference/android/net/nsd/AdvertisingRequest.Builder.html#Builder(android.net.nsd.NsdServiceInfo))
+pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<NsdServiceInfo>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/AdvertisingRequest$Builder", java.flags == PUBLIC, .name == "<init>", .descriptor == "(Landroid/net/nsd/NsdServiceInfo;)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/AdvertisingRequest$Builder\0", "<init>\0", "(Landroid/net/nsd/NsdServiceInfo;)V\0");
+        __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [build](https://developer.android.com/reference/android/net/nsd/AdvertisingRequest.Builder.html#build())
+pub fn build<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, AdvertisingRequest>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/AdvertisingRequest$Builder", java.flags == PUBLIC, .name == "build", .descriptor == "()Landroid/net/nsd/AdvertisingRequest;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/AdvertisingRequest$Builder\0", "build\0", "()Landroid/net/nsd/AdvertisingRequest;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [setFlags](https://developer.android.com/reference/android/net/nsd/AdvertisingRequest.Builder.html#setFlags(long))
+pub fn setFlags<'env>(&'env self, arg0: i64) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, AdvertisingRequest_Builder>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/AdvertisingRequest$Builder", java.flags == PUBLIC, .name == "setFlags", .descriptor == "(J)Landroid/net/nsd/AdvertisingRequest$Builder;"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/AdvertisingRequest$Builder\0", "setFlags\0", "(J)Landroid/net/nsd/AdvertisingRequest$Builder;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [setProtocolType](https://developer.android.com/reference/android/net/nsd/AdvertisingRequest.Builder.html#setProtocolType(int))
+pub fn setProtocolType<'env>(&'env self, arg0: i32) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, AdvertisingRequest_Builder>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/AdvertisingRequest$Builder", java.flags == PUBLIC, .name == "setProtocolType", .descriptor == "(I)Landroid/net/nsd/AdvertisingRequest$Builder;"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/AdvertisingRequest$Builder\0", "setProtocolType\0", "(I)Landroid/net/nsd/AdvertisingRequest$Builder;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+}
+
 /// pub final class [DiscoveryRequest](https://developer.android.com/reference/android/net/nsd/DiscoveryRequest.html)
 #[repr(transparent)] pub struct DiscoveryRequest(pub(crate) ::java_spaghetti::ObjectAndEnv);
                 unsafe impl ::java_spaghetti::ReferenceType for DiscoveryRequest {}
@@ -1010,6 +1192,39 @@ impl ::std::ops::Deref for DiscoveryRequest {
                     }
                 }
 impl DiscoveryRequest {
+
+/// [describeContents](https://developer.android.com/reference/android/net/nsd/DiscoveryRequest.html#describeContents())
+pub fn describeContents<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/DiscoveryRequest", java.flags == PUBLIC, .name == "describeContents", .descriptor == "()I"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/DiscoveryRequest\0", "describeContents\0", "()I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [equals](https://developer.android.com/reference/android/net/nsd/DiscoveryRequest.html#equals(java.lang.Object))
+pub fn equals<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/DiscoveryRequest", java.flags == PUBLIC, .name == "equals", .descriptor == "(Ljava/lang/Object;)Z"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/DiscoveryRequest\0", "equals\0", "(Ljava/lang/Object;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getNetwork](https://developer.android.com/reference/android/net/nsd/DiscoveryRequest.html#getNetwork())
+pub fn getNetwork<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::Network>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/DiscoveryRequest", java.flags == PUBLIC, .name == "getNetwork", .descriptor == "()Landroid/net/Network;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/DiscoveryRequest\0", "getNetwork\0", "()Landroid/net/Network;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
 
 /// [getServiceType](https://developer.android.com/reference/android/net/nsd/DiscoveryRequest.html#getServiceType())
 pub fn getServiceType<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
@@ -1033,39 +1248,6 @@ pub fn getSubtype<'env>(&'env self) -> ::std::result::Result<::std::option::Opti
     }
 }
 
-/// [getNetwork](https://developer.android.com/reference/android/net/nsd/DiscoveryRequest.html#getNetwork())
-pub fn getNetwork<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::Network>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/DiscoveryRequest", java.flags == PUBLIC, .name == "getNetwork", .descriptor == "()Landroid/net/Network;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/DiscoveryRequest\0", "getNetwork\0", "()Landroid/net/Network;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [toString](https://developer.android.com/reference/android/net/nsd/DiscoveryRequest.html#toString())
-pub fn toString<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/DiscoveryRequest", java.flags == PUBLIC, .name == "toString", .descriptor == "()Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/DiscoveryRequest\0", "toString\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [equals](https://developer.android.com/reference/android/net/nsd/DiscoveryRequest.html#equals(java.lang.Object))
-pub fn equals<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/DiscoveryRequest", java.flags == PUBLIC, .name == "equals", .descriptor == "(Ljava/lang/Object;)Z"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/DiscoveryRequest\0", "equals\0", "(Ljava/lang/Object;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
 /// [hashCode](https://developer.android.com/reference/android/net/nsd/DiscoveryRequest.html#hashCode())
 pub fn hashCode<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
     // class.path == "android/net/nsd/DiscoveryRequest", java.flags == PUBLIC, .name == "hashCode", .descriptor == "()I"
@@ -1077,14 +1259,14 @@ pub fn hashCode<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti
     }
 }
 
-/// [describeContents](https://developer.android.com/reference/android/net/nsd/DiscoveryRequest.html#describeContents())
-pub fn describeContents<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/DiscoveryRequest", java.flags == PUBLIC, .name == "describeContents", .descriptor == "()I"
+/// [toString](https://developer.android.com/reference/android/net/nsd/DiscoveryRequest.html#toString())
+pub fn toString<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/DiscoveryRequest", java.flags == PUBLIC, .name == "toString", .descriptor == "()Ljava/lang/String;"
     unsafe {
         let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/DiscoveryRequest\0", "describeContents\0", "()I\0");
-        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/DiscoveryRequest\0", "toString\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 }
@@ -1117,13 +1299,13 @@ pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spagh
     }
 }
 
-/// [setSubtype](https://developer.android.com/reference/android/net/nsd/DiscoveryRequest.Builder.html#setSubtype(java.lang.String))
-pub fn setSubtype<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, DiscoveryRequest_Builder>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/DiscoveryRequest$Builder", java.flags == PUBLIC, .name == "setSubtype", .descriptor == "(Ljava/lang/String;)Landroid/net/nsd/DiscoveryRequest$Builder;"
+/// [build](https://developer.android.com/reference/android/net/nsd/DiscoveryRequest.Builder.html#build())
+pub fn build<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, DiscoveryRequest>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/DiscoveryRequest$Builder", java.flags == PUBLIC, .name == "build", .descriptor == "()Landroid/net/nsd/DiscoveryRequest;"
     unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/DiscoveryRequest$Builder\0", "setSubtype\0", "(Ljava/lang/String;)Landroid/net/nsd/DiscoveryRequest$Builder;\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/DiscoveryRequest$Builder\0", "build\0", "()Landroid/net/nsd/DiscoveryRequest;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -1139,13 +1321,13 @@ pub fn setNetwork<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::Ne
     }
 }
 
-/// [build](https://developer.android.com/reference/android/net/nsd/DiscoveryRequest.Builder.html#build())
-pub fn build<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, DiscoveryRequest>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/DiscoveryRequest$Builder", java.flags == PUBLIC, .name == "build", .descriptor == "()Landroid/net/nsd/DiscoveryRequest;"
+/// [setSubtype](https://developer.android.com/reference/android/net/nsd/DiscoveryRequest.Builder.html#setSubtype(java.lang.String))
+pub fn setSubtype<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, DiscoveryRequest_Builder>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/DiscoveryRequest$Builder", java.flags == PUBLIC, .name == "setSubtype", .descriptor == "(Ljava/lang/String;)Landroid/net/nsd/DiscoveryRequest$Builder;"
     unsafe {
-        let __jni_args = [];
+        let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/DiscoveryRequest$Builder\0", "build\0", "()Landroid/net/nsd/DiscoveryRequest;\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/DiscoveryRequest$Builder\0", "setSubtype\0", "(Ljava/lang/String;)Landroid/net/nsd/DiscoveryRequest$Builder;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -1169,6 +1351,50 @@ impl ::std::ops::Deref for NsdManager {
                 }
 impl NsdManager {
 
+/// [discoverServices](https://developer.android.com/reference/android/net/nsd/NsdManager.html#discoverServices(android.net.nsd.DiscoveryRequest,%20java.util.concurrent.Executor,%20android.net.nsd.NsdManager.DiscoveryListener))
+pub fn discoverServices_DiscoveryRequest_Executor_DiscoveryListener<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<DiscoveryRequest>, arg1: impl ::java_spaghetti::AsArg<super::super::super::java::util::concurrent::Executor>, arg2: impl ::java_spaghetti::AsArg<NsdManager_DiscoveryListener>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdManager", java.flags == PUBLIC, .name == "discoverServices", .descriptor == "(Landroid/net/nsd/DiscoveryRequest;Ljava/util/concurrent/Executor;Landroid/net/nsd/NsdManager$DiscoveryListener;)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue(), arg2.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager\0", "discoverServices\0", "(Landroid/net/nsd/DiscoveryRequest;Ljava/util/concurrent/Executor;Landroid/net/nsd/NsdManager$DiscoveryListener;)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [discoverServices](https://developer.android.com/reference/android/net/nsd/NsdManager.html#discoverServices(java.lang.String,%20int,%20android.net.Network,%20java.util.concurrent.Executor,%20android.net.nsd.NsdManager.DiscoveryListener))
+pub fn discoverServices_String_int_Network_Executor_DiscoveryListener<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>, arg1: i32, arg2: impl ::java_spaghetti::AsArg<super::Network>, arg3: impl ::java_spaghetti::AsArg<super::super::super::java::util::concurrent::Executor>, arg4: impl ::java_spaghetti::AsArg<NsdManager_DiscoveryListener>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdManager", java.flags == PUBLIC, .name == "discoverServices", .descriptor == "(Ljava/lang/String;ILandroid/net/Network;Ljava/util/concurrent/Executor;Landroid/net/nsd/NsdManager$DiscoveryListener;)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1), arg2.as_arg_jvalue(), arg3.as_arg_jvalue(), arg4.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager\0", "discoverServices\0", "(Ljava/lang/String;ILandroid/net/Network;Ljava/util/concurrent/Executor;Landroid/net/nsd/NsdManager$DiscoveryListener;)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [discoverServices](https://developer.android.com/reference/android/net/nsd/NsdManager.html#discoverServices(java.lang.String,%20int,%20android.net.nsd.NsdManager.DiscoveryListener))
+pub fn discoverServices_String_int_DiscoveryListener<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>, arg1: i32, arg2: impl ::java_spaghetti::AsArg<NsdManager_DiscoveryListener>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdManager", java.flags == PUBLIC, .name == "discoverServices", .descriptor == "(Ljava/lang/String;ILandroid/net/nsd/NsdManager$DiscoveryListener;)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1), arg2.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager\0", "discoverServices\0", "(Ljava/lang/String;ILandroid/net/nsd/NsdManager$DiscoveryListener;)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [registerService](https://developer.android.com/reference/android/net/nsd/NsdManager.html#registerService(android.net.nsd.AdvertisingRequest,%20java.util.concurrent.Executor,%20android.net.nsd.NsdManager.RegistrationListener))
+pub fn registerService_AdvertisingRequest_Executor_RegistrationListener<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<AdvertisingRequest>, arg1: impl ::java_spaghetti::AsArg<super::super::super::java::util::concurrent::Executor>, arg2: impl ::java_spaghetti::AsArg<NsdManager_RegistrationListener>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdManager", java.flags == PUBLIC, .name == "registerService", .descriptor == "(Landroid/net/nsd/AdvertisingRequest;Ljava/util/concurrent/Executor;Landroid/net/nsd/NsdManager$RegistrationListener;)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue(), arg2.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager\0", "registerService\0", "(Landroid/net/nsd/AdvertisingRequest;Ljava/util/concurrent/Executor;Landroid/net/nsd/NsdManager$RegistrationListener;)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
 /// [registerService](https://developer.android.com/reference/android/net/nsd/NsdManager.html#registerService(android.net.nsd.NsdServiceInfo,%20int,%20android.net.nsd.NsdManager.RegistrationListener))
 pub fn registerService_NsdServiceInfo_int_RegistrationListener<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<NsdServiceInfo>, arg1: i32, arg2: impl ::java_spaghetti::AsArg<NsdManager_RegistrationListener>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
     // class.path == "android/net/nsd/NsdManager", java.flags == PUBLIC, .name == "registerService", .descriptor == "(Landroid/net/nsd/NsdServiceInfo;ILandroid/net/nsd/NsdManager$RegistrationListener;)V"
@@ -1191,57 +1417,13 @@ pub fn registerService_NsdServiceInfo_int_Executor_RegistrationListener<'env>(&'
     }
 }
 
-/// [unregisterService](https://developer.android.com/reference/android/net/nsd/NsdManager.html#unregisterService(android.net.nsd.NsdManager.RegistrationListener))
-pub fn unregisterService<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<NsdManager_RegistrationListener>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdManager", java.flags == PUBLIC, .name == "unregisterService", .descriptor == "(Landroid/net/nsd/NsdManager$RegistrationListener;)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager\0", "unregisterService\0", "(Landroid/net/nsd/NsdManager$RegistrationListener;)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [discoverServices](https://developer.android.com/reference/android/net/nsd/NsdManager.html#discoverServices(java.lang.String,%20int,%20android.net.nsd.NsdManager.DiscoveryListener))
-pub fn discoverServices_String_int_DiscoveryListener<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>, arg1: i32, arg2: impl ::java_spaghetti::AsArg<NsdManager_DiscoveryListener>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdManager", java.flags == PUBLIC, .name == "discoverServices", .descriptor == "(Ljava/lang/String;ILandroid/net/nsd/NsdManager$DiscoveryListener;)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1), arg2.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager\0", "discoverServices\0", "(Ljava/lang/String;ILandroid/net/nsd/NsdManager$DiscoveryListener;)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [discoverServices](https://developer.android.com/reference/android/net/nsd/NsdManager.html#discoverServices(java.lang.String,%20int,%20android.net.Network,%20java.util.concurrent.Executor,%20android.net.nsd.NsdManager.DiscoveryListener))
-pub fn discoverServices_String_int_Network_Executor_DiscoveryListener<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>, arg1: i32, arg2: impl ::java_spaghetti::AsArg<super::Network>, arg3: impl ::java_spaghetti::AsArg<super::super::super::java::util::concurrent::Executor>, arg4: impl ::java_spaghetti::AsArg<NsdManager_DiscoveryListener>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdManager", java.flags == PUBLIC, .name == "discoverServices", .descriptor == "(Ljava/lang/String;ILandroid/net/Network;Ljava/util/concurrent/Executor;Landroid/net/nsd/NsdManager$DiscoveryListener;)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1), arg2.as_arg_jvalue(), arg3.as_arg_jvalue(), arg4.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager\0", "discoverServices\0", "(Ljava/lang/String;ILandroid/net/Network;Ljava/util/concurrent/Executor;Landroid/net/nsd/NsdManager$DiscoveryListener;)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [discoverServices](https://developer.android.com/reference/android/net/nsd/NsdManager.html#discoverServices(android.net.nsd.DiscoveryRequest,%20java.util.concurrent.Executor,%20android.net.nsd.NsdManager.DiscoveryListener))
-pub fn discoverServices_DiscoveryRequest_Executor_DiscoveryListener<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<DiscoveryRequest>, arg1: impl ::java_spaghetti::AsArg<super::super::super::java::util::concurrent::Executor>, arg2: impl ::java_spaghetti::AsArg<NsdManager_DiscoveryListener>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdManager", java.flags == PUBLIC, .name == "discoverServices", .descriptor == "(Landroid/net/nsd/DiscoveryRequest;Ljava/util/concurrent/Executor;Landroid/net/nsd/NsdManager$DiscoveryListener;)V"
+/// [registerServiceInfoCallback](https://developer.android.com/reference/android/net/nsd/NsdManager.html#registerServiceInfoCallback(android.net.nsd.NsdServiceInfo,%20java.util.concurrent.Executor,%20android.net.nsd.NsdManager.ServiceInfoCallback))
+pub fn registerServiceInfoCallback<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<NsdServiceInfo>, arg1: impl ::java_spaghetti::AsArg<super::super::super::java::util::concurrent::Executor>, arg2: impl ::java_spaghetti::AsArg<NsdManager_ServiceInfoCallback>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdManager", java.flags == PUBLIC, .name == "registerServiceInfoCallback", .descriptor == "(Landroid/net/nsd/NsdServiceInfo;Ljava/util/concurrent/Executor;Landroid/net/nsd/NsdManager$ServiceInfoCallback;)V"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue(), arg2.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager\0", "discoverServices\0", "(Landroid/net/nsd/DiscoveryRequest;Ljava/util/concurrent/Executor;Landroid/net/nsd/NsdManager$DiscoveryListener;)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [stopServiceDiscovery](https://developer.android.com/reference/android/net/nsd/NsdManager.html#stopServiceDiscovery(android.net.nsd.NsdManager.DiscoveryListener))
-pub fn stopServiceDiscovery<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<NsdManager_DiscoveryListener>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdManager", java.flags == PUBLIC, .name == "stopServiceDiscovery", .descriptor == "(Landroid/net/nsd/NsdManager$DiscoveryListener;)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager\0", "stopServiceDiscovery\0", "(Landroid/net/nsd/NsdManager$DiscoveryListener;)V\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager\0", "registerServiceInfoCallback\0", "(Landroid/net/nsd/NsdServiceInfo;Ljava/util/concurrent/Executor;Landroid/net/nsd/NsdManager$ServiceInfoCallback;)V\0");
         __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -1268,6 +1450,17 @@ pub fn stopServiceDiscovery<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg
     }
 }
 
+/// [stopServiceDiscovery](https://developer.android.com/reference/android/net/nsd/NsdManager.html#stopServiceDiscovery(android.net.nsd.NsdManager.DiscoveryListener))
+pub fn stopServiceDiscovery<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<NsdManager_DiscoveryListener>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdManager", java.flags == PUBLIC, .name == "stopServiceDiscovery", .descriptor == "(Landroid/net/nsd/NsdManager$DiscoveryListener;)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager\0", "stopServiceDiscovery\0", "(Landroid/net/nsd/NsdManager$DiscoveryListener;)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
 /// [stopServiceResolution](https://developer.android.com/reference/android/net/nsd/NsdManager.html#stopServiceResolution(android.net.nsd.NsdManager.ResolveListener))
 pub fn stopServiceResolution<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<NsdManager_ResolveListener>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
     // class.path == "android/net/nsd/NsdManager", java.flags == PUBLIC, .name == "stopServiceResolution", .descriptor == "(Landroid/net/nsd/NsdManager$ResolveListener;)V"
@@ -1279,13 +1472,13 @@ pub fn stopServiceResolution<'env>(&'env self, arg0: impl ::java_spaghetti::AsAr
     }
 }
 
-/// [registerServiceInfoCallback](https://developer.android.com/reference/android/net/nsd/NsdManager.html#registerServiceInfoCallback(android.net.nsd.NsdServiceInfo,%20java.util.concurrent.Executor,%20android.net.nsd.NsdManager.ServiceInfoCallback))
-pub fn registerServiceInfoCallback<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<NsdServiceInfo>, arg1: impl ::java_spaghetti::AsArg<super::super::super::java::util::concurrent::Executor>, arg2: impl ::java_spaghetti::AsArg<NsdManager_ServiceInfoCallback>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdManager", java.flags == PUBLIC, .name == "registerServiceInfoCallback", .descriptor == "(Landroid/net/nsd/NsdServiceInfo;Ljava/util/concurrent/Executor;Landroid/net/nsd/NsdManager$ServiceInfoCallback;)V"
+/// [unregisterService](https://developer.android.com/reference/android/net/nsd/NsdManager.html#unregisterService(android.net.nsd.NsdManager.RegistrationListener))
+pub fn unregisterService<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<NsdManager_RegistrationListener>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdManager", java.flags == PUBLIC, .name == "unregisterService", .descriptor == "(Landroid/net/nsd/NsdManager$RegistrationListener;)V"
     unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue(), arg2.as_arg_jvalue()];
+        let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager\0", "registerServiceInfoCallback\0", "(Landroid/net/nsd/NsdServiceInfo;Ljava/util/concurrent/Executor;Landroid/net/nsd/NsdManager$ServiceInfoCallback;)V\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager\0", "unregisterService\0", "(Landroid/net/nsd/NsdManager$RegistrationListener;)V\0");
         __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -1350,28 +1543,6 @@ impl ::std::ops::Deref for NsdManager_DiscoveryListener {
                 }
 impl NsdManager_DiscoveryListener {
 
-/// [onStartDiscoveryFailed](https://developer.android.com/reference/android/net/nsd/NsdManager.DiscoveryListener.html#onStartDiscoveryFailed(java.lang.String,%20int))
-pub fn onStartDiscoveryFailed<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>, arg1: i32) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdManager$DiscoveryListener", java.flags == PUBLIC | ABSTRACT, .name == "onStartDiscoveryFailed", .descriptor == "(Ljava/lang/String;I)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager$DiscoveryListener\0", "onStartDiscoveryFailed\0", "(Ljava/lang/String;I)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [onStopDiscoveryFailed](https://developer.android.com/reference/android/net/nsd/NsdManager.DiscoveryListener.html#onStopDiscoveryFailed(java.lang.String,%20int))
-pub fn onStopDiscoveryFailed<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>, arg1: i32) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdManager$DiscoveryListener", java.flags == PUBLIC | ABSTRACT, .name == "onStopDiscoveryFailed", .descriptor == "(Ljava/lang/String;I)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager$DiscoveryListener\0", "onStopDiscoveryFailed\0", "(Ljava/lang/String;I)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
 /// [onDiscoveryStarted](https://developer.android.com/reference/android/net/nsd/NsdManager.DiscoveryListener.html#onDiscoveryStarted(java.lang.String))
 pub fn onDiscoveryStarted<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
     // class.path == "android/net/nsd/NsdManager$DiscoveryListener", java.flags == PUBLIC | ABSTRACT, .name == "onDiscoveryStarted", .descriptor == "(Ljava/lang/String;)V"
@@ -1415,6 +1586,28 @@ pub fn onServiceLost<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<NsdSer
         __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
+
+/// [onStartDiscoveryFailed](https://developer.android.com/reference/android/net/nsd/NsdManager.DiscoveryListener.html#onStartDiscoveryFailed(java.lang.String,%20int))
+pub fn onStartDiscoveryFailed<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>, arg1: i32) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdManager$DiscoveryListener", java.flags == PUBLIC | ABSTRACT, .name == "onStartDiscoveryFailed", .descriptor == "(Ljava/lang/String;I)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager$DiscoveryListener\0", "onStartDiscoveryFailed\0", "(Ljava/lang/String;I)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [onStopDiscoveryFailed](https://developer.android.com/reference/android/net/nsd/NsdManager.DiscoveryListener.html#onStopDiscoveryFailed(java.lang.String,%20int))
+pub fn onStopDiscoveryFailed<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>, arg1: i32) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdManager$DiscoveryListener", java.flags == PUBLIC | ABSTRACT, .name == "onStopDiscoveryFailed", .descriptor == "(Ljava/lang/String;I)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager$DiscoveryListener\0", "onStopDiscoveryFailed\0", "(Ljava/lang/String;I)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
 }
 
 /// pub interface [NsdManager.RegistrationListener](https://developer.android.com/reference/android/net/nsd/NsdManager.RegistrationListener.html)
@@ -1446,17 +1639,6 @@ pub fn onRegistrationFailed<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg
     }
 }
 
-/// [onUnregistrationFailed](https://developer.android.com/reference/android/net/nsd/NsdManager.RegistrationListener.html#onUnregistrationFailed(android.net.nsd.NsdServiceInfo,%20int))
-pub fn onUnregistrationFailed<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<NsdServiceInfo>, arg1: i32) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdManager$RegistrationListener", java.flags == PUBLIC | ABSTRACT, .name == "onUnregistrationFailed", .descriptor == "(Landroid/net/nsd/NsdServiceInfo;I)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager$RegistrationListener\0", "onUnregistrationFailed\0", "(Landroid/net/nsd/NsdServiceInfo;I)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
 /// [onServiceRegistered](https://developer.android.com/reference/android/net/nsd/NsdManager.RegistrationListener.html#onServiceRegistered(android.net.nsd.NsdServiceInfo))
 pub fn onServiceRegistered<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<NsdServiceInfo>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
     // class.path == "android/net/nsd/NsdManager$RegistrationListener", java.flags == PUBLIC | ABSTRACT, .name == "onServiceRegistered", .descriptor == "(Landroid/net/nsd/NsdServiceInfo;)V"
@@ -1475,6 +1657,17 @@ pub fn onServiceUnregistered<'env>(&'env self, arg0: impl ::java_spaghetti::AsAr
         let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
         let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager$RegistrationListener\0", "onServiceUnregistered\0", "(Landroid/net/nsd/NsdServiceInfo;)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [onUnregistrationFailed](https://developer.android.com/reference/android/net/nsd/NsdManager.RegistrationListener.html#onUnregistrationFailed(android.net.nsd.NsdServiceInfo,%20int))
+pub fn onUnregistrationFailed<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<NsdServiceInfo>, arg1: i32) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdManager$RegistrationListener", java.flags == PUBLIC | ABSTRACT, .name == "onUnregistrationFailed", .descriptor == "(Landroid/net/nsd/NsdServiceInfo;I)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager$RegistrationListener\0", "onUnregistrationFailed\0", "(Landroid/net/nsd/NsdServiceInfo;I)V\0");
         __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -1498,6 +1691,17 @@ impl ::std::ops::Deref for NsdManager_ResolveListener {
                 }
 impl NsdManager_ResolveListener {
 
+/// [onResolutionStopped](https://developer.android.com/reference/android/net/nsd/NsdManager.ResolveListener.html#onResolutionStopped(android.net.nsd.NsdServiceInfo))
+pub fn onResolutionStopped<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<NsdServiceInfo>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdManager$ResolveListener", java.flags == PUBLIC, .name == "onResolutionStopped", .descriptor == "(Landroid/net/nsd/NsdServiceInfo;)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager$ResolveListener\0", "onResolutionStopped\0", "(Landroid/net/nsd/NsdServiceInfo;)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
 /// [onResolveFailed](https://developer.android.com/reference/android/net/nsd/NsdManager.ResolveListener.html#onResolveFailed(android.net.nsd.NsdServiceInfo,%20int))
 pub fn onResolveFailed<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<NsdServiceInfo>, arg1: i32) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
     // class.path == "android/net/nsd/NsdManager$ResolveListener", java.flags == PUBLIC | ABSTRACT, .name == "onResolveFailed", .descriptor == "(Landroid/net/nsd/NsdServiceInfo;I)V"
@@ -1516,17 +1720,6 @@ pub fn onServiceResolved<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Ns
         let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
         let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager$ResolveListener\0", "onServiceResolved\0", "(Landroid/net/nsd/NsdServiceInfo;)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [onResolutionStopped](https://developer.android.com/reference/android/net/nsd/NsdManager.ResolveListener.html#onResolutionStopped(android.net.nsd.NsdServiceInfo))
-pub fn onResolutionStopped<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<NsdServiceInfo>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdManager$ResolveListener", java.flags == PUBLIC, .name == "onResolutionStopped", .descriptor == "(Landroid/net/nsd/NsdServiceInfo;)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager$ResolveListener\0", "onResolutionStopped\0", "(Landroid/net/nsd/NsdServiceInfo;)V\0");
         __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -1572,13 +1765,13 @@ pub fn onServiceInfoCallbackRegistrationFailed<'env>(&'env self, arg0: i32) -> :
     }
 }
 
-/// [onServiceUpdated](https://developer.android.com/reference/android/net/nsd/NsdManager.ServiceInfoCallback.html#onServiceUpdated(android.net.nsd.NsdServiceInfo))
-pub fn onServiceUpdated<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<NsdServiceInfo>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdManager$ServiceInfoCallback", java.flags == PUBLIC | ABSTRACT, .name == "onServiceUpdated", .descriptor == "(Landroid/net/nsd/NsdServiceInfo;)V"
+/// [onServiceInfoCallbackUnregistered](https://developer.android.com/reference/android/net/nsd/NsdManager.ServiceInfoCallback.html#onServiceInfoCallbackUnregistered())
+pub fn onServiceInfoCallbackUnregistered<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdManager$ServiceInfoCallback", java.flags == PUBLIC | ABSTRACT, .name == "onServiceInfoCallbackUnregistered", .descriptor == "()V"
     unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager$ServiceInfoCallback\0", "onServiceUpdated\0", "(Landroid/net/nsd/NsdServiceInfo;)V\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager$ServiceInfoCallback\0", "onServiceInfoCallbackUnregistered\0", "()V\0");
         __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -1594,13 +1787,13 @@ pub fn onServiceLost<'env>(&'env self) -> ::std::result::Result<(), ::java_spagh
     }
 }
 
-/// [onServiceInfoCallbackUnregistered](https://developer.android.com/reference/android/net/nsd/NsdManager.ServiceInfoCallback.html#onServiceInfoCallbackUnregistered())
-pub fn onServiceInfoCallbackUnregistered<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdManager$ServiceInfoCallback", java.flags == PUBLIC | ABSTRACT, .name == "onServiceInfoCallbackUnregistered", .descriptor == "()V"
+/// [onServiceUpdated](https://developer.android.com/reference/android/net/nsd/NsdManager.ServiceInfoCallback.html#onServiceUpdated(android.net.nsd.NsdServiceInfo))
+pub fn onServiceUpdated<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<NsdServiceInfo>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdManager$ServiceInfoCallback", java.flags == PUBLIC | ABSTRACT, .name == "onServiceUpdated", .descriptor == "(Landroid/net/nsd/NsdServiceInfo;)V"
     unsafe {
-        let __jni_args = [];
+        let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager$ServiceInfoCallback\0", "onServiceInfoCallbackUnregistered\0", "()V\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdManager$ServiceInfoCallback\0", "onServiceUpdated\0", "(Landroid/net/nsd/NsdServiceInfo;)V\0");
         __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -1634,47 +1827,25 @@ pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>) -> ::std::result::Resul
     }
 }
 
-/// [getServiceName](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#getServiceName())
-pub fn getServiceName<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "getServiceName", .descriptor == "()Ljava/lang/String;"
+/// [describeContents](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#describeContents())
+pub fn describeContents<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "describeContents", .descriptor == "()I"
     unsafe {
         let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "getServiceName\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "describeContents\0", "()I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [setServiceName](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#setServiceName(java.lang.String))
-pub fn setServiceName<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "setServiceName", .descriptor == "(Ljava/lang/String;)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "setServiceName\0", "(Ljava/lang/String;)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getServiceType](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#getServiceType())
-pub fn getServiceType<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "getServiceType", .descriptor == "()Ljava/lang/String;"
+/// [getAttributes](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#getAttributes())
+pub fn getAttributes<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::super::java::util::Map>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "getAttributes", .descriptor == "()Ljava/util/Map;"
     unsafe {
         let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "getServiceType\0", "()Ljava/lang/String;\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "getAttributes\0", "()Ljava/util/Map;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [setServiceType](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#setServiceType(java.lang.String))
-pub fn setServiceType<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "setServiceType", .descriptor == "(Ljava/lang/String;)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "setServiceType\0", "(Ljava/lang/String;)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
@@ -1689,68 +1860,13 @@ pub fn setServiceType<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super
     }
 }
 
-/// [setHost](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#setHost(java.net.InetAddress))
-#[deprecated] pub fn setHost<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::net::InetAddress>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "setHost", .descriptor == "(Ljava/net/InetAddress;)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "setHost\0", "(Ljava/net/InetAddress;)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getPort](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#getPort())
-pub fn getPort<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "getPort", .descriptor == "()I"
+/// [getHostname](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#getHostname())
+pub fn getHostname<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "getHostname", .descriptor == "()Ljava/lang/String;"
     unsafe {
         let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "getPort\0", "()I\0");
-        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [setPort](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#setPort(int))
-pub fn setPort<'env>(&'env self, arg0: i32) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "setPort", .descriptor == "(I)V"
-    unsafe {
-        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "setPort\0", "(I)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [setAttribute](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#setAttribute(java.lang.String,%20java.lang.String))
-pub fn setAttribute<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>, arg1: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "setAttribute", .descriptor == "(Ljava/lang/String;Ljava/lang/String;)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "setAttribute\0", "(Ljava/lang/String;Ljava/lang/String;)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [removeAttribute](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#removeAttribute(java.lang.String))
-pub fn removeAttribute<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "removeAttribute", .descriptor == "(Ljava/lang/String;)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "removeAttribute\0", "(Ljava/lang/String;)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getAttributes](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#getAttributes())
-pub fn getAttributes<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::super::java::util::Map>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "getAttributes", .descriptor == "()Ljava/util/Map;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "getAttributes\0", "()Ljava/util/Map;\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "getHostname\0", "()Ljava/lang/String;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -1766,6 +1882,83 @@ pub fn getNetwork<'env>(&'env self) -> ::std::result::Result<::std::option::Opti
     }
 }
 
+/// [getPort](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#getPort())
+pub fn getPort<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "getPort", .descriptor == "()I"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "getPort\0", "()I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getServiceName](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#getServiceName())
+pub fn getServiceName<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "getServiceName", .descriptor == "()Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "getServiceName\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getServiceType](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#getServiceType())
+pub fn getServiceType<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "getServiceType", .descriptor == "()Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "getServiceType\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getSubtypes](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#getSubtypes())
+pub fn getSubtypes<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::super::java::util::Set>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "getSubtypes", .descriptor == "()Ljava/util/Set;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "getSubtypes\0", "()Ljava/util/Set;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [removeAttribute](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#removeAttribute(java.lang.String))
+pub fn removeAttribute<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "removeAttribute", .descriptor == "(Ljava/lang/String;)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "removeAttribute\0", "(Ljava/lang/String;)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [setAttribute](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#setAttribute(java.lang.String,%20java.lang.String))
+pub fn setAttribute<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>, arg1: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "setAttribute", .descriptor == "(Ljava/lang/String;Ljava/lang/String;)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "setAttribute\0", "(Ljava/lang/String;Ljava/lang/String;)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [setHost](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#setHost(java.net.InetAddress))
+#[deprecated] pub fn setHost<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::net::InetAddress>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "setHost", .descriptor == "(Ljava/net/InetAddress;)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "setHost\0", "(Ljava/net/InetAddress;)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
 /// [setNetwork](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#setNetwork(android.net.Network))
 pub fn setNetwork<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::Network>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
     // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "setNetwork", .descriptor == "(Landroid/net/Network;)V"
@@ -1773,6 +1966,39 @@ pub fn setNetwork<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::Ne
         let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
         let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "setNetwork\0", "(Landroid/net/Network;)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [setPort](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#setPort(int))
+pub fn setPort<'env>(&'env self, arg0: i32) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "setPort", .descriptor == "(I)V"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "setPort\0", "(I)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [setServiceName](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#setServiceName(java.lang.String))
+pub fn setServiceName<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "setServiceName", .descriptor == "(Ljava/lang/String;)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "setServiceName\0", "(Ljava/lang/String;)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [setServiceType](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#setServiceType(java.lang.String))
+pub fn setServiceType<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::java::lang::String>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "setServiceType", .descriptor == "(Ljava/lang/String;)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "setServiceType\0", "(Ljava/lang/String;)V\0");
         __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -1788,17 +2014,6 @@ pub fn setSubtypes<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::s
     }
 }
 
-/// [getSubtypes](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#getSubtypes())
-pub fn getSubtypes<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::super::java::util::Set>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "getSubtypes", .descriptor == "()Ljava/util/Set;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "getSubtypes\0", "()Ljava/util/Set;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
 /// [toString](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#toString())
 pub fn toString<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::super::java::lang::String>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
     // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "toString", .descriptor == "()Ljava/lang/String;"
@@ -1807,17 +2022,6 @@ pub fn toString<'env>(&'env self) -> ::std::result::Result<::std::option::Option
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
         let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "toString\0", "()Ljava/lang/String;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [describeContents](https://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html#describeContents())
-pub fn describeContents<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "android/net/nsd/NsdServiceInfo", java.flags == PUBLIC, .name == "describeContents", .descriptor == "()I"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/nsd/NsdServiceInfo\0", "describeContents\0", "()I\0");
-        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 }
@@ -1841,6 +2045,38 @@ impl ::std::ops::Deref for Network {
                 }
 impl Network {
 
+/// [describeContents](https://developer.android.com/reference/android/net/Network.html#describeContents())
+pub fn describeContents<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/net/Network", java.flags == PUBLIC, .name == "describeContents", .descriptor == "()I"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/Network\0", "describeContents\0", "()I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [equals](https://developer.android.com/reference/android/net/Network.html#equals(java.lang.Object))
+pub fn equals<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/net/Network", java.flags == PUBLIC, .name == "equals", .descriptor == "(Ljava/lang/Object;)Z"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/Network\0", "equals\0", "(Ljava/lang/Object;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [fromNetworkHandle](https://developer.android.com/reference/android/net/Network.html#fromNetworkHandle(long))
+pub fn fromNetworkHandle<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: i64) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Network>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/net/Network", java.flags == PUBLIC | STATIC, .name == "fromNetworkHandle", .descriptor == "(J)Landroid/net/Network;"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
+        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("android/net/Network\0", "fromNetworkHandle\0", "(J)Landroid/net/Network;\0");
+        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
+    }
+}
+
 /// [getAllByName](https://developer.android.com/reference/android/net/Network.html#getAllByName(java.lang.String))
 pub fn getAllByName<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::String>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ObjectArray<super::super::java::net::InetAddress, super::super::java::lang::Throwable>>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
     // class.path == "android/net/Network", java.flags == PUBLIC, .name == "getAllByName", .descriptor == "(Ljava/lang/String;)[Ljava/net/InetAddress;"
@@ -1863,16 +2099,6 @@ pub fn getByName<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::sup
     }
 }
 
-/// [fromNetworkHandle](https://developer.android.com/reference/android/net/Network.html#fromNetworkHandle(long))
-pub fn fromNetworkHandle<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: i64) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Network>>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/net/Network", java.flags == PUBLIC | STATIC, .name == "fromNetworkHandle", .descriptor == "(J)Landroid/net/Network;"
-    unsafe {
-        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
-        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("android/net/Network\0", "fromNetworkHandle\0", "(J)Landroid/net/Network;\0");
-        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
-    }
-}
-
 /// [getNetworkHandle](https://developer.android.com/reference/android/net/Network.html#getNetworkHandle())
 pub fn getNetworkHandle<'env>(&'env self) -> ::std::result::Result<i64, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
     // class.path == "android/net/Network", java.flags == PUBLIC, .name == "getNetworkHandle", .descriptor == "()J"
@@ -1881,28 +2107,6 @@ pub fn getNetworkHandle<'env>(&'env self) -> ::std::result::Result<i64, ::java_s
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
         let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/Network\0", "getNetworkHandle\0", "()J\0");
         __jni_env.call_long_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [describeContents](https://developer.android.com/reference/android/net/Network.html#describeContents())
-pub fn describeContents<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/net/Network", java.flags == PUBLIC, .name == "describeContents", .descriptor == "()I"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/Network\0", "describeContents\0", "()I\0");
-        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [equals](https://developer.android.com/reference/android/net/Network.html#equals(java.lang.Object))
-pub fn equals<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::java::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
-    // class.path == "android/net/Network", java.flags == PUBLIC, .name == "equals", .descriptor == "(Ljava/lang/Object;)Z"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/net/Network\0", "equals\0", "(Ljava/lang/Object;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
@@ -1931,6 +2135,51 @@ pub fn toString<'env>(&'env self) -> ::std::result::Result<::std::option::Option
 }
 
 pub mod os {
+
+pub mod ext {
+
+/// pub class [SdkExtensions](https://developer.android.com/reference/android/os/ext/SdkExtensions.html)
+#[repr(transparent)] pub struct SdkExtensions(pub(crate) ::java_spaghetti::ObjectAndEnv);
+                unsafe impl ::java_spaghetti::ReferenceType for SdkExtensions {}
+                
+unsafe impl ::java_spaghetti::JniType for SdkExtensions {
+                fn static_with_jni_type<R>(callback: impl FnOnce(&str) -> R) -> R {
+                    callback("android/os/ext/SdkExtensions\0")
+                }
+            }
+unsafe impl ::java_spaghetti::AssignableTo<super::super::super::java::lang::Object> for SdkExtensions {}
+impl ::std::ops::Deref for SdkExtensions {
+                    type Target = super::super::super::java::lang::Object;
+                    fn deref(&self) -> &Self::Target {
+                        unsafe { &*(self as *const Self as *const Self::Target) }
+                    }
+                }
+impl SdkExtensions {
+
+/// [getAllExtensionVersions](https://developer.android.com/reference/android/os/ext/SdkExtensions.html#getAllExtensionVersions())
+pub fn getAllExtensionVersions<'env>(__jni_env: ::java_spaghetti::Env<'env>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::super::java::util::Map>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/os/ext/SdkExtensions", java.flags == PUBLIC | STATIC, .name == "getAllExtensionVersions", .descriptor == "()Ljava/util/Map;"
+    unsafe {
+        let __jni_args = [];
+        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("android/os/ext/SdkExtensions\0", "getAllExtensionVersions\0", "()Ljava/util/Map;\0");
+        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getExtensionVersion](https://developer.android.com/reference/android/os/ext/SdkExtensions.html#getExtensionVersion(int))
+pub fn getExtensionVersion<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: i32) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "android/os/ext/SdkExtensions", java.flags == PUBLIC | STATIC, .name == "getExtensionVersion", .descriptor == "(I)I"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
+        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("android/os/ext/SdkExtensions\0", "getExtensionVersion\0", "(I)I\0");
+        __jni_env.call_static_int_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// public static final [AD_SERVICES](https://developer.android.com/reference/android/os/ext/SdkExtensions.html#AD_SERVICES)
+pub const AD_SERVICES : i32 = 1000000;
+}
+}
 
 /// pub class [Build.VERSION](https://developer.android.com/reference/android/os/Build.VERSION.html)
 #[repr(transparent)] pub struct Build_VERSION(pub(crate) ::java_spaghetti::ObjectAndEnv);
@@ -2040,6 +2289,14 @@ pub fn SDK_INT<'env>(env: ::java_spaghetti::Env<'env>) -> i32 {
     }
 }
 
+/// **get** public static final [SDK_INT_FULL](https://developer.android.com/reference/android/os/Build.VERSION.html#SDK_INT_FULL)
+pub fn SDK_INT_FULL<'env>(env: ::java_spaghetti::Env<'env>) -> i32 {
+    unsafe {
+        let (__jni_class, __jni_field) = env.require_class_static_field("android/os/Build$VERSION\0", "SDK_INT_FULL\0", "I\0");
+        env.get_static_int_field(__jni_class, __jni_field)
+    }
+}
+
 /// **get** public static final [SECURITY_PATCH](https://developer.android.com/reference/android/os/Build.VERSION.html#SECURITY_PATCH)
 pub fn SECURITY_PATCH<'env>(env: ::java_spaghetti::Env<'env>) -> ::std::option::Option<::java_spaghetti::Local<'env, super::super::java::lang::String>> {
     unsafe {
@@ -2047,6 +2304,146 @@ pub fn SECURITY_PATCH<'env>(env: ::java_spaghetti::Env<'env>) -> ::std::option::
         env.get_static_object_field(__jni_class, __jni_field)
     }
 }
+}
+
+/// pub class [Build.VERSION_CODES](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html)
+#[repr(transparent)] pub struct Build_VERSION_CODES(pub(crate) ::java_spaghetti::ObjectAndEnv);
+                unsafe impl ::java_spaghetti::ReferenceType for Build_VERSION_CODES {}
+                
+unsafe impl ::java_spaghetti::JniType for Build_VERSION_CODES {
+                fn static_with_jni_type<R>(callback: impl FnOnce(&str) -> R) -> R {
+                    callback("android/os/Build$VERSION_CODES\0")
+                }
+            }
+unsafe impl ::java_spaghetti::AssignableTo<super::super::java::lang::Object> for Build_VERSION_CODES {}
+impl ::std::ops::Deref for Build_VERSION_CODES {
+                    type Target = super::super::java::lang::Object;
+                    fn deref(&self) -> &Self::Target {
+                        unsafe { &*(self as *const Self as *const Self::Target) }
+                    }
+                }
+impl Build_VERSION_CODES {
+
+/// [VERSION_CODES](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#VERSION_CODES())
+pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, super::super::java::lang::Throwable>> {
+    // class.path == "android/os/Build$VERSION_CODES", java.flags == PUBLIC, .name == "<init>", .descriptor == "()V"
+    unsafe {
+        let __jni_args = [];
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("android/os/Build$VERSION_CODES\0", "<init>\0", "()V\0");
+        __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// public static final [BAKLAVA](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#BAKLAVA)
+pub const BAKLAVA : i32 = 36;
+
+/// public static final [BASE](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#BASE)
+pub const BASE : i32 = 1;
+
+/// public static final [BASE_1_1](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#BASE_1_1)
+pub const BASE_1_1 : i32 = 2;
+
+/// public static final [CUPCAKE](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#CUPCAKE)
+pub const CUPCAKE : i32 = 3;
+
+/// public static final [CUR_DEVELOPMENT](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#CUR_DEVELOPMENT)
+pub const CUR_DEVELOPMENT : i32 = 10000;
+
+/// public static final [DONUT](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#DONUT)
+pub const DONUT : i32 = 4;
+
+/// public static final [ECLAIR](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#ECLAIR)
+pub const ECLAIR : i32 = 5;
+
+/// public static final [ECLAIR_0_1](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#ECLAIR_0_1)
+pub const ECLAIR_0_1 : i32 = 6;
+
+/// public static final [ECLAIR_MR1](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#ECLAIR_MR1)
+pub const ECLAIR_MR1 : i32 = 7;
+
+/// public static final [FROYO](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#FROYO)
+pub const FROYO : i32 = 8;
+
+/// public static final [GINGERBREAD](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#GINGERBREAD)
+pub const GINGERBREAD : i32 = 9;
+
+/// public static final [GINGERBREAD_MR1](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#GINGERBREAD_MR1)
+pub const GINGERBREAD_MR1 : i32 = 10;
+
+/// public static final [HONEYCOMB](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#HONEYCOMB)
+pub const HONEYCOMB : i32 = 11;
+
+/// public static final [HONEYCOMB_MR1](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#HONEYCOMB_MR1)
+pub const HONEYCOMB_MR1 : i32 = 12;
+
+/// public static final [HONEYCOMB_MR2](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#HONEYCOMB_MR2)
+pub const HONEYCOMB_MR2 : i32 = 13;
+
+/// public static final [ICE_CREAM_SANDWICH](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#ICE_CREAM_SANDWICH)
+pub const ICE_CREAM_SANDWICH : i32 = 14;
+
+/// public static final [ICE_CREAM_SANDWICH_MR1](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#ICE_CREAM_SANDWICH_MR1)
+pub const ICE_CREAM_SANDWICH_MR1 : i32 = 15;
+
+/// public static final [JELLY_BEAN](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#JELLY_BEAN)
+pub const JELLY_BEAN : i32 = 16;
+
+/// public static final [JELLY_BEAN_MR1](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#JELLY_BEAN_MR1)
+pub const JELLY_BEAN_MR1 : i32 = 17;
+
+/// public static final [JELLY_BEAN_MR2](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#JELLY_BEAN_MR2)
+pub const JELLY_BEAN_MR2 : i32 = 18;
+
+/// public static final [KITKAT](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#KITKAT)
+pub const KITKAT : i32 = 19;
+
+/// public static final [KITKAT_WATCH](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#KITKAT_WATCH)
+pub const KITKAT_WATCH : i32 = 20;
+
+/// public static final [LOLLIPOP](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#LOLLIPOP)
+pub const LOLLIPOP : i32 = 21;
+
+/// public static final [LOLLIPOP_MR1](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#LOLLIPOP_MR1)
+pub const LOLLIPOP_MR1 : i32 = 22;
+
+/// public static final [M](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#M)
+pub const M : i32 = 23;
+
+/// public static final [N](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#N)
+pub const N : i32 = 24;
+
+/// public static final [N_MR1](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#N_MR1)
+pub const N_MR1 : i32 = 25;
+
+/// public static final [O](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#O)
+pub const O : i32 = 26;
+
+/// public static final [O_MR1](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#O_MR1)
+pub const O_MR1 : i32 = 27;
+
+/// public static final [P](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#P)
+pub const P : i32 = 28;
+
+/// public static final [Q](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#Q)
+pub const Q : i32 = 29;
+
+/// public static final [R](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#R)
+pub const R : i32 = 30;
+
+/// public static final [S](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#S)
+pub const S : i32 = 31;
+
+/// public static final [S_V2](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#S_V2)
+pub const S_V2 : i32 = 32;
+
+/// public static final [TIRAMISU](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#TIRAMISU)
+pub const TIRAMISU : i32 = 33;
+
+/// public static final [UPSIDE_DOWN_CAKE](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#UPSIDE_DOWN_CAKE)
+pub const UPSIDE_DOWN_CAKE : i32 = 34;
+
+/// public static final [VANILLA_ICE_CREAM](https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#VANILLA_ICE_CREAM)
+pub const VANILLA_ICE_CREAM : i32 = 35;
 }
 }
 }
@@ -2323,6 +2720,17 @@ impl ::std::ops::Deref for ClassLoader {
                 }
 impl ClassLoader {
 
+/// [clearAssertionStatus](https://developer.android.com/reference/java/lang/ClassLoader.html#clearAssertionStatus())
+pub fn clearAssertionStatus<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/ClassLoader", java.flags == PUBLIC, .name == "clearAssertionStatus", .descriptor == "()V"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/ClassLoader\0", "clearAssertionStatus\0", "()V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
 /// [getParent](https://developer.android.com/reference/java/lang/ClassLoader.html#getParent())
 pub fn getParent<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ClassLoader>>, ::java_spaghetti::Local<'env, Throwable>> {
     // class.path == "java/lang/ClassLoader", java.flags == PUBLIC | FINAL, .name == "getParent", .descriptor == "()Ljava/lang/ClassLoader;"
@@ -2344,6 +2752,17 @@ pub fn getSystemClassLoader<'env>(__jni_env: ::java_spaghetti::Env<'env>) -> ::s
     }
 }
 
+/// [setClassAssertionStatus](https://developer.android.com/reference/java/lang/ClassLoader.html#setClassAssertionStatus(java.lang.String,%20boolean))
+pub fn setClassAssertionStatus<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>, arg1: bool) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/ClassLoader", java.flags == PUBLIC, .name == "setClassAssertionStatus", .descriptor == "(Ljava/lang/String;Z)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/ClassLoader\0", "setClassAssertionStatus\0", "(Ljava/lang/String;Z)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
 /// [setDefaultAssertionStatus](https://developer.android.com/reference/java/lang/ClassLoader.html#setDefaultAssertionStatus(boolean))
 pub fn setDefaultAssertionStatus<'env>(&'env self, arg0: bool) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, Throwable>> {
     // class.path == "java/lang/ClassLoader", java.flags == PUBLIC, .name == "setDefaultAssertionStatus", .descriptor == "(Z)V"
@@ -2362,28 +2781,6 @@ pub fn setPackageAssertionStatus<'env>(&'env self, arg0: impl ::java_spaghetti::
         let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
         let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/ClassLoader\0", "setPackageAssertionStatus\0", "(Ljava/lang/String;Z)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [setClassAssertionStatus](https://developer.android.com/reference/java/lang/ClassLoader.html#setClassAssertionStatus(java.lang.String,%20boolean))
-pub fn setClassAssertionStatus<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>, arg1: bool) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/ClassLoader", java.flags == PUBLIC, .name == "setClassAssertionStatus", .descriptor == "(Ljava/lang/String;Z)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/ClassLoader\0", "setClassAssertionStatus\0", "(Ljava/lang/String;Z)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [clearAssertionStatus](https://developer.android.com/reference/java/lang/ClassLoader.html#clearAssertionStatus())
-pub fn clearAssertionStatus<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/ClassLoader", java.flags == PUBLIC, .name == "clearAssertionStatus", .descriptor == "()V"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/ClassLoader\0", "clearAssertionStatus\0", "()V\0");
         __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -2410,17 +2807,6 @@ pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>) -> ::std::result::Resul
     }
 }
 
-/// [hashCode](https://developer.android.com/reference/java/lang/Object.html#hashCode())
-pub fn hashCode<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/Object", java.flags == PUBLIC, .name == "hashCode", .descriptor == "()I"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Object\0", "hashCode\0", "()I\0");
-        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
 /// [equals](https://developer.android.com/reference/java/lang/Object.html#equals(java.lang.Object))
 pub fn equals<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, Throwable>> {
     // class.path == "java/lang/Object", java.flags == PUBLIC, .name == "equals", .descriptor == "(Ljava/lang/Object;)Z"
@@ -2432,14 +2818,14 @@ pub fn equals<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Object>) -> :
     }
 }
 
-/// [toString](https://developer.android.com/reference/java/lang/Object.html#toString())
-pub fn toString<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/Object", java.flags == PUBLIC, .name == "toString", .descriptor == "()Ljava/lang/String;"
+/// [hashCode](https://developer.android.com/reference/java/lang/Object.html#hashCode())
+pub fn hashCode<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/Object", java.flags == PUBLIC, .name == "hashCode", .descriptor == "()I"
     unsafe {
         let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Object\0", "toString\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Object\0", "hashCode\0", "()I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
@@ -2465,6 +2851,28 @@ pub fn notifyAll<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghetti
     }
 }
 
+/// [toString](https://developer.android.com/reference/java/lang/Object.html#toString())
+pub fn toString<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/Object", java.flags == PUBLIC, .name == "toString", .descriptor == "()Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Object\0", "toString\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [wait](https://developer.android.com/reference/java/lang/Object.html#wait())
+pub fn wait<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/Object", java.flags == PUBLIC | FINAL, .name == "wait", .descriptor == "()V"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Object\0", "wait\0", "()V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
 /// [wait](https://developer.android.com/reference/java/lang/Object.html#wait(long))
 pub fn wait_long<'env>(&'env self, arg0: i64) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, Throwable>> {
     // class.path == "java/lang/Object", java.flags == PUBLIC | FINAL, .name == "wait", .descriptor == "(J)V"
@@ -2483,17 +2891,6 @@ pub fn wait_long_int<'env>(&'env self, arg0: i64, arg1: i32) -> ::std::result::R
         let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
         let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Object\0", "wait\0", "(JI)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [wait](https://developer.android.com/reference/java/lang/Object.html#wait())
-pub fn wait<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/Object", java.flags == PUBLIC | FINAL, .name == "wait", .descriptor == "()V"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Object\0", "wait\0", "()V\0");
         __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -2527,6 +2924,28 @@ pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spagh
     }
 }
 
+/// [equals](https://developer.android.com/reference/java/lang/StackTraceElement.html#equals(java.lang.Object))
+pub fn equals<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/StackTraceElement", java.flags == PUBLIC, .name == "equals", .descriptor == "(Ljava/lang/Object;)Z"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/StackTraceElement\0", "equals\0", "(Ljava/lang/Object;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getClassName](https://developer.android.com/reference/java/lang/StackTraceElement.html#getClassName())
+pub fn getClassName<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/StackTraceElement", java.flags == PUBLIC, .name == "getClassName", .descriptor == "()Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/StackTraceElement\0", "getClassName\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
 /// [getFileName](https://developer.android.com/reference/java/lang/StackTraceElement.html#getFileName())
 pub fn getFileName<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
     // class.path == "java/lang/StackTraceElement", java.flags == PUBLIC, .name == "getFileName", .descriptor == "()Ljava/lang/String;"
@@ -2549,17 +2968,6 @@ pub fn getLineNumber<'env>(&'env self) -> ::std::result::Result<i32, ::java_spag
     }
 }
 
-/// [getClassName](https://developer.android.com/reference/java/lang/StackTraceElement.html#getClassName())
-pub fn getClassName<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/StackTraceElement", java.flags == PUBLIC, .name == "getClassName", .descriptor == "()Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/StackTraceElement\0", "getClassName\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
 /// [getMethodName](https://developer.android.com/reference/java/lang/StackTraceElement.html#getMethodName())
 pub fn getMethodName<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
     // class.path == "java/lang/StackTraceElement", java.flags == PUBLIC, .name == "getMethodName", .descriptor == "()Ljava/lang/String;"
@@ -2568,6 +2976,17 @@ pub fn getMethodName<'env>(&'env self) -> ::std::result::Result<::std::option::O
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
         let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/StackTraceElement\0", "getMethodName\0", "()Ljava/lang/String;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [hashCode](https://developer.android.com/reference/java/lang/StackTraceElement.html#hashCode())
+pub fn hashCode<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/StackTraceElement", java.flags == PUBLIC, .name == "hashCode", .descriptor == "()I"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/StackTraceElement\0", "hashCode\0", "()I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
@@ -2590,28 +3009,6 @@ pub fn toString<'env>(&'env self) -> ::std::result::Result<::std::option::Option
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
         let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/StackTraceElement\0", "toString\0", "()Ljava/lang/String;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [equals](https://developer.android.com/reference/java/lang/StackTraceElement.html#equals(java.lang.Object))
-pub fn equals<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/StackTraceElement", java.flags == PUBLIC, .name == "equals", .descriptor == "(Ljava/lang/Object;)Z"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/StackTraceElement\0", "equals\0", "(Ljava/lang/Object;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [hashCode](https://developer.android.com/reference/java/lang/StackTraceElement.html#hashCode())
-pub fn hashCode<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/StackTraceElement", java.flags == PUBLIC, .name == "hashCode", .descriptor == "()I"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/StackTraceElement\0", "hashCode\0", "()I\0");
-        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 }
@@ -2644,12 +3041,62 @@ pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>) -> ::std::result::Resul
     }
 }
 
-/// [String](https://developer.android.com/reference/java/lang/String.html#String(java.lang.String))
-pub fn new_String<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "<init>", .descriptor == "(Ljava/lang/String;)V"
+/// [String](https://developer.android.com/reference/java/lang/String.html#String(byte%5B%5D))
+pub fn new_byte_array<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::ByteArray>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "<init>", .descriptor == "([B)V"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "<init>\0", "(Ljava/lang/String;)V\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "<init>\0", "([B)V\0");
+        __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [String](https://developer.android.com/reference/java/lang/String.html#String(byte%5B%5D,%20int))
+#[deprecated] pub fn new_byte_array_int<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::ByteArray>, arg1: i32) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "<init>", .descriptor == "([BI)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "<init>\0", "([BI)V\0");
+        __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [String](https://developer.android.com/reference/java/lang/String.html#String(byte%5B%5D,%20int,%20int))
+pub fn new_byte_array_int_int<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::ByteArray>, arg1: i32, arg2: i32) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "<init>", .descriptor == "([BII)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1), ::java_spaghetti::AsJValue::as_jvalue(&arg2)];
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "<init>\0", "([BII)V\0");
+        __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [String](https://developer.android.com/reference/java/lang/String.html#String(byte%5B%5D,%20int,%20int,%20int))
+#[deprecated] pub fn new_byte_array_int_int_int<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::ByteArray>, arg1: i32, arg2: i32, arg3: i32) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "<init>", .descriptor == "([BIII)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1), ::java_spaghetti::AsJValue::as_jvalue(&arg2), ::java_spaghetti::AsJValue::as_jvalue(&arg3)];
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "<init>\0", "([BIII)V\0");
+        __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [String](https://developer.android.com/reference/java/lang/String.html#String(byte%5B%5D,%20int,%20int,%20java.lang.String))
+pub fn new_byte_array_int_int_String<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::ByteArray>, arg1: i32, arg2: i32, arg3: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "<init>", .descriptor == "([BIILjava/lang/String;)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1), ::java_spaghetti::AsJValue::as_jvalue(&arg2), arg3.as_arg_jvalue()];
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "<init>\0", "([BIILjava/lang/String;)V\0");
+        __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [String](https://developer.android.com/reference/java/lang/String.html#String(byte%5B%5D,%20java.lang.String))
+pub fn new_byte_array_String<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::ByteArray>, arg1: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "<init>", .descriptor == "([BLjava/lang/String;)V"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "<init>\0", "([BLjava/lang/String;)V\0");
         __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -2684,85 +3131,13 @@ pub fn new_int_array_int_int<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0:
     }
 }
 
-/// [String](https://developer.android.com/reference/java/lang/String.html#String(byte%5B%5D,%20int,%20int,%20int))
-#[deprecated] pub fn new_byte_array_int_int_int<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::ByteArray>, arg1: i32, arg2: i32, arg3: i32) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "<init>", .descriptor == "([BIII)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1), ::java_spaghetti::AsJValue::as_jvalue(&arg2), ::java_spaghetti::AsJValue::as_jvalue(&arg3)];
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "<init>\0", "([BIII)V\0");
-        __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [String](https://developer.android.com/reference/java/lang/String.html#String(byte%5B%5D,%20int))
-#[deprecated] pub fn new_byte_array_int<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::ByteArray>, arg1: i32) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "<init>", .descriptor == "([BI)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "<init>\0", "([BI)V\0");
-        __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [String](https://developer.android.com/reference/java/lang/String.html#String(byte%5B%5D,%20int,%20int,%20java.lang.String))
-pub fn new_byte_array_int_int_String<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::ByteArray>, arg1: i32, arg2: i32, arg3: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "<init>", .descriptor == "([BIILjava/lang/String;)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1), ::java_spaghetti::AsJValue::as_jvalue(&arg2), arg3.as_arg_jvalue()];
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "<init>\0", "([BIILjava/lang/String;)V\0");
-        __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [String](https://developer.android.com/reference/java/lang/String.html#String(byte%5B%5D,%20java.lang.String))
-pub fn new_byte_array_String<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::ByteArray>, arg1: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "<init>", .descriptor == "([BLjava/lang/String;)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "<init>\0", "([BLjava/lang/String;)V\0");
-        __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [String](https://developer.android.com/reference/java/lang/String.html#String(byte%5B%5D,%20int,%20int))
-pub fn new_byte_array_int_int<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::ByteArray>, arg1: i32, arg2: i32) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "<init>", .descriptor == "([BII)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1), ::java_spaghetti::AsJValue::as_jvalue(&arg2)];
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "<init>\0", "([BII)V\0");
-        __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [String](https://developer.android.com/reference/java/lang/String.html#String(byte%5B%5D))
-pub fn new_byte_array<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::ByteArray>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "<init>", .descriptor == "([B)V"
+/// [String](https://developer.android.com/reference/java/lang/String.html#String(java.lang.String))
+pub fn new_String<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "<init>", .descriptor == "(Ljava/lang/String;)V"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "<init>\0", "([B)V\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "<init>\0", "(Ljava/lang/String;)V\0");
         __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [length](https://developer.android.com/reference/java/lang/String.html#length())
-pub fn length<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "length", .descriptor == "()I"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "length\0", "()I\0");
-        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [isEmpty](https://developer.android.com/reference/java/lang/String.html#isEmpty())
-pub fn isEmpty<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "isEmpty", .descriptor == "()Z"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "isEmpty\0", "()Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
@@ -2810,58 +3185,67 @@ pub fn codePointCount<'env>(&'env self, arg0: i32, arg1: i32) -> ::std::result::
     }
 }
 
-/// [offsetByCodePoints](https://developer.android.com/reference/java/lang/String.html#offsetByCodePoints(int,%20int))
-pub fn offsetByCodePoints<'env>(&'env self, arg0: i32, arg1: i32) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "offsetByCodePoints", .descriptor == "(II)I"
+/// [compareTo](https://developer.android.com/reference/java/lang/String.html#compareTo(java.lang.String))
+pub fn compareTo_String<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC | NATIVE, .name == "compareTo", .descriptor == "(Ljava/lang/String;)I"
     unsafe {
-        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
+        let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "offsetByCodePoints\0", "(II)I\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "compareTo\0", "(Ljava/lang/String;)I\0");
         __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [getChars](https://developer.android.com/reference/java/lang/String.html#getChars(int,%20int,%20char%5B%5D,%20int))
-pub fn getChars<'env>(&'env self, arg0: i32, arg1: i32, arg2: impl ::java_spaghetti::AsArg<::java_spaghetti::CharArray>, arg3: i32) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "getChars", .descriptor == "(II[CI)V"
-    unsafe {
-        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0), ::java_spaghetti::AsJValue::as_jvalue(&arg1), arg2.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg3)];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "getChars\0", "(II[CI)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getBytes](https://developer.android.com/reference/java/lang/String.html#getBytes(int,%20int,%20byte%5B%5D,%20int))
-#[deprecated] pub fn getBytes_int_int_byte_array_int<'env>(&'env self, arg0: i32, arg1: i32, arg2: impl ::java_spaghetti::AsArg<::java_spaghetti::ByteArray>, arg3: i32) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "getBytes", .descriptor == "(II[BI)V"
-    unsafe {
-        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0), ::java_spaghetti::AsJValue::as_jvalue(&arg1), arg2.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg3)];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "getBytes\0", "(II[BI)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getBytes](https://developer.android.com/reference/java/lang/String.html#getBytes(java.lang.String))
-pub fn getBytes_String<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ByteArray>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "getBytes", .descriptor == "(Ljava/lang/String;)[B"
+/// [compareToIgnoreCase](https://developer.android.com/reference/java/lang/String.html#compareToIgnoreCase(java.lang.String))
+pub fn compareToIgnoreCase<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "compareToIgnoreCase", .descriptor == "(Ljava/lang/String;)I"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "getBytes\0", "(Ljava/lang/String;)[B\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "compareToIgnoreCase\0", "(Ljava/lang/String;)I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [concat](https://developer.android.com/reference/java/lang/String.html#concat(java.lang.String))
+pub fn concat<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC | NATIVE, .name == "concat", .descriptor == "(Ljava/lang/String;)Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "concat\0", "(Ljava/lang/String;)Ljava/lang/String;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [getBytes](https://developer.android.com/reference/java/lang/String.html#getBytes())
-pub fn getBytes<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ByteArray>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "getBytes", .descriptor == "()[B"
+/// [copyValueOf](https://developer.android.com/reference/java/lang/String.html#copyValueOf(char%5B%5D))
+pub fn copyValueOf_char_array<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::CharArray>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC | STATIC, .name == "copyValueOf", .descriptor == "([C)Ljava/lang/String;"
     unsafe {
-        let __jni_args = [];
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/lang/String\0", "copyValueOf\0", "([C)Ljava/lang/String;\0");
+        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [copyValueOf](https://developer.android.com/reference/java/lang/String.html#copyValueOf(char%5B%5D,%20int,%20int))
+pub fn copyValueOf_char_array_int_int<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::CharArray>, arg1: i32, arg2: i32) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC | STATIC, .name == "copyValueOf", .descriptor == "([CII)Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1), ::java_spaghetti::AsJValue::as_jvalue(&arg2)];
+        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/lang/String\0", "copyValueOf\0", "([CII)Ljava/lang/String;\0");
+        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [endsWith](https://developer.android.com/reference/java/lang/String.html#endsWith(java.lang.String))
+pub fn endsWith<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "endsWith", .descriptor == "(Ljava/lang/String;)Z"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "getBytes\0", "()[B\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "endsWith\0", "(Ljava/lang/String;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
@@ -2887,80 +3271,68 @@ pub fn equalsIgnoreCase<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Str
     }
 }
 
-/// [compareTo](https://developer.android.com/reference/java/lang/String.html#compareTo(java.lang.String))
-pub fn compareTo_String<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC | NATIVE, .name == "compareTo", .descriptor == "(Ljava/lang/String;)I"
+/// [format](https://developer.android.com/reference/java/lang/String.html#format(java.lang.String,%20java.lang.Object...))
+pub fn format_String_Object_array<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<String>, arg1: impl ::java_spaghetti::AsArg<::java_spaghetti::ObjectArray<Object, Throwable>>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC | STATIC | VARARGS, .name == "format", .descriptor == "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
+        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/lang/String\0", "format\0", "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;\0");
+        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [formatted](https://developer.android.com/reference/java/lang/String.html#formatted(java.lang.Object...))
+pub fn formatted<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::ObjectArray<Object, Throwable>>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC | VARARGS, .name == "formatted", .descriptor == "([Ljava/lang/Object;)Ljava/lang/String;"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "compareTo\0", "(Ljava/lang/String;)I\0");
-        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "formatted\0", "([Ljava/lang/Object;)Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [compareToIgnoreCase](https://developer.android.com/reference/java/lang/String.html#compareToIgnoreCase(java.lang.String))
-pub fn compareToIgnoreCase<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "compareToIgnoreCase", .descriptor == "(Ljava/lang/String;)I"
+/// [getBytes](https://developer.android.com/reference/java/lang/String.html#getBytes())
+pub fn getBytes<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ByteArray>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "getBytes", .descriptor == "()[B"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "getBytes\0", "()[B\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getBytes](https://developer.android.com/reference/java/lang/String.html#getBytes(int,%20int,%20byte%5B%5D,%20int))
+#[deprecated] pub fn getBytes_int_int_byte_array_int<'env>(&'env self, arg0: i32, arg1: i32, arg2: impl ::java_spaghetti::AsArg<::java_spaghetti::ByteArray>, arg3: i32) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "getBytes", .descriptor == "(II[BI)V"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0), ::java_spaghetti::AsJValue::as_jvalue(&arg1), arg2.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg3)];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "getBytes\0", "(II[BI)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getBytes](https://developer.android.com/reference/java/lang/String.html#getBytes(java.lang.String))
+pub fn getBytes_String<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ByteArray>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "getBytes", .descriptor == "(Ljava/lang/String;)[B"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "compareToIgnoreCase\0", "(Ljava/lang/String;)I\0");
-        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "getBytes\0", "(Ljava/lang/String;)[B\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [regionMatches](https://developer.android.com/reference/java/lang/String.html#regionMatches(int,%20java.lang.String,%20int,%20int))
-pub fn regionMatches_int_String_int_int<'env>(&'env self, arg0: i32, arg1: impl ::java_spaghetti::AsArg<String>, arg2: i32, arg3: i32) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "regionMatches", .descriptor == "(ILjava/lang/String;II)Z"
+/// [getChars](https://developer.android.com/reference/java/lang/String.html#getChars(int,%20int,%20char%5B%5D,%20int))
+pub fn getChars<'env>(&'env self, arg0: i32, arg1: i32, arg2: impl ::java_spaghetti::AsArg<::java_spaghetti::CharArray>, arg3: i32) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "getChars", .descriptor == "(II[CI)V"
     unsafe {
-        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0), arg1.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg2), ::java_spaghetti::AsJValue::as_jvalue(&arg3)];
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0), ::java_spaghetti::AsJValue::as_jvalue(&arg1), arg2.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg3)];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "regionMatches\0", "(ILjava/lang/String;II)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [regionMatches](https://developer.android.com/reference/java/lang/String.html#regionMatches(boolean,%20int,%20java.lang.String,%20int,%20int))
-pub fn regionMatches_boolean_int_String_int_int<'env>(&'env self, arg0: bool, arg1: i32, arg2: impl ::java_spaghetti::AsArg<String>, arg3: i32, arg4: i32) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "regionMatches", .descriptor == "(ZILjava/lang/String;II)Z"
-    unsafe {
-        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0), ::java_spaghetti::AsJValue::as_jvalue(&arg1), arg2.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg3), ::java_spaghetti::AsJValue::as_jvalue(&arg4)];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "regionMatches\0", "(ZILjava/lang/String;II)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [startsWith](https://developer.android.com/reference/java/lang/String.html#startsWith(java.lang.String,%20int))
-pub fn startsWith_String_int<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>, arg1: i32) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "startsWith", .descriptor == "(Ljava/lang/String;I)Z"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "startsWith\0", "(Ljava/lang/String;I)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [startsWith](https://developer.android.com/reference/java/lang/String.html#startsWith(java.lang.String))
-pub fn startsWith_String<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "startsWith", .descriptor == "(Ljava/lang/String;)Z"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "startsWith\0", "(Ljava/lang/String;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [endsWith](https://developer.android.com/reference/java/lang/String.html#endsWith(java.lang.String))
-pub fn endsWith<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "endsWith", .descriptor == "(Ljava/lang/String;)Z"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "endsWith\0", "(Ljava/lang/String;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "getChars\0", "(II[CI)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
@@ -2972,6 +3344,17 @@ pub fn hashCode<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
         let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "hashCode\0", "()I\0");
         __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [indent](https://developer.android.com/reference/java/lang/String.html#indent(int))
+pub fn indent<'env>(&'env self, arg0: i32) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "indent", .descriptor == "(I)Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "indent\0", "(I)Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
@@ -2993,28 +3376,6 @@ pub fn indexOf_int_int<'env>(&'env self, arg0: i32, arg1: i32) -> ::std::result:
         let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
         let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "indexOf\0", "(II)I\0");
-        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [lastIndexOf](https://developer.android.com/reference/java/lang/String.html#lastIndexOf(int))
-pub fn lastIndexOf_int<'env>(&'env self, arg0: i32) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "lastIndexOf", .descriptor == "(I)I"
-    unsafe {
-        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "lastIndexOf\0", "(I)I\0");
-        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [lastIndexOf](https://developer.android.com/reference/java/lang/String.html#lastIndexOf(int,%20int))
-pub fn lastIndexOf_int_int<'env>(&'env self, arg0: i32, arg1: i32) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "lastIndexOf", .descriptor == "(II)I"
-    unsafe {
-        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "lastIndexOf\0", "(II)I\0");
         __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -3041,6 +3402,61 @@ pub fn indexOf_String_int<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<S
     }
 }
 
+/// [intern](https://developer.android.com/reference/java/lang/String.html#intern())
+pub fn intern<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC | NATIVE, .name == "intern", .descriptor == "()Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "intern\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [isBlank](https://developer.android.com/reference/java/lang/String.html#isBlank())
+pub fn isBlank<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "isBlank", .descriptor == "()Z"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "isBlank\0", "()Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [isEmpty](https://developer.android.com/reference/java/lang/String.html#isEmpty())
+pub fn isEmpty<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "isEmpty", .descriptor == "()Z"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "isEmpty\0", "()Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [lastIndexOf](https://developer.android.com/reference/java/lang/String.html#lastIndexOf(int))
+pub fn lastIndexOf_int<'env>(&'env self, arg0: i32) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "lastIndexOf", .descriptor == "(I)I"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "lastIndexOf\0", "(I)I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [lastIndexOf](https://developer.android.com/reference/java/lang/String.html#lastIndexOf(int,%20int))
+pub fn lastIndexOf_int_int<'env>(&'env self, arg0: i32, arg1: i32) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "lastIndexOf", .descriptor == "(II)I"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "lastIndexOf\0", "(II)I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
 /// [lastIndexOf](https://developer.android.com/reference/java/lang/String.html#lastIndexOf(java.lang.String))
 pub fn lastIndexOf_String<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, Throwable>> {
     // class.path == "java/lang/String", java.flags == PUBLIC, .name == "lastIndexOf", .descriptor == "(Ljava/lang/String;)I"
@@ -3063,35 +3479,68 @@ pub fn lastIndexOf_String_int<'env>(&'env self, arg0: impl ::java_spaghetti::AsA
     }
 }
 
-/// [substring](https://developer.android.com/reference/java/lang/String.html#substring(int))
-pub fn substring_int<'env>(&'env self, arg0: i32) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "substring", .descriptor == "(I)Ljava/lang/String;"
+/// [length](https://developer.android.com/reference/java/lang/String.html#length())
+pub fn length<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "length", .descriptor == "()I"
     unsafe {
-        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
+        let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "substring\0", "(I)Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "length\0", "()I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [substring](https://developer.android.com/reference/java/lang/String.html#substring(int,%20int))
-pub fn substring_int_int<'env>(&'env self, arg0: i32, arg1: i32) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "substring", .descriptor == "(II)Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "substring\0", "(II)Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [concat](https://developer.android.com/reference/java/lang/String.html#concat(java.lang.String))
-pub fn concat<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC | NATIVE, .name == "concat", .descriptor == "(Ljava/lang/String;)Ljava/lang/String;"
+/// [matches](https://developer.android.com/reference/java/lang/String.html#matches(java.lang.String))
+pub fn matches<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "matches", .descriptor == "(Ljava/lang/String;)Z"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "concat\0", "(Ljava/lang/String;)Ljava/lang/String;\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "matches\0", "(Ljava/lang/String;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [offsetByCodePoints](https://developer.android.com/reference/java/lang/String.html#offsetByCodePoints(int,%20int))
+pub fn offsetByCodePoints<'env>(&'env self, arg0: i32, arg1: i32) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "offsetByCodePoints", .descriptor == "(II)I"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "offsetByCodePoints\0", "(II)I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [regionMatches](https://developer.android.com/reference/java/lang/String.html#regionMatches(boolean,%20int,%20java.lang.String,%20int,%20int))
+pub fn regionMatches_boolean_int_String_int_int<'env>(&'env self, arg0: bool, arg1: i32, arg2: impl ::java_spaghetti::AsArg<String>, arg3: i32, arg4: i32) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "regionMatches", .descriptor == "(ZILjava/lang/String;II)Z"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0), ::java_spaghetti::AsJValue::as_jvalue(&arg1), arg2.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg3), ::java_spaghetti::AsJValue::as_jvalue(&arg4)];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "regionMatches\0", "(ZILjava/lang/String;II)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [regionMatches](https://developer.android.com/reference/java/lang/String.html#regionMatches(int,%20java.lang.String,%20int,%20int))
+pub fn regionMatches_int_String_int_int<'env>(&'env self, arg0: i32, arg1: impl ::java_spaghetti::AsArg<String>, arg2: i32, arg3: i32) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "regionMatches", .descriptor == "(ILjava/lang/String;II)Z"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0), arg1.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg2), ::java_spaghetti::AsJValue::as_jvalue(&arg3)];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "regionMatches\0", "(ILjava/lang/String;II)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [repeat](https://developer.android.com/reference/java/lang/String.html#repeat(int))
+pub fn repeat<'env>(&'env self, arg0: i32) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "repeat", .descriptor == "(I)Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "repeat\0", "(I)Ljava/lang/String;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -3107,28 +3556,6 @@ pub fn replace_char_char<'env>(&'env self, arg0: u16, arg1: u16) -> ::std::resul
     }
 }
 
-/// [matches](https://developer.android.com/reference/java/lang/String.html#matches(java.lang.String))
-pub fn matches<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "matches", .descriptor == "(Ljava/lang/String;)Z"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "matches\0", "(Ljava/lang/String;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [replaceFirst](https://developer.android.com/reference/java/lang/String.html#replaceFirst(java.lang.String,%20java.lang.String))
-pub fn replaceFirst<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>, arg1: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "replaceFirst", .descriptor == "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "replaceFirst\0", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
 /// [replaceAll](https://developer.android.com/reference/java/lang/String.html#replaceAll(java.lang.String,%20java.lang.String))
 pub fn replaceAll<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>, arg1: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
     // class.path == "java/lang/String", java.flags == PUBLIC, .name == "replaceAll", .descriptor == "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
@@ -3140,13 +3567,13 @@ pub fn replaceAll<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>, 
     }
 }
 
-/// [split](https://developer.android.com/reference/java/lang/String.html#split(java.lang.String,%20int))
-pub fn split_String_int<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>, arg1: i32) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ObjectArray<String, Throwable>>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "split", .descriptor == "(Ljava/lang/String;I)[Ljava/lang/String;"
+/// [replaceFirst](https://developer.android.com/reference/java/lang/String.html#replaceFirst(java.lang.String,%20java.lang.String))
+pub fn replaceFirst<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>, arg1: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "replaceFirst", .descriptor == "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
     unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
+        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "split\0", "(Ljava/lang/String;I)[Ljava/lang/String;\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "replaceFirst\0", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -3162,36 +3589,36 @@ pub fn split_String<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>
     }
 }
 
-/// [toLowerCase](https://developer.android.com/reference/java/lang/String.html#toLowerCase())
-pub fn toLowerCase<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "toLowerCase", .descriptor == "()Ljava/lang/String;"
+/// [split](https://developer.android.com/reference/java/lang/String.html#split(java.lang.String,%20int))
+pub fn split_String_int<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>, arg1: i32) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ObjectArray<String, Throwable>>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "split", .descriptor == "(Ljava/lang/String;I)[Ljava/lang/String;"
     unsafe {
-        let __jni_args = [];
+        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "toLowerCase\0", "()Ljava/lang/String;\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "split\0", "(Ljava/lang/String;I)[Ljava/lang/String;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [toUpperCase](https://developer.android.com/reference/java/lang/String.html#toUpperCase())
-pub fn toUpperCase<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "toUpperCase", .descriptor == "()Ljava/lang/String;"
+/// [startsWith](https://developer.android.com/reference/java/lang/String.html#startsWith(java.lang.String))
+pub fn startsWith_String<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "startsWith", .descriptor == "(Ljava/lang/String;)Z"
     unsafe {
-        let __jni_args = [];
+        let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "toUpperCase\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "startsWith\0", "(Ljava/lang/String;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [trim](https://developer.android.com/reference/java/lang/String.html#trim())
-pub fn trim<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "trim", .descriptor == "()Ljava/lang/String;"
+/// [startsWith](https://developer.android.com/reference/java/lang/String.html#startsWith(java.lang.String,%20int))
+pub fn startsWith_String_int<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<String>, arg1: i32) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "startsWith", .descriptor == "(Ljava/lang/String;I)Z"
     unsafe {
-        let __jni_args = [];
+        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "trim\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "startsWith\0", "(Ljava/lang/String;I)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
@@ -3202,6 +3629,17 @@ pub fn strip<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::
         let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
         let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "strip\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [stripIndent](https://developer.android.com/reference/java/lang/String.html#stripIndent())
+pub fn stripIndent<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "stripIndent", .descriptor == "()Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "stripIndent\0", "()Ljava/lang/String;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -3228,57 +3666,24 @@ pub fn stripTrailing<'env>(&'env self) -> ::std::result::Result<::std::option::O
     }
 }
 
-/// [isBlank](https://developer.android.com/reference/java/lang/String.html#isBlank())
-pub fn isBlank<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "isBlank", .descriptor == "()Z"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "isBlank\0", "()Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [indent](https://developer.android.com/reference/java/lang/String.html#indent(int))
-pub fn indent<'env>(&'env self, arg0: i32) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "indent", .descriptor == "(I)Ljava/lang/String;"
+/// [substring](https://developer.android.com/reference/java/lang/String.html#substring(int))
+pub fn substring_int<'env>(&'env self, arg0: i32) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "substring", .descriptor == "(I)Ljava/lang/String;"
     unsafe {
         let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "indent\0", "(I)Ljava/lang/String;\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "substring\0", "(I)Ljava/lang/String;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [stripIndent](https://developer.android.com/reference/java/lang/String.html#stripIndent())
-pub fn stripIndent<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "stripIndent", .descriptor == "()Ljava/lang/String;"
+/// [substring](https://developer.android.com/reference/java/lang/String.html#substring(int,%20int))
+pub fn substring_int_int<'env>(&'env self, arg0: i32, arg1: i32) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "substring", .descriptor == "(II)Ljava/lang/String;"
     unsafe {
-        let __jni_args = [];
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0), ::java_spaghetti::AsJValue::as_jvalue(&arg1)];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "stripIndent\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [translateEscapes](https://developer.android.com/reference/java/lang/String.html#translateEscapes())
-pub fn translateEscapes<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "translateEscapes", .descriptor == "()Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "translateEscapes\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [toString](https://developer.android.com/reference/java/lang/String.html#toString())
-pub fn toString<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "toString", .descriptor == "()Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "toString\0", "()Ljava/lang/String;\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "substring\0", "(II)Ljava/lang/String;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -3294,33 +3699,77 @@ pub fn toCharArray<'env>(&'env self) -> ::std::result::Result<::std::option::Opt
     }
 }
 
-/// [format](https://developer.android.com/reference/java/lang/String.html#format(java.lang.String,%20java.lang.Object...))
-pub fn format_String_Object_array<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<String>, arg1: impl ::java_spaghetti::AsArg<::java_spaghetti::ObjectArray<Object, Throwable>>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC | STATIC | VARARGS, .name == "format", .descriptor == "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;"
+/// [toLowerCase](https://developer.android.com/reference/java/lang/String.html#toLowerCase())
+pub fn toLowerCase<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "toLowerCase", .descriptor == "()Ljava/lang/String;"
     unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
-        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/lang/String\0", "format\0", "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;\0");
-        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [formatted](https://developer.android.com/reference/java/lang/String.html#formatted(java.lang.Object...))
-pub fn formatted<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::ObjectArray<Object, Throwable>>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC | VARARGS, .name == "formatted", .descriptor == "([Ljava/lang/Object;)Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "formatted\0", "([Ljava/lang/Object;)Ljava/lang/String;\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "toLowerCase\0", "()Ljava/lang/String;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [valueOf](https://developer.android.com/reference/java/lang/String.html#valueOf(java.lang.Object))
-pub fn valueOf_Object<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<Object>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC | STATIC, .name == "valueOf", .descriptor == "(Ljava/lang/Object;)Ljava/lang/String;"
+/// [toString](https://developer.android.com/reference/java/lang/String.html#toString())
+pub fn toString<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "toString", .descriptor == "()Ljava/lang/String;"
     unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/lang/String\0", "valueOf\0", "(Ljava/lang/Object;)Ljava/lang/String;\0");
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "toString\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [toUpperCase](https://developer.android.com/reference/java/lang/String.html#toUpperCase())
+pub fn toUpperCase<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "toUpperCase", .descriptor == "()Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "toUpperCase\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [translateEscapes](https://developer.android.com/reference/java/lang/String.html#translateEscapes())
+pub fn translateEscapes<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "translateEscapes", .descriptor == "()Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "translateEscapes\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [trim](https://developer.android.com/reference/java/lang/String.html#trim())
+pub fn trim<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "trim", .descriptor == "()Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "trim\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [valueOf](https://developer.android.com/reference/java/lang/String.html#valueOf(boolean))
+pub fn valueOf_boolean<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: bool) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC | STATIC, .name == "valueOf", .descriptor == "(Z)Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
+        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/lang/String\0", "valueOf\0", "(Z)Ljava/lang/String;\0");
+        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [valueOf](https://developer.android.com/reference/java/lang/String.html#valueOf(char))
+pub fn valueOf_char<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: u16) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC | STATIC, .name == "valueOf", .descriptor == "(C)Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
+        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/lang/String\0", "valueOf\0", "(C)Ljava/lang/String;\0");
         __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -3345,62 +3794,12 @@ pub fn valueOf_char_array_int_int<'env>(__jni_env: ::java_spaghetti::Env<'env>, 
     }
 }
 
-/// [copyValueOf](https://developer.android.com/reference/java/lang/String.html#copyValueOf(char%5B%5D,%20int,%20int))
-pub fn copyValueOf_char_array_int_int<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::CharArray>, arg1: i32, arg2: i32) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC | STATIC, .name == "copyValueOf", .descriptor == "([CII)Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg1), ::java_spaghetti::AsJValue::as_jvalue(&arg2)];
-        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/lang/String\0", "copyValueOf\0", "([CII)Ljava/lang/String;\0");
-        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [copyValueOf](https://developer.android.com/reference/java/lang/String.html#copyValueOf(char%5B%5D))
-pub fn copyValueOf_char_array<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::CharArray>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC | STATIC, .name == "copyValueOf", .descriptor == "([C)Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/lang/String\0", "copyValueOf\0", "([C)Ljava/lang/String;\0");
-        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [valueOf](https://developer.android.com/reference/java/lang/String.html#valueOf(boolean))
-pub fn valueOf_boolean<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: bool) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC | STATIC, .name == "valueOf", .descriptor == "(Z)Ljava/lang/String;"
+/// [valueOf](https://developer.android.com/reference/java/lang/String.html#valueOf(double))
+pub fn valueOf_double<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: f64) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC | STATIC, .name == "valueOf", .descriptor == "(D)Ljava/lang/String;"
     unsafe {
         let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
-        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/lang/String\0", "valueOf\0", "(Z)Ljava/lang/String;\0");
-        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [valueOf](https://developer.android.com/reference/java/lang/String.html#valueOf(char))
-pub fn valueOf_char<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: u16) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC | STATIC, .name == "valueOf", .descriptor == "(C)Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
-        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/lang/String\0", "valueOf\0", "(C)Ljava/lang/String;\0");
-        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [valueOf](https://developer.android.com/reference/java/lang/String.html#valueOf(int))
-pub fn valueOf_int<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: i32) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC | STATIC, .name == "valueOf", .descriptor == "(I)Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
-        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/lang/String\0", "valueOf\0", "(I)Ljava/lang/String;\0");
-        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [valueOf](https://developer.android.com/reference/java/lang/String.html#valueOf(long))
-pub fn valueOf_long<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: i64) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC | STATIC, .name == "valueOf", .descriptor == "(J)Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
-        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/lang/String\0", "valueOf\0", "(J)Ljava/lang/String;\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/lang/String\0", "valueOf\0", "(D)Ljava/lang/String;\0");
         __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -3415,35 +3814,33 @@ pub fn valueOf_float<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: f32) ->
     }
 }
 
-/// [valueOf](https://developer.android.com/reference/java/lang/String.html#valueOf(double))
-pub fn valueOf_double<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: f64) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC | STATIC, .name == "valueOf", .descriptor == "(D)Ljava/lang/String;"
+/// [valueOf](https://developer.android.com/reference/java/lang/String.html#valueOf(int))
+pub fn valueOf_int<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: i32) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC | STATIC, .name == "valueOf", .descriptor == "(I)Ljava/lang/String;"
     unsafe {
         let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
-        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/lang/String\0", "valueOf\0", "(D)Ljava/lang/String;\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/lang/String\0", "valueOf\0", "(I)Ljava/lang/String;\0");
         __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [intern](https://developer.android.com/reference/java/lang/String.html#intern())
-pub fn intern<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC | NATIVE, .name == "intern", .descriptor == "()Ljava/lang/String;"
+/// [valueOf](https://developer.android.com/reference/java/lang/String.html#valueOf(java.lang.Object))
+pub fn valueOf_Object<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<Object>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC | STATIC, .name == "valueOf", .descriptor == "(Ljava/lang/Object;)Ljava/lang/String;"
     unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "intern\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/lang/String\0", "valueOf\0", "(Ljava/lang/Object;)Ljava/lang/String;\0");
+        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [repeat](https://developer.android.com/reference/java/lang/String.html#repeat(int))
-pub fn repeat<'env>(&'env self, arg0: i32) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/String", java.flags == PUBLIC, .name == "repeat", .descriptor == "(I)Ljava/lang/String;"
+/// [valueOf](https://developer.android.com/reference/java/lang/String.html#valueOf(long))
+pub fn valueOf_long<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: i64) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/String", java.flags == PUBLIC | STATIC, .name == "valueOf", .descriptor == "(J)Ljava/lang/String;"
     unsafe {
         let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/String\0", "repeat\0", "(I)Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/lang/String\0", "valueOf\0", "(J)Ljava/lang/String;\0");
+        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
     }
 }
 }
@@ -3506,68 +3903,13 @@ pub fn new_Throwable<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::
     }
 }
 
-/// [getMessage](https://developer.android.com/reference/java/lang/Throwable.html#getMessage())
-pub fn getMessage<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/Throwable", java.flags == PUBLIC, .name == "getMessage", .descriptor == "()Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Throwable\0", "getMessage\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getLocalizedMessage](https://developer.android.com/reference/java/lang/Throwable.html#getLocalizedMessage())
-pub fn getLocalizedMessage<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/Throwable", java.flags == PUBLIC, .name == "getLocalizedMessage", .descriptor == "()Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Throwable\0", "getLocalizedMessage\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getCause](https://developer.android.com/reference/java/lang/Throwable.html#getCause())
-pub fn getCause<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Throwable>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/Throwable", java.flags == PUBLIC | SYNCRONIZED, .name == "getCause", .descriptor == "()Ljava/lang/Throwable;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Throwable\0", "getCause\0", "()Ljava/lang/Throwable;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [initCause](https://developer.android.com/reference/java/lang/Throwable.html#initCause(java.lang.Throwable))
-pub fn initCause<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Throwable>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Throwable>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/Throwable", java.flags == PUBLIC | SYNCRONIZED, .name == "initCause", .descriptor == "(Ljava/lang/Throwable;)Ljava/lang/Throwable;"
+/// [addSuppressed](https://developer.android.com/reference/java/lang/Throwable.html#addSuppressed(java.lang.Throwable))
+pub fn addSuppressed<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Throwable>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/Throwable", java.flags == PUBLIC | FINAL | SYNCRONIZED, .name == "addSuppressed", .descriptor == "(Ljava/lang/Throwable;)V"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Throwable\0", "initCause\0", "(Ljava/lang/Throwable;)Ljava/lang/Throwable;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [toString](https://developer.android.com/reference/java/lang/Throwable.html#toString())
-pub fn toString<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/Throwable", java.flags == PUBLIC, .name == "toString", .descriptor == "()Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Throwable\0", "toString\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [printStackTrace](https://developer.android.com/reference/java/lang/Throwable.html#printStackTrace())
-pub fn printStackTrace<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/Throwable", java.flags == PUBLIC, .name == "printStackTrace", .descriptor == "()V"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Throwable\0", "printStackTrace\0", "()V\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Throwable\0", "addSuppressed\0", "(Ljava/lang/Throwable;)V\0");
         __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -3583,6 +3925,39 @@ pub fn fillInStackTrace<'env>(&'env self) -> ::std::result::Result<::std::option
     }
 }
 
+/// [getCause](https://developer.android.com/reference/java/lang/Throwable.html#getCause())
+pub fn getCause<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Throwable>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/Throwable", java.flags == PUBLIC | SYNCRONIZED, .name == "getCause", .descriptor == "()Ljava/lang/Throwable;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Throwable\0", "getCause\0", "()Ljava/lang/Throwable;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getLocalizedMessage](https://developer.android.com/reference/java/lang/Throwable.html#getLocalizedMessage())
+pub fn getLocalizedMessage<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/Throwable", java.flags == PUBLIC, .name == "getLocalizedMessage", .descriptor == "()Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Throwable\0", "getLocalizedMessage\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getMessage](https://developer.android.com/reference/java/lang/Throwable.html#getMessage())
+pub fn getMessage<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/Throwable", java.flags == PUBLIC, .name == "getMessage", .descriptor == "()Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Throwable\0", "getMessage\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
 /// [getStackTrace](https://developer.android.com/reference/java/lang/Throwable.html#getStackTrace())
 pub fn getStackTrace<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ObjectArray<StackTraceElement, Throwable>>>, ::java_spaghetti::Local<'env, Throwable>> {
     // class.path == "java/lang/Throwable", java.flags == PUBLIC, .name == "getStackTrace", .descriptor == "()[Ljava/lang/StackTraceElement;"
@@ -3591,6 +3966,39 @@ pub fn getStackTrace<'env>(&'env self) -> ::std::result::Result<::std::option::O
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
         let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Throwable\0", "getStackTrace\0", "()[Ljava/lang/StackTraceElement;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getSuppressed](https://developer.android.com/reference/java/lang/Throwable.html#getSuppressed())
+pub fn getSuppressed<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ObjectArray<Throwable, Throwable>>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/Throwable", java.flags == PUBLIC | FINAL | SYNCRONIZED, .name == "getSuppressed", .descriptor == "()[Ljava/lang/Throwable;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Throwable\0", "getSuppressed\0", "()[Ljava/lang/Throwable;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [initCause](https://developer.android.com/reference/java/lang/Throwable.html#initCause(java.lang.Throwable))
+pub fn initCause<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Throwable>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Throwable>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/Throwable", java.flags == PUBLIC | SYNCRONIZED, .name == "initCause", .descriptor == "(Ljava/lang/Throwable;)Ljava/lang/Throwable;"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Throwable\0", "initCause\0", "(Ljava/lang/Throwable;)Ljava/lang/Throwable;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [printStackTrace](https://developer.android.com/reference/java/lang/Throwable.html#printStackTrace())
+pub fn printStackTrace<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/Throwable", java.flags == PUBLIC, .name == "printStackTrace", .descriptor == "()V"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Throwable\0", "printStackTrace\0", "()V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
@@ -3605,24 +4013,13 @@ pub fn setStackTrace<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<::java
     }
 }
 
-/// [addSuppressed](https://developer.android.com/reference/java/lang/Throwable.html#addSuppressed(java.lang.Throwable))
-pub fn addSuppressed<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Throwable>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/Throwable", java.flags == PUBLIC | FINAL | SYNCRONIZED, .name == "addSuppressed", .descriptor == "(Ljava/lang/Throwable;)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Throwable\0", "addSuppressed\0", "(Ljava/lang/Throwable;)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getSuppressed](https://developer.android.com/reference/java/lang/Throwable.html#getSuppressed())
-pub fn getSuppressed<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ObjectArray<Throwable, Throwable>>>, ::java_spaghetti::Local<'env, Throwable>> {
-    // class.path == "java/lang/Throwable", java.flags == PUBLIC | FINAL | SYNCRONIZED, .name == "getSuppressed", .descriptor == "()[Ljava/lang/Throwable;"
+/// [toString](https://developer.android.com/reference/java/lang/Throwable.html#toString())
+pub fn toString<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, String>>, ::java_spaghetti::Local<'env, Throwable>> {
+    // class.path == "java/lang/Throwable", java.flags == PUBLIC, .name == "toString", .descriptor == "()Ljava/lang/String;"
     unsafe {
         let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Throwable\0", "getSuppressed\0", "()[Ljava/lang/Throwable;\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/lang/Throwable\0", "toString\0", "()Ljava/lang/String;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -3649,146 +4046,14 @@ impl ::std::ops::Deref for InetAddress {
                 }
 impl InetAddress {
 
-/// [isMulticastAddress](https://developer.android.com/reference/java/net/InetAddress.html#isMulticastAddress())
-pub fn isMulticastAddress<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isMulticastAddress", .descriptor == "()Z"
+/// [equals](https://developer.android.com/reference/java/net/InetAddress.html#equals(java.lang.Object))
+pub fn equals<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "equals", .descriptor == "(Ljava/lang/Object;)Z"
     unsafe {
-        let __jni_args = [];
+        let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isMulticastAddress\0", "()Z\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "equals\0", "(Ljava/lang/Object;)Z\0");
         __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [isAnyLocalAddress](https://developer.android.com/reference/java/net/InetAddress.html#isAnyLocalAddress())
-pub fn isAnyLocalAddress<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isAnyLocalAddress", .descriptor == "()Z"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isAnyLocalAddress\0", "()Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [isLoopbackAddress](https://developer.android.com/reference/java/net/InetAddress.html#isLoopbackAddress())
-pub fn isLoopbackAddress<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isLoopbackAddress", .descriptor == "()Z"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isLoopbackAddress\0", "()Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [isLinkLocalAddress](https://developer.android.com/reference/java/net/InetAddress.html#isLinkLocalAddress())
-pub fn isLinkLocalAddress<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isLinkLocalAddress", .descriptor == "()Z"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isLinkLocalAddress\0", "()Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [isSiteLocalAddress](https://developer.android.com/reference/java/net/InetAddress.html#isSiteLocalAddress())
-pub fn isSiteLocalAddress<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isSiteLocalAddress", .descriptor == "()Z"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isSiteLocalAddress\0", "()Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [isMCGlobal](https://developer.android.com/reference/java/net/InetAddress.html#isMCGlobal())
-pub fn isMCGlobal<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isMCGlobal", .descriptor == "()Z"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isMCGlobal\0", "()Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [isMCNodeLocal](https://developer.android.com/reference/java/net/InetAddress.html#isMCNodeLocal())
-pub fn isMCNodeLocal<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isMCNodeLocal", .descriptor == "()Z"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isMCNodeLocal\0", "()Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [isMCLinkLocal](https://developer.android.com/reference/java/net/InetAddress.html#isMCLinkLocal())
-pub fn isMCLinkLocal<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isMCLinkLocal", .descriptor == "()Z"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isMCLinkLocal\0", "()Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [isMCSiteLocal](https://developer.android.com/reference/java/net/InetAddress.html#isMCSiteLocal())
-pub fn isMCSiteLocal<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isMCSiteLocal", .descriptor == "()Z"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isMCSiteLocal\0", "()Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [isMCOrgLocal](https://developer.android.com/reference/java/net/InetAddress.html#isMCOrgLocal())
-pub fn isMCOrgLocal<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isMCOrgLocal", .descriptor == "()Z"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isMCOrgLocal\0", "()Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [isReachable](https://developer.android.com/reference/java/net/InetAddress.html#isReachable(int))
-pub fn isReachable_int<'env>(&'env self, arg0: i32) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isReachable", .descriptor == "(I)Z"
-    unsafe {
-        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isReachable\0", "(I)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getHostName](https://developer.android.com/reference/java/net/InetAddress.html#getHostName())
-pub fn getHostName<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::String>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "getHostName", .descriptor == "()Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "getHostName\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getCanonicalHostName](https://developer.android.com/reference/java/net/InetAddress.html#getCanonicalHostName())
-pub fn getCanonicalHostName<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::String>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "getCanonicalHostName", .descriptor == "()Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "getCanonicalHostName\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
@@ -3803,47 +4068,23 @@ pub fn getAddress<'env>(&'env self) -> ::std::result::Result<::std::option::Opti
     }
 }
 
-/// [getHostAddress](https://developer.android.com/reference/java/net/InetAddress.html#getHostAddress())
-pub fn getHostAddress<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::String>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "getHostAddress", .descriptor == "()Ljava/lang/String;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "getHostAddress\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [hashCode](https://developer.android.com/reference/java/net/InetAddress.html#hashCode())
-pub fn hashCode<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "hashCode", .descriptor == "()I"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "hashCode\0", "()I\0");
-        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [equals](https://developer.android.com/reference/java/net/InetAddress.html#equals(java.lang.Object))
-pub fn equals<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "equals", .descriptor == "(Ljava/lang/Object;)Z"
+/// [getAllByName](https://developer.android.com/reference/java/net/InetAddress.html#getAllByName(java.lang.String))
+pub fn getAllByName<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<super::lang::String>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ObjectArray<InetAddress, super::lang::Throwable>>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/net/InetAddress", java.flags == PUBLIC | STATIC, .name == "getAllByName", .descriptor == "(Ljava/lang/String;)[Ljava/net/InetAddress;"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "equals\0", "(Ljava/lang/Object;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/net/InetAddress\0", "getAllByName\0", "(Ljava/lang/String;)[Ljava/net/InetAddress;\0");
+        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [toString](https://developer.android.com/reference/java/net/InetAddress.html#toString())
-pub fn toString<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::String>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "toString", .descriptor == "()Ljava/lang/String;"
+/// [getByAddress](https://developer.android.com/reference/java/net/InetAddress.html#getByAddress(byte%5B%5D))
+pub fn getByAddress_byte_array<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::ByteArray>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, InetAddress>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/net/InetAddress", java.flags == PUBLIC | STATIC, .name == "getByAddress", .descriptor == "([B)Ljava/net/InetAddress;"
     unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "toString\0", "()Ljava/lang/String;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/net/InetAddress\0", "getByAddress\0", "([B)Ljava/net/InetAddress;\0");
+        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
     }
 }
 
@@ -3867,12 +4108,45 @@ pub fn getByName<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java
     }
 }
 
-/// [getAllByName](https://developer.android.com/reference/java/net/InetAddress.html#getAllByName(java.lang.String))
-pub fn getAllByName<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<super::lang::String>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ObjectArray<InetAddress, super::lang::Throwable>>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/net/InetAddress", java.flags == PUBLIC | STATIC, .name == "getAllByName", .descriptor == "(Ljava/lang/String;)[Ljava/net/InetAddress;"
+/// [getCanonicalHostName](https://developer.android.com/reference/java/net/InetAddress.html#getCanonicalHostName())
+pub fn getCanonicalHostName<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::String>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "getCanonicalHostName", .descriptor == "()Ljava/lang/String;"
     unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/net/InetAddress\0", "getAllByName\0", "(Ljava/lang/String;)[Ljava/net/InetAddress;\0");
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "getCanonicalHostName\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getHostAddress](https://developer.android.com/reference/java/net/InetAddress.html#getHostAddress())
+pub fn getHostAddress<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::String>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "getHostAddress", .descriptor == "()Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "getHostAddress\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getHostName](https://developer.android.com/reference/java/net/InetAddress.html#getHostName())
+pub fn getHostName<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::String>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "getHostName", .descriptor == "()Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "getHostName\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getLocalHost](https://developer.android.com/reference/java/net/InetAddress.html#getLocalHost())
+pub fn getLocalHost<'env>(__jni_env: ::java_spaghetti::Env<'env>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, InetAddress>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/net/InetAddress", java.flags == PUBLIC | STATIC, .name == "getLocalHost", .descriptor == "()Ljava/net/InetAddress;"
+    unsafe {
+        let __jni_args = [];
+        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/net/InetAddress\0", "getLocalHost\0", "()Ljava/net/InetAddress;\0");
         __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -3887,23 +4161,146 @@ pub fn getLoopbackAddress<'env>(__jni_env: ::java_spaghetti::Env<'env>) -> ::std
     }
 }
 
-/// [getByAddress](https://developer.android.com/reference/java/net/InetAddress.html#getByAddress(byte%5B%5D))
-pub fn getByAddress_byte_array<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::ByteArray>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, InetAddress>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/net/InetAddress", java.flags == PUBLIC | STATIC, .name == "getByAddress", .descriptor == "([B)Ljava/net/InetAddress;"
+/// [hashCode](https://developer.android.com/reference/java/net/InetAddress.html#hashCode())
+pub fn hashCode<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "hashCode", .descriptor == "()I"
     unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/net/InetAddress\0", "getByAddress\0", "([B)Ljava/net/InetAddress;\0");
-        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "hashCode\0", "()I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [getLocalHost](https://developer.android.com/reference/java/net/InetAddress.html#getLocalHost())
-pub fn getLocalHost<'env>(__jni_env: ::java_spaghetti::Env<'env>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, InetAddress>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/net/InetAddress", java.flags == PUBLIC | STATIC, .name == "getLocalHost", .descriptor == "()Ljava/net/InetAddress;"
+/// [isAnyLocalAddress](https://developer.android.com/reference/java/net/InetAddress.html#isAnyLocalAddress())
+pub fn isAnyLocalAddress<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isAnyLocalAddress", .descriptor == "()Z"
     unsafe {
         let __jni_args = [];
-        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/net/InetAddress\0", "getLocalHost\0", "()Ljava/net/InetAddress;\0");
-        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isAnyLocalAddress\0", "()Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [isLinkLocalAddress](https://developer.android.com/reference/java/net/InetAddress.html#isLinkLocalAddress())
+pub fn isLinkLocalAddress<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isLinkLocalAddress", .descriptor == "()Z"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isLinkLocalAddress\0", "()Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [isLoopbackAddress](https://developer.android.com/reference/java/net/InetAddress.html#isLoopbackAddress())
+pub fn isLoopbackAddress<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isLoopbackAddress", .descriptor == "()Z"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isLoopbackAddress\0", "()Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [isMCGlobal](https://developer.android.com/reference/java/net/InetAddress.html#isMCGlobal())
+pub fn isMCGlobal<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isMCGlobal", .descriptor == "()Z"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isMCGlobal\0", "()Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [isMCLinkLocal](https://developer.android.com/reference/java/net/InetAddress.html#isMCLinkLocal())
+pub fn isMCLinkLocal<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isMCLinkLocal", .descriptor == "()Z"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isMCLinkLocal\0", "()Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [isMCNodeLocal](https://developer.android.com/reference/java/net/InetAddress.html#isMCNodeLocal())
+pub fn isMCNodeLocal<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isMCNodeLocal", .descriptor == "()Z"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isMCNodeLocal\0", "()Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [isMCOrgLocal](https://developer.android.com/reference/java/net/InetAddress.html#isMCOrgLocal())
+pub fn isMCOrgLocal<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isMCOrgLocal", .descriptor == "()Z"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isMCOrgLocal\0", "()Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [isMCSiteLocal](https://developer.android.com/reference/java/net/InetAddress.html#isMCSiteLocal())
+pub fn isMCSiteLocal<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isMCSiteLocal", .descriptor == "()Z"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isMCSiteLocal\0", "()Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [isMulticastAddress](https://developer.android.com/reference/java/net/InetAddress.html#isMulticastAddress())
+pub fn isMulticastAddress<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isMulticastAddress", .descriptor == "()Z"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isMulticastAddress\0", "()Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [isReachable](https://developer.android.com/reference/java/net/InetAddress.html#isReachable(int))
+pub fn isReachable_int<'env>(&'env self, arg0: i32) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isReachable", .descriptor == "(I)Z"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isReachable\0", "(I)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [isSiteLocalAddress](https://developer.android.com/reference/java/net/InetAddress.html#isSiteLocalAddress())
+pub fn isSiteLocalAddress<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "isSiteLocalAddress", .descriptor == "()Z"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "isSiteLocalAddress\0", "()Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [toString](https://developer.android.com/reference/java/net/InetAddress.html#toString())
+pub fn toString<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::String>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/net/InetAddress", java.flags == PUBLIC, .name == "toString", .descriptor == "()Ljava/lang/String;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/net/InetAddress\0", "toString\0", "()Ljava/lang/String;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 }
@@ -3951,72 +4348,6 @@ impl ::std::ops::Deref for Collection {
                 }
 impl Collection {
 
-/// [size](https://developer.android.com/reference/java/util/Collection.html#size())
-pub fn size<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "size", .descriptor == "()I"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "size\0", "()I\0");
-        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [isEmpty](https://developer.android.com/reference/java/util/Collection.html#isEmpty())
-pub fn isEmpty<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "isEmpty", .descriptor == "()Z"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "isEmpty\0", "()Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [contains](https://developer.android.com/reference/java/util/Collection.html#contains(java.lang.Object))
-pub fn contains<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "contains", .descriptor == "(Ljava/lang/Object;)Z"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "contains\0", "(Ljava/lang/Object;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [iterator](https://developer.android.com/reference/java/util/Collection.html#iterator())
-pub fn iterator<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Iterator>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "iterator", .descriptor == "()Ljava/util/Iterator;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "iterator\0", "()Ljava/util/Iterator;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [toArray](https://developer.android.com/reference/java/util/Collection.html#toArray())
-pub fn toArray<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ObjectArray<super::lang::Object, super::lang::Throwable>>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "toArray", .descriptor == "()[Ljava/lang/Object;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "toArray\0", "()[Ljava/lang/Object;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [toArray](https://developer.android.com/reference/java/util/Collection.html#toArray(java.lang.Object%5B%5D))
-pub fn toArray_Object_array<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::ObjectArray<super::lang::Object, super::lang::Throwable>>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ObjectArray<super::lang::Object, super::lang::Throwable>>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "toArray", .descriptor == "([Ljava/lang/Object;)[Ljava/lang/Object;"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "toArray\0", "([Ljava/lang/Object;)[Ljava/lang/Object;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
 /// [add](https://developer.android.com/reference/java/util/Collection.html#add(java.lang.Object))
 pub fn add<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
     // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "add", .descriptor == "(Ljava/lang/Object;)Z"
@@ -4028,13 +4359,35 @@ pub fn add<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Obj
     }
 }
 
-/// [remove](https://developer.android.com/reference/java/util/Collection.html#remove(java.lang.Object))
-pub fn remove<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "remove", .descriptor == "(Ljava/lang/Object;)Z"
+/// [addAll](https://developer.android.com/reference/java/util/Collection.html#addAll(java.util.Collection))
+pub fn addAll<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Collection>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "addAll", .descriptor == "(Ljava/util/Collection;)Z"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "remove\0", "(Ljava/lang/Object;)Z\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "addAll\0", "(Ljava/util/Collection;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [clear](https://developer.android.com/reference/java/util/Collection.html#clear())
+pub fn clear<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "clear", .descriptor == "()V"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "clear\0", "()V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [contains](https://developer.android.com/reference/java/util/Collection.html#contains(java.lang.Object))
+pub fn contains<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "contains", .descriptor == "(Ljava/lang/Object;)Z"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "contains\0", "(Ljava/lang/Object;)Z\0");
         __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -4050,13 +4403,57 @@ pub fn containsAll<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Collecti
     }
 }
 
-/// [addAll](https://developer.android.com/reference/java/util/Collection.html#addAll(java.util.Collection))
-pub fn addAll<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Collection>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "addAll", .descriptor == "(Ljava/util/Collection;)Z"
+/// [equals](https://developer.android.com/reference/java/util/Collection.html#equals(java.lang.Object))
+pub fn equals<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "equals", .descriptor == "(Ljava/lang/Object;)Z"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "addAll\0", "(Ljava/util/Collection;)Z\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "equals\0", "(Ljava/lang/Object;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [hashCode](https://developer.android.com/reference/java/util/Collection.html#hashCode())
+pub fn hashCode<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "hashCode", .descriptor == "()I"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "hashCode\0", "()I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [isEmpty](https://developer.android.com/reference/java/util/Collection.html#isEmpty())
+pub fn isEmpty<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "isEmpty", .descriptor == "()Z"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "isEmpty\0", "()Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [iterator](https://developer.android.com/reference/java/util/Collection.html#iterator())
+pub fn iterator<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Iterator>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "iterator", .descriptor == "()Ljava/util/Iterator;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "iterator\0", "()Ljava/util/Iterator;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [remove](https://developer.android.com/reference/java/util/Collection.html#remove(java.lang.Object))
+pub fn remove<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "remove", .descriptor == "(Ljava/lang/Object;)Z"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "remove\0", "(Ljava/lang/Object;)Z\0");
         __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -4083,36 +4480,36 @@ pub fn retainAll<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Collection
     }
 }
 
-/// [clear](https://developer.android.com/reference/java/util/Collection.html#clear())
-pub fn clear<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "clear", .descriptor == "()V"
+/// [size](https://developer.android.com/reference/java/util/Collection.html#size())
+pub fn size<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "size", .descriptor == "()I"
     unsafe {
         let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "clear\0", "()V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "size\0", "()I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [equals](https://developer.android.com/reference/java/util/Collection.html#equals(java.lang.Object))
-pub fn equals<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "equals", .descriptor == "(Ljava/lang/Object;)Z"
+/// [toArray](https://developer.android.com/reference/java/util/Collection.html#toArray())
+pub fn toArray<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ObjectArray<super::lang::Object, super::lang::Throwable>>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "toArray", .descriptor == "()[Ljava/lang/Object;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "toArray\0", "()[Ljava/lang/Object;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [toArray](https://developer.android.com/reference/java/util/Collection.html#toArray(java.lang.Object%5B%5D))
+pub fn toArray_Object_array<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::ObjectArray<super::lang::Object, super::lang::Throwable>>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ObjectArray<super::lang::Object, super::lang::Throwable>>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "toArray", .descriptor == "([Ljava/lang/Object;)[Ljava/lang/Object;"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "equals\0", "(Ljava/lang/Object;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [hashCode](https://developer.android.com/reference/java/util/Collection.html#hashCode())
-pub fn hashCode<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Collection", java.flags == PUBLIC | ABSTRACT, .name == "hashCode", .descriptor == "()I"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "hashCode\0", "()I\0");
-        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Collection\0", "toArray\0", "([Ljava/lang/Object;)[Ljava/lang/Object;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 }
@@ -4187,25 +4584,14 @@ impl ::std::ops::Deref for Map {
                 }
 impl Map {
 
-/// [size](https://developer.android.com/reference/java/util/Map.html#size())
-pub fn size<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Map", java.flags == PUBLIC | ABSTRACT, .name == "size", .descriptor == "()I"
+/// [clear](https://developer.android.com/reference/java/util/Map.html#clear())
+pub fn clear<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Map", java.flags == PUBLIC | ABSTRACT, .name == "clear", .descriptor == "()V"
     unsafe {
         let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "size\0", "()I\0");
-        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [isEmpty](https://developer.android.com/reference/java/util/Map.html#isEmpty())
-pub fn isEmpty<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Map", java.flags == PUBLIC | ABSTRACT, .name == "isEmpty", .descriptor == "()Z"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "isEmpty\0", "()Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "clear\0", "()V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
@@ -4231,80 +4617,23 @@ pub fn containsValue<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super:
     }
 }
 
-/// [get](https://developer.android.com/reference/java/util/Map.html#get(java.lang.Object))
-pub fn get<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::Object>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Map", java.flags == PUBLIC | ABSTRACT, .name == "get", .descriptor == "(Ljava/lang/Object;)Ljava/lang/Object;"
+/// [copyOf](https://developer.android.com/reference/java/util/Map.html#copyOf(java.util.Map))
+pub fn copyOf<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<Map>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Map>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Map", java.flags == PUBLIC | STATIC, .name == "copyOf", .descriptor == "(Ljava/util/Map;)Ljava/util/Map;"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "get\0", "(Ljava/lang/Object;)Ljava/lang/Object;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/util/Map\0", "copyOf\0", "(Ljava/util/Map;)Ljava/util/Map;\0");
+        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [put](https://developer.android.com/reference/java/util/Map.html#put(java.lang.Object,%20java.lang.Object))
-pub fn put<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>, arg1: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::Object>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Map", java.flags == PUBLIC | ABSTRACT, .name == "put", .descriptor == "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"
+/// [entry](https://developer.android.com/reference/java/util/Map.html#entry(java.lang.Object,%20java.lang.Object))
+pub fn entry<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>, arg1: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Map_Entry>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Map", java.flags == PUBLIC | STATIC, .name == "entry", .descriptor == "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map$Entry;"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "put\0", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [remove](https://developer.android.com/reference/java/util/Map.html#remove(java.lang.Object))
-pub fn remove_Object<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::Object>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Map", java.flags == PUBLIC | ABSTRACT, .name == "remove", .descriptor == "(Ljava/lang/Object;)Ljava/lang/Object;"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "remove\0", "(Ljava/lang/Object;)Ljava/lang/Object;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [putAll](https://developer.android.com/reference/java/util/Map.html#putAll(java.util.Map))
-pub fn putAll<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Map>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Map", java.flags == PUBLIC | ABSTRACT, .name == "putAll", .descriptor == "(Ljava/util/Map;)V"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "putAll\0", "(Ljava/util/Map;)V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [clear](https://developer.android.com/reference/java/util/Map.html#clear())
-pub fn clear<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Map", java.flags == PUBLIC | ABSTRACT, .name == "clear", .descriptor == "()V"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "clear\0", "()V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [keySet](https://developer.android.com/reference/java/util/Map.html#keySet())
-pub fn keySet<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Set>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Map", java.flags == PUBLIC | ABSTRACT, .name == "keySet", .descriptor == "()Ljava/util/Set;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "keySet\0", "()Ljava/util/Set;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [values](https://developer.android.com/reference/java/util/Map.html#values())
-pub fn values<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Collection>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Map", java.flags == PUBLIC | ABSTRACT, .name == "values", .descriptor == "()Ljava/util/Collection;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "values\0", "()Ljava/util/Collection;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/util/Map\0", "entry\0", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map$Entry;\0");
+        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
     }
 }
 
@@ -4330,14 +4659,14 @@ pub fn equals<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::
     }
 }
 
-/// [hashCode](https://developer.android.com/reference/java/util/Map.html#hashCode())
-pub fn hashCode<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Map", java.flags == PUBLIC | ABSTRACT, .name == "hashCode", .descriptor == "()I"
+/// [get](https://developer.android.com/reference/java/util/Map.html#get(java.lang.Object))
+pub fn get<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::Object>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Map", java.flags == PUBLIC | ABSTRACT, .name == "get", .descriptor == "(Ljava/lang/Object;)Ljava/lang/Object;"
     unsafe {
-        let __jni_args = [];
+        let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "hashCode\0", "()I\0");
-        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "get\0", "(Ljava/lang/Object;)Ljava/lang/Object;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
@@ -4352,46 +4681,35 @@ pub fn getOrDefault<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::
     }
 }
 
-/// [putIfAbsent](https://developer.android.com/reference/java/util/Map.html#putIfAbsent(java.lang.Object,%20java.lang.Object))
-pub fn putIfAbsent<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>, arg1: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::Object>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Map", java.flags == PUBLIC, .name == "putIfAbsent", .descriptor == "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"
+/// [hashCode](https://developer.android.com/reference/java/util/Map.html#hashCode())
+pub fn hashCode<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Map", java.flags == PUBLIC | ABSTRACT, .name == "hashCode", .descriptor == "()I"
     unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
+        let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "putIfAbsent\0", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "hashCode\0", "()I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [remove](https://developer.android.com/reference/java/util/Map.html#remove(java.lang.Object,%20java.lang.Object))
-pub fn remove_Object_Object<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>, arg1: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Map", java.flags == PUBLIC, .name == "remove", .descriptor == "(Ljava/lang/Object;Ljava/lang/Object;)Z"
+/// [isEmpty](https://developer.android.com/reference/java/util/Map.html#isEmpty())
+pub fn isEmpty<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Map", java.flags == PUBLIC | ABSTRACT, .name == "isEmpty", .descriptor == "()Z"
     unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
+        let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "remove\0", "(Ljava/lang/Object;Ljava/lang/Object;)Z\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "isEmpty\0", "()Z\0");
         __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [replace](https://developer.android.com/reference/java/util/Map.html#replace(java.lang.Object,%20java.lang.Object,%20java.lang.Object))
-pub fn replace_Object_Object_Object<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>, arg1: impl ::java_spaghetti::AsArg<super::lang::Object>, arg2: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Map", java.flags == PUBLIC, .name == "replace", .descriptor == "(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Z"
+/// [keySet](https://developer.android.com/reference/java/util/Map.html#keySet())
+pub fn keySet<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Set>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Map", java.flags == PUBLIC | ABSTRACT, .name == "keySet", .descriptor == "()Ljava/util/Set;"
     unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue(), arg2.as_arg_jvalue()];
+        let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "replace\0", "(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [replace](https://developer.android.com/reference/java/util/Map.html#replace(java.lang.Object,%20java.lang.Object))
-pub fn replace_Object_Object<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>, arg1: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::Object>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Map", java.flags == PUBLIC, .name == "replace", .descriptor == "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "replace\0", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "keySet\0", "()Ljava/util/Set;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -4516,23 +4834,102 @@ pub fn ofEntries<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java
     }
 }
 
-/// [entry](https://developer.android.com/reference/java/util/Map.html#entry(java.lang.Object,%20java.lang.Object))
-pub fn entry<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>, arg1: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Map_Entry>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Map", java.flags == PUBLIC | STATIC, .name == "entry", .descriptor == "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map$Entry;"
+/// [put](https://developer.android.com/reference/java/util/Map.html#put(java.lang.Object,%20java.lang.Object))
+pub fn put<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>, arg1: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::Object>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Map", java.flags == PUBLIC | ABSTRACT, .name == "put", .descriptor == "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
-        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/util/Map\0", "entry\0", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map$Entry;\0");
-        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "put\0", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [copyOf](https://developer.android.com/reference/java/util/Map.html#copyOf(java.util.Map))
-pub fn copyOf<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<Map>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Map>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Map", java.flags == PUBLIC | STATIC, .name == "copyOf", .descriptor == "(Ljava/util/Map;)Ljava/util/Map;"
+/// [putAll](https://developer.android.com/reference/java/util/Map.html#putAll(java.util.Map))
+pub fn putAll<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Map>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Map", java.flags == PUBLIC | ABSTRACT, .name == "putAll", .descriptor == "(Ljava/util/Map;)V"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
-        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/util/Map\0", "copyOf\0", "(Ljava/util/Map;)Ljava/util/Map;\0");
-        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "putAll\0", "(Ljava/util/Map;)V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [putIfAbsent](https://developer.android.com/reference/java/util/Map.html#putIfAbsent(java.lang.Object,%20java.lang.Object))
+pub fn putIfAbsent<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>, arg1: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::Object>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Map", java.flags == PUBLIC, .name == "putIfAbsent", .descriptor == "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "putIfAbsent\0", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [remove](https://developer.android.com/reference/java/util/Map.html#remove(java.lang.Object))
+pub fn remove_Object<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::Object>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Map", java.flags == PUBLIC | ABSTRACT, .name == "remove", .descriptor == "(Ljava/lang/Object;)Ljava/lang/Object;"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "remove\0", "(Ljava/lang/Object;)Ljava/lang/Object;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [remove](https://developer.android.com/reference/java/util/Map.html#remove(java.lang.Object,%20java.lang.Object))
+pub fn remove_Object_Object<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>, arg1: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Map", java.flags == PUBLIC, .name == "remove", .descriptor == "(Ljava/lang/Object;Ljava/lang/Object;)Z"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "remove\0", "(Ljava/lang/Object;Ljava/lang/Object;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [replace](https://developer.android.com/reference/java/util/Map.html#replace(java.lang.Object,%20java.lang.Object))
+pub fn replace_Object_Object<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>, arg1: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::Object>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Map", java.flags == PUBLIC, .name == "replace", .descriptor == "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "replace\0", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [replace](https://developer.android.com/reference/java/util/Map.html#replace(java.lang.Object,%20java.lang.Object,%20java.lang.Object))
+pub fn replace_Object_Object_Object<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>, arg1: impl ::java_spaghetti::AsArg<super::lang::Object>, arg2: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Map", java.flags == PUBLIC, .name == "replace", .descriptor == "(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Z"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue(), arg2.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "replace\0", "(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [size](https://developer.android.com/reference/java/util/Map.html#size())
+pub fn size<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Map", java.flags == PUBLIC | ABSTRACT, .name == "size", .descriptor == "()I"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "size\0", "()I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [values](https://developer.android.com/reference/java/util/Map.html#values())
+pub fn values<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Collection>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Map", java.flags == PUBLIC | ABSTRACT, .name == "values", .descriptor == "()Ljava/util/Collection;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map\0", "values\0", "()Ljava/util/Collection;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 }
@@ -4554,6 +4951,27 @@ impl ::std::ops::Deref for Map_Entry {
                     }
                 }
 impl Map_Entry {
+
+/// [copyOf](https://developer.android.com/reference/java/util/Map.Entry.html#copyOf(java.util.Map.Entry))
+pub fn copyOf<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<Map_Entry>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Map_Entry>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Map$Entry", java.flags == PUBLIC | STATIC, .name == "copyOf", .descriptor == "(Ljava/util/Map$Entry;)Ljava/util/Map$Entry;"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/util/Map$Entry\0", "copyOf\0", "(Ljava/util/Map$Entry;)Ljava/util/Map$Entry;\0");
+        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [equals](https://developer.android.com/reference/java/util/Map.Entry.html#equals(java.lang.Object))
+pub fn equals<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Map$Entry", java.flags == PUBLIC | ABSTRACT, .name == "equals", .descriptor == "(Ljava/lang/Object;)Z"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map$Entry\0", "equals\0", "(Ljava/lang/Object;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
 
 /// [getKey](https://developer.android.com/reference/java/util/Map.Entry.html#getKey())
 pub fn getKey<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::Object>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
@@ -4577,28 +4995,6 @@ pub fn getValue<'env>(&'env self) -> ::std::result::Result<::std::option::Option
     }
 }
 
-/// [setValue](https://developer.android.com/reference/java/util/Map.Entry.html#setValue(java.lang.Object))
-pub fn setValue<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::Object>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Map$Entry", java.flags == PUBLIC | ABSTRACT, .name == "setValue", .descriptor == "(Ljava/lang/Object;)Ljava/lang/Object;"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map$Entry\0", "setValue\0", "(Ljava/lang/Object;)Ljava/lang/Object;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [equals](https://developer.android.com/reference/java/util/Map.Entry.html#equals(java.lang.Object))
-pub fn equals<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Map$Entry", java.flags == PUBLIC | ABSTRACT, .name == "equals", .descriptor == "(Ljava/lang/Object;)Z"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map$Entry\0", "equals\0", "(Ljava/lang/Object;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
 /// [hashCode](https://developer.android.com/reference/java/util/Map.Entry.html#hashCode())
 pub fn hashCode<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
     // class.path == "java/util/Map$Entry", java.flags == PUBLIC | ABSTRACT, .name == "hashCode", .descriptor == "()I"
@@ -4610,13 +5006,14 @@ pub fn hashCode<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti
     }
 }
 
-/// [copyOf](https://developer.android.com/reference/java/util/Map.Entry.html#copyOf(java.util.Map.Entry))
-pub fn copyOf<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<Map_Entry>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Map_Entry>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Map$Entry", java.flags == PUBLIC | STATIC, .name == "copyOf", .descriptor == "(Ljava/util/Map$Entry;)Ljava/util/Map$Entry;"
+/// [setValue](https://developer.android.com/reference/java/util/Map.Entry.html#setValue(java.lang.Object))
+pub fn setValue<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::lang::Object>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Map$Entry", java.flags == PUBLIC | ABSTRACT, .name == "setValue", .descriptor == "(Ljava/lang/Object;)Ljava/lang/Object;"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
-        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/util/Map$Entry\0", "copyOf\0", "(Ljava/util/Map$Entry;)Ljava/util/Map$Entry;\0");
-        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Map$Entry\0", "setValue\0", "(Ljava/lang/Object;)Ljava/lang/Object;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 }
@@ -4645,72 +5042,6 @@ impl ::std::convert::AsRef<Collection> for Set {
                 }
 impl Set {
 
-/// [size](https://developer.android.com/reference/java/util/Set.html#size())
-pub fn size<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "size", .descriptor == "()I"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "size\0", "()I\0");
-        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [isEmpty](https://developer.android.com/reference/java/util/Set.html#isEmpty())
-pub fn isEmpty<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "isEmpty", .descriptor == "()Z"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "isEmpty\0", "()Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [contains](https://developer.android.com/reference/java/util/Set.html#contains(java.lang.Object))
-pub fn contains<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "contains", .descriptor == "(Ljava/lang/Object;)Z"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "contains\0", "(Ljava/lang/Object;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [iterator](https://developer.android.com/reference/java/util/Set.html#iterator())
-pub fn iterator<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Iterator>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "iterator", .descriptor == "()Ljava/util/Iterator;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "iterator\0", "()Ljava/util/Iterator;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [toArray](https://developer.android.com/reference/java/util/Set.html#toArray())
-pub fn toArray<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ObjectArray<super::lang::Object, super::lang::Throwable>>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "toArray", .descriptor == "()[Ljava/lang/Object;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "toArray\0", "()[Ljava/lang/Object;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [toArray](https://developer.android.com/reference/java/util/Set.html#toArray(java.lang.Object%5B%5D))
-pub fn toArray_Object_array<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::ObjectArray<super::lang::Object, super::lang::Throwable>>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ObjectArray<super::lang::Object, super::lang::Throwable>>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "toArray", .descriptor == "([Ljava/lang/Object;)[Ljava/lang/Object;"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "toArray\0", "([Ljava/lang/Object;)[Ljava/lang/Object;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
 /// [add](https://developer.android.com/reference/java/util/Set.html#add(java.lang.Object))
 pub fn add<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
     // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "add", .descriptor == "(Ljava/lang/Object;)Z"
@@ -4718,28 +5049,6 @@ pub fn add<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Obj
         let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
         let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "add\0", "(Ljava/lang/Object;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [remove](https://developer.android.com/reference/java/util/Set.html#remove(java.lang.Object))
-pub fn remove<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "remove", .descriptor == "(Ljava/lang/Object;)Z"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "remove\0", "(Ljava/lang/Object;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [containsAll](https://developer.android.com/reference/java/util/Set.html#containsAll(java.util.Collection))
-pub fn containsAll<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Collection>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "containsAll", .descriptor == "(Ljava/util/Collection;)Z"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "containsAll\0", "(Ljava/util/Collection;)Z\0");
         __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -4755,28 +5064,6 @@ pub fn addAll<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Collection>) 
     }
 }
 
-/// [retainAll](https://developer.android.com/reference/java/util/Set.html#retainAll(java.util.Collection))
-pub fn retainAll<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Collection>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "retainAll", .descriptor == "(Ljava/util/Collection;)Z"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "retainAll\0", "(Ljava/util/Collection;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [removeAll](https://developer.android.com/reference/java/util/Set.html#removeAll(java.util.Collection))
-pub fn removeAll<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Collection>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "removeAll", .descriptor == "(Ljava/util/Collection;)Z"
-    unsafe {
-        let __jni_args = [arg0.as_arg_jvalue()];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "removeAll\0", "(Ljava/util/Collection;)Z\0");
-        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
 /// [clear](https://developer.android.com/reference/java/util/Set.html#clear())
 pub fn clear<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::lang::Throwable>> {
     // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "clear", .descriptor == "()V"
@@ -4785,6 +5072,38 @@ pub fn clear<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghetti::Lo
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
         let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "clear\0", "()V\0");
         __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [contains](https://developer.android.com/reference/java/util/Set.html#contains(java.lang.Object))
+pub fn contains<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "contains", .descriptor == "(Ljava/lang/Object;)Z"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "contains\0", "(Ljava/lang/Object;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [containsAll](https://developer.android.com/reference/java/util/Set.html#containsAll(java.util.Collection))
+pub fn containsAll<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Collection>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "containsAll", .descriptor == "(Ljava/util/Collection;)Z"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "containsAll\0", "(Ljava/util/Collection;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [copyOf](https://developer.android.com/reference/java/util/Set.html#copyOf(java.util.Collection))
+pub fn copyOf<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<Collection>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Set>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Set", java.flags == PUBLIC | STATIC, .name == "copyOf", .descriptor == "(Ljava/util/Collection;)Ljava/util/Set;"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/util/Set\0", "copyOf\0", "(Ljava/util/Collection;)Ljava/util/Set;\0");
+        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
     }
 }
 
@@ -4807,6 +5126,28 @@ pub fn hashCode<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
         let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "hashCode\0", "()I\0");
         __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [isEmpty](https://developer.android.com/reference/java/util/Set.html#isEmpty())
+pub fn isEmpty<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "isEmpty", .descriptor == "()Z"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "isEmpty\0", "()Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [iterator](https://developer.android.com/reference/java/util/Set.html#iterator())
+pub fn iterator<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Iterator>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "iterator", .descriptor == "()Ljava/util/Iterator;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "iterator\0", "()Ljava/util/Iterator;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
@@ -4930,13 +5271,69 @@ pub fn of_Object_array<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl 
     }
 }
 
-/// [copyOf](https://developer.android.com/reference/java/util/Set.html#copyOf(java.util.Collection))
-pub fn copyOf<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<Collection>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Set>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
-    // class.path == "java/util/Set", java.flags == PUBLIC | STATIC, .name == "copyOf", .descriptor == "(Ljava/util/Collection;)Ljava/util/Set;"
+/// [remove](https://developer.android.com/reference/java/util/Set.html#remove(java.lang.Object))
+pub fn remove<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::lang::Object>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "remove", .descriptor == "(Ljava/lang/Object;)Z"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
-        let (__jni_class, __jni_method) = __jni_env.require_class_static_method("java/util/Set\0", "copyOf\0", "(Ljava/util/Collection;)Ljava/util/Set;\0");
-        __jni_env.call_static_object_method_a(__jni_class, __jni_method, __jni_args.as_ptr())
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "remove\0", "(Ljava/lang/Object;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [removeAll](https://developer.android.com/reference/java/util/Set.html#removeAll(java.util.Collection))
+pub fn removeAll<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Collection>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "removeAll", .descriptor == "(Ljava/util/Collection;)Z"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "removeAll\0", "(Ljava/util/Collection;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [retainAll](https://developer.android.com/reference/java/util/Set.html#retainAll(java.util.Collection))
+pub fn retainAll<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<Collection>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "retainAll", .descriptor == "(Ljava/util/Collection;)Z"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "retainAll\0", "(Ljava/util/Collection;)Z\0");
+        __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [size](https://developer.android.com/reference/java/util/Set.html#size())
+pub fn size<'env>(&'env self) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "size", .descriptor == "()I"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "size\0", "()I\0");
+        __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [toArray](https://developer.android.com/reference/java/util/Set.html#toArray())
+pub fn toArray<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ObjectArray<super::lang::Object, super::lang::Throwable>>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "toArray", .descriptor == "()[Ljava/lang/Object;"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "toArray\0", "()[Ljava/lang/Object;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [toArray](https://developer.android.com/reference/java/util/Set.html#toArray(java.lang.Object%5B%5D))
+pub fn toArray_Object_array<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<::java_spaghetti::ObjectArray<super::lang::Object, super::lang::Throwable>>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, ::java_spaghetti::ObjectArray<super::lang::Object, super::lang::Throwable>>>, ::java_spaghetti::Local<'env, super::lang::Throwable>> {
+    // class.path == "java/util/Set", java.flags == PUBLIC | ABSTRACT, .name == "toArray", .descriptor == "([Ljava/lang/Object;)[Ljava/lang/Object;"
+    unsafe {
+        let __jni_args = [arg0.as_arg_jvalue()];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("java/util/Set\0", "toArray\0", "([Ljava/lang/Object;)[Ljava/lang/Object;\0");
+        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 }
