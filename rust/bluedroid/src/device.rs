@@ -1,4 +1,7 @@
-use std::sync::Arc;
+use std::{
+    sync::Arc,
+    time::{Duration, Instant},
+};
 
 use futures_channel::mpsc::UnboundedReceiver;
 use futures_core::Stream;
@@ -7,7 +10,7 @@ use java_spaghetti::{
     sys::{jobject, jobjectArray},
     Env, Global, Local, ObjectArray, Ref,
 };
-use log::{error, trace};
+use log::{debug, error, info, trace};
 use rust_android_utilities::{get_application_context, java_wrapped_object::to_java, JavaError, JavaResult};
 use thiserror::Error;
 
@@ -33,6 +36,10 @@ type ConnectionStateChannelData = GattResult<ConnectionState>;
 pub struct Device {
     device: DeviceWithGattLock,
     adapter: Global<JavaAdapter>,
+    /// On creation (with autoconnect false) android will attempt to connect to the device with a 30 s timeout
+    /// It seems that any calls to `BleutoothGatt::connect` within that time break the connection process on some devices
+    /// This field is used to keep track of this devices creation time so we can prevent connect attempts while the initial one is still ongoing
+    creation_time: Instant,
 }
 java_debug_eq_hash!(Device, device.device);
 
@@ -59,6 +66,7 @@ impl Device {
         Self {
             device: DeviceWithGattLock { device, gatt_lock: Default::default() },
             adapter,
+            creation_time: Instant::now(),
         }
     }
 
@@ -79,19 +87,30 @@ impl Device {
     }
 
     pub async fn connect(&self) -> GattResult<()> {
+        // Don't try to reconnect if this Device was created within this timeout
+        const INITIAL_CONNECTION_TIMEOUT: Duration = Duration::from_secs(31);
+
         let id = self.id();
-        trace!("Connecting to {id:?}");
+        debug!("Connecting to {id:?}");
         if self.check_connected().is_ok() {
             return Ok(());
         }
         let mut connection_state = self.connection_events();
-        self.device.device.vm().with_env(|env| {
-            let device = self.device.device.as_ref(env);
-            if !device.connect()? {
-                return Err(GattError::NotExecuted);
-            }
-            Ok::<_, GattError>(())
-        })?;
+
+        let since_creation = Instant::now().duration_since(self.creation_time);
+        if since_creation > INITIAL_CONNECTION_TIMEOUT {
+            info!("It seems that this device was created a while ago. Triggering a reconnection.");
+            self.device.device.vm().with_env(|env| {
+                let device = self.device.device.as_ref(env);
+                if !device.connect()? {
+                    return Err(GattError::NotExecuted);
+                }
+                Ok::<_, GattError>(())
+            })?;
+        } else {
+            trace!("Skipping manual connection since only {since_creation:?} has passed since the BluetoothGatt was created");
+        }
+
         match connection_state
             .find(|cs| {
                 trace!("Connect got state {cs:?} for {id}");
