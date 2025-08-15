@@ -5,6 +5,7 @@ use ctor::ctor;
 
 use java_spaghetti::{self, sys::jobject, Global, ReferenceType};
 
+#[allow(mismatched_lifetime_syntaxes)]
 pub mod bindings;
 
 pub mod java_wrapped_object;
