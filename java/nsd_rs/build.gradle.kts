@@ -1,15 +1,16 @@
 plugins {
-    id("com.android.library")
-    id("maven-publish")
+    alias(libs.plugins.android.library)
 }
 
 android {
-    namespace = "com.maticrobots.nsd_rs"
+    namespace = "com.matician.rust_bluedroid"
     compileSdk = 35
 
     defaultConfig {
         minSdk = 33
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -31,37 +32,15 @@ android {
             withSourcesJar()
         }
     }
-}
 
-publishing {
-    publications {
-        register<MavenPublication>("release") {
-            groupId = "com.maticrobots"
-            artifactId = "nsd_rs"
-            version = "0.1.1"
-
-            afterEvaluate {
-                from(components["release"])
-            }
-        }
+    lint {
+        disable += "MissingPermission"
+        disable += "unused"
     }
-    repositories {
-        maven {
-            name = "matic_android"
-            url = uri(layout.buildDirectory.dir("../../matic_android_repo"))
-        }
-    }
-}
 
+
+}
 
 dependencies {
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.annotation)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    implementation(libs.androidx.startup)
-
-    implementation(project(":rust_android_utilities"))
+    implementation(project(":java_rust_obj"))
 }

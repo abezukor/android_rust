@@ -1,7 +1,7 @@
 
 include = [
     "com/maticrobots/nsd_rs/*",
-    "com/maticrobots/rust_android_utilities/*",
+    "com/maticrobots/java_rust_obj/*",
 
     "android/net/nsd/*",
     "android/net/Network",
@@ -44,10 +44,11 @@ verbose = true
 files = [
     # TODO Make this respect environment variables
     "/home/abe/Android/Sdk/platforms/android-36-ext19/android.jar",
-    # Hack so we can use android studio (as opposed to raw javac) to build the jar files.
-    # Technically this may change, but I (Abe) think that is unlikely.
-    "../../../java/rust_android_utilities/build/intermediates/full_jar/debug/createFullJarDebug/full.jar",
-    "../../../java/nsd_rs/build/intermediates/full_jar/debug/createFullJarDebug/full.jar",
+
+
+    "../../target/aarch64-linux-android/debug/build/nsd-rs-ea0f9da5c1da57ae/out/java/com/maticrobots/java_rust_obj/RustArcBoxDynAny.class",
+    "../../target/aarch64-linux-android/debug/build/nsd-rs-ea0f9da5c1da57ae/out/java/com/maticrobots/nsd_rs/NSDDiscoveryListener.class",
+    "../../target/aarch64-linux-android/debug/build/nsd-rs-ea0f9da5c1da57ae/out/java/com/maticrobots/nsd_rs/NSDServiceResolver.class"
 ]
 
 [output]

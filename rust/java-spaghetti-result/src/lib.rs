@@ -3,6 +3,8 @@ use std::fmt::{Debug, Display};
 use java_spaghetti::{CastError, Global, Local, ReferenceType};
 use thiserror::Error;
 
+#[allow(mismatched_lifetime_syntaxes)]
+mod bindings;
 use crate::bindings::java::lang::Throwable;
 
 pub type JavaResult<T> = Result<T, JavaError>;

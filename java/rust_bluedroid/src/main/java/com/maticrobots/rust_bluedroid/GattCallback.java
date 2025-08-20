@@ -12,7 +12,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.maticrobots.rust_android_utilities.RustArcBoxDynAny;
+import com.maticrobots.java_rust_obj.RustArcBoxDynAny;
 
 import java.util.Arrays;
 import java.util.Collection;

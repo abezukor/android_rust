@@ -1,9 +1,9 @@
-use log::{info, LevelFilter};
+use log::{LevelFilter, info};
 use std::sync::Arc;
 
+use java_owned_rust_object::to_java;
 use jni::{objects::JObject, sys::jobject};
-use nsd_rs::{self, jni_env, DiscoveryRequest, NsdServiceInfo, SharedRustObject};
-use rust_android_utilities::java_wrapped_object::to_java;
+use nsd_rs::{self, DiscoveryRequest, NsdServiceInfo, SharedRustObject, jni_env};
 
 #[unsafe(no_mangle)]
 pub extern "system" fn Java_com_maticrobots_nsd_1rs_1example_1app_RustNSDExample_init_1logging() {

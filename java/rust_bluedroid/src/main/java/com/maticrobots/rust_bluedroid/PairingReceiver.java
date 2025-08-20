@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.maticrobots.rust_android_utilities.RustArcBoxDynAny;
+import com.maticrobots.java_rust_obj.RustArcBoxDynAny;
 
 public class PairingReceiver extends BroadcastReceiver {
 

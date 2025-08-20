@@ -1,0 +1,8 @@
+[package]
+name = "java-spaghetti-result"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+thiserror = "2.0.12"
+java-spaghetti = "0.2.0"

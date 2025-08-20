@@ -10,7 +10,7 @@ import android.content.IntentFilter;
 import android.system.SystemCleaner;
 import android.util.Log;
 
-import com.maticrobots.rust_android_utilities.RustArcBoxDynAny;
+import com.maticrobots.java_rust_obj.RustArcBoxDynAny;
 
 import java.lang.ref.Cleaner;
 import java.util.ArrayDeque;

@@ -11,10 +11,8 @@ use java_spaghetti::sys::{jlong, jobject};
 use java_spaghetti::{AsArg, ByteArray, Env, Global, Local, PrimitiveArray, Ref};
 use log::{error, trace};
 
-use rust_android_utilities::{
-    get_vm,
-    java_wrapped_object::{get_ref, to_java_arc, BoxedRustObj},
-};
+use java_spaghetti_context::get_vm;
+use java_owned_rust_object::{get_ref, to_java_arc, BoxedRustObj};
 
 use crate::bindings::android::os::Build_VERSION;
 use crate::bindings::{
@@ -25,7 +23,7 @@ use crate::{
     bindings::{
         android::net::nsd::{NsdManager, NsdManager_ResolveListener, NsdServiceInfo as JavaNsdServiceInfo},
         com::maticrobots::{
-            nsd_rs::NSDServiceResolver as JavaNSDResolveListener, rust_android_utilities::RustArcBoxDynAny,
+            nsd_rs::NSDServiceResolver as JavaNSDResolveListener, java_rust_obj::RustArcBoxDynAny,
         },
         java::lang::{String as JString, Throwable},
     },

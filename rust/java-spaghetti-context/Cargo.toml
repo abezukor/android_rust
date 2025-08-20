@@ -1,0 +1,9 @@
+[package]
+name = "java-spaghetti-context"
+version = "0.1.0"
+edition = "2024"
+
+
+[dependencies]
+java-spaghetti = "0.2.0"
+ndk-context = "0.1.1"

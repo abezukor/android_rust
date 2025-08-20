@@ -9,7 +9,7 @@ android_logger = "0.15"
 jni = "0.21.1"
 
 nsd-rs.path = "../nsd-rs"
-rust_android_utilities.path = "../rust_android_utilities"
+java_owned_rust_object.path = "../java_owned_rust_object"
 
 [lib]
 crate-type = ["cdylib"]

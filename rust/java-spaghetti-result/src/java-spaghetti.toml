@@ -1,12 +1,9 @@
 
 include = [
-    "com/maticrobots/rust_android_utilities/*",
-
     "java/lang/Object",
     "java/lang/Throwable",
-    "java/lang/StackTraceElement",
     "java/lang/String",
-    "java/lang/ClassLoader",
+    "java/lang/StackTraceElement",
 ]
 
 [[documentation.pattern]]
@@ -24,9 +21,6 @@ verbose = true
 files = [
     # TODO Make this respect environment variables
     "/home/abe/Android/Sdk/platforms/android-35/android.jar",
-    # Hack so we can use android studio (as opposed to raw javac) to build the jar files.
-    # Technically this may change, but I (Abe) think that is unlikely.
-    "../../../java/rust_android_utilities/build/intermediates/full_jar/debug/createFullJarDebug/full.jar",
 ]
 
 [output]

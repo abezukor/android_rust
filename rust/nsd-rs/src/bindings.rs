@@ -2452,6 +2452,60 @@ pub mod com {
 
 pub mod maticrobots {
 
+pub mod java_rust_obj {
+
+/// pub class [RustArcBoxDynAny](https://developer.android.com/reference/com/maticrobots/java_rust_obj/RustArcBoxDynAny.html)
+#[repr(transparent)] pub struct RustArcBoxDynAny(pub(crate) ::java_spaghetti::ObjectAndEnv);
+                unsafe impl ::java_spaghetti::ReferenceType for RustArcBoxDynAny {}
+                
+unsafe impl ::java_spaghetti::JniType for RustArcBoxDynAny {
+                fn static_with_jni_type<R>(callback: impl FnOnce(&str) -> R) -> R {
+                    callback("com/maticrobots/java_rust_obj/RustArcBoxDynAny\0")
+                }
+            }
+unsafe impl ::java_spaghetti::AssignableTo<super::super::super::java::lang::Object> for RustArcBoxDynAny {}
+impl ::std::ops::Deref for RustArcBoxDynAny {
+                    type Target = super::super::super::java::lang::Object;
+                    fn deref(&self) -> &Self::Target {
+                        unsafe { &*(self as *const Self as *const Self::Target) }
+                    }
+                }
+impl RustArcBoxDynAny {
+
+/// [RustArcBoxDynAny](https://developer.android.com/reference/com/maticrobots/java_rust_obj/RustArcBoxDynAny.html#RustArcBoxDynAny(long))
+pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: i64) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "com/maticrobots/java_rust_obj/RustArcBoxDynAny", java.flags == PUBLIC, .name == "<init>", .descriptor == "(J)V"
+    unsafe {
+        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/java_rust_obj/RustArcBoxDynAny\0", "<init>\0", "(J)V\0");
+        __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [getRust_ptr](https://developer.android.com/reference/com/maticrobots/java_rust_obj/RustArcBoxDynAny.html#getRust_ptr())
+pub fn getRust_ptr<'env>(&'env self) -> ::std::result::Result<i64, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "com/maticrobots/java_rust_obj/RustArcBoxDynAny", java.flags == PUBLIC, .name == "getRust_ptr", .descriptor == "()J"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/java_rust_obj/RustArcBoxDynAny\0", "getRust_ptr\0", "()J\0");
+        __jni_env.call_long_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+
+/// [close](https://developer.android.com/reference/com/maticrobots/java_rust_obj/RustArcBoxDynAny.html#close())
+pub fn close<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "com/maticrobots/java_rust_obj/RustArcBoxDynAny", java.flags == PUBLIC, .name == "close", .descriptor == "()V"
+    unsafe {
+        let __jni_args = [];
+        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/java_rust_obj/RustArcBoxDynAny\0", "close\0", "()V\0");
+        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
+    }
+}
+}
+}
+
 pub mod nsd_rs {
 
 /// pub class [NSDDiscoveryListener](https://developer.android.com/reference/com/maticrobots/nsd_rs/NSDDiscoveryListener.html)
@@ -2478,12 +2532,12 @@ impl ::std::convert::AsRef<super::super::super::android::net::nsd::NsdManager_Di
                 }
 impl NSDDiscoveryListener {
 
-/// [NSDDiscoveryListener](https://developer.android.com/reference/com/maticrobots/nsd_rs/NSDDiscoveryListener.html#NSDDiscoveryListener(com.maticrobots.rust_android_utilities.RustArcBoxDynAny))
-pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<super::rust_android_utilities::RustArcBoxDynAny>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/nsd_rs/NSDDiscoveryListener", java.flags == PUBLIC, .name == "<init>", .descriptor == "(Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)V"
+/// [NSDDiscoveryListener](https://developer.android.com/reference/com/maticrobots/nsd_rs/NSDDiscoveryListener.html#NSDDiscoveryListener(com.maticrobots.java_rust_obj.RustArcBoxDynAny))
+pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<super::java_rust_obj::RustArcBoxDynAny>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "com/maticrobots/nsd_rs/NSDDiscoveryListener", java.flags == PUBLIC, .name == "<init>", .descriptor == "(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)V"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/nsd_rs/NSDDiscoveryListener\0", "<init>\0", "(Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)V\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/nsd_rs/NSDDiscoveryListener\0", "<init>\0", "(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)V\0");
         __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -2579,12 +2633,12 @@ impl ::std::convert::AsRef<super::super::super::android::net::nsd::NsdManager_Re
                 }
 impl NSDServiceResolver {
 
-/// [NSDServiceResolver](https://developer.android.com/reference/com/maticrobots/nsd_rs/NSDServiceResolver.html#NSDServiceResolver(com.maticrobots.rust_android_utilities.RustArcBoxDynAny))
-pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<super::rust_android_utilities::RustArcBoxDynAny>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/nsd_rs/NSDServiceResolver", java.flags == PUBLIC, .name == "<init>", .descriptor == "(Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)V"
+/// [NSDServiceResolver](https://developer.android.com/reference/com/maticrobots/nsd_rs/NSDServiceResolver.html#NSDServiceResolver(com.maticrobots.java_rust_obj.RustArcBoxDynAny))
+pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<super::java_rust_obj::RustArcBoxDynAny>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "com/maticrobots/nsd_rs/NSDServiceResolver", java.flags == PUBLIC, .name == "<init>", .descriptor == "(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)V"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/nsd_rs/NSDServiceResolver\0", "<init>\0", "(Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)V\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/nsd_rs/NSDServiceResolver\0", "<init>\0", "(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)V\0");
         __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -2608,89 +2662,6 @@ pub fn onServiceResolved<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<su
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
         let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/nsd_rs/NSDServiceResolver\0", "onServiceResolved\0", "(Landroid/net/nsd/NsdServiceInfo;)V\0");
         __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-}
-}
-
-pub mod rust_android_utilities {
-
-/// pub class [RustArcBoxDynAny](https://developer.android.com/reference/com/maticrobots/rust_android_utilities/RustArcBoxDynAny.html)
-#[repr(transparent)] pub struct RustArcBoxDynAny(pub(crate) ::java_spaghetti::ObjectAndEnv);
-                unsafe impl ::java_spaghetti::ReferenceType for RustArcBoxDynAny {}
-                
-unsafe impl ::java_spaghetti::JniType for RustArcBoxDynAny {
-                fn static_with_jni_type<R>(callback: impl FnOnce(&str) -> R) -> R {
-                    callback("com/maticrobots/rust_android_utilities/RustArcBoxDynAny\0")
-                }
-            }
-unsafe impl ::java_spaghetti::AssignableTo<super::super::super::java::lang::Object> for RustArcBoxDynAny {}
-impl ::std::ops::Deref for RustArcBoxDynAny {
-                    type Target = super::super::super::java::lang::Object;
-                    fn deref(&self) -> &Self::Target {
-                        unsafe { &*(self as *const Self as *const Self::Target) }
-                    }
-                }
-impl RustArcBoxDynAny {
-
-/// [RustArcBoxDynAny](https://developer.android.com/reference/com/maticrobots/rust_android_utilities/RustArcBoxDynAny.html#RustArcBoxDynAny(long))
-pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: i64) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_android_utilities/RustArcBoxDynAny", java.flags == PUBLIC, .name == "<init>", .descriptor == "(J)V"
-    unsafe {
-        let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_android_utilities/RustArcBoxDynAny\0", "<init>\0", "(J)V\0");
-        __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [getRust_ptr](https://developer.android.com/reference/com/maticrobots/rust_android_utilities/RustArcBoxDynAny.html#getRust_ptr())
-pub fn getRust_ptr<'env>(&'env self) -> ::std::result::Result<i64, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_android_utilities/RustArcBoxDynAny", java.flags == PUBLIC, .name == "getRust_ptr", .descriptor == "()J"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_android_utilities/RustArcBoxDynAny\0", "getRust_ptr\0", "()J\0");
-        __jni_env.call_long_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [close](https://developer.android.com/reference/com/maticrobots/rust_android_utilities/RustArcBoxDynAny.html#close())
-pub fn close<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_android_utilities/RustArcBoxDynAny", java.flags == PUBLIC, .name == "close", .descriptor == "()V"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_android_utilities/RustArcBoxDynAny\0", "close\0", "()V\0");
-        __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-}
-
-/// pub class [RustInitialization](https://developer.android.com/reference/com/maticrobots/rust_android_utilities/RustInitialization.html)
-#[repr(transparent)] pub struct RustInitialization(pub(crate) ::java_spaghetti::ObjectAndEnv);
-                unsafe impl ::java_spaghetti::ReferenceType for RustInitialization {}
-                
-unsafe impl ::java_spaghetti::JniType for RustInitialization {
-                fn static_with_jni_type<R>(callback: impl FnOnce(&str) -> R) -> R {
-                    callback("com/maticrobots/rust_android_utilities/RustInitialization\0")
-                }
-            }
-unsafe impl ::java_spaghetti::AssignableTo<super::super::super::java::lang::Object> for RustInitialization {}
-impl ::std::ops::Deref for RustInitialization {
-                    type Target = super::super::super::java::lang::Object;
-                    fn deref(&self) -> &Self::Target {
-                        unsafe { &*(self as *const Self as *const Self::Target) }
-                    }
-                }
-impl RustInitialization {
-
-/// [RustInitialization](https://developer.android.com/reference/com/maticrobots/rust_android_utilities/RustInitialization.html#RustInitialization())
-pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_android_utilities/RustInitialization", java.flags == PUBLIC, .name == "<init>", .descriptor == "()V"
-    unsafe {
-        let __jni_args = [];
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_android_utilities/RustInitialization\0", "<init>\0", "()V\0");
-        __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
     }
 }
 }

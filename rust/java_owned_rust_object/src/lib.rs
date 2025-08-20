@@ -3,17 +3,24 @@
 use std::{any::Any, mem::ManuallyDrop, ptr::with_exposed_provenance, sync::Arc};
 
 use java_spaghetti::{
-    sys::{jlong, jobject},
     Env, Local,
+    sys::{jlong, jobject},
 };
+use java_spaghetti_result::JavaResult;
 
-use crate::{bindings::com::maticrobots::rust_android_utilities::RustArcBoxDynAny, JavaResult};
+#[allow(mismatched_lifetime_syntaxes)]
+mod bindings;
+
+use crate::bindings::com::maticrobots::java_rust_obj::RustArcBoxDynAny;
 
 pub type BoxedRustObj = Box<dyn Any + Send + Sync + 'static>;
 
 // It needs to be Arc<Box<dyn Any>> because we need to be able to use Arc::from_raw and Arc::into_raw,
 // and those need to return thin pointers so that they fit in a java long
-pub fn to_java(env: Env, rust_obj: impl Any + Send + Sync + 'static) -> JavaResult<Local<RustArcBoxDynAny>> {
+pub fn to_java(
+    env: Env,
+    rust_obj: impl Any + Send + Sync + 'static,
+) -> JavaResult<Local<RustArcBoxDynAny>> {
     to_java_arc(env, Arc::new(Box::new(rust_obj)))
 }
 
@@ -22,7 +29,10 @@ pub fn to_java_arc(env: Env, rust_obj: Arc<BoxedRustObj>) -> JavaResult<Local<Ru
     // raw.expose_provenance() can be 32 bit
 
     // Java does not have a concept of unsigned integers so we have to reinterpret this as an i64.
-    Ok(RustArcBoxDynAny::new(env, raw.expose_provenance() as jlong)?)
+    Ok(RustArcBoxDynAny::new(
+        env,
+        raw.expose_provenance() as jlong,
+    )?)
 }
 
 ///# Safety
@@ -48,7 +58,21 @@ extern "system" fn Java_com_maticrobots_rust_1android_1utilities_RustArcBoxDynAn
 }
 
 #[unsafe(no_mangle)]
-extern "system" fn Java_com_maticrobots_rust_1android_1utilities_RustArcBoxDynAny_rust_1object_1clone(rust_ptr: jlong) {
+extern "system" fn Java_com_maticrobots_rust_1android_1utilities_RustArcBoxDynAny_rust_1object_1clone(
+    rust_ptr: jlong,
+) {
     let rust_ptr: *const BoxedRustObj = with_exposed_provenance(rust_ptr as usize);
     unsafe { Arc::increment_strong_count(rust_ptr) }
+}
+
+pub fn initialize() {
+    use std::sync::Once;
+
+    static INITIALIZE: Once = Once::new();
+
+    INITIALIZE.call_once(|| {
+        const RUST_ARC_BOX_DYN_ANY_JAVA_BYTECODE: &[u8] =
+            include_bytes!(concat!(env!("OUT_DIR"), "/classes.dex"));
+        java_spaghetti_context::bytecode_loader::load_bytecode(RUST_ARC_BOX_DYN_ANY_JAVA_BYTECODE);
+    });
 }

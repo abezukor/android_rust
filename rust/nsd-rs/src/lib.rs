@@ -2,7 +2,7 @@
 pub use java_spaghetti;
 pub use jni;
 
-pub use rust_android_utilities::JavaError;
+pub use java_spaghetti_result::JavaError;
 
 mod nsd_discovery_listener;
 
@@ -11,7 +11,9 @@ mod nsd_manager;
 
 // Regenerate with java-spaghetti-gen generate
 #[rustfmt::skip]
+#[allow(mismatched_lifetime_syntaxes)]
 mod bindings;
+
 pub use bindings::java::lang::{String as JString, Throwable};
 
 pub use nsd_resolve_listener::NsdServiceInfo;

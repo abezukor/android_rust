@@ -16,4 +16,4 @@ log = "0.4.27"
 thiserror = "2.0.12"
 
 
-rust_android_utilities.path = "../rust_android_utilities"
+#rust_android_utilities.path = "../rust_android_utilities"

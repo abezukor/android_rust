@@ -1,0 +1,45 @@
+
+include = [
+    "java/lang/Object",
+    "java/lang/Throwable",
+    "java/lang/String",
+    "java/lang/StackTraceElement",
+    "java/lang/ClassLoader",
+
+    "java/nio/ByteBuffer",
+    "java/nio/Buffer",
+
+    "dalvik/system/BaseDexClassLoader",
+    "dalvik/system/InMemoryDexClassLoader"
+]
+
+[[documentation.pattern]]
+class_url_pattern = "https://developer.android.com/reference/{CLASS}.html"
+method_url_pattern = "https://developer.android.com/reference/{CLASS}.html#{METHOD}({ARGUMENTS})"
+constructor_url_pattern = "https://developer.android.com/reference/{CLASS}.html#{CLASS.INNER}({ARGUMENTS})"
+field_url_pattern = "https://developer.android.com/reference/{CLASS}.html#{FIELD}"
+argument_seperator = ",%20"
+
+
+[logging]
+verbose = true
+
+[input]
+files = [
+    # TODO Make this respect environment variables
+    "/home/abe/Android/Sdk/platforms/android-35/android.jar",
+]
+
+[output]
+path = "bindings.rs"
+
+[codegen]
+method_naming_style = "java"
+method_naming_style_collision = "java_short_signature"
+keep_rejected_emits = false
+
+[codegen.field_naming_style]
+const_finals = true
+rustify_names = false
+getter_pattern = "{NAME}"
+setter_pattern = "set_{NAME}"

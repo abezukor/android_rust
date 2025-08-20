@@ -3,7 +3,7 @@ package com.maticrobots.nsd_rs;
 import android.net.nsd.NsdManager;
 import android.net.nsd.NsdServiceInfo;
 
-import com.maticrobots.rust_android_utilities.RustArcBoxDynAny;
+import com.maticrobots.java_rust_obj.RustArcBoxDynAny;
 
 public class NSDServiceResolver implements NsdManager.ResolveListener {
 

@@ -11,7 +11,7 @@ import android.content.Context;
 
 import androidx.annotation.RequiresPermission;
 
-import com.maticrobots.rust_android_utilities.RustArcBoxDynAny;
+import com.maticrobots.java_rust_obj.RustArcBoxDynAny;
 
 import java.util.List;
 import java.util.Set;

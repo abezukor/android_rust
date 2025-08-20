@@ -1,6 +1,7 @@
 use java_spaghetti::{AsArg, Env, Local, Ref};
 use log::error;
-use rust_android_utilities::{JavaError, JavaResult};
+
+use java_spaghetti_result::{JavaError, JavaResult};
 
 use crate::bindings::{
     android::{

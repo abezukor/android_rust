@@ -74,8 +74,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.startup)
+    //implementation(project(":nsd_rs_2"))
 
 
-    implementation(project(":nsd_rs"))
-    implementation(project(":rust_android_utilities"))
+    //implementation(project(":rust_android_utilities"))
 }

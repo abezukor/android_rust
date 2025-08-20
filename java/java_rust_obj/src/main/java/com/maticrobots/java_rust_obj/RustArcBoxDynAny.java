@@ -1,11 +1,7 @@
-package com.maticrobots.rust_android_utilities;
-
-import android.util.Log;
+package com.maticrobots.java_rust_obj;
 
 import java.lang.ref.Cleaner;
 import java.util.concurrent.atomic.AtomicLong;
-
-import dalvik.annotation.optimization.CriticalNative;
 
 public class RustArcBoxDynAny implements AutoCloseable {
     private static final String TAG = RustArcBoxDynAny.class.getName();
@@ -36,7 +32,6 @@ public class RustArcBoxDynAny implements AutoCloseable {
         this.cleanable = cleaner.register(this, runRustDestructor(this.rust_ptr));
     }
 
-    @CriticalNative
     private static native long rust_object_clone(long rust_ptr);
 
     private static Runnable runRustDestructor(AtomicLong rust_ptr) {
@@ -45,7 +40,6 @@ public class RustArcBoxDynAny implements AutoCloseable {
             if (current_rust_ptr != 0) {
                 rust_object_destruct(current_rust_ptr);
             } else {
-                Log.e(TAG, "Cleaner Destructor is being run twice for an object. This should never happen.");
                 System.exit(1);
             }
 

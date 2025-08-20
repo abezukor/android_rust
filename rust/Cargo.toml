@@ -4,6 +4,5 @@ members = [
     "bluedroid",
     "nsd-rs",
     "nsd_example_app",
-    "rust_android_utilities",
-    "bluedroid/bluedroid_example_app",
+    "bluedroid/bluedroid_example_app", "java_owned_rust_object", "java-spaghetti-result", "java-spaghetti-context", "ndk-application-context",
 ]

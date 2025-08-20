@@ -1,17 +1,14 @@
 [package]
-name = "nsd-rs"
-version = "0.1.2"
+name = "java_owned_rust_object"
+version = "0.1.0"
 edition = "2024"
-license = "MIT"
 
 [dependencies]
 java-spaghetti = "0.2.0"
-jni = "0.21.1"
-log = "0.4.27"
 
 java-spaghetti-context.path = "../java-spaghetti-context"
 java-spaghetti-result.path = "../java-spaghetti-result"
-java_owned_rust_object.path = "../java_owned_rust_object"
+
 
 [build-dependencies]
 android-build = "0.1.3"

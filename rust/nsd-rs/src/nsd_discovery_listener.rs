@@ -1,23 +1,23 @@
 use java_spaghetti::{
-    sys::{jlong, jobject},
     Env, Global, Local, Ref,
+    sys::{jlong, jobject},
 };
 use log::{error, trace};
 
-use rust_android_utilities::{
-    get_vm,
-    java_wrapped_object::{get_ref, to_java},
-    JavaResult,
-};
+use java_owned_rust_object::{get_ref, to_java};
+use java_spaghetti_context::get_vm;
+use java_spaghetti_result::JavaResult;
 
 use crate::{
+    NsdServiceInfo, SharedRustObject,
     bindings::{
-        android::net::nsd::{NsdManager, NsdManager_DiscoveryListener, NsdServiceInfo as JavaNsdServiceInfo},
-        com::maticrobots::{nsd_rs::NSDDiscoveryListener, rust_android_utilities::RustArcBoxDynAny},
+        android::net::nsd::{
+            NsdManager, NsdManager_DiscoveryListener, NsdServiceInfo as JavaNsdServiceInfo,
+        },
+        com::maticrobots::{java_rust_obj::RustArcBoxDynAny, nsd_rs::NSDDiscoveryListener},
         java::lang::String as JString,
     },
     nsd_resolve_listener::JavaResolvers,
-    NsdServiceInfo, SharedRustObject,
 };
 
 pub struct DiscoveryListener {
