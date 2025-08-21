@@ -1,18 +1,19 @@
 use java_spaghetti::{
-    sys::{jbyteArray, jobject},
     Env, Global,
+    sys::{jbyteArray, jobject},
 };
-use uuid::{uuid, Uuid};
+use uuid::{Uuid, uuid};
 
 use crate::{
+    CallBackFuture, GattError,
     bindings::android::bluetooth::BluetoothGattDescriptor as JavaDescriptor,
     characteristic::{
-        rust_on_characteristic_read, rust_on_characteristic_write, CharacteristicReadReturnValue,
-        CharacteristicWriteReturnValue,
+        CharacteristicReadReturnValue, CharacteristicWriteReturnValue, rust_on_characteristic_read,
+        rust_on_characteristic_write,
     },
     device::DeviceWithGattLock,
     error::{BluetoothStatusCode, GattResult},
-    java_debug_eq_hash, java_uuid_to_rust, rust_slice_to_java_byte_array, CallBackFuture, GattError,
+    java_debug_eq_hash, java_uuid_to_rust, rust_slice_to_java_byte_array,
 };
 
 #[derive(Clone)]
@@ -37,7 +38,8 @@ impl Descriptor {
         let gatt_lock = self.device.gatt_lock.lock_arc().await;
 
         let finished = self.descriptor.vm().with_env(|env| {
-            let (rust_obj, future) = CallBackFuture::<CharacteristicReadReturnValue>::new_locked(env, gatt_lock);
+            let (rust_obj, future) =
+                CallBackFuture::<CharacteristicReadReturnValue>::new_locked(env, gatt_lock);
 
             let this = self.descriptor.as_ref(env);
             let device = self.device.device.as_ref(env);
@@ -62,7 +64,8 @@ impl Descriptor {
         let gatt_lock = self.device.gatt_lock.lock_arc().await;
 
         let finished = self.descriptor.vm().with_env(|env| {
-            let (rust_obj, future) = CallBackFuture::<CharacteristicWriteReturnValue>::new_locked(env, gatt_lock);
+            let (rust_obj, future) =
+                CallBackFuture::<CharacteristicWriteReturnValue>::new_locked(env, gatt_lock);
 
             let this = self.descriptor.as_ref(env);
             let device = self.device.device.as_ref(env);

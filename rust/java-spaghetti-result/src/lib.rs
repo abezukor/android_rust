@@ -4,6 +4,7 @@ use java_spaghetti::{CastError, Global, Local, ReferenceType};
 use thiserror::Error;
 
 #[allow(mismatched_lifetime_syntaxes)]
+#[rustfmt::skip]
 mod bindings;
 use crate::bindings::java::lang::Throwable;
 

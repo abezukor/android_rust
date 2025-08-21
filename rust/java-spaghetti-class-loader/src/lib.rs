@@ -11,6 +11,7 @@ use java_spaghetti_context::get_application_context;
 use log::trace;
 
 #[allow(mismatched_lifetime_syntaxes)]
+#[rustfmt::skip]
 mod bindings;
 
 use crate::bindings::{

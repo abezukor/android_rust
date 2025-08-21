@@ -36,7 +36,9 @@ pub enum GattError {
     GattConnectionTimeout,
     #[error("A GATT operation failed, errors other than the above")]
     GattFailure,
-    #[error("There was an attempt to write to the characteristic control descriptor, that can cause race conditions when interafcting with enabling/disabling characteristic notifications and is thus unsupported")]
+    #[error(
+        "There was an attempt to write to the characteristic control descriptor, that can cause race conditions when interafcting with enabling/disabling characteristic notifications and is thus unsupported"
+    )]
     WritingToCCCDescriptor,
 
     #[error(transparent)]
@@ -61,11 +63,15 @@ impl GattError {
             BluetoothGatt::GATT_SUCCESS => Ok(()),
             BluetoothGatt::GATT_READ_NOT_PERMITTED => Err(Self::GattReadNotPermitted),
             BluetoothGatt::GATT_WRITE_NOT_PERMITTED => Err(Self::GattWriteNotPermitted),
-            BluetoothGatt::GATT_INSUFFICIENT_AUTHENTICATION => Err(Self::GattInsufficientAuthentication),
+            BluetoothGatt::GATT_INSUFFICIENT_AUTHENTICATION => {
+                Err(Self::GattInsufficientAuthentication)
+            }
             BluetoothGatt::GATT_REQUEST_NOT_SUPPORTED => Err(Self::GattRequestNotSupported),
             BluetoothGatt::GATT_INSUFFICIENT_ENCRYPTION => Err(Self::GattInsufficientEncryption),
             BluetoothGatt::GATT_INVALID_OFFSET => Err(Self::GattInvalidOffset),
-            BluetoothGatt::GATT_INSUFFICIENT_AUTHORIZATION => Err(Self::GattInsufficientAuthorization),
+            BluetoothGatt::GATT_INSUFFICIENT_AUTHORIZATION => {
+                Err(Self::GattInsufficientAuthorization)
+            }
             BluetoothGatt::GATT_INVALID_ATTRIBUTE_LENGTH => Err(Self::GattInvalidAttributeLength),
             BluetoothGatt::GATT_CONNECTION_CONGESTED => Err(Self::GattConnectionCongested),
             BluetoothGatt::GATT_CONNECTION_TIMEOUT => Err(Self::GattConnectionTimeout),
@@ -83,7 +89,9 @@ impl From<Local<'_, Throwable>> for GattError {
 
 #[derive(Error, Debug)]
 pub enum BluetoothStatusCode {
-    #[error("Error code indicating that the API call was initiated by neither the system nor the active user.")]
+    #[error(
+        "Error code indicating that the API call was initiated by neither the system nor the active user."
+    )]
     NotAllowed,
     #[error("Error code indicating that Bluetooth is not enabled.")]
     NotEnabled,
@@ -97,7 +105,9 @@ pub enum BluetoothStatusCode {
         "Error code indicating that the caller does not have the Manifest.permission.BLUETOOTH_CONNECT permission."
     )]
     MissingBluetoothConnectPermission,
-    #[error("Error code indicating that the profile service is not bound. You can bind a profile service by calling BluetoothAdapter.getProfileProxy.")]
+    #[error(
+        "Error code indicating that the profile service is not bound. You can bind a profile service by calling BluetoothAdapter.getProfileProxy."
+    )]
     ProfileServiceNotBound,
     #[error("Indicates that an unknown error has occurred.")]
     Unknown,
@@ -118,7 +128,9 @@ impl BluetoothStatusCode {
             BluetoothStatusCodes::ERROR_DEVICE_NOT_BONDED => Self::NotBonded,
             BluetoothStatusCodes::ERROR_GATT_WRITE_NOT_ALLOWED => Self::GattWriteNotAllowed,
             BluetoothStatusCodes::ERROR_GATT_WRITE_REQUEST_BUSY => Self::GattWriteBusy,
-            BluetoothStatusCodes::ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION => Self::MissingBluetoothConnectPermission,
+            BluetoothStatusCodes::ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION => {
+                Self::MissingBluetoothConnectPermission
+            }
             BluetoothStatusCodes::ERROR_PROFILE_SERVICE_NOT_BOUND => Self::ProfileServiceNotBound,
             BluetoothStatusCodes::ERROR_UNKNOWN => Self::Unknown,
             BluetoothStatusCodes::FEATURE_NOT_CONFIGURED => Self::FeatureNotConfigured,

@@ -6,9 +6,13 @@ use std::{
 use bluedroid::{Channel, Device};
 use futures::io::{AsyncReadExt, AsyncWriteExt};
 use futures_lite::StreamExt;
-use java_spaghetti::{sys::jobject, Env, Ref};
+use java_owned_rust_object::{
+    BoxedRustObj,
+    bindings::{com::maticrobots::java_rust_obj::RustArcBoxDynAny, java::lang::String as JString},
+    get_ref, to_java_arc,
+};
+use java_spaghetti::{Env, Ref, sys::jobject};
 use log::{debug, info, trace, warn};
-use java_owned_rust_object::{get_ref,to_java_arc,BoxedRustObj,  bindings::{com::maticrobots::java_rust_obj::RustArcBoxDynAny, java::lang::String as JString},};
 use uuid::Uuid;
 
 #[cfg(target_os = "android")]
@@ -21,7 +25,7 @@ static RUNTIME: LazyLock<tokio::runtime::Runtime> =
 #[ctor]
 fn initialization() {
     use android_logger::Config;
-    use log::{info, LevelFilter};
+    use log::{LevelFilter, info};
 
     android_logger::init_once(Config::default().with_max_level(LevelFilter::Trace));
     info!("Android Logger Started");
@@ -52,7 +56,9 @@ pub(crate) extern "system" fn Java_com_matician_bluerdroid_1example_1app_RustIni
         let device_lock_owned = device_lock.clone();
         RUNTIME.spawn(async move {
             let mut stream = adapter.scan(Vec::new()).unwrap();
-            let device_lock = device_lock_owned.downcast_ref::<OnceLock<Device>>().unwrap();
+            let device_lock = device_lock_owned
+                .downcast_ref::<OnceLock<Device>>()
+                .unwrap();
             while let Some(scan_result) = stream.next().await {
                 let device: Device = scan_result.unwrap().device();
                 let id = device.id();
@@ -118,7 +124,10 @@ pub(crate) extern "system" fn Java_com_matician_bluerdroid_1example_1app_RustIni
             .into_iter()
             .find(|characteristic| characteristic.uuid() == CHARACTERISTIC_UUID)
             .expect("Characteristic should exist in the service");
-        info!("Found characteristic with properties {:?}", characteristic.properties());
+        info!(
+            "Found characteristic with properties {:?}",
+            characteristic.properties()
+        );
 
         let value = characteristic.read().await.unwrap();
         assert_eq!(
@@ -131,11 +140,17 @@ pub(crate) extern "system" fn Java_com_matician_bluerdroid_1example_1app_RustIni
         info!("Started notify");
 
         const NEW_VALUE: &[u8] = &[1, 2, 3, 4, 5];
-        characteristic.write(Default::default(), NEW_VALUE).await.unwrap();
+        characteristic
+            .write(Default::default(), NEW_VALUE)
+            .await
+            .unwrap();
         info!("wrote new value");
 
         let new_value = notify.next().await.unwrap();
-        assert_eq!(NEW_VALUE, &new_value as &[u8], "Characteristic set value is incorrect");
+        assert_eq!(
+            NEW_VALUE, &new_value as &[u8],
+            "Characteristic set value is incorrect"
+        );
         info!("got notification for write");
 
         let descriptor = characteristic
@@ -188,6 +203,9 @@ async fn checked_stream_write(channel: &mut Channel, data: &[u8]) {
     channel.read_exact(&mut recv_data).await.unwrap();
     assert_eq!(
         &recv_data,
-        data.iter().map(|byte| !byte).collect::<Vec<u8>>().as_slice()
+        data.iter()
+            .map(|byte| !byte)
+            .collect::<Vec<u8>>()
+            .as_slice()
     )
 }

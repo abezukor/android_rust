@@ -3,14 +3,16 @@ use java_spaghetti_context::{get_application_context, get_vm};
 use java_spaghetti_result::{JavaError, JavaResult};
 
 use crate::{
+    Device,
     bindings::{
         android::content::Context as AndroidContext,
-        com::maticrobots::rust_bluedroid::{Adapter as JavaAdapter, BluetoothDevice as JavaBluetoothDevice},
+        com::maticrobots::rust_bluedroid::{
+            Adapter as JavaAdapter, BluetoothDevice as JavaBluetoothDevice,
+        },
         java::lang::{String as JString, Throwable},
     },
     java_debug_eq_hash, local_array_to_global_vec,
-    scan::{scan_filter::ScanFilter, BluetoothScan},
-    Device,
+    scan::{BluetoothScan, scan_filter::ScanFilter},
 };
 
 #[derive(Clone)]
@@ -40,7 +42,11 @@ impl Adapter {
             let adapter = self.0.as_ref(env);
             //Null on error
             let devices = adapter.getBondedDevices().unwrap().ok_or_else(|| {
-                Throwable::new_String(env, JString::from_env_str(env, "Error getting bonded devices")).unwrap()
+                Throwable::new_String(
+                    env,
+                    JString::from_env_str(env, "Error getting bonded devices"),
+                )
+                .unwrap()
             })?;
             Ok::<_, JavaError>(local_array_to_global_vec(devices))
         })?;
@@ -62,12 +68,19 @@ impl Adapter {
 
     pub(crate) fn default_java_adapter() -> Global<JavaAdapter> {
         get_vm().with_env(|env| {
-            let adapter = JavaAdapter::new(env, unsafe { get_application_context::<AndroidContext>() }).unwrap();
+            let adapter =
+                JavaAdapter::new(env, unsafe { get_application_context::<AndroidContext>() })
+                    .unwrap();
             adapter.as_global()
         })
     }
 
-    fn devices_list(&self, devices: impl Iterator<Item = Global<JavaBluetoothDevice>>) -> Vec<Device> {
-        devices.map(|device| Device::new(device, self.0.clone())).collect()
+    fn devices_list(
+        &self,
+        devices: impl Iterator<Item = Global<JavaBluetoothDevice>>,
+    ) -> Vec<Device> {
+        devices
+            .map(|device| Device::new(device, self.0.clone()))
+            .collect()
     }
 }

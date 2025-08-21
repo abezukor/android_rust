@@ -4,6 +4,7 @@ use java_spaghetti::{ByteArray, Global, Local, PrimitiveArray};
 use uuid::Uuid;
 
 use crate::{
+    Adapter, Device,
     bindings::{
         android::{
             bluetooth::le::{ScanRecord, ScanResult as JavaScanResult},
@@ -13,7 +14,7 @@ use crate::{
         com::maticrobots::rust_bluedroid::BluetoothDevice as JavaBluetoothDevice,
         java::util::Map_Entry,
     },
-    java_byte_array_to_rust_boxed_slice, java_uuid_to_rust, rust_java_uuid, Adapter, Device,
+    java_byte_array_to_rust_boxed_slice, java_uuid_to_rust, rust_java_uuid,
 };
 
 pub struct ScanResult {
@@ -31,7 +32,10 @@ pub struct AdvertisingFlags(i32);
 
 impl ScanResult {
     pub(crate) fn new(scan_result: Global<JavaScanResult>) -> Self {
-        Self { result: scan_result, record: OnceLock::new() }
+        Self {
+            result: scan_result,
+            record: OnceLock::new(),
+        }
     }
 
     pub fn advertising_sid(&self) -> u32 {
@@ -57,7 +61,8 @@ impl ScanResult {
     }
 
     pub fn device(&self) -> Device {
-        let application_context = unsafe { java_spaghetti_context::get_application_context::<Context>() };
+        let application_context =
+            unsafe { java_spaghetti_context::get_application_context::<Context>() };
         let device = self.result.vm().with_env(|env| {
             let context = application_context.as_ref(env);
             let scan_result = self.result.as_ref(env);
@@ -69,7 +74,8 @@ impl ScanResult {
     }
 
     pub fn periodic_advertising_interval(&self) -> Option<Duration> {
-        const ANDROID_PERIODIC_ADVERTISING_INTERVAL_DURATION: Duration = Duration::from_micros(1250);
+        const ANDROID_PERIODIC_ADVERTISING_INTERVAL_DURATION: Duration =
+            Duration::from_micros(1250);
 
         let periodic_advertising_interval = self.result.vm().with_env(|env| {
             let scan_result = self.result.as_ref(env);
@@ -117,7 +123,10 @@ impl ScanResult {
             let mut manufacturer_data_map = HashMap::with_capacity(data_size.try_into().unwrap());
             for i in 0..data_size {
                 let key = manufacturer_data.keyAt(i).unwrap();
-                let value = manufacturer_data.valueAt(i).unwrap().expect("Reported size is wrong");
+                let value = manufacturer_data
+                    .valueAt(i)
+                    .unwrap()
+                    .expect("Reported size is wrong");
                 let value: Local<ByteArray> = value.cast().unwrap();
                 let value: Box<[u8]> = value.as_vec().into_iter().map(i8::cast_unsigned).collect();
                 manufacturer_data_map.insert(key.cast_unsigned(), value);
@@ -133,7 +142,11 @@ impl ScanResult {
             let mfg_data = record
                 .getManufacturerSpecificData_int(manufacturer_id.cast_signed())
                 .unwrap()?;
-            let mfg_data: Box<[u8]> = mfg_data.as_vec().into_iter().map(i8::cast_unsigned).collect();
+            let mfg_data: Box<[u8]> = mfg_data
+                .as_vec()
+                .into_iter()
+                .map(i8::cast_unsigned)
+                .collect();
             Some(mfg_data)
         })
     }
@@ -171,7 +184,8 @@ impl ScanResult {
 
                 let value = entry.getValue().unwrap().unwrap();
                 let value: Local<ByteArray> = value.cast().unwrap();
-                let service_data: Box<[u8]> = value.as_vec().into_iter().map(i8::cast_unsigned).collect();
+                let service_data: Box<[u8]> =
+                    value.as_vec().into_iter().map(i8::cast_unsigned).collect();
 
                 Some((key, service_data))
             }))

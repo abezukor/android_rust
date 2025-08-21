@@ -1,22 +1,26 @@
 use std::{pin::Pin, sync::Arc, time::Duration};
 
-use bluedroid_example_app::{self, DESCRIPTOR_INITIAL_VALUE, PAIRED_CHARACTERISTIC_INITIAL_VALUE, PSM};
+use bluedroid_example_app::{
+    self, DESCRIPTOR_INITIAL_VALUE, PAIRED_CHARACTERISTIC_INITIAL_VALUE, PSM,
+};
 use bluer::{
+    Uuid,
     adv::Advertisement,
     agent::{Agent, DisplayPinCode},
     gatt::local::{
-        Application, Characteristic, CharacteristicNotify, CharacteristicNotifyMethod, CharacteristicRead,
-        CharacteristicWrite, CharacteristicWriteMethod, Descriptor, DescriptorRead, ReqResult, Service,
+        Application, Characteristic, CharacteristicNotify, CharacteristicNotifyMethod,
+        CharacteristicRead, CharacteristicWrite, CharacteristicWriteMethod, Descriptor,
+        DescriptorRead, ReqResult, Service,
     },
     l2cap::{SocketAddr, StreamListener},
-    Uuid,
 };
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 
 const SERVICE_UUID: Uuid = Uuid::from_u128_le(bluedroid_example_app::SERVICE_U128);
 const CHARACTERISTIC_UUID: Uuid = Uuid::from_u128_le(bluedroid_example_app::CHARACTERISTIC_U128);
 const DESCRIPTOR_UUID: Uuid = Uuid::from_u128_le(bluedroid_example_app::DESCRIPTOR_U128);
-const PAIRED_CHARACTERISTIC_UUID: Uuid = Uuid::from_u128_le(bluedroid_example_app::PAIRED_CHARACTERISTIC_U128);
+const PAIRED_CHARACTERISTIC_UUID: Uuid =
+    Uuid::from_u128_le(bluedroid_example_app::PAIRED_CHARACTERISTIC_U128);
 
 #[tokio::main]
 async fn main() -> bluer::Result<()> {
@@ -44,7 +48,10 @@ async fn main() -> bluer::Result<()> {
         tokio::sync::watch::channel(bluedroid_example_app::CHARACTERISTIC_INITIAL_VALUE.to_vec());
     let characteristic_data = Arc::new(characteristic_data);
 
-    println!("Serving GATT echo service on Bluetooth adapter {}", adapter.name());
+    println!(
+        "Serving GATT echo service on Bluetooth adapter {}",
+        adapter.name()
+    );
     let app = Application {
         services: vec![Service {
             uuid: SERVICE_UUID,
@@ -57,7 +64,11 @@ async fn main() -> bluer::Result<()> {
                         method: CharacteristicWriteMethod::Fun({
                             let characteristic_data = characteristic_data.clone();
                             Box::new(move |data, request| {
-                                log::debug!("Got write request {:?}, new value {:?}", request, data);
+                                log::debug!(
+                                    "Got write request {:?}, new value {:?}",
+                                    request,
+                                    data
+                                );
                                 characteristic_data.send_replace(data);
                                 Box::pin(async { ReqResult::Ok(()) })
                             })
@@ -75,7 +86,11 @@ async fn main() -> bluer::Result<()> {
                                     let mut notification_request = notification_request;
                                     {
                                         let starting_value = recv.borrow_and_update().clone();
-                                        if notification_request.notify(starting_value).await.is_err() {
+                                        if notification_request
+                                            .notify(starting_value)
+                                            .await
+                                            .is_err()
+                                        {
                                             return;
                                         };
                                     };
@@ -112,7 +127,10 @@ async fn main() -> bluer::Result<()> {
                         read: Some(DescriptorRead {
                             read: true,
                             fun: Box::new(|descriptor_read_request| {
-                                log::debug!("Got descriptor read request {:?}", descriptor_read_request);
+                                log::debug!(
+                                    "Got descriptor read request {:?}",
+                                    descriptor_read_request
+                                );
 
                                 Box::pin(async { Ok(DESCRIPTOR_INITIAL_VALUE.to_vec()) })
                             }),
@@ -131,7 +149,9 @@ async fn main() -> bluer::Result<()> {
                         secure_read: true,
                         fun: {
                             Box::new(move |_request| {
-                                Box::pin(async { ReqResult::Ok(PAIRED_CHARACTERISTIC_INITIAL_VALUE.to_vec()) })
+                                Box::pin(async {
+                                    ReqResult::Ok(PAIRED_CHARACTERISTIC_INITIAL_VALUE.to_vec())
+                                })
                             })
                         },
                         ..Default::default()
@@ -183,7 +203,9 @@ async fn stream_handler(listener: StreamListener) {
     }
 }
 
-fn display_pin_code(code: DisplayPinCode) -> Pin<Box<dyn Future<Output = bluer::agent::ReqResult<()>> + Send>> {
+fn display_pin_code(
+    code: DisplayPinCode,
+) -> Pin<Box<dyn Future<Output = bluer::agent::ReqResult<()>> + Send>> {
     Box::pin(async move {
         println!("Pairing Code {}", code.pincode);
         Ok(())

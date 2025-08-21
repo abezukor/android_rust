@@ -73,7 +73,10 @@ macro_rules! builder_property {
 }
 
 impl ScanFilter {
-    pub(super) fn java_representation<'a>(&self, env: Env<'a>) -> JavaResult<Local<'a, JavaScanFilter>> {
+    pub(super) fn java_representation<'a>(
+        &self,
+        env: Env<'a>,
+    ) -> JavaResult<Local<'a, JavaScanFilter>> {
         let builder = ScanFilter_Builder::new(env)?;
 
         builder_property!(self, builder, advertising_data_type, {
@@ -89,7 +92,9 @@ impl ScanFilter {
                         java_mask,
                     )
                 }
-                None => builder.setAdvertisingDataType(advertising_data_type.advertising_data_type.cast_signed()),
+                None => builder.setAdvertisingDataType(
+                    advertising_data_type.advertising_data_type.cast_signed(),
+                ),
             }?
             .unwrap()
         });
@@ -103,7 +108,8 @@ impl ScanFilter {
         });
         builder_property!(self, builder, manufacturer_data, {
             let manufacturer_id = manufacturer_data.id.cast_signed();
-            let manufacturer_data_data = rust_slice_to_java_byte_array(env, &manufacturer_data.data);
+            let manufacturer_data_data =
+                rust_slice_to_java_byte_array(env, &manufacturer_data.data);
             match manufacturer_data.mask.as_ref() {
                 Some(mask) => {
                     let java_mask = rust_slice_to_java_byte_array(env, mask);
@@ -113,7 +119,8 @@ impl ScanFilter {
                         java_mask,
                     )
                 }
-                None => builder.setManufacturerData_int_byte_array(manufacturer_id, manufacturer_data_data),
+                None => builder
+                    .setManufacturerData_int_byte_array(manufacturer_id, manufacturer_data_data),
             }?
             .unwrap()
         });
@@ -126,9 +133,15 @@ impl ScanFilter {
             match service_data.mask.as_ref() {
                 Some(mask) => {
                     let java_mask = rust_slice_to_java_byte_array(env, mask);
-                    builder.setServiceData_ParcelUuid_byte_array_byte_array(service_uuid, service_data_data, java_mask)
+                    builder.setServiceData_ParcelUuid_byte_array_byte_array(
+                        service_uuid,
+                        service_data_data,
+                        java_mask,
+                    )
                 }
-                None => builder.setServiceData_ParcelUuid_byte_array(service_uuid, service_data_data),
+                None => {
+                    builder.setServiceData_ParcelUuid_byte_array(service_uuid, service_data_data)
+                }
             }?
             .unwrap()
         });
@@ -141,7 +154,10 @@ impl ScanFilter {
                     let mask = rust_java_uuid(*mask, env);
                     let mask = ParcelUuid::new(env, mask).unwrap();
 
-                    builder.setServiceSolicitationUuid_ParcelUuid_ParcelUuid(solicitation_uuid_full, mask)
+                    builder.setServiceSolicitationUuid_ParcelUuid_ParcelUuid(
+                        solicitation_uuid_full,
+                        mask,
+                    )
                 }
                 None => builder.setServiceSolicitationUuid_ParcelUuid(solicitation_uuid_full),
             }?

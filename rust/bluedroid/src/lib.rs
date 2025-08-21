@@ -1,9 +1,11 @@
 use std::mem::ManuallyDrop;
 
 use futures_channel::mpsc::TrySendError;
-use java_spaghetti::{sys::jobject, ByteArray, Env, Global, Local, ObjectArray, PrimitiveArray, Ref, ReferenceType};
-use log::warn;
 use java_owned_rust_object::get_ref;
+use java_spaghetti::{
+    ByteArray, Env, Global, Local, ObjectArray, PrimitiveArray, Ref, ReferenceType, sys::jobject,
+};
+use log::warn;
 use uuid::Uuid;
 
 pub use device::Device;
@@ -64,7 +66,9 @@ impl ConnectionState {
     }
 }
 
-fn local_array_to_global_vec<T: ReferenceType>(local_array: Local<ObjectArray<T, Throwable>>) -> Vec<Global<T>> {
+fn local_array_to_global_vec<T: ReferenceType>(
+    local_array: Local<ObjectArray<T, Throwable>>,
+) -> Vec<Global<T>> {
     local_array
         .iter()
         .filter_map(|item| item.as_ref().map(Local::as_global))
@@ -99,8 +103,14 @@ fn callback_mpsc_channel_send<T: 'static>(
 
 fn java_byte_array_to_rust_boxed_slice(java_array: Ref<java_spaghetti::ByteArray>) -> Box<[u8]> {
     let signed_vec = ManuallyDrop::new(java_array.as_vec());
-    unsafe { Vec::from_raw_parts(signed_vec.as_ptr() as *mut u8, signed_vec.len(), signed_vec.capacity()) }
-        .into_boxed_slice()
+    unsafe {
+        Vec::from_raw_parts(
+            signed_vec.as_ptr() as *mut u8,
+            signed_vec.len(),
+            signed_vec.capacity(),
+        )
+    }
+    .into_boxed_slice()
 }
 
 fn rust_slice_to_java_byte_array<'a>(env: Env<'a>, slice: &[u8]) -> Local<'a, ByteArray> {

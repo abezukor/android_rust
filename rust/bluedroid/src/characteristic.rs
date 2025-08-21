@@ -1,15 +1,17 @@
 use futures_core::Stream;
-use java_spaghetti::{
-    sys::{jbyteArray, jobject},
-    ByteArray, Env, Global, Local, Ref,
-};
 use java_owned_rust_object::to_java;
+use java_spaghetti::{
+    ByteArray, Env, Global, Local, Ref,
+    sys::{jbyteArray, jobject},
+};
 use uuid::Uuid;
 
 use crate::{
+    CallBackFuture, CallBackFutureData, Descriptor, GattError,
     bindings::{
         android::bluetooth::{
-            BluetoothGattCharacteristic as JavaCharacteristic, BluetoothGattDescriptor as JavaDescriptor,
+            BluetoothGattCharacteristic as JavaCharacteristic,
+            BluetoothGattDescriptor as JavaDescriptor,
         },
         com::maticrobots::rust_android_utilities::RustArcBoxDynAny,
     },
@@ -17,7 +19,7 @@ use crate::{
     device::DeviceWithGattLock,
     error::{BluetoothStatusCode, GattResult},
     java_byte_array_to_rust_boxed_slice, java_debug_eq_hash, java_uuid_to_rust, rust_java_uuid,
-    rust_slice_to_java_byte_array, CallBackFuture, CallBackFutureData, Descriptor, GattError,
+    rust_slice_to_java_byte_array,
 };
 
 #[derive(Clone)]
@@ -74,7 +76,10 @@ impl Characteristic {
 
         descriptors
             .into_iter()
-            .map(|descriptor| Descriptor { descriptor, device: self.device.clone() })
+            .map(|descriptor| Descriptor {
+                descriptor,
+                device: self.device.clone(),
+            })
             .collect()
     }
 
@@ -86,13 +91,17 @@ impl Characteristic {
             let descriptor = this.getDescriptor(descriptor_uuid).unwrap();
             descriptor.as_ref().map(Local::as_global)
         });
-        descriptor.map(|descriptor| Descriptor { descriptor, device: self.device.clone() })
+        descriptor.map(|descriptor| Descriptor {
+            descriptor,
+            device: self.device.clone(),
+        })
     }
 
     pub async fn read(&self) -> GattResult<Box<[u8]>> {
         let gatt_lock = self.device.gatt_lock.lock_arc().await;
         let finished = self.this.vm().with_env(|env| {
-            let (rust_obj, future) = CallBackFuture::<CharacteristicReadReturnValue>::new_locked(env, gatt_lock);
+            let (rust_obj, future) =
+                CallBackFuture::<CharacteristicReadReturnValue>::new_locked(env, gatt_lock);
 
             let this = self.this.as_ref(env);
             let device = self.device.device.as_ref(env);
@@ -110,7 +119,8 @@ impl Characteristic {
         let gatt_lock = self.device.gatt_lock.lock_arc().await;
 
         let finished = self.this.vm().with_env(|env| {
-            let (rust_obj, future) = CallBackFuture::<CharacteristicWriteReturnValue>::new_locked(env, gatt_lock);
+            let (rust_obj, future) =
+                CallBackFuture::<CharacteristicWriteReturnValue>::new_locked(env, gatt_lock);
 
             let this = self.this.as_ref(env);
             let device = self.device.device.as_ref(env);
@@ -153,7 +163,9 @@ impl Characteristic {
             java_byte_array_to_rust_boxed_slice(enable_notification_value.as_ref())
         });
 
-        ccc_descriptor.write_unchecked(&enable_notification_value).await?;
+        ccc_descriptor
+            .write_unchecked(&enable_notification_value)
+            .await?;
         Ok(update_recv)
     }
 }
@@ -185,7 +197,11 @@ pub(crate) extern "system" fn rust_on_characteristic_write(
     status: i32,
 ) {
     unsafe {
-        CallBackFutureData::<CharacteristicWriteReturnValue>::wake(env, rust_obj, GattError::status_error(status));
+        CallBackFutureData::<CharacteristicWriteReturnValue>::wake(
+            env,
+            rust_obj,
+            GattError::status_error(status),
+        );
     }
 }
 
@@ -217,7 +233,10 @@ impl CharacteristicProperties {
     characteristic_property!(notify, JavaCharacteristic::PROPERTY_NOTIFY);
     characteristic_property!(read, JavaCharacteristic::PROPERTY_READ);
     characteristic_property!(signed_write, JavaCharacteristic::PROPERTY_SIGNED_WRITE);
-    characteristic_property!(write_no_response, JavaCharacteristic::PROPERTY_WRITE_NO_RESPONSE);
+    characteristic_property!(
+        write_no_response,
+        JavaCharacteristic::PROPERTY_WRITE_NO_RESPONSE
+    );
     characteristic_property!(write, JavaCharacteristic::PROPERTY_WRITE);
 }
 

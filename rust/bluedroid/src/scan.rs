@@ -2,8 +2,8 @@ use std::task::{Context, Poll};
 
 use futures_core::Stream;
 use futures_lite::StreamExt;
-use java_spaghetti::{sys::jobject, Env, Global, Local, Ref};
 use java_owned_rust_object::to_java;
+use java_spaghetti::{Env, Global, Local, Ref, sys::jobject};
 use thiserror::Error;
 
 use crate::{
@@ -29,7 +29,9 @@ pub struct BluetoothScan {
 
 #[derive(Error, Debug)]
 pub enum ScanError {
-    #[error("Fails to start scan as BLE scan with the same settings is already started by the app.")]
+    #[error(
+        "Fails to start scan as BLE scan with the same settings is already started by the app."
+    )]
     AlreadyStarted,
     #[error("Fails to start scan as app cannot be registered.")]
     ApplicationRegistration,
@@ -41,19 +43,26 @@ pub enum ScanError {
     OutOfHardwareResources,
     #[error("Fails to start scan as application tries to scan too frequently.")]
     ScanningToFrequently,
-    #[error("Scanning is unavailable right now. This usually indicates that bluetooth is disabled on the device")]
+    #[error(
+        "Scanning is unavailable right now. This usually indicates that bluetooth is disabled on the device"
+    )]
     Unavailable,
     #[error("Unknown Error with code {0}")]
     Unknown(i32),
 }
 
 impl BluetoothScan {
-    pub(crate) fn new(adapter: &Global<JavaAdapter>, filters: Vec<ScanFilter>) -> Result<Self, ScanError> {
+    pub(crate) fn new(
+        adapter: &Global<JavaAdapter>,
+        filters: Vec<ScanFilter>,
+    ) -> Result<Self, ScanError> {
         let (scan_send, scan_recv) = futures_channel::mpsc::unbounded();
 
         let scan = adapter.vm().with_env(|env| {
-            let scan_send: Local<'_, crate::bindings::com::maticrobots::rust_android_utilities::RustArcBoxDynAny> =
-                to_java(env, scan_send).unwrap().cast().unwrap();
+            let scan_send: Local<
+                '_,
+                crate::bindings::com::maticrobots::rust_android_utilities::RustArcBoxDynAny,
+            > = to_java(env, scan_send).unwrap().cast().unwrap();
 
             let adapter = adapter.as_local(env);
             let scan = match filters.is_empty() {
@@ -73,14 +82,20 @@ impl BluetoothScan {
 
             scan.map(|scan| scan.as_global())
         })?;
-        Ok(Self { items: scan_recv, scan })
+        Ok(Self {
+            items: scan_recv,
+            scan,
+        })
     }
 }
 
 impl Stream for BluetoothScan {
     type Item = Result<ScanResult, ScanError>;
 
-    fn poll_next(mut self: std::pin::Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Option<Self::Item>> {
+    fn poll_next(
+        mut self: std::pin::Pin<&mut Self>,
+        cx: &mut Context<'_>,
+    ) -> Poll<Option<Self::Item>> {
         self.items.poll_next(cx)
     }
 }
@@ -104,7 +119,12 @@ extern "system" fn Java_com_maticrobots_rust_1bluedroid_LEScanCallback_processSc
 ) -> bool {
     let scan_result: Ref<JavaScanResult> = unsafe { Ref::from_raw(env, scan_result) };
 
-    callback_mpsc_channel_send::<ScanChannelData>(env, rust_obj, Ok(ScanResult::new(scan_result.as_global()))).is_ok()
+    callback_mpsc_channel_send::<ScanChannelData>(
+        env,
+        rust_obj,
+        Ok(ScanResult::new(scan_result.as_global())),
+    )
+    .is_ok()
 }
 
 #[unsafe(no_mangle)]
@@ -117,7 +137,8 @@ extern "system" fn Java_com_maticrobots_rust_1bluedroid_LEScanCallback_processSc
     callback_mpsc_channel_send::<ScanChannelData>(
         env,
         rust_obj,
-        Err(ScanError::from_java(error_code).expect("This function should only be called with a non-zero error code")),
+        Err(ScanError::from_java(error_code)
+            .expect("This function should only be called with a non-zero error code")),
     )
     .is_ok()
 }
@@ -127,7 +148,9 @@ impl ScanError {
         match error_code {
             0 => None,
             ScanCallback::SCAN_FAILED_ALREADY_STARTED => Some(Self::AlreadyStarted),
-            ScanCallback::SCAN_FAILED_APPLICATION_REGISTRATION_FAILED => Some(Self::ApplicationRegistration),
+            ScanCallback::SCAN_FAILED_APPLICATION_REGISTRATION_FAILED => {
+                Some(Self::ApplicationRegistration)
+            }
             ScanCallback::SCAN_FAILED_FEATURE_UNSUPPORTED => Some(Self::FeatureUnsupported),
             ScanCallback::SCAN_FAILED_INTERNAL_ERROR => Some(Self::InteralError),
             ScanCallback::SCAN_FAILED_OUT_OF_HARDWARE_RESOURCES => Some(Self::InteralError),

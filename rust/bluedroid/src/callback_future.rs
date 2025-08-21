@@ -6,9 +6,9 @@ use std::{
 use async_lock::MutexGuardArc;
 use futures_channel::oneshot::{self, Canceled};
 use futures_lite::FutureExt;
-use java_spaghetti::{sys::jobject, Env, Local, Ref};
-use log::error;
 use java_owned_rust_object::{get_ref, to_java};
+use java_spaghetti::{Env, Local, Ref, sys::jobject};
+use log::error;
 
 use crate::bindings::com::maticrobots::rust_android_utilities::RustArcBoxDynAny;
 
@@ -31,11 +31,17 @@ impl<T: Send + Sync + 'static> CallBackFuture<T> {
 
     #[inline]
     /// The gatt lock needs to be held until the callback happens, so it needs to be owned by the future data in case the parent future is cancelled.
-    pub fn new_locked(env: Env<'_>, gatt_lock: MutexGuardArc<()>) -> (Local<'_, RustArcBoxDynAny>, Self) {
+    pub fn new_locked(
+        env: Env<'_>,
+        gatt_lock: MutexGuardArc<()>,
+    ) -> (Local<'_, RustArcBoxDynAny>, Self) {
         Self::new_inner(env, Some(gatt_lock))
     }
 
-    fn new_inner(env: Env<'_>, gatt_lock: Option<MutexGuardArc<()>>) -> (Local<'_, RustArcBoxDynAny>, Self) {
+    fn new_inner(
+        env: Env<'_>,
+        gatt_lock: Option<MutexGuardArc<()>>,
+    ) -> (Local<'_, RustArcBoxDynAny>, Self) {
         let (data_tx, recv) = oneshot::channel();
         let in_java = to_java(env, CallBackFutureData::new(data_tx, gatt_lock));
         (in_java.unwrap().cast().unwrap(), Self { recv })
@@ -58,7 +64,10 @@ impl<T: Send + 'static> Future for CallBackFuture<T> {
 
 impl<T: Send + 'static> CallBackFutureData<T> {
     fn new(data_tx: oneshot::Sender<T>, gatt_lock: Option<MutexGuardArc<()>>) -> Self {
-        Self(Mutex::new(CallBackFutureDataInner { sender: Some(data_tx), gatt_lock }))
+        Self(Mutex::new(CallBackFutureDataInner {
+            sender: Some(data_tx),
+            gatt_lock,
+        }))
     }
 
     /// SAFETY: `rust_obj` must be a `jobject` that represents a java RustArcBoxDynAny

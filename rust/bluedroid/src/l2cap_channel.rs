@@ -6,8 +6,8 @@ use std::{
     hash::{DefaultHasher, Hasher},
     io,
     marker::PhantomData,
-    pin::{pin, Pin},
-    sync::{mpsc, Arc},
+    pin::{Pin, pin},
+    sync::{Arc, mpsc},
     task::{Context, Poll},
     thread,
 };
@@ -16,8 +16,8 @@ use futures_channel::oneshot::{self, Canceled};
 use futures_io::{AsyncRead, AsyncWrite};
 use futures_lite::FutureExt;
 use java_spaghetti::{ByteArray, Global, Local, PrimitiveArray};
-use log::{debug, trace};
 use java_spaghetti_result::{JavaError, JavaResult};
+use log::{debug, trace};
 
 use crate::{
     bindings::{
@@ -68,7 +68,11 @@ struct PhantomMarker<T>(PhantomData<T>);
 impl<T> Unpin for PhantomMarker<T> {}
 
 impl<H: Hasher + Default> Channel<H> {
-    pub(crate) fn open_l2cap_channel(device: Global<JavaBluetoothDevice>, psm: u16, secure: bool) -> JavaResult<Self> {
+    pub(crate) fn open_l2cap_channel(
+        device: Global<JavaBluetoothDevice>,
+        psm: u16,
+        secure: bool,
+    ) -> JavaResult<Self> {
         device.vm().with_env(|env| {
             let device = device.as_local(env);
 
@@ -84,7 +88,9 @@ impl<H: Hasher + Default> Channel<H> {
             // We put it in an Arc held by both the reader and writer, so it gets dropped
             // when both the reader and write are dropped.
             #[cfg(not(test))]
-            let closer = Arc::new(L2capCloser { channel: channel.as_global() });
+            let closer = Arc::new(L2capCloser {
+                channel: channel.as_global(),
+            });
 
             let input_stream = channel.getInputStream()?.unwrap().as_global();
             let output_stream = channel.getOutputStream()?.unwrap().as_global();
@@ -149,10 +155,15 @@ fn read_thread(request: mpsc::Receiver<ReaderRequest>, input_stream: Global<Inpu
                 Ok(err) if err < 0 => Err(io::Error::other(format!(
                     "Got an invalid number of bytes {err} from the channel"
                 ))),
-                Err(e) => Err(io::Error::other(format!("failed to read from l2cap channel: {e:?}"))),
+                Err(e) => Err(io::Error::other(format!(
+                    "failed to read from l2cap channel: {e:?}"
+                ))),
                 Ok(received_size) => {
                     let received_size = received_size as usize;
-                    assert!(received_size <= size, "Read buffer must be less then data length");
+                    assert!(
+                        received_size <= size,
+                        "Read buffer must be less then data length"
+                    );
                     let mut data = vec![0u8; received_size];
                     arr.get_region(0, u8toi8_mut(&mut data));
                     trace!("Read thread got {} bytes", data.len());
@@ -188,7 +199,9 @@ fn write_thread(request: mpsc::Receiver<WriterRequest>, output_stream: Global<Ou
                 hash,
                 match stream.write_byte_array(b) {
                     Ok(()) => Ok(()),
-                    Err(e) => Err(io::Error::other(format!("failed to read from l2cap channel: {e:?}"))),
+                    Err(e) => Err(io::Error::other(format!(
+                        "failed to read from l2cap channel: {e:?}"
+                    ))),
                 },
             );
             if responder.send(response).is_err() {
@@ -203,13 +216,18 @@ fn write_thread(request: mpsc::Receiver<WriterRequest>, output_stream: Global<Ou
 
 impl AsyncRead for Reader {
     /// This implementation should be cancel safe in that it should never loose data (i.e) calles will always eventually get all data that is read from the channel.
-    fn poll_read(mut self: Pin<&mut Self>, cx: &mut Context<'_>, buf: &mut [u8]) -> Poll<io::Result<usize>> {
+    fn poll_read(
+        mut self: Pin<&mut Self>,
+        cx: &mut Context<'_>,
+        buf: &mut [u8],
+    ) -> Poll<io::Result<usize>> {
         let cancel_buffer_has_data = !self.cancel_buffer.is_empty();
         match (self.data_recv.as_mut(), cancel_buffer_has_data) {
             (Some(recv), false) => match recv.poll(cx) {
                 Poll::Ready(response) => {
                     self.data_recv = None;
-                    let response = response.expect("Read thread unexpectdly closed when awaiting response");
+                    let response =
+                        response.expect("Read thread unexpectdly closed when awaiting response");
                     match response {
                         Ok(data) => {
                             let return_len = std::cmp::min(data.len(), buf.len());
@@ -225,7 +243,9 @@ impl AsyncRead for Reader {
                 Poll::Pending => Poll::Pending,
             },
             (Some(_), true) => {
-                unreachable!("We should never have anything in the cancel buffer if we have a pending request. After a request fills the cancel buffer, it is drained before another request can be queued.");
+                unreachable!(
+                    "We should never have anything in the cancel buffer if we have a pending request. After a request fills the cancel buffer, it is drained before another request can be queued."
+                );
             }
             (None, true) => {
                 let data_len = std::cmp::min(self.cancel_buffer.len(), buf.len());
@@ -265,7 +285,11 @@ impl<H: Hasher + Default + Unpin> AsyncWrite for Writer<H> {
     /// This implementation is semi-cancel safe. It makes the guarentee that any data that gets a `Poll::Ready` Response has been sent on the channel.
     /// Any data that has been polled may or may not be written to the channel. Note that this is minorly incompatible with tokio::AsyncWriteExt cancel safety guarentees.
     /// Thanks android for not providing any sort of async io apis on l2cap streams
-    fn poll_write(mut self: Pin<&mut Self>, cx: &mut Context<'_>, buf: &[u8]) -> Poll<io::Result<usize>> {
+    fn poll_write(
+        mut self: Pin<&mut Self>,
+        cx: &mut Context<'_>,
+        buf: &[u8],
+    ) -> Poll<io::Result<usize>> {
         match self.done.as_mut() {
             Some(recv) => match recv.poll(cx) {
                 Poll::Ready(Ok((received_len, received_hash, result))) => {
@@ -286,7 +310,11 @@ impl<H: Hasher + Default + Unpin> AsyncWrite for Writer<H> {
             None => {
                 // New request
                 let (response_tx, response_rx) = oneshot::channel();
-                let request = (buf.to_vec().into_boxed_slice(), Self::hash_data(buf), response_tx);
+                let request = (
+                    buf.to_vec().into_boxed_slice(),
+                    Self::hash_data(buf),
+                    response_tx,
+                );
                 self.request
                     .send(request)
                     .expect("Write thread unexpectdly closed when trying to request");
@@ -307,13 +335,21 @@ impl<H: Hasher + Default + Unpin> AsyncWrite for Writer<H> {
 }
 
 impl AsyncRead for Channel {
-    fn poll_read(mut self: Pin<&mut Self>, cx: &mut Context<'_>, buf: &mut [u8]) -> Poll<io::Result<usize>> {
+    fn poll_read(
+        mut self: Pin<&mut Self>,
+        cx: &mut Context<'_>,
+        buf: &mut [u8],
+    ) -> Poll<io::Result<usize>> {
         AsyncRead::poll_read(pin!(&mut self.reader), cx, buf)
     }
 }
 
 impl AsyncWrite for Channel {
-    fn poll_write(mut self: Pin<&mut Self>, cx: &mut Context<'_>, buf: &[u8]) -> Poll<io::Result<usize>> {
+    fn poll_write(
+        mut self: Pin<&mut Self>,
+        cx: &mut Context<'_>,
+        buf: &[u8],
+    ) -> Poll<io::Result<usize>> {
         pin!(&mut self.writer).poll_write(cx, buf)
     }
 
@@ -415,7 +451,9 @@ mod tests {
         let mut cx = Context::from_waker(Waker::noop());
 
         assert!(matches!(
-            writer.as_mut().poll_write(&mut cx, &[1, 2, 3, 4, 5, 6, 7, 8]),
+            writer
+                .as_mut()
+                .poll_write(&mut cx, &[1, 2, 3, 4, 5, 6, 7, 8]),
             Poll::Pending
         ));
 

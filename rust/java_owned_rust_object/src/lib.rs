@@ -9,6 +9,7 @@ use java_spaghetti::{
 use java_spaghetti_result::JavaResult;
 
 #[allow(mismatched_lifetime_syntaxes)]
+#[rustfmt::skip]
 pub mod bindings;
 
 use crate::bindings::com::maticrobots::java_rust_obj::RustArcBoxDynAny;

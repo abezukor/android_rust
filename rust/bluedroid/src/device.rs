@@ -6,28 +6,32 @@ use std::{
 use futures_channel::mpsc::UnboundedReceiver;
 use futures_core::Stream;
 use futures_lite::StreamExt;
-use java_spaghetti::{
-    sys::{jobject, jobjectArray},
-    Env, Global, Local, ObjectArray, Ref,
-};
-use log::{debug, error, info, trace};
-use java_spaghetti_context::get_application_context;
 use java_owned_rust_object::to_java;
+use java_spaghetti::{
+    Env, Global, Local, ObjectArray, Ref,
+    sys::{jobject, jobjectArray},
+};
+use java_spaghetti_context::get_application_context;
 use java_spaghetti_result::{JavaError, JavaResult};
+use log::{debug, error, info, trace};
 use thiserror::Error;
 
 use crate::{
+    CallBackFuture, CallBackFutureData, Channel, ConnectionState, GattError, Service,
     bindings::{
         android::{bluetooth::BluetoothDevice as RawAndroidBluetoothDevice, content::Context},
         com::maticrobots::{
             rust_android_utilities::RustArcBoxDynAny,
-            rust_bluedroid::{Adapter as JavaAdapter, BluetoothDevice as JavaBluetoothDevice, Service as JavaService},
+            rust_bluedroid::{
+                Adapter as JavaAdapter, BluetoothDevice as JavaBluetoothDevice,
+                Service as JavaService,
+            },
         },
         java::lang::Throwable,
     },
     callback_mpsc_channel_send,
     error::GattResult,
-    java_debug_eq_hash, CallBackFuture, CallBackFutureData, Channel, ConnectionState, GattError, Service,
+    java_debug_eq_hash,
 };
 
 type ReadRemoteRssiReturnValue = Result<i32, GattError>;
@@ -66,7 +70,10 @@ pub enum PairingError {
 impl Device {
     pub(crate) fn new(device: Global<JavaBluetoothDevice>, adapter: Global<JavaAdapter>) -> Self {
         Self {
-            device: DeviceWithGattLock { device, gatt_lock: Default::default() },
+            device: DeviceWithGattLock {
+                device,
+                gatt_lock: Default::default(),
+            },
             adapter,
             creation_time: Instant::now(),
         }
@@ -110,7 +117,9 @@ impl Device {
                 Ok::<_, GattError>(())
             })?;
         } else {
-            trace!("Skipping manual connection since only {since_creation:?} has passed since the BluetoothGatt was created");
+            trace!(
+                "Skipping manual connection since only {since_creation:?} has passed since the BluetoothGatt was created"
+            );
         }
 
         match connection_state
@@ -156,9 +165,12 @@ impl Device {
     pub fn connection_events(&self) -> impl Stream<Item = GattResult<ConnectionState>> {
         let (state_send, state_recv) = futures_channel::mpsc::unbounded();
         let state_recv: UnboundedReceiver<ConnectionStateChannelData> = state_recv; // Enforce channel type
-        state_send.unbounded_send(Ok(self.client_connection_state())).unwrap(); // Start the channel off with the current client connection state
+        state_send
+            .unbounded_send(Ok(self.client_connection_state()))
+            .unwrap(); // Start the channel off with the current client connection state
         self.device.device.vm().with_env(|env| {
-            let rust_obj: Local<RustArcBoxDynAny> = to_java(env, state_send).unwrap().cast().unwrap();
+            let rust_obj: Local<RustArcBoxDynAny> =
+                to_java(env, state_send).unwrap().cast().unwrap();
 
             let device = self.device.device.as_ref(env);
 
@@ -222,7 +234,10 @@ impl Device {
         let services = finished.await?;
         Ok(services
             .into_iter()
-            .map(|service| Service { service, device: self.device.clone() })
+            .map(|service| Service {
+                service,
+                device: self.device.clone(),
+            })
             .collect())
     }
 
@@ -237,9 +252,10 @@ impl Device {
             Ok(services
                 .iter()
                 .filter_map(|service| {
-                    service
-                        .as_ref()
-                        .map(|service| Service { service: service.as_global(), device: self.device.clone() })
+                    service.as_ref().map(|service| Service {
+                        service: service.as_global(),
+                        device: self.device.clone(),
+                    })
                 })
                 .collect())
         })
@@ -271,7 +287,8 @@ impl Device {
     pub fn services_changed(&self) -> impl Stream<Item = ()> {
         let (services_changed_send, services_changed_recv) = futures_channel::mpsc::unbounded();
         self.device.device.vm().with_env(|env| {
-            let rust_obj: Local<RustArcBoxDynAny> = to_java(env, services_changed_send).unwrap().cast().unwrap();
+            let rust_obj: Local<RustArcBoxDynAny> =
+                to_java(env, services_changed_send).unwrap().cast().unwrap();
 
             let device = self.device.device.as_ref(env);
 
@@ -290,7 +307,8 @@ impl Device {
             Ok::<_, JavaError>(adapter.connectionState(device)?)
         })?;
 
-        Ok(ConnectionState::from_java(connection_state).expect("Value should be a connection state"))
+        Ok(ConnectionState::from_java(connection_state)
+            .expect("Value should be a connection state"))
     }
 
     /// GATT client (app) connection state.
@@ -329,13 +347,15 @@ extern "system" fn Java_com_maticrobots_rust_1bluedroid_GattCallback_rustOnConne
     connection_state: i32,
 ) -> bool {
     let connection_state = match GattError::status_error(status) {
-        Ok(()) => Ok(ConnectionState::from_java(connection_state).expect("Value should be a connection state")),
+        Ok(()) => Ok(ConnectionState::from_java(connection_state)
+            .expect("Value should be a connection state")),
         Err(err) => Err(err),
     };
 
     trace!("Got connection state {connection_state:?}");
 
-    callback_mpsc_channel_send::<ConnectionStateChannelData>(env, rust_obj, connection_state).is_ok()
+    callback_mpsc_channel_send::<ConnectionStateChannelData>(env, rust_obj, connection_state)
+        .is_ok()
 }
 
 #[unsafe(no_mangle)]
@@ -369,7 +389,8 @@ extern "system" fn Java_com_maticrobots_rust_1bluedroid_GattCallback_rustOnServi
     status: i32,
 ) {
     let return_object = GattError::status_error(status).map(|()| {
-        let services: Ref<ObjectArray<JavaService, Throwable>> = unsafe { Ref::from_raw(env, services) };
+        let services: Ref<ObjectArray<JavaService, Throwable>> =
+            unsafe { Ref::from_raw(env, services) };
         services
             .iter()
             .filter_map(|service| service.map(|service| service.as_global()))

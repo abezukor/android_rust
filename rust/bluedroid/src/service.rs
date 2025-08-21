@@ -2,14 +2,16 @@ use java_spaghetti::Global;
 use uuid::Uuid;
 
 use crate::{
+    Characteristic,
     bindings::{
         android::bluetooth::{
-            BluetoothGattCharacteristic as RawJavaCharacteristic, BluetoothGattService as RawJavaService,
+            BluetoothGattCharacteristic as RawJavaCharacteristic,
+            BluetoothGattService as RawJavaService,
         },
         com::maticrobots::rust_bluedroid::Service as JavaService,
     },
     device::DeviceWithGattLock,
-    java_debug_eq_hash, java_uuid_to_rust, local_array_to_global_vec, Characteristic,
+    java_debug_eq_hash, java_uuid_to_rust, local_array_to_global_vec,
 };
 
 #[derive(Clone)]
@@ -53,7 +55,10 @@ impl Service {
         });
         services
             .into_iter()
-            .map(|service| Self { service, device: self.device.clone() })
+            .map(|service| Self {
+                service,
+                device: self.device.clone(),
+            })
             .collect()
     }
 
@@ -65,7 +70,10 @@ impl Service {
         });
         services
             .into_iter()
-            .map(|characteristic| Characteristic { this: characteristic, device: self.device.clone() })
+            .map(|characteristic| Characteristic {
+                this: characteristic,
+                device: self.device.clone(),
+            })
             .collect()
     }
 }
