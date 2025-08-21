@@ -1,5 +1,5 @@
 use java_spaghetti::Local;
-use rust_android_utilities::JavaError;
+use java_spaghetti_result::JavaError;
 use std::num::NonZeroI32;
 use thiserror::Error;
 

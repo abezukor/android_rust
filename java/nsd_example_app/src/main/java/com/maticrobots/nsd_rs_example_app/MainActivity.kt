@@ -23,7 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.maticrobots.nsd_rs_example_app.ui.theme.Example_appTheme
-import com.maticrobots.rust_android_utilities.RustArcBoxDynAny
+import com.maticrobots.java_rust_obj.RustArcBoxDynAny
 
 class MainActivity : ComponentActivity() {
 

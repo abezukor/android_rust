@@ -17,7 +17,7 @@ use futures_io::{AsyncRead, AsyncWrite};
 use futures_lite::FutureExt;
 use java_spaghetti::{ByteArray, Global, Local, PrimitiveArray};
 use log::{debug, trace};
-use rust_android_utilities::{JavaError, JavaResult};
+use java_spaghetti_result::{JavaError, JavaResult};
 
 use crate::{
     bindings::{

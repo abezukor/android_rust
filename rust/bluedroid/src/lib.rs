@@ -3,7 +3,7 @@ use std::mem::ManuallyDrop;
 use futures_channel::mpsc::TrySendError;
 use java_spaghetti::{sys::jobject, ByteArray, Env, Global, Local, ObjectArray, PrimitiveArray, Ref, ReferenceType};
 use log::warn;
-use rust_android_utilities::java_wrapped_object::get_ref;
+use java_owned_rust_object::get_ref;
 use uuid::Uuid;
 
 pub use device::Device;
@@ -33,7 +33,7 @@ use crate::bindings::java::lang::Throwable;
 mod descriptor;
 
 pub use error::GattError;
-pub use rust_android_utilities::JavaError;
+pub use java_spaghetti_result::JavaError;
 pub mod error;
 
 pub use l2cap_channel::Channel;

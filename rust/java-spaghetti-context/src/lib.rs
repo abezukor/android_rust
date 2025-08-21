@@ -25,5 +25,3 @@ pub unsafe fn get_application_context<T: ReferenceType>() -> Global<T> {
         ManuallyDrop::new(unsafe { Global::from_raw(get_vm(), app_context.context().cast()) });
     Global::clone(&app_context)
 }
-
-pub mod bytecode_loader;

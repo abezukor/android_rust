@@ -18,7 +18,6 @@ dependencyResolutionManagement {
     repositories {
         google()        // <<-- Add this repository for dependencies like aapt2
         mavenCentral()  // <<-- Add this for general dependencies
-        // Add other repositories if needed (e.g., jcenter(), maven("..."))
     }
 }
 
@@ -31,3 +30,4 @@ include(":rust_bluedroid")
 include(":rust_bluedroid:bluedroid_example_app")
 include(":java_rust_obj")
 include(":nsd_rs")
+include(":rust_context_autoinitialization")

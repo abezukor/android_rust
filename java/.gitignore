@@ -2,9 +2,14 @@
 .gradle
 .idea
 .kotlin
+.project
+org.eclipse*
+*.class
 
 # Ignore Gradle build output directory
 build
+.classpath
+.cxx
 
 #Ignore Maven Repo
 matic_android_repo

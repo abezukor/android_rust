@@ -1,5 +1,6 @@
 use java_spaghetti::Global;
-use rust_android_utilities::{get_application_context, get_vm, JavaError, JavaResult};
+use java_spaghetti_context::{get_application_context, get_vm};
+use java_spaghetti_result::{JavaError, JavaResult};
 
 use crate::{
     bindings::{

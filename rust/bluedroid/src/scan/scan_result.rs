@@ -57,7 +57,7 @@ impl ScanResult {
     }
 
     pub fn device(&self) -> Device {
-        let application_context = unsafe { rust_android_utilities::get_application_context::<Context>() };
+        let application_context = unsafe { java_spaghetti_context::get_application_context::<Context>() };
         let device = self.result.vm().with_env(|env| {
             let context = application_context.as_ref(env);
             let scan_result = self.result.as_ref(env);

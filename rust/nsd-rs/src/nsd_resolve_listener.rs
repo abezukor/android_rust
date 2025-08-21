@@ -2,8 +2,8 @@ use std::{
     collections::HashMap,
     fmt::Debug,
     sync::{
-        atomic::{AtomicBool, Ordering},
         Arc, Mutex, OnceLock,
+        atomic::{AtomicBool, Ordering},
     },
 };
 
@@ -11,23 +11,25 @@ use java_spaghetti::sys::{jlong, jobject};
 use java_spaghetti::{AsArg, ByteArray, Env, Global, Local, PrimitiveArray, Ref};
 use log::{error, trace};
 
+use java_owned_rust_object::{BoxedRustObj, get_ref, to_java_arc};
 use java_spaghetti_context::get_vm;
-use java_owned_rust_object::{get_ref, to_java_arc, BoxedRustObj};
 
 use crate::bindings::android::os::Build_VERSION;
 use crate::bindings::{
-    android::os::{ext::SdkExtensions, Build_VERSION_CODES},
+    android::os::{Build_VERSION_CODES, ext::SdkExtensions},
     java::util::Map_Entry,
 };
 use crate::{
+    SharedRustObject,
     bindings::{
-        android::net::nsd::{NsdManager, NsdManager_ResolveListener, NsdServiceInfo as JavaNsdServiceInfo},
+        android::net::nsd::{
+            NsdManager, NsdManager_ResolveListener, NsdServiceInfo as JavaNsdServiceInfo,
+        },
         com::maticrobots::{
-            nsd_rs::NSDServiceResolver as JavaNSDResolveListener, java_rust_obj::RustArcBoxDynAny,
+            java_rust_obj::RustArcBoxDynAny, nsd_rs::NSDServiceResolver as JavaNSDResolveListener,
         },
         java::lang::{String as JString, Throwable},
     },
-    SharedRustObject,
 };
 
 pub(crate) struct JavaResolvers {
@@ -61,7 +63,10 @@ impl JavaResolvers {
     ) -> Self {
         Self {
             resolvers: Mutex::new(Vec::new()),
-            shared_context: Arc::new(SharedContext { user_context: context, callback: Box::new(callback) }),
+            shared_context: Arc::new(SharedContext {
+                user_context: context,
+                callback: Box::new(callback),
+            }),
         }
     }
 
@@ -69,7 +74,9 @@ impl JavaResolvers {
         let mut resolvers = self.resolvers.lock().unwrap();
         resolvers
             .iter()
-            .find_map(|resolver| (!resolver.in_use.load(Ordering::Relaxed)).then_some(resolver.clone()))
+            .find_map(|resolver| {
+                (!resolver.in_use.load(Ordering::Relaxed)).then_some(resolver.clone())
+            })
             .unwrap_or_else(|| {
                 trace!("Could not find an open resolver, making a new one");
                 let in_use = Arc::new(AtomicBool::new(false));
@@ -80,13 +87,19 @@ impl JavaResolvers {
                 let java_resolver = get_vm().with_env(|env| {
                     let java_resolver = JavaNSDResolveListener::new(
                         env,
-                        to_java_arc(env, context).unwrap().cast::<RustArcBoxDynAny>().unwrap(),
+                        to_java_arc(env, context)
+                            .unwrap()
+                            .cast::<RustArcBoxDynAny>()
+                            .unwrap(),
                     )
                     .unwrap();
                     java_resolver.as_global()
                 });
-                let java_resolver =
-                    Arc::new(JavaResolver { resolver: java_resolver, in_use, manager: manager.clone() });
+                let java_resolver = Arc::new(JavaResolver {
+                    resolver: java_resolver,
+                    in_use,
+                    manager: manager.clone(),
+                });
                 resolvers.push(java_resolver.clone());
                 java_resolver
             })
@@ -139,8 +152,11 @@ impl<'a> NsdServiceInfo<'a> {
         static USE_GET_HOST_NAME: OnceLock<bool> = OnceLock::new();
 
         if *USE_GET_HOST_NAME.get_or_init(|| {
-            let use_get_host_name = Build_VERSION::SDK_INT(self.0.env()) >= Build_VERSION_CODES::BAKLAVA
-                || SdkExtensions::getExtensionVersion(self.0.env(), Build_VERSION_CODES::TIRAMISU).unwrap() >= 17;
+            let use_get_host_name = Build_VERSION::SDK_INT(self.0.env())
+                >= Build_VERSION_CODES::BAKLAVA
+                || SdkExtensions::getExtensionVersion(self.0.env(), Build_VERSION_CODES::TIRAMISU)
+                    .unwrap()
+                    >= 17;
             trace!("Using getHostname function {use_get_host_name}");
             use_get_host_name
         }) {
@@ -182,8 +198,11 @@ impl<'a> NsdServiceInfo<'a> {
         static SUBTYPES_SUPPORTED: OnceLock<bool> = OnceLock::new();
 
         if *SUBTYPES_SUPPORTED.get_or_init(|| {
-            let subtypes_supported = Build_VERSION::SDK_INT(self.0.env()) < Build_VERSION_CODES::VANILLA_ICE_CREAM
-                && SdkExtensions::getExtensionVersion(self.0.env(), Build_VERSION_CODES::TIRAMISU).unwrap() < 12;
+            let subtypes_supported = Build_VERSION::SDK_INT(self.0.env())
+                < Build_VERSION_CODES::VANILLA_ICE_CREAM
+                && SdkExtensions::getExtensionVersion(self.0.env(), Build_VERSION_CODES::TIRAMISU)
+                    .unwrap()
+                    < 12;
             trace!("Subtypes supported {subtypes_supported}");
             subtypes_supported
         }) {
@@ -231,12 +250,16 @@ impl<'a> NsdServiceInfo<'a> {
 
 impl<'a> Debug for NsdServiceInfo<'a> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::result::Result<(), std::fmt::Error> {
-        write!(f, "{}", self.0.toString().unwrap().unwrap().to_string().unwrap())
+        write!(
+            f,
+            "{}",
+            self.0.toString().unwrap().unwrap().to_string().unwrap()
+        )
     }
 }
 
 #[unsafe(no_mangle)]
-extern "system" fn Java_com_maticrobots_nsd_1rs_NSDServiceResolver_rustOnResolveFailed(
+pub(crate) extern "system" fn Java_com_maticrobots_nsd_1rs_NSDServiceResolver_rustOnResolveFailed(
     env: Env<'_>,
     _class: jobject, // self class, ignore,
     _rust_ptr: jlong,
@@ -244,11 +267,15 @@ extern "system" fn Java_com_maticrobots_nsd_1rs_NSDServiceResolver_rustOnResolve
     error_code: i32,
 ) {
     let service_info: Local<'_, JavaNsdServiceInfo> = unsafe { Local::from_raw(env, service_info) };
-    error!("Got Error {} when resolving {:?}", error_code, service_info.toString());
+    error!(
+        "Got Error {} when resolving {:?}",
+        error_code,
+        service_info.toString()
+    );
 }
 
 #[unsafe(no_mangle)]
-extern "system" fn Java_com_maticrobots_nsd_1rs_NSDServiceResolver_rustOnServiceResolved(
+pub(crate) extern "system" fn Java_com_maticrobots_nsd_1rs_NSDServiceResolver_rustOnServiceResolved(
     env: Env<'_>,
     _class: jobject, // self class, ignore,
     rust_ptr: jlong,
@@ -258,6 +285,9 @@ extern "system" fn Java_com_maticrobots_nsd_1rs_NSDServiceResolver_rustOnService
     trace!("Resolved {:?}", service_info.toString());
     let this = unsafe { get_ref(rust_ptr) };
     let this = this.downcast_ref::<ResolverContext>().unwrap();
-    (this.shared_context.callback)(&NsdServiceInfo(service_info), this.shared_context.user_context.clone());
+    (this.shared_context.callback)(
+        &NsdServiceInfo(service_info),
+        this.shared_context.user_context.clone(),
+    );
     this.in_use.store(false, Ordering::Relaxed);
 }

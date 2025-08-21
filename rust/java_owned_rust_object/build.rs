@@ -50,7 +50,7 @@ fn main() {
         .class_path(&out_class_dir)
         .collect_classes(&out_class_dir)
         .unwrap()
-        .android_min_api(20) // disable multidex for single dex file output
+        .android_min_api(33) // disable multidex for single dex file output
         .out_dir(out_dir)
         .command()
         .unwrap_or_else(|e| panic!("Could not generate the D8 command: {e}"))

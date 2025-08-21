@@ -13,7 +13,7 @@ futures = "0.3.31"
 uuid = "1.17.0"
 
 bluedroid.path = "../"
-#rust_android_utilities.path = "../../rust_android_utilities"
+java_owned_rust_object.path = "../../java_owned_rust_object"
 
 
 [target.'cfg(target_os = "android")'.dependencies]

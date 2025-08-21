@@ -150,6 +150,10 @@ dependencies = [
  "futures-io",
  "futures-lite",
  "java-spaghetti",
+ "java-spaghetti-class-loader",
+ "java-spaghetti-context",
+ "java-spaghetti-result",
+ "java_owned_rust_object",
  "log",
  "thiserror 2.0.12",
  "uuid",
@@ -168,6 +172,7 @@ dependencies = [
  "futures-core",
  "futures-lite",
  "java-spaghetti",
+ "java_owned_rust_object",
  "log",
  "tokio",
  "uuid",
@@ -447,6 +452,7 @@ dependencies = [
  "java_owned_rust_object",
  "jni",
  "log",
+ "ndk-application-context",
  "nsd-rs",
 ]
 
@@ -613,6 +619,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "java-spaghetti-class-loader"
+version = "0.1.0"
+dependencies = [
+ "java-spaghetti",
+ "java-spaghetti-context",
+ "log",
+]
+
+[[package]]
 name = "java-spaghetti-context"
 version = "0.1.0"
 dependencies = [
@@ -634,6 +649,7 @@ version = "0.1.0"
 dependencies = [
  "android-build",
  "java-spaghetti",
+ "java-spaghetti-class-loader",
  "java-spaghetti-context",
  "java-spaghetti-result",
 ]
@@ -806,11 +822,13 @@ version = "0.1.2"
 dependencies = [
  "android-build",
  "java-spaghetti",
+ "java-spaghetti-class-loader",
  "java-spaghetti-context",
  "java-spaghetti-result",
  "java_owned_rust_object",
  "jni",
  "log",
+ "walkdir",
 ]
 
 [[package]]

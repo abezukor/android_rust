@@ -11,7 +11,9 @@ log = "0.4.27"
 
 java-spaghetti-context.path = "../java-spaghetti-context"
 java-spaghetti-result.path = "../java-spaghetti-result"
+java-spaghetti-class-loader.path = "../java-spaghetti-class-loader"
 java_owned_rust_object.path = "../java_owned_rust_object"
 
 [build-dependencies]
 android-build = "0.1.3"
+walkdir = "2"

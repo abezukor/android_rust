@@ -15,5 +15,7 @@ futures-lite = { version = "1.13.0", default-features = false }
 log = "0.4.27"
 thiserror = "2.0.12"
 
-
-#rust_android_utilities.path = "../rust_android_utilities"
+java-spaghetti-context.path = "../java-spaghetti-context"
+java-spaghetti-result.path = "../java-spaghetti-result"
+java-spaghetti-class-loader.path = "../java-spaghetti-class-loader"
+java_owned_rust_object.path = "../java_owned_rust_object"

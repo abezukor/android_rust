@@ -39,10 +39,20 @@ impl DiscoveryListener {
         let resolvers = JavaResolvers::new(callback_context, callback);
 
         get_vm().with_env(|env| {
-            let java_inner = to_java(env, Context { manager: manager.clone(), resolvers })?;
-            let java_listener = NSDDiscoveryListener::new(env, java_inner.cast::<RustArcBoxDynAny>().unwrap())?;
+            let java_inner = to_java(
+                env,
+                Context {
+                    manager: manager.clone(),
+                    resolvers,
+                },
+            )?;
+            let java_listener =
+                NSDDiscoveryListener::new(env, java_inner.cast::<RustArcBoxDynAny>().unwrap())?;
 
-            Ok(Self { java_listener: java_listener.as_global(), manager })
+            Ok(Self {
+                java_listener: java_listener.as_global(),
+                manager,
+            })
         })
     }
 
@@ -62,13 +72,15 @@ impl Drop for DiscoveryListener {
         trace!("Stopping Service Discovery");
         get_vm().with_env(|env| {
             let manager = self.manager.as_local(env);
-            manager.stopServiceDiscovery(self.java_listener.clone()).unwrap()
+            manager
+                .stopServiceDiscovery(self.java_listener.clone())
+                .unwrap()
         })
     }
 }
 
 #[unsafe(no_mangle)]
-extern "system" fn Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnStartDiscoveryFailed(
+pub(crate) extern "system" fn Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnStartDiscoveryFailed(
     env: Env<'_>,
     _class: jobject, // self class, ignore,
     service_type: jobject,
@@ -83,7 +95,7 @@ extern "system" fn Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnStart
 }
 
 #[unsafe(no_mangle)]
-extern "system" fn Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnStopDiscoveryFailed(
+pub(crate) extern "system" fn Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnStopDiscoveryFailed(
     env: Env<'_>,
     _class: jobject, // self class, ignore,
     service_type: jobject,
@@ -98,7 +110,7 @@ extern "system" fn Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnStopD
 }
 
 #[unsafe(no_mangle)]
-extern "system" fn Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnDiscoveryStarted(
+pub(crate) extern "system" fn Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnDiscoveryStarted(
     env: Env<'_>,
     _class: jobject, // self class, ignore,
     service_type: jobject,
@@ -108,7 +120,7 @@ extern "system" fn Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnDisco
 }
 
 #[unsafe(no_mangle)]
-extern "system" fn Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnDiscoveryStopped(
+pub(crate) extern "system" fn Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnDiscoveryStopped(
     env: Env<'_>,
     _class: jobject, // self class, ignore,
     service_type: jobject,
@@ -123,7 +135,7 @@ extern "system" fn Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnDisco
 }
 
 #[unsafe(no_mangle)]
-extern "system" fn Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnServiceFound(
+pub(crate) extern "system" fn Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnServiceFound(
     env: Env<'_>,
     _class: jobject, // self class, ignore,
     service_info: jobject,
@@ -150,7 +162,7 @@ extern "system" fn Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnServi
 }
 
 #[unsafe(no_mangle)]
-extern "system" fn Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnServiceLost(
+pub(crate) extern "system" fn Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnServiceLost(
     _env: Env<'_>,
     _class: jobject, // self class, ignore,
     _service_info: jobject,

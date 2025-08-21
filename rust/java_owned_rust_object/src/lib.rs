@@ -9,7 +9,7 @@ use java_spaghetti::{
 use java_spaghetti_result::JavaResult;
 
 #[allow(mismatched_lifetime_syntaxes)]
-mod bindings;
+pub mod bindings;
 
 use crate::bindings::com::maticrobots::java_rust_obj::RustArcBoxDynAny;
 
@@ -66,13 +66,30 @@ extern "system" fn Java_com_maticrobots_rust_1android_1utilities_RustArcBoxDynAn
 }
 
 pub fn initialize() {
-    use std::sync::Once;
+    use java_spaghetti::sys::JNINativeMethod;
 
-    static INITIALIZE: Once = Once::new();
+    const RUST_ARC_BOX_DYN_ANY_JAVA_BYTECODE: &[u8] =
+        include_bytes!(concat!(env!("OUT_DIR"), "/classes.dex"));
+    java_spaghetti_class_loader::load_bytecode(
+        "com.maticrobots.java_rust_obj",
+        RUST_ARC_BOX_DYN_ANY_JAVA_BYTECODE,
+    );
 
-    INITIALIZE.call_once(|| {
-        const RUST_ARC_BOX_DYN_ANY_JAVA_BYTECODE: &[u8] =
-            include_bytes!(concat!(env!("OUT_DIR"), "/classes.dex"));
-        java_spaghetti_context::bytecode_loader::load_bytecode(RUST_ARC_BOX_DYN_ANY_JAVA_BYTECODE);
-    });
+    const RUST_ARC_BOX_DN_ANY_METHODS: &[JNINativeMethod] = &[
+        JNINativeMethod {
+        name: c"rust_object_destruct".as_ptr().cast_mut(),
+        signature: c"(J)V".as_ptr().cast_mut(),
+        fnPtr: Java_com_maticrobots_rust_1android_1utilities_RustArcBoxDynAny_rust_1object_1destruct as *mut _,
+    },
+    JNINativeMethod {
+        name: c"rust_object_clone".as_ptr().cast_mut(),
+        signature: c"(J)J".as_ptr().cast_mut(),
+        fnPtr: Java_com_maticrobots_rust_1android_1utilities_RustArcBoxDynAny_rust_1object_1clone as *mut _,
+    },
+];
+
+    java_spaghetti_class_loader::declare_native_class_methods(
+        "com/maticrobots/java_rust_obj/RustArcBoxDynAny",
+        RUST_ARC_BOX_DN_ANY_METHODS,
+    );
 }

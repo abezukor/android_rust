@@ -3,7 +3,7 @@ use std::task::{Context, Poll};
 use futures_core::Stream;
 use futures_lite::StreamExt;
 use java_spaghetti::{sys::jobject, Env, Global, Local, Ref};
-use rust_android_utilities::java_wrapped_object::to_java;
+use java_owned_rust_object::to_java;
 use thiserror::Error;
 
 use crate::{

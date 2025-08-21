@@ -1,6 +1,6 @@
 --- !ifs-v1
 IfsVersion:      3.0
-SoName:          librust_android_utilities_setter.so
+SoName:          librust_context_autoinitialization_setter.so
 NeededLibs:
   - libandroid.so
   - liblog.so

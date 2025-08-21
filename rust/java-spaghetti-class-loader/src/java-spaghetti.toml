@@ -1,5 +1,6 @@
 
 include = [
+    "java/lang/Class",
     "java/lang/Object",
     "java/lang/Throwable",
     "java/lang/String",
@@ -10,7 +11,9 @@ include = [
     "java/nio/Buffer",
 
     "dalvik/system/BaseDexClassLoader",
-    "dalvik/system/InMemoryDexClassLoader"
+    "dalvik/system/InMemoryDexClassLoader",
+
+    "android/content/Context",
 ]
 
 [[documentation.pattern]]
@@ -25,10 +28,7 @@ argument_seperator = ",%20"
 verbose = true
 
 [input]
-files = [
-    # TODO Make this respect environment variables
-    "/home/abe/Android/Sdk/platforms/android-35/android.jar",
-]
+files = ["/home/abe/Android/Sdk/platforms/android-35/android.jar",]
 
 [output]
 path = "bindings.rs"

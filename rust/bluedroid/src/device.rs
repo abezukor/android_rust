@@ -11,7 +11,9 @@ use java_spaghetti::{
     Env, Global, Local, ObjectArray, Ref,
 };
 use log::{debug, error, info, trace};
-use rust_android_utilities::{get_application_context, java_wrapped_object::to_java, JavaError, JavaResult};
+use java_spaghetti_context::get_application_context;
+use java_owned_rust_object::to_java;
+use java_spaghetti_result::{JavaError, JavaResult};
 use thiserror::Error;
 
 use crate::{

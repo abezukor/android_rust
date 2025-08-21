@@ -3,6 +3,7 @@ use std::sync::Arc;
 
 use java_owned_rust_object::to_java;
 use jni::{objects::JObject, sys::jobject};
+pub use ndk_application_context::rust_android_initialize_context_ctor;
 use nsd_rs::{self, DiscoveryRequest, NsdServiceInfo, SharedRustObject, jni_env};
 
 #[unsafe(no_mangle)]
@@ -21,17 +22,22 @@ pub extern "system" fn Java_com_maticrobots_nsd_1rs_1example_1app_RustNSDExample
         }
         log::error!("Panic at {:?}", panic_hook_info.location());
         log::error!("Backtrace: {}", std::backtrace::Backtrace::force_capture());
-    }))
+    }));
+
+    nsd_rs::initialize();
 }
 
 #[unsafe(no_mangle)]
-pub extern "system" fn Java_com_maticrobots_nsd_1rs_1example_1app_RustNSDExample_start_1discovery<'a>(
+pub extern "system" fn Java_com_maticrobots_nsd_1rs_1example_1app_RustNSDExample_start_1discovery<
+    'a,
+>(
     env: jni::JNIEnv<'a>,
     _class: jni::objects::JClass,
 ) -> JObject<'a> {
     let env = jni_env(env);
     let discovery_request = DiscoveryRequest::new("_matic_hermes._tcp".to_owned(), None, None);
-    let manager = nsd_rs::NSDManager::new(discovery_request, Arc::new(()), Box::new(callback)).unwrap();
+    let manager =
+        nsd_rs::NSDManager::new(discovery_request, Arc::new(()), Box::new(callback)).unwrap();
 
     let java_obj = to_java(env, manager).unwrap();
     unsafe { JObject::from_raw(java_obj.into_raw() as jobject) }

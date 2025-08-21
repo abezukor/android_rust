@@ -8,10 +8,7 @@ use futures::io::{AsyncReadExt, AsyncWriteExt};
 use futures_lite::StreamExt;
 use java_spaghetti::{sys::jobject, Env, Ref};
 use log::{debug, info, trace, warn};
-use rust_android_utilities::{
-    bindings::{com::maticrobots::rust_android_utilities::RustArcBoxDynAny, java::lang::String as JString},
-    java_wrapped_object::{get_ref, to_java_arc, BoxedRustObj},
-};
+use java_owned_rust_object::{get_ref,to_java_arc,BoxedRustObj,  bindings::{com::maticrobots::java_rust_obj::RustArcBoxDynAny, java::lang::String as JString},};
 use uuid::Uuid;
 
 #[cfg(target_os = "android")]

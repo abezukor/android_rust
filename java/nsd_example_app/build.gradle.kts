@@ -31,6 +31,7 @@ android {
                 "proguard-rules.pro"
             )
         }
+        debug { packaging { jniLibs { keepDebugSymbols += "**/*.so" } } }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -74,8 +75,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.startup)
-    //implementation(project(":nsd_rs_2"))
-
-
-    //implementation(project(":rust_android_utilities"))
+    implementation(project(":java_rust_obj"))
+    implementation(project(":rust_context_autoinitialization"))
 }

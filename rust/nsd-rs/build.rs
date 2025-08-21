@@ -2,6 +2,7 @@ use std::path::PathBuf;
 use std::{env, path::Path};
 
 use android_build::{Dexer, JavaBuild};
+use walkdir::WalkDir;
 
 const COMMON_LIBRARY_PATH: &str =
     "../../java/java_rust_obj/src/main/java/com/maticrobots/java_rust_obj";
@@ -13,9 +14,11 @@ fn main() {
     }
 
     let common_library_path = Path::new(COMMON_LIBRARY_PATH);
+    let java_deps = [common_library_path.join("RustArcBoxDynAny.java")];
+
     let java_library_dir = Path::new(JAVA_LIBRARY_DIR);
+
     let java_srcs = [
-        common_library_path.join("RustArcBoxDynAny.java"),
         java_library_dir.join("NSDDiscoveryListener.java"),
         java_library_dir.join("NSDServiceResolver.java"),
     ];
@@ -33,7 +36,7 @@ fn main() {
 
     // Compile the Java file into .class files
     let o = JavaBuild::new()
-        .files(&java_srcs)
+        .files(java_deps.iter().chain(java_srcs.iter()))
         .class_path(&android_jar)
         .classes_out_dir(&out_class_dir)
         .java_source_version(8)
@@ -51,12 +54,42 @@ fn main() {
         );
     }
 
+    // Only output the srcs files, not their dependencies
+    let output_class_names: Vec<&str> = java_srcs
+        .iter()
+        .map(|java_src| {
+            java_src
+                .file_name()
+                .unwrap()
+                .to_str()
+                .unwrap()
+                .strip_suffix(".java")
+                .unwrap()
+        })
+        .collect();
+    let output_class_files = WalkDir::new(&out_class_dir)
+        .into_iter()
+        .filter_map(|entry| {
+            let entry = entry.unwrap();
+            if !entry.file_type().is_file() {
+                return None;
+            }
+            output_class_names
+                .contains(
+                    &entry
+                        .file_name()
+                        .to_str()
+                        .unwrap()
+                        .strip_suffix(".class")
+                        .unwrap(),
+                )
+                .then_some(entry.path().to_owned())
+        });
     let o = Dexer::new()
         .android_jar(&android_jar)
         .class_path(&out_class_dir)
-        .collect_classes(&out_class_dir)
-        .unwrap()
-        .android_min_api(20) // disable multidex for single dex file output
+        .files(output_class_files)
+        .android_min_api(33)
         .out_dir(out_dir)
         .command()
         .unwrap_or_else(|e| panic!("Could not generate the D8 command: {e}"))

@@ -8,7 +8,7 @@ java-spaghetti = "0.2.0"
 
 java-spaghetti-context.path = "../java-spaghetti-context"
 java-spaghetti-result.path = "../java-spaghetti-result"
-
+java-spaghetti-class-loader.path = "../java-spaghetti-class-loader"
 
 [build-dependencies]
 android-build = "0.1.3"

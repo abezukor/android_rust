@@ -8,7 +8,7 @@ use futures_channel::oneshot::{self, Canceled};
 use futures_lite::FutureExt;
 use java_spaghetti::{sys::jobject, Env, Local, Ref};
 use log::error;
-use rust_android_utilities::java_wrapped_object::{get_ref, to_java};
+use java_owned_rust_object::{get_ref, to_java};
 
 use crate::bindings::com::maticrobots::rust_android_utilities::RustArcBoxDynAny;
 

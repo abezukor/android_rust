@@ -1,5 +1,8 @@
 pub use ctor::ctor;
+use std::ffi::{CStr, c_int};
 use std::{ffi::c_void, sync::LazyLock};
+
+use android_log_sys::{__android_log_write as android_log_write, LogPriority};
 
 unsafe extern "C" {
     fn android_rust_initialization_vm() -> *mut c_void;
@@ -10,6 +13,8 @@ unsafe extern "C" {
     pub fn android_rust_initialization_class_loader() -> java_spaghetti::sys::jobject;
 }
 
+const TAG: &CStr = c"Rust Android AutoInitialization";
+
 pub static NDK_CONTEXT_INITIALIZED: LazyLock<()> = LazyLock::new(|| {
     // Initialize NDK context with the application context
     unsafe {
@@ -18,10 +23,31 @@ pub static NDK_CONTEXT_INITIALIZED: LazyLock<()> = LazyLock::new(|| {
             android_rust_initialization_application_context(),
         );
     }
+    unsafe {
+        android_log_write(
+            (LogPriority::VERBOSE as isize) as c_int,
+            TAG.to_bytes().as_ptr().cast(),
+            c"Set Class loader from application context"
+                .to_bytes()
+                .as_ptr()
+                .cast(),
+        );
+    }
 });
 
+#[unsafe(no_mangle)]
 #[ctor]
-fn initialize_context() {
+pub fn rust_android_initialize_context_ctor() {
+    unsafe {
+        android_log_write(
+            (LogPriority::VERBOSE as isize) as c_int,
+            TAG.to_bytes().as_ptr().cast(),
+            c"Autoinitialization Ctor Running"
+                .to_bytes()
+                .as_ptr()
+                .cast(),
+        );
+    }
     let _ = *NDK_CONTEXT_INITIALIZED;
 
     #[cfg(feature = "java-spaghetti")]
@@ -32,13 +58,7 @@ fn initialize_context() {
 
 #[cfg(feature = "java-spaghetti")]
 pub fn set_class_loader() {
-    use android_log_sys::{
-        __android_log_assert as android_log_assert, __android_log_write as android_log_write,
-        LogPriority,
-    };
-    use std::ffi::{CStr, c_int};
-
-    const TAG: &CStr = c"Rust Android Initialization";
+    use android_log_sys::__android_log_assert as android_log_assert;
 
     let class_loader = unsafe { android_rust_initialization_class_loader() };
     if class_loader.is_null() {

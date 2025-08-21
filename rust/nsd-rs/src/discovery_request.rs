@@ -7,11 +7,12 @@ use crate::bindings::{
     android::{
         content::Context as AndroidContext,
         net::{
-            nsd::{
-                DiscoveryRequest as JavaDiscoveryRequest, DiscoveryRequest_Builder as JavaDiscoveryRequestBuilder,
-                NsdManager, NsdManager_DiscoveryListener,
-            },
             Network,
+            nsd::{
+                DiscoveryRequest as JavaDiscoveryRequest,
+                DiscoveryRequest_Builder as JavaDiscoveryRequestBuilder, NsdManager,
+                NsdManager_DiscoveryListener,
+            },
         },
         os::Build_VERSION,
     },
@@ -26,7 +27,11 @@ pub struct DiscoveryRequest {
 
 impl DiscoveryRequest {
     pub fn new(service_type: String, subtype: Option<String>, network: Option<i64>) -> Self {
-        Self { service_type, subtype, network }
+        Self {
+            service_type,
+            subtype,
+            network,
+        }
     }
 
     fn java_network<'a>(&self, env: Env<'a>) -> JavaResult<Option<Local<'a, Network>>> {
@@ -34,16 +39,16 @@ impl DiscoveryRequest {
             return Ok(None);
         };
 
-        Ok(Some(Network::fromNetworkHandle(env, network_handle)?.ok_or_else(
-            || {
+        Ok(Some(
+            Network::fromNetworkHandle(env, network_handle)?.ok_or_else(|| {
                 error!("None in fromNetworkHandle");
                 Throwable::new_String(
                     env,
                     JString::from_env_str(env, format!("No Network at handle {network_handle}")),
                 )
                 .unwrap()
-            },
-        )?))
+            })?,
+        ))
     }
 
     fn java_object(self, env: Env<'_>) -> JavaResult<Local<'_, JavaDiscoveryRequest>> {
@@ -94,13 +99,14 @@ impl DiscoveryRequest {
                 let service_type = JString::from_env_str(env, &self.service_type);
 
                 match self.java_network(env)? {
-                    Some(network) => manager.discoverServices_String_int_Network_Executor_DiscoveryListener(
-                        service_type,
-                        NsdManager::PROTOCOL_DNS_SD,
-                        network,
-                        app_context.getMainExecutor()?,
-                        discovery_listener,
-                    )?,
+                    Some(network) => manager
+                        .discoverServices_String_int_Network_Executor_DiscoveryListener(
+                            service_type,
+                            NsdManager::PROTOCOL_DNS_SD,
+                            network,
+                            app_context.getMainExecutor()?,
+                            discovery_listener,
+                        )?,
                     None => manager.discoverServices_String_int_DiscoveryListener(
                         service_type,
                         NsdManager::PROTOCOL_DNS_SD,

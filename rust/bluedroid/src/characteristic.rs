@@ -3,7 +3,7 @@ use java_spaghetti::{
     sys::{jbyteArray, jobject},
     ByteArray, Env, Global, Local, Ref,
 };
-use rust_android_utilities::java_wrapped_object::to_java;
+use java_owned_rust_object::to_java;
 use uuid::Uuid;
 
 use crate::{

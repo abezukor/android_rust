@@ -1,5 +1,5 @@
 use java_spaghetti::{Env, Local};
-use rust_android_utilities::JavaResult;
+use java_spaghetti_result::JavaResult;
 use uuid::Uuid;
 
 use crate::{
