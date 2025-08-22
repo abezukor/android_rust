@@ -1,3 +1,13 @@
+//! A crate to make dynamically loading bytecode with `java-spaghetti` easier.
+//!
+//! Using dynamically load bytecode (e.x. because you are using [android-build](https://crates.io/crates/android-build) to generate the bytecode)
+//! can in `java-spaghetti` be tricky because the `java-spaghetti` class loader must be one that has your byte code.
+//! This becomes especially difficult if your app has more then one library that needs to dynamically load bytecode.
+//!
+//! This enables using multiple sets of dynamically bytecode  with the `java-spaghetti` class loader.
+//! It essentially creates a class loader chain, with the base application class loader as the starting element each loaded class depending on the last element in the chain.
+#![warn(missing_docs)]
+
 use std::{
     collections::{HashMap, HashSet, VecDeque, hash_map::Entry},
     ops::DerefMut,
@@ -97,7 +107,15 @@ pub fn load_bytecode(package: &'static str, bytecode: &'static [u8]) {
     class_loader_chain.class_loaders.push_back(new_loader);
 }
 
-pub fn declare_native_class_methods(class: &'static str, methods: &'static [RawJNINativeMethod]) {
+/// Java class loaders do **not** inherit their native methods from their parent class loaders. Therefore all of the native methods
+/// that get automatically registered by calling`System.loadlibrary` while using a different class loader will not be available.
+/// To make the native methods available on the new class loader, the must be re-registered. This function provides a binding for registering
+/// native methods on the `java-spaghetti` class loader.
+/// It will also add the new binding to a list such that it will also be added to any subsequent class loaders in the chain.
+pub fn declare_native_class_methods(
+    class_name: &'static str,
+    methods: &'static [RawJNINativeMethod],
+) {
     let mut class_loader_chain = CLASS_LOADERS.lock().unwrap();
 
     let ClassLoaderChain {
@@ -107,7 +125,7 @@ pub fn declare_native_class_methods(class: &'static str, methods: &'static [RawJ
     } = class_loader_chain.deref_mut();
     let last_loader = class_loaders.back().unwrap();
 
-    let native_methods_for_class = native_methods.entry(class);
+    let native_methods_for_class = native_methods.entry(class_name);
     if matches!(native_methods_for_class, Entry::Occupied(_)) {
         // Already Registered methods for that class
         return;
@@ -117,7 +135,7 @@ pub fn declare_native_class_methods(class: &'static str, methods: &'static [RawJ
         class: {
             last_loader.vm().with_env(|env| {
                 let last_loader = last_loader.as_ref(env);
-                let class_name = JString::from_env_str(env, class);
+                let class_name = JString::from_env_str(env, class_name);
                 last_loader
                     .loadClass(class_name)
                     .unwrap()

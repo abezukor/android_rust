@@ -1,3 +1,6 @@
+//! A crate for making [`java-spaghetti`](https://crates.io/crates/java-spaghetti) result types easier to handle
+#![warn(missing_docs)]
+
 use std::fmt::{Debug, Display};
 
 use java_spaghetti::{CastError, Global, Local, ReferenceType};
@@ -8,13 +11,16 @@ use thiserror::Error;
 mod bindings;
 use crate::bindings::java::lang::Throwable;
 
+#[allow(missing_docs)]
 pub type JavaResult<T> = Result<T, JavaError>;
 
 /// Global Java Error that can be passed between threads.
 #[derive(Error, Debug)]
 pub enum JavaError {
+    /// The Java Exception
     #[error(transparent)]
     Throwable(#[from] JavaException),
+    /// Failed to Case an error to a throwable
     #[error(transparent)]
     Cast(#[from] CastError),
 }
@@ -28,6 +34,7 @@ impl<T: ReferenceType> From<Local<'_, T>> for JavaError {
     }
 }
 
+/// A rust representation of a Java Exception
 #[derive(Error)]
 pub struct JavaException(Global<Throwable>);
 

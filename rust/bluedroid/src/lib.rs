@@ -1,3 +1,17 @@
+//! Asynchronously Access the Android BLE subsystem
+//!
+//! Bluedroid lets you interact with the Android Bluetooth LE subsubsystem asynchronously from rust code.
+//! Bluetooth classic support is out of scope for this project.
+//! It is designed to serve as a back-end to [bluest](https://crates.io/crates/bluest) but can be used standalone.
+//!
+//! # Initialization
+//! Before you use bluedroid, you must initialize it.
+//! ```rust
+//! bluedroid::initialize();
+//! ```
+//! # Usage
+//! See the `bluedroid_example_app` directory for an example of this libraries usage.
+
 use std::mem::ManuallyDrop;
 
 use futures_channel::mpsc::TrySendError;

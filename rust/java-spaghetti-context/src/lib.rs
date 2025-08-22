@@ -1,3 +1,7 @@
+//! A small crate for getting the android context in  [`java-spaghetti`](https://crates.io/crates/java-spaghetti).
+//! For better compatibility with the rest of the rust android ecosystem, it derives the contest from [ndk-context](https://crates.io/crates/ndk-context)
+#![warn(missing_docs)]
+
 use std::mem::ManuallyDrop;
 
 use java_spaghetti::{Global, ReferenceType, VM};

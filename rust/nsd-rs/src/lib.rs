@@ -1,3 +1,6 @@
+//! A rust crate to use [Android NSD](https://developer.android.com/develop/connectivity/wifi/use-nsd) from rust.
+//!  Eventually Intended to be a fully functional backend for [zeroconf](https://crates.io/crates/zeroconf).
+
 // Re-Export both of these as our API depends on their types
 pub use java_spaghetti;
 pub use jni;

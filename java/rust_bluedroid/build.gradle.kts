@@ -66,7 +66,6 @@ dependencies {
 
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(project(":java_rust_obj"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
