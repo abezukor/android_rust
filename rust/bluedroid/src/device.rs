@@ -339,7 +339,7 @@ impl Drop for Device {
 }
 
 #[unsafe(no_mangle)]
-extern "system" fn Java_com_maticrobots_rust_1bluedroid_GattCallback_rustOnConnectionChangeState(
+pub(crate) extern "system" fn Java_com_maticrobots_rust_1bluedroid_GattCallback_rustOnConnectionChangeState(
     env: Env<'_>,
     _this: jobject,
     rust_obj: jobject,
@@ -359,7 +359,7 @@ extern "system" fn Java_com_maticrobots_rust_1bluedroid_GattCallback_rustOnConne
 }
 
 #[unsafe(no_mangle)]
-extern "system" fn Java_com_maticrobots_rust_1bluedroid_PairingReceiver_rustPairingEvent(
+pub(super) extern "system" fn Java_com_maticrobots_rust_1bluedroid_PairingReceiver_rustPairingEvent(
     env: Env<'_>,
     _this: jobject,
     rust_obj: jobject,
@@ -381,7 +381,7 @@ extern "system" fn Java_com_maticrobots_rust_1bluedroid_PairingReceiver_rustPair
 }
 
 #[unsafe(no_mangle)]
-extern "system" fn Java_com_maticrobots_rust_1bluedroid_GattCallback_rustOnServicesDiscoveredCallback(
+pub(super) extern "system" fn Java_com_maticrobots_rust_1bluedroid_GattCallback_rustOnServicesDiscoveredCallback(
     env: Env<'_>,
     _this: jobject,
     rust_obj: jobject,
@@ -402,7 +402,7 @@ extern "system" fn Java_com_maticrobots_rust_1bluedroid_GattCallback_rustOnServi
 }
 
 #[unsafe(no_mangle)]
-extern "system" fn rustOnReadRemoteRssiCallback(
+pub(crate) extern "system" fn rustOnReadRemoteRssiCallback(
     env: Env<'_>,
     _this: jobject,
     rust_obj: jobject,
@@ -419,7 +419,7 @@ extern "system" fn rustOnReadRemoteRssiCallback(
 }
 
 #[unsafe(no_mangle)]
-extern "system" fn Java_com_maticrobots_rust_1bluedroid_GattCallback_rustOnServiceChangedCallback(
+pub(crate) extern "system" fn Java_com_maticrobots_rust_1bluedroid_GattCallback_rustOnServiceChangedCallback(
     env: Env<'_>,
     _this: jobject,
     rust_obj: jobject,

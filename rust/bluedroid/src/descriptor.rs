@@ -81,7 +81,7 @@ impl Descriptor {
 }
 
 #[unsafe(no_mangle)]
-extern "system" fn Java_com_maticrobots_rust_1bluedroid_GattCallback_rustOnDescriptorRead(
+pub(crate) extern "system" fn Java_com_maticrobots_rust_1bluedroid_GattCallback_rustOnDescriptorRead(
     env: Env<'_>,
     this: jobject,
     rust_obj: jobject,

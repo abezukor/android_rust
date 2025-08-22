@@ -6,7 +6,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.startup.Initializer;
 
-import com.maticrobots.rust_android_utilities.RustArcBoxDynAny;
+import com.maticrobots.java_rust_obj.RustArcBoxDynAny;
 
 import java.util.List;
 
@@ -31,6 +31,6 @@ public class RustInitialization implements Initializer<Unit> {
     @NonNull
     @Override
     public List<Class<? extends Initializer<?>>> dependencies() {
-        return List.of(com.maticrobots.rust_android_utilities.RustInitialization.class);
+        return List.of(com.maticrobots.rust_context_autoinitialization.RustInitialization.class);
     }
 }

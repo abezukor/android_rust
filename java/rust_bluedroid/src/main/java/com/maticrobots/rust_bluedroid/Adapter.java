@@ -9,8 +9,6 @@ import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanFilter;
 import android.content.Context;
 
-import androidx.annotation.RequiresPermission;
-
 import com.maticrobots.java_rust_obj.RustArcBoxDynAny;
 
 import java.util.List;
@@ -31,7 +29,6 @@ public class Adapter {
         context = applicationcontext;
     }
 
-    @RequiresPermission(Manifest.permission.BLUETOOTH_SCAN)
     public Scan leScan(RustArcBoxDynAny rust_obj) {
         BluetoothLeScanner scanner = adapter.getBluetoothLeScanner();
         if (scanner == null) {
@@ -40,7 +37,6 @@ public class Adapter {
         return new Scan(scanner, null, rust_obj);
     }
 
-    @RequiresPermission(Manifest.permission.BLUETOOTH_SCAN)
     public Scan leScan(RustArcBoxDynAny rust_obj, List<ScanFilter> filters) {
         BluetoothLeScanner scanner = adapter.getBluetoothLeScanner();
         if (scanner == null) {
@@ -56,7 +52,6 @@ public class Adapter {
         return new BluetoothDevice(device, context);
     }
 
-    @SuppressLint("MissingPermission")
     public BluetoothDevice[] getBondedDevices() {
         Set<android.bluetooth.BluetoothDevice> bonded_devices =
                 this.adapter.getBondedDevices();
@@ -70,7 +65,6 @@ public class Adapter {
                 .toArray(BluetoothDevice[]::new);
     }
 
-    @SuppressLint("MissingPermission")
     public BluetoothDevice[] getConnectedDevices() {
         List<android.bluetooth.BluetoothDevice> devices =
                 this.manager.getConnectedDevices(BluetoothProfile.GATT);
@@ -80,7 +74,6 @@ public class Adapter {
                 .toArray(BluetoothDevice[]::new);
     }
 
-    @SuppressLint("MissingPermission")
     public int connectionState(BluetoothDevice device) {
         return manager.getConnectionState(
                 device.getDevice(),

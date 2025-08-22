@@ -10,8 +10,6 @@ import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothProfile;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
 import com.maticrobots.java_rust_obj.RustArcBoxDynAny;
 
 import java.util.Arrays;
@@ -130,9 +128,9 @@ public class GattCallback extends BluetoothGattCallback {
 
     @Override
     public void onCharacteristicRead(
-            @NonNull BluetoothGatt gatt,
-            @NonNull BluetoothGattCharacteristic characteristic,
-            @NonNull byte[] value,
+            BluetoothGatt gatt,
+            BluetoothGattCharacteristic characteristic,
+            byte[] value,
             int status
     ) {
         Collection<RustArcBoxDynAny> requests = readRequests.get(
@@ -169,16 +167,16 @@ public class GattCallback extends BluetoothGattCallback {
     }
 
     @Override
-    public void onServiceChanged(@NonNull BluetoothGatt gatt) {
+    public void onServiceChanged(BluetoothGatt gatt) {
         serviceChangedRequests.removeIf(rust_obj -> !rustOnServiceChangedCallback(rust_obj));
         super.onServiceChanged(gatt);
     }
 
     @Override
     public void onCharacteristicChanged(
-            @NonNull BluetoothGatt gatt,
-            @NonNull BluetoothGattCharacteristic characteristic,
-            @NonNull byte[] value
+            BluetoothGatt gatt,
+            BluetoothGattCharacteristic characteristic,
+            byte[] value
     ) {
         Log.v(TAG, "onCharacteristicChanged" + Arrays.toString(value));
         Set<RustArcBoxDynAny> notification_requests =
@@ -199,10 +197,10 @@ public class GattCallback extends BluetoothGattCallback {
 
     @Override
     public void onDescriptorRead(
-            @NonNull BluetoothGatt gatt,
-            @NonNull BluetoothGattDescriptor descriptor,
+            BluetoothGatt gatt,
+            BluetoothGattDescriptor descriptor,
             int status,
-            @NonNull byte[] value
+            byte[] value
     ) {
         Collection<RustArcBoxDynAny> requests =
                 descriptorReadRequests.get(descriptor.getUuid());

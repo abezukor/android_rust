@@ -79,6 +79,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation(project(":rust_bluedroid"))
-    //implementation(project(":rust_android_utilities"))
+    implementation(project(":java_rust_obj"))
+    implementation(project(":rust_context_autoinitialization"))
 }

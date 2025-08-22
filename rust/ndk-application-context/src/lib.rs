@@ -33,6 +33,11 @@ pub static NDK_CONTEXT_INITIALIZED: LazyLock<()> = LazyLock::new(|| {
                 .cast(),
         );
     }
+
+    #[cfg(feature = "java-spaghetti")]
+    {
+        set_class_loader();
+    }
 });
 
 #[unsafe(no_mangle)]
@@ -49,11 +54,6 @@ pub fn rust_android_initialize_context_ctor() {
         );
     }
     let _ = *NDK_CONTEXT_INITIALIZED;
-
-    #[cfg(feature = "java-spaghetti")]
-    {
-        set_class_loader();
-    }
 }
 
 #[cfg(feature = "java-spaghetti")]

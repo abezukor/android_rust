@@ -206,7 +206,7 @@ pub(crate) extern "system" fn rust_on_characteristic_write(
 }
 
 #[unsafe(no_mangle)]
-extern "system" fn Java_com_maticrobots_rust_1bluedroid_GattCallback_rustOnCharacteristicChanged(
+pub(crate) extern "system" fn Java_com_maticrobots_rust_1bluedroid_GattCallback_rustOnCharacteristicChanged(
     env: Env<'_>,
     _this: jobject,
     rust_obj: jobject,

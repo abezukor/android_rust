@@ -21,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.matician.bluerdroid_example_app.ui.theme.JavaTheme
-import com.maticrobots.rust_android_utilities.RustArcBoxDynAny
+import com.maticrobots.java_rust_obj.RustArcBoxDynAny
 
 
 class MainActivity : ComponentActivity() {

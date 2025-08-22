@@ -16,6 +16,7 @@ mod adapter;
 
 use bindings::com::maticrobots::rust_android_utilities::RustArcBoxDynAny;
 #[rustfmt::skip]
+#[allow(mismatched_lifetime_syntaxes)]
 mod bindings;
 
 pub mod scan;
@@ -40,6 +41,8 @@ pub mod error;
 
 pub use l2cap_channel::Channel;
 pub mod l2cap_channel;
+
+mod gatt_callback;
 
 #[derive(Debug)]
 pub enum ConnectionState {
@@ -81,7 +84,7 @@ fn java_uuid_to_rust(java_uuid: Local<'_, bindings::java::util::UUID>) -> Uuid {
     Uuid::from_u64_pair(most_signifigent_bits, least_signifigent_bits)
 }
 
-fn rust_java_uuid(uuid: Uuid, env: Env<'_>) -> Local<bindings::java::util::UUID> {
+fn rust_java_uuid(uuid: Uuid, env: Env) -> Local<bindings::java::util::UUID> {
     let (uuid_msb, uuid_lsb) = uuid.as_u64_pair();
     let (uuid_msb, uuid_lsb) = (uuid_msb.cast_signed(), uuid_lsb.cast_signed());
     bindings::java::util::UUID::new(env, uuid_msb, uuid_lsb).unwrap()
@@ -164,4 +167,25 @@ pub(crate) mod java_macros {
             java_debug_eq_hash!($object, 0);
         };
     }
+}
+
+pub fn initialize() {
+    java_owned_rust_object::initialize();
+
+    const RUST_BLUEDROID_JAVA_BYTECODE: &[u8] =
+        include_bytes!(concat!(env!("OUT_DIR"), "/classes.dex"));
+    java_spaghetti_class_loader::load_bytecode(
+        "com.maticrobots.rust_bluedroid",
+        RUST_BLUEDROID_JAVA_BYTECODE,
+    );
+
+    java_spaghetti_class_loader::declare_native_class_methods(
+        scan::LE_SCAN_CALLBACK_CLASS,
+        scan::LE_SCAN_CALLBACK_NATIVE_METHODS,
+    );
+
+    java_spaghetti_class_loader::declare_native_class_methods(
+        gatt_callback::GATT_CALLBACK_CLASS_NAME,
+        gatt_callback::LE_SCAN_CALLBACK_NATIVE_METHODS,
+    );
 }

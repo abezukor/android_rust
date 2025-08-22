@@ -1,13 +1,10 @@
 package com.maticrobots.rust_bluedroid;
 
-import androidx.annotation.Nullable;
-
 public class Optional<T> {
 
-    @Nullable
     private T value;
 
-    public Optional(@Nullable T value) {
+    public Optional(T value) {
         this.value = value;
     }
 

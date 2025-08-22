@@ -15,6 +15,8 @@ use java_spaghetti::{Env, Ref, sys::jobject};
 use log::{debug, info, trace, warn};
 use uuid::Uuid;
 
+pub use ndk_application_context::rust_android_initialize_context_ctor;
+
 #[cfg(target_os = "android")]
 use ctor::ctor;
 
@@ -26,6 +28,8 @@ static RUNTIME: LazyLock<tokio::runtime::Runtime> =
 fn initialization() {
     use android_logger::Config;
     use log::{LevelFilter, info};
+
+    rust_android_initialize_context_ctor();
 
     android_logger::init_once(Config::default().with_max_level(LevelFilter::Trace));
     info!("Android Logger Started");
@@ -39,6 +43,8 @@ fn initialization() {
         log::error!("Panic at {:?}", panic_hook_info.location());
         log::error!("Backtrace: {}", std::backtrace::Backtrace::force_capture());
     }));
+
+    bluedroid::initialize();
 }
 
 #[unsafe(no_mangle)]

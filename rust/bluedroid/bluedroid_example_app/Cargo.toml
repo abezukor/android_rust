@@ -13,6 +13,7 @@ futures = "0.3.31"
 uuid = "1.17.0"
 
 bluedroid.path = "../"
+ndk-application-context = {path = "../../ndk-application-context", features = ["java-spaghetti"] }
 java_owned_rust_object.path = "../../java_owned_rust_object"
 
 
