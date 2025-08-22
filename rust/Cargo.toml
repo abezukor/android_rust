@@ -4,6 +4,7 @@ members = [
     "nsd-rs",
     "nsd-rs/nsd_example_app",
     "bluedroid/bluedroid_example_app",
+    "bluedroid/example_app_linux_host",
     "java_owned_rust_object",
     "java-spaghetti-result",
     "java-spaghetti-context",

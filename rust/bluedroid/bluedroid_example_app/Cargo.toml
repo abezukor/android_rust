@@ -21,12 +21,5 @@ java_owned_rust_object.path = "../../java_owned_rust_object"
 android_logger = "0.15"
 ctor = "0.4.2"
 
-
-[dev-dependencies]
-env_logger = "0.11.8"
-
-[target.'cfg(target_os = "linux")'.dev-dependencies]
-bluer = {version = "0.17.3", features = ["bluetoothd", "l2cap"]}
-
 [lib]
 crate-type = ["lib", "cdylib"]
