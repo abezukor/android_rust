@@ -49,10 +49,10 @@ android {
 tasks.named("preBuild").dependsOn("cargoBuild")
 
 cargo {
-    module = "../../rust/nsd_example_app"
+    module = "../../../rust/nsd-rs/nsd_example_app"
     libname = "example_app_rust_lib"          // Or whatever matches Cargo.toml's [package] name.
     targets = listOf("arm", "arm64", "x86_64")  // See bellow for a longer list of options
-    targetDirectory = "../../rust/target"
+    targetDirectory = "../../../rust/target"
 }
 
 dependencies {

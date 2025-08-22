@@ -1,0 +1,18 @@
+[package]
+name = "example_app_rust_lib"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+log = "0.4.27"
+jni = "0.21.1"
+
+[target.'cfg(target_os = "android")'.dependencies]
+android_logger = "0.15"
+
+nsd-rs.path = "../"
+ndk-application-context = {path = "../../ndk-application-context", features = ["java-spaghetti"] }
+java_owned_rust_object.path = "../../java_owned_rust_object"
+
+[lib]
+crate-type = ["cdylib"]
