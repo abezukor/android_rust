@@ -11272,15 +11272,15 @@ pub mod com {
 
 pub mod maticrobots {
 
-pub mod rust_android_utilities {
+pub mod java_rust_obj {
 
-/// pub class [RustArcBoxDynAny](https://developer.android.com/reference/com/maticrobots/rust_android_utilities/RustArcBoxDynAny.html)
+/// pub class [RustArcBoxDynAny](https://developer.android.com/reference/com/maticrobots/java_rust_obj/RustArcBoxDynAny.html)
 #[repr(transparent)] pub struct RustArcBoxDynAny(pub(crate) ::java_spaghetti::ObjectAndEnv);
                 unsafe impl ::java_spaghetti::ReferenceType for RustArcBoxDynAny {}
                 
 unsafe impl ::java_spaghetti::JniType for RustArcBoxDynAny {
                 fn static_with_jni_type<R>(callback: impl FnOnce(&str) -> R) -> R {
-                    callback("com/maticrobots/rust_android_utilities/RustArcBoxDynAny\0")
+                    callback("com/maticrobots/java_rust_obj/RustArcBoxDynAny\0")
                 }
             }
 unsafe impl ::java_spaghetti::AssignableTo<super::super::super::java::lang::Object> for RustArcBoxDynAny {}
@@ -11292,75 +11292,35 @@ impl ::std::ops::Deref for RustArcBoxDynAny {
                 }
 impl RustArcBoxDynAny {
 
-/// [RustArcBoxDynAny](https://developer.android.com/reference/com/maticrobots/rust_android_utilities/RustArcBoxDynAny.html#RustArcBoxDynAny(long))
+/// [RustArcBoxDynAny](https://developer.android.com/reference/com/maticrobots/java_rust_obj/RustArcBoxDynAny.html#RustArcBoxDynAny(long))
 pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: i64) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_android_utilities/RustArcBoxDynAny", java.flags == PUBLIC, .name == "<init>", .descriptor == "(J)V"
+    // class.path == "com/maticrobots/java_rust_obj/RustArcBoxDynAny", java.flags == PUBLIC, .name == "<init>", .descriptor == "(J)V"
     unsafe {
         let __jni_args = [::java_spaghetti::AsJValue::as_jvalue(&arg0)];
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_android_utilities/RustArcBoxDynAny\0", "<init>\0", "(J)V\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/java_rust_obj/RustArcBoxDynAny\0", "<init>\0", "(J)V\0");
         __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [getRust_ptr](https://developer.android.com/reference/com/maticrobots/rust_android_utilities/RustArcBoxDynAny.html#getRust_ptr())
+/// [getRust_ptr](https://developer.android.com/reference/com/maticrobots/java_rust_obj/RustArcBoxDynAny.html#getRust_ptr())
 pub fn getRust_ptr<'env>(&'env self) -> ::std::result::Result<i64, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_android_utilities/RustArcBoxDynAny", java.flags == PUBLIC, .name == "getRust_ptr", .descriptor == "()J"
+    // class.path == "com/maticrobots/java_rust_obj/RustArcBoxDynAny", java.flags == PUBLIC, .name == "getRust_ptr", .descriptor == "()J"
     unsafe {
         let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_android_utilities/RustArcBoxDynAny\0", "getRust_ptr\0", "()J\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/java_rust_obj/RustArcBoxDynAny\0", "getRust_ptr\0", "()J\0");
         __jni_env.call_long_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [close](https://developer.android.com/reference/com/maticrobots/rust_android_utilities/RustArcBoxDynAny.html#close())
+/// [close](https://developer.android.com/reference/com/maticrobots/java_rust_obj/RustArcBoxDynAny.html#close())
 pub fn close<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_android_utilities/RustArcBoxDynAny", java.flags == PUBLIC, .name == "close", .descriptor == "()V"
+    // class.path == "com/maticrobots/java_rust_obj/RustArcBoxDynAny", java.flags == PUBLIC, .name == "close", .descriptor == "()V"
     unsafe {
         let __jni_args = [];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_android_utilities/RustArcBoxDynAny\0", "close\0", "()V\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/java_rust_obj/RustArcBoxDynAny\0", "close\0", "()V\0");
         __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
-    }
-}
-}
-
-/// pub class [RustInitialization](https://developer.android.com/reference/com/maticrobots/rust_android_utilities/RustInitialization.html)
-#[repr(transparent)] pub struct RustInitialization(pub(crate) ::java_spaghetti::ObjectAndEnv);
-                unsafe impl ::java_spaghetti::ReferenceType for RustInitialization {}
-                
-unsafe impl ::java_spaghetti::JniType for RustInitialization {
-                fn static_with_jni_type<R>(callback: impl FnOnce(&str) -> R) -> R {
-                    callback("com/maticrobots/rust_android_utilities/RustInitialization\0")
-                }
-            }
-unsafe impl ::java_spaghetti::AssignableTo<super::super::super::java::lang::Object> for RustInitialization {}
-impl ::std::ops::Deref for RustInitialization {
-                    type Target = super::super::super::java::lang::Object;
-                    fn deref(&self) -> &Self::Target {
-                        unsafe { &*(self as *const Self as *const Self::Target) }
-                    }
-                }
-impl RustInitialization {
-
-/// [RustInitialization](https://developer.android.com/reference/com/maticrobots/rust_android_utilities/RustInitialization.html#RustInitialization())
-pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_android_utilities/RustInitialization", java.flags == PUBLIC, .name == "<init>", .descriptor == "()V"
-    unsafe {
-        let __jni_args = [];
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_android_utilities/RustInitialization\0", "<init>\0", "()V\0");
-        __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
-    }
-}
-
-/// [dependencies](https://developer.android.com/reference/com/maticrobots/rust_android_utilities/RustInitialization.html#dependencies())
-pub fn dependencies<'env>(&'env self) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::super::java::util::List>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_android_utilities/RustInitialization", java.flags == PUBLIC, .name == "dependencies", .descriptor == "()Ljava/util/List;"
-    unsafe {
-        let __jni_args = [];
-        let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_android_utilities/RustInitialization\0", "dependencies\0", "()Ljava/util/List;\0");
-        __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 }
@@ -11396,24 +11356,24 @@ pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spagh
     }
 }
 
-/// [leScan](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/Adapter.html#leScan(com.maticrobots.rust_android_utilities.RustArcBoxDynAny))
-pub fn leScan_RustArcBoxDynAny<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::rust_android_utilities::RustArcBoxDynAny>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Scan>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_bluedroid/Adapter", java.flags == PUBLIC, .name == "leScan", .descriptor == "(Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)Lcom/maticrobots/rust_bluedroid/Scan;"
+/// [leScan](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/Adapter.html#leScan(com.maticrobots.java_rust_obj.RustArcBoxDynAny))
+pub fn leScan_RustArcBoxDynAny<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::java_rust_obj::RustArcBoxDynAny>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Scan>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "com/maticrobots/rust_bluedroid/Adapter", java.flags == PUBLIC, .name == "leScan", .descriptor == "(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)Lcom/maticrobots/rust_bluedroid/Scan;"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/Adapter\0", "leScan\0", "(Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)Lcom/maticrobots/rust_bluedroid/Scan;\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/Adapter\0", "leScan\0", "(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)Lcom/maticrobots/rust_bluedroid/Scan;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [leScan](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/Adapter.html#leScan(com.maticrobots.rust_android_utilities.RustArcBoxDynAny,%20java.util.List))
-pub fn leScan_RustArcBoxDynAny_List<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::rust_android_utilities::RustArcBoxDynAny>, arg1: impl ::java_spaghetti::AsArg<super::super::super::java::util::List>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Scan>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_bluedroid/Adapter", java.flags == PUBLIC, .name == "leScan", .descriptor == "(Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;Ljava/util/List;)Lcom/maticrobots/rust_bluedroid/Scan;"
+/// [leScan](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/Adapter.html#leScan(com.maticrobots.java_rust_obj.RustArcBoxDynAny,%20java.util.List))
+pub fn leScan_RustArcBoxDynAny_List<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::java_rust_obj::RustArcBoxDynAny>, arg1: impl ::java_spaghetti::AsArg<super::super::super::java::util::List>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, Scan>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "com/maticrobots/rust_bluedroid/Adapter", java.flags == PUBLIC, .name == "leScan", .descriptor == "(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;Ljava/util/List;)Lcom/maticrobots/rust_bluedroid/Scan;"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/Adapter\0", "leScan\0", "(Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;Ljava/util/List;)Lcom/maticrobots/rust_bluedroid/Scan;\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/Adapter\0", "leScan\0", "(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;Ljava/util/List;)Lcom/maticrobots/rust_bluedroid/Scan;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -11534,13 +11494,13 @@ pub fn isPaired<'env>(&'env self) -> ::std::result::Result<bool, ::java_spaghett
     }
 }
 
-/// [pair](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/BluetoothDevice.html#pair(android.content.Context,%20com.maticrobots.rust_android_utilities.RustArcBoxDynAny))
-pub fn pair<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::android::content::Context>, arg1: impl ::java_spaghetti::AsArg<super::rust_android_utilities::RustArcBoxDynAny>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::super::android::content::BroadcastReceiver>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_bluedroid/BluetoothDevice", java.flags == PUBLIC, .name == "pair", .descriptor == "(Landroid/content/Context;Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)Landroid/content/BroadcastReceiver;"
+/// [pair](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/BluetoothDevice.html#pair(android.content.Context,%20com.maticrobots.java_rust_obj.RustArcBoxDynAny))
+pub fn pair<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::android::content::Context>, arg1: impl ::java_spaghetti::AsArg<super::java_rust_obj::RustArcBoxDynAny>) -> ::std::result::Result<::std::option::Option<::java_spaghetti::Local<'env, super::super::super::android::content::BroadcastReceiver>>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "com/maticrobots/rust_bluedroid/BluetoothDevice", java.flags == PUBLIC, .name == "pair", .descriptor == "(Landroid/content/Context;Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)Landroid/content/BroadcastReceiver;"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/BluetoothDevice\0", "pair\0", "(Landroid/content/Context;Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)Landroid/content/BroadcastReceiver;\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/BluetoothDevice\0", "pair\0", "(Landroid/content/Context;Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)Landroid/content/BroadcastReceiver;\0");
         __jni_env.call_object_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -11567,101 +11527,101 @@ pub fn disconnect<'env>(&'env self) -> ::std::result::Result<(), ::java_spaghett
     }
 }
 
-/// [connectionStateChange](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/BluetoothDevice.html#connectionStateChange(com.maticrobots.rust_android_utilities.RustArcBoxDynAny))
-pub fn connectionStateChange<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::rust_android_utilities::RustArcBoxDynAny>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_bluedroid/BluetoothDevice", java.flags == PUBLIC, .name == "connectionStateChange", .descriptor == "(Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)V"
+/// [connectionStateChange](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/BluetoothDevice.html#connectionStateChange(com.maticrobots.java_rust_obj.RustArcBoxDynAny))
+pub fn connectionStateChange<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::java_rust_obj::RustArcBoxDynAny>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "com/maticrobots/rust_bluedroid/BluetoothDevice", java.flags == PUBLIC, .name == "connectionStateChange", .descriptor == "(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)V"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/BluetoothDevice\0", "connectionStateChange\0", "(Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)V\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/BluetoothDevice\0", "connectionStateChange\0", "(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)V\0");
         __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [discoverServices](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/BluetoothDevice.html#discoverServices(com.maticrobots.rust_android_utilities.RustArcBoxDynAny))
-pub fn discoverServices<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::rust_android_utilities::RustArcBoxDynAny>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_bluedroid/BluetoothDevice", java.flags == PUBLIC, .name == "discoverServices", .descriptor == "(Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)Z"
+/// [discoverServices](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/BluetoothDevice.html#discoverServices(com.maticrobots.java_rust_obj.RustArcBoxDynAny))
+pub fn discoverServices<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::java_rust_obj::RustArcBoxDynAny>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "com/maticrobots/rust_bluedroid/BluetoothDevice", java.flags == PUBLIC, .name == "discoverServices", .descriptor == "(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)Z"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/BluetoothDevice\0", "discoverServices\0", "(Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)Z\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/BluetoothDevice\0", "discoverServices\0", "(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)Z\0");
         __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [services_changed](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/BluetoothDevice.html#services_changed(com.maticrobots.rust_android_utilities.RustArcBoxDynAny))
-pub fn services_changed<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::rust_android_utilities::RustArcBoxDynAny>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_bluedroid/BluetoothDevice", java.flags == PUBLIC, .name == "services_changed", .descriptor == "(Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)V"
+/// [services_changed](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/BluetoothDevice.html#services_changed(com.maticrobots.java_rust_obj.RustArcBoxDynAny))
+pub fn services_changed<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::java_rust_obj::RustArcBoxDynAny>) -> ::std::result::Result<(), ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "com/maticrobots/rust_bluedroid/BluetoothDevice", java.flags == PUBLIC, .name == "services_changed", .descriptor == "(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)V"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/BluetoothDevice\0", "services_changed\0", "(Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)V\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/BluetoothDevice\0", "services_changed\0", "(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)V\0");
         __jni_env.call_void_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [rssi](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/BluetoothDevice.html#rssi(com.maticrobots.rust_android_utilities.RustArcBoxDynAny))
-pub fn rssi<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::rust_android_utilities::RustArcBoxDynAny>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_bluedroid/BluetoothDevice", java.flags == PUBLIC, .name == "rssi", .descriptor == "(Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)Z"
+/// [rssi](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/BluetoothDevice.html#rssi(com.maticrobots.java_rust_obj.RustArcBoxDynAny))
+pub fn rssi<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::java_rust_obj::RustArcBoxDynAny>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "com/maticrobots/rust_bluedroid/BluetoothDevice", java.flags == PUBLIC, .name == "rssi", .descriptor == "(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)Z"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/BluetoothDevice\0", "rssi\0", "(Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)Z\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/BluetoothDevice\0", "rssi\0", "(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)Z\0");
         __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [readCharacteristic](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/BluetoothDevice.html#readCharacteristic(android.bluetooth.BluetoothGattCharacteristic,%20com.maticrobots.rust_android_utilities.RustArcBoxDynAny))
-pub fn readCharacteristic<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::android::bluetooth::BluetoothGattCharacteristic>, arg1: impl ::java_spaghetti::AsArg<super::rust_android_utilities::RustArcBoxDynAny>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_bluedroid/BluetoothDevice", java.flags == PUBLIC, .name == "readCharacteristic", .descriptor == "(Landroid/bluetooth/BluetoothGattCharacteristic;Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)Z"
+/// [readCharacteristic](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/BluetoothDevice.html#readCharacteristic(android.bluetooth.BluetoothGattCharacteristic,%20com.maticrobots.java_rust_obj.RustArcBoxDynAny))
+pub fn readCharacteristic<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::android::bluetooth::BluetoothGattCharacteristic>, arg1: impl ::java_spaghetti::AsArg<super::java_rust_obj::RustArcBoxDynAny>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "com/maticrobots/rust_bluedroid/BluetoothDevice", java.flags == PUBLIC, .name == "readCharacteristic", .descriptor == "(Landroid/bluetooth/BluetoothGattCharacteristic;Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)Z"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/BluetoothDevice\0", "readCharacteristic\0", "(Landroid/bluetooth/BluetoothGattCharacteristic;Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)Z\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/BluetoothDevice\0", "readCharacteristic\0", "(Landroid/bluetooth/BluetoothGattCharacteristic;Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)Z\0");
         __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [writeCharacteristic](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/BluetoothDevice.html#writeCharacteristic(android.bluetooth.BluetoothGattCharacteristic,%20com.maticrobots.rust_android_utilities.RustArcBoxDynAny,%20byte%5B%5D,%20int))
-pub fn writeCharacteristic<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::android::bluetooth::BluetoothGattCharacteristic>, arg1: impl ::java_spaghetti::AsArg<super::rust_android_utilities::RustArcBoxDynAny>, arg2: impl ::java_spaghetti::AsArg<::java_spaghetti::ByteArray>, arg3: i32) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_bluedroid/BluetoothDevice", java.flags == PUBLIC, .name == "writeCharacteristic", .descriptor == "(Landroid/bluetooth/BluetoothGattCharacteristic;Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;[BI)I"
+/// [writeCharacteristic](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/BluetoothDevice.html#writeCharacteristic(android.bluetooth.BluetoothGattCharacteristic,%20com.maticrobots.java_rust_obj.RustArcBoxDynAny,%20byte%5B%5D,%20int))
+pub fn writeCharacteristic<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::android::bluetooth::BluetoothGattCharacteristic>, arg1: impl ::java_spaghetti::AsArg<super::java_rust_obj::RustArcBoxDynAny>, arg2: impl ::java_spaghetti::AsArg<::java_spaghetti::ByteArray>, arg3: i32) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "com/maticrobots/rust_bluedroid/BluetoothDevice", java.flags == PUBLIC, .name == "writeCharacteristic", .descriptor == "(Landroid/bluetooth/BluetoothGattCharacteristic;Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;[BI)I"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue(), arg2.as_arg_jvalue(), ::java_spaghetti::AsJValue::as_jvalue(&arg3)];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/BluetoothDevice\0", "writeCharacteristic\0", "(Landroid/bluetooth/BluetoothGattCharacteristic;Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;[BI)I\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/BluetoothDevice\0", "writeCharacteristic\0", "(Landroid/bluetooth/BluetoothGattCharacteristic;Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;[BI)I\0");
         __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [enableCharacteristicNotification](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/BluetoothDevice.html#enableCharacteristicNotification(android.bluetooth.BluetoothGattCharacteristic,%20com.maticrobots.rust_android_utilities.RustArcBoxDynAny))
-pub fn enableCharacteristicNotification<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::android::bluetooth::BluetoothGattCharacteristic>, arg1: impl ::java_spaghetti::AsArg<super::rust_android_utilities::RustArcBoxDynAny>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_bluedroid/BluetoothDevice", java.flags == PUBLIC, .name == "enableCharacteristicNotification", .descriptor == "(Landroid/bluetooth/BluetoothGattCharacteristic;Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)Z"
+/// [enableCharacteristicNotification](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/BluetoothDevice.html#enableCharacteristicNotification(android.bluetooth.BluetoothGattCharacteristic,%20com.maticrobots.java_rust_obj.RustArcBoxDynAny))
+pub fn enableCharacteristicNotification<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::android::bluetooth::BluetoothGattCharacteristic>, arg1: impl ::java_spaghetti::AsArg<super::java_rust_obj::RustArcBoxDynAny>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "com/maticrobots/rust_bluedroid/BluetoothDevice", java.flags == PUBLIC, .name == "enableCharacteristicNotification", .descriptor == "(Landroid/bluetooth/BluetoothGattCharacteristic;Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)Z"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/BluetoothDevice\0", "enableCharacteristicNotification\0", "(Landroid/bluetooth/BluetoothGattCharacteristic;Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)Z\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/BluetoothDevice\0", "enableCharacteristicNotification\0", "(Landroid/bluetooth/BluetoothGattCharacteristic;Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)Z\0");
         __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [readDescriptor](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/BluetoothDevice.html#readDescriptor(android.bluetooth.BluetoothGattDescriptor,%20com.maticrobots.rust_android_utilities.RustArcBoxDynAny))
-pub fn readDescriptor<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::android::bluetooth::BluetoothGattDescriptor>, arg1: impl ::java_spaghetti::AsArg<super::rust_android_utilities::RustArcBoxDynAny>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_bluedroid/BluetoothDevice", java.flags == PUBLIC, .name == "readDescriptor", .descriptor == "(Landroid/bluetooth/BluetoothGattDescriptor;Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)Z"
+/// [readDescriptor](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/BluetoothDevice.html#readDescriptor(android.bluetooth.BluetoothGattDescriptor,%20com.maticrobots.java_rust_obj.RustArcBoxDynAny))
+pub fn readDescriptor<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::android::bluetooth::BluetoothGattDescriptor>, arg1: impl ::java_spaghetti::AsArg<super::java_rust_obj::RustArcBoxDynAny>) -> ::std::result::Result<bool, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "com/maticrobots/rust_bluedroid/BluetoothDevice", java.flags == PUBLIC, .name == "readDescriptor", .descriptor == "(Landroid/bluetooth/BluetoothGattDescriptor;Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)Z"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/BluetoothDevice\0", "readDescriptor\0", "(Landroid/bluetooth/BluetoothGattDescriptor;Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)Z\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/BluetoothDevice\0", "readDescriptor\0", "(Landroid/bluetooth/BluetoothGattDescriptor;Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)Z\0");
         __jni_env.call_boolean_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
 
-/// [writeDescriptor](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/BluetoothDevice.html#writeDescriptor(android.bluetooth.BluetoothGattDescriptor,%20com.maticrobots.rust_android_utilities.RustArcBoxDynAny,%20byte%5B%5D))
-pub fn writeDescriptor<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::android::bluetooth::BluetoothGattDescriptor>, arg1: impl ::java_spaghetti::AsArg<super::rust_android_utilities::RustArcBoxDynAny>, arg2: impl ::java_spaghetti::AsArg<::java_spaghetti::ByteArray>) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_bluedroid/BluetoothDevice", java.flags == PUBLIC, .name == "writeDescriptor", .descriptor == "(Landroid/bluetooth/BluetoothGattDescriptor;Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;[B)I"
+/// [writeDescriptor](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/BluetoothDevice.html#writeDescriptor(android.bluetooth.BluetoothGattDescriptor,%20com.maticrobots.java_rust_obj.RustArcBoxDynAny,%20byte%5B%5D))
+pub fn writeDescriptor<'env>(&'env self, arg0: impl ::java_spaghetti::AsArg<super::super::super::android::bluetooth::BluetoothGattDescriptor>, arg1: impl ::java_spaghetti::AsArg<super::java_rust_obj::RustArcBoxDynAny>, arg2: impl ::java_spaghetti::AsArg<::java_spaghetti::ByteArray>) -> ::std::result::Result<i32, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "com/maticrobots/rust_bluedroid/BluetoothDevice", java.flags == PUBLIC, .name == "writeDescriptor", .descriptor == "(Landroid/bluetooth/BluetoothGattDescriptor;Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;[B)I"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue(), arg2.as_arg_jvalue()];
         let __jni_env = ::java_spaghetti::Env::from_raw(self.0.env);
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/BluetoothDevice\0", "writeDescriptor\0", "(Landroid/bluetooth/BluetoothGattDescriptor;Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;[B)I\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/BluetoothDevice\0", "writeDescriptor\0", "(Landroid/bluetooth/BluetoothGattDescriptor;Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;[B)I\0");
         __jni_env.call_int_method_a(self.0.object, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -11901,6 +11861,78 @@ pub fn set_serviceChangedRequests<'env, 'obj>(&'env self, value: impl ::java_spa
         env.set_object_field(self.0.object, __jni_field, value)
     }
 }
+
+/// **get** public [readRequests](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/GattCallback.html#readRequests)
+pub fn readRequests<'env>(&'env self) -> ::std::option::Option<::java_spaghetti::Local<'env, super::super::super::java::util::Map>> {
+    unsafe {
+        let env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_field) = env.require_class_field("com/maticrobots/rust_bluedroid/GattCallback\0", "readRequests\0", "Ljava/util/Map;\0");
+        env.get_object_field(self.0.object, __jni_field)
+    }
+}
+
+/// **set** public [readRequests](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/GattCallback.html#readRequests)
+pub fn set_readRequests<'env, 'obj>(&'env self, value: impl ::java_spaghetti::AsArg<super::super::super::java::util::Map>) {
+    unsafe {
+        let env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_field) = env.require_class_field("com/maticrobots/rust_bluedroid/GattCallback\0", "readRequests\0", "Ljava/util/Map;\0");
+        env.set_object_field(self.0.object, __jni_field, value)
+    }
+}
+
+/// **get** public [writeRequests](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/GattCallback.html#writeRequests)
+pub fn writeRequests<'env>(&'env self) -> ::std::option::Option<::java_spaghetti::Local<'env, super::super::super::java::util::Map>> {
+    unsafe {
+        let env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_field) = env.require_class_field("com/maticrobots/rust_bluedroid/GattCallback\0", "writeRequests\0", "Ljava/util/Map;\0");
+        env.get_object_field(self.0.object, __jni_field)
+    }
+}
+
+/// **set** public [writeRequests](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/GattCallback.html#writeRequests)
+pub fn set_writeRequests<'env, 'obj>(&'env self, value: impl ::java_spaghetti::AsArg<super::super::super::java::util::Map>) {
+    unsafe {
+        let env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_field) = env.require_class_field("com/maticrobots/rust_bluedroid/GattCallback\0", "writeRequests\0", "Ljava/util/Map;\0");
+        env.set_object_field(self.0.object, __jni_field, value)
+    }
+}
+
+/// **get** public [descriptorReadRequests](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/GattCallback.html#descriptorReadRequests)
+pub fn descriptorReadRequests<'env>(&'env self) -> ::std::option::Option<::java_spaghetti::Local<'env, super::super::super::java::util::Map>> {
+    unsafe {
+        let env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_field) = env.require_class_field("com/maticrobots/rust_bluedroid/GattCallback\0", "descriptorReadRequests\0", "Ljava/util/Map;\0");
+        env.get_object_field(self.0.object, __jni_field)
+    }
+}
+
+/// **set** public [descriptorReadRequests](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/GattCallback.html#descriptorReadRequests)
+pub fn set_descriptorReadRequests<'env, 'obj>(&'env self, value: impl ::java_spaghetti::AsArg<super::super::super::java::util::Map>) {
+    unsafe {
+        let env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_field) = env.require_class_field("com/maticrobots/rust_bluedroid/GattCallback\0", "descriptorReadRequests\0", "Ljava/util/Map;\0");
+        env.set_object_field(self.0.object, __jni_field, value)
+    }
+}
+
+/// **get** public [descriptorWriteRequests](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/GattCallback.html#descriptorWriteRequests)
+pub fn descriptorWriteRequests<'env>(&'env self) -> ::std::option::Option<::java_spaghetti::Local<'env, super::super::super::java::util::Map>> {
+    unsafe {
+        let env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_field) = env.require_class_field("com/maticrobots/rust_bluedroid/GattCallback\0", "descriptorWriteRequests\0", "Ljava/util/Map;\0");
+        env.get_object_field(self.0.object, __jni_field)
+    }
+}
+
+/// **set** public [descriptorWriteRequests](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/GattCallback.html#descriptorWriteRequests)
+pub fn set_descriptorWriteRequests<'env, 'obj>(&'env self, value: impl ::java_spaghetti::AsArg<super::super::super::java::util::Map>) {
+    unsafe {
+        let env = ::java_spaghetti::Env::from_raw(self.0.env);
+        let (__jni_class, __jni_field) = env.require_class_field("com/maticrobots/rust_bluedroid/GattCallback\0", "descriptorWriteRequests\0", "Ljava/util/Map;\0");
+        env.set_object_field(self.0.object, __jni_field, value)
+    }
+}
 }
 
 ///  class [LEScanCallback](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/LEScanCallback.html)
@@ -11922,12 +11954,12 @@ impl ::std::ops::Deref for LEScanCallback {
                 }
 impl LEScanCallback {
 
-/// [LEScanCallback](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/LEScanCallback.html#LEScanCallback(com.maticrobots.rust_android_utilities.RustArcBoxDynAny))
-pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<super::rust_android_utilities::RustArcBoxDynAny>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_bluedroid/LEScanCallback", java.flags == PUBLIC, .name == "<init>", .descriptor == "(Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)V"
+/// [LEScanCallback](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/LEScanCallback.html#LEScanCallback(com.maticrobots.java_rust_obj.RustArcBoxDynAny))
+pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<super::java_rust_obj::RustArcBoxDynAny>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "com/maticrobots/rust_bluedroid/LEScanCallback", java.flags == PUBLIC, .name == "<init>", .descriptor == "(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)V"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/LEScanCallback\0", "<init>\0", "(Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)V\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/LEScanCallback\0", "<init>\0", "(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)V\0");
         __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -12025,12 +12057,12 @@ impl ::std::ops::Deref for PairingReceiver {
                 }
 impl PairingReceiver {
 
-/// [PairingReceiver](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/PairingReceiver.html#PairingReceiver(com.maticrobots.rust_android_utilities.RustArcBoxDynAny))
-pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<super::rust_android_utilities::RustArcBoxDynAny>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_bluedroid/PairingReceiver", java.flags == PUBLIC, .name == "<init>", .descriptor == "(Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)V"
+/// [PairingReceiver](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/PairingReceiver.html#PairingReceiver(com.maticrobots.java_rust_obj.RustArcBoxDynAny))
+pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<super::java_rust_obj::RustArcBoxDynAny>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "com/maticrobots/rust_bluedroid/PairingReceiver", java.flags == PUBLIC, .name == "<init>", .descriptor == "(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)V"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue()];
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/PairingReceiver\0", "<init>\0", "(Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)V\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/PairingReceiver\0", "<init>\0", "(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)V\0");
         __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
     }
 }
@@ -12054,12 +12086,12 @@ impl ::std::ops::Deref for Scan {
                 }
 impl Scan {
 
-/// [Scan](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/Scan.html#Scan(android.bluetooth.le.BluetoothLeScanner,%20java.util.List,%20com.maticrobots.rust_android_utilities.RustArcBoxDynAny))
-pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<super::super::super::android::bluetooth::le::BluetoothLeScanner>, arg1: impl ::java_spaghetti::AsArg<super::super::super::java::util::List>, arg2: impl ::java_spaghetti::AsArg<super::rust_android_utilities::RustArcBoxDynAny>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
-    // class.path == "com/maticrobots/rust_bluedroid/Scan", java.flags == PUBLIC, .name == "<init>", .descriptor == "(Landroid/bluetooth/le/BluetoothLeScanner;Ljava/util/List;Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)V"
+/// [Scan](https://developer.android.com/reference/com/maticrobots/rust_bluedroid/Scan.html#Scan(android.bluetooth.le.BluetoothLeScanner,%20java.util.List,%20com.maticrobots.java_rust_obj.RustArcBoxDynAny))
+pub fn new<'env>(__jni_env: ::java_spaghetti::Env<'env>, arg0: impl ::java_spaghetti::AsArg<super::super::super::android::bluetooth::le::BluetoothLeScanner>, arg1: impl ::java_spaghetti::AsArg<super::super::super::java::util::List>, arg2: impl ::java_spaghetti::AsArg<super::java_rust_obj::RustArcBoxDynAny>) -> ::std::result::Result<::java_spaghetti::Local<'env, Self>, ::java_spaghetti::Local<'env, super::super::super::java::lang::Throwable>> {
+    // class.path == "com/maticrobots/rust_bluedroid/Scan", java.flags == PUBLIC, .name == "<init>", .descriptor == "(Landroid/bluetooth/le/BluetoothLeScanner;Ljava/util/List;Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)V"
     unsafe {
         let __jni_args = [arg0.as_arg_jvalue(), arg1.as_arg_jvalue(), arg2.as_arg_jvalue()];
-        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/Scan\0", "<init>\0", "(Landroid/bluetooth/le/BluetoothLeScanner;Ljava/util/List;Lcom/maticrobots/rust_android_utilities/RustArcBoxDynAny;)V\0");
+        let (__jni_class, __jni_method) = __jni_env.require_class_method("com/maticrobots/rust_bluedroid/Scan\0", "<init>\0", "(Landroid/bluetooth/le/BluetoothLeScanner;Ljava/util/List;Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;)V\0");
         __jni_env.new_object_a(__jni_class, __jni_method, __jni_args.as_ptr())
     }
 }

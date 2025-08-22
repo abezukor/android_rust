@@ -10,7 +10,7 @@ use java_owned_rust_object::{get_ref, to_java};
 use java_spaghetti::{Env, Local, Ref, sys::jobject};
 use log::error;
 
-use crate::bindings::com::maticrobots::rust_android_utilities::RustArcBoxDynAny;
+use crate::bindings::com::maticrobots::java_rust_obj::RustArcBoxDynAny;
 
 pub struct CallBackFuture<T: Send> {
     recv: oneshot::Receiver<T>,

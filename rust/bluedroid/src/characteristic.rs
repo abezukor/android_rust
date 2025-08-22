@@ -13,7 +13,7 @@ use crate::{
             BluetoothGattCharacteristic as JavaCharacteristic,
             BluetoothGattDescriptor as JavaDescriptor,
         },
-        com::maticrobots::rust_android_utilities::RustArcBoxDynAny,
+        com::maticrobots::java_rust_obj::RustArcBoxDynAny,
     },
     callback_mpsc_channel_send,
     device::DeviceWithGattLock,

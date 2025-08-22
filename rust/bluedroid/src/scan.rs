@@ -64,7 +64,7 @@ impl BluetoothScan {
         let scan = adapter.vm().with_env(|env| {
             let scan_send: Local<
                 '_,
-                crate::bindings::com::maticrobots::rust_android_utilities::RustArcBoxDynAny,
+                crate::bindings::com::maticrobots::java_rust_obj::RustArcBoxDynAny,
             > = to_java(env, scan_send).unwrap().cast().unwrap();
 
             let adapter = adapter.as_local(env);

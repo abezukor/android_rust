@@ -14,7 +14,7 @@ pub mod device;
 pub use adapter::Adapter;
 mod adapter;
 
-use bindings::com::maticrobots::rust_android_utilities::RustArcBoxDynAny;
+use bindings::com::maticrobots::java_rust_obj::RustArcBoxDynAny;
 #[rustfmt::skip]
 #[allow(mismatched_lifetime_syntaxes)]
 mod bindings;
@@ -169,6 +169,7 @@ pub(crate) mod java_macros {
     }
 }
 
+#[cfg(target_os = "android")]
 pub fn initialize() {
     java_owned_rust_object::initialize();
 
@@ -189,3 +190,6 @@ pub fn initialize() {
         gatt_callback::LE_SCAN_CALLBACK_NATIVE_METHODS,
     );
 }
+
+#[cfg(not(target_os = "android"))]
+pub fn initialize() {}

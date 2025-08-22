@@ -1,7 +1,7 @@
 
 include = [
     "com/maticrobots/rust_bluedroid/*",
-    "com/maticrobots/rust_android_utilities/*",
+    "com/maticrobots/java_rust_obj/*",
 
     "android/bluetooth/*",
     "android/content/BroadcastReceiver",
@@ -53,8 +53,16 @@ files = [
     "/home/abe/Android/Sdk/platforms/android-35/android.jar",
     # Hack so we can use android studio (as opposed to raw javac) to build the jar files.
     # Technically this may change, but I (Abe) think that is unlikely.
-    "../../../java/rust_bluedroid/build/intermediates/full_jar/debug/createFullJarDebug/full.jar",
-    "../../../java/rust_android_utilities/build/intermediates/full_jar/debug/createFullJarDebug/full.jar",
+    "../../target/aarch64-linux-android/debug/build/bluedroid-c2354023b21414b6/out/java/com/maticrobots/java_rust_obj/RustArcBoxDynAny.class",
+    "../../target/aarch64-linux-android/debug/build/bluedroid-c2354023b21414b6/out/java/com/maticrobots/rust_bluedroid/Adapter.class",
+    "../../target/aarch64-linux-android/debug/build/bluedroid-c2354023b21414b6/out/java/com/maticrobots/rust_bluedroid/Scan.class",
+    "../../target/aarch64-linux-android/debug/build/bluedroid-c2354023b21414b6/out/java/com/maticrobots/rust_bluedroid/BluetoothDevice.class",
+    "../../target/aarch64-linux-android/debug/build/bluedroid-c2354023b21414b6/out/java/com/maticrobots/rust_bluedroid/Optional.class",
+    "../../target/aarch64-linux-android/debug/build/bluedroid-c2354023b21414b6/out/java/com/maticrobots/rust_bluedroid/GattCallback.class",
+    "../../target/aarch64-linux-android/debug/build/bluedroid-c2354023b21414b6/out/java/com/maticrobots/rust_bluedroid/Service.class",
+    "../../target/aarch64-linux-android/debug/build/bluedroid-c2354023b21414b6/out/java/com/maticrobots/rust_bluedroid/ScanInner.class",
+    "../../target/aarch64-linux-android/debug/build/bluedroid-c2354023b21414b6/out/java/com/maticrobots/rust_bluedroid/LEScanCallback.class",
+    "../../target/aarch64-linux-android/debug/build/bluedroid-c2354023b21414b6/out/java/com/maticrobots/rust_bluedroid/PairingReceiver.class",
 ]
 
 [output]

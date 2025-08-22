@@ -21,7 +21,7 @@ use crate::{
     bindings::{
         android::{bluetooth::BluetoothDevice as RawAndroidBluetoothDevice, content::Context},
         com::maticrobots::{
-            rust_android_utilities::RustArcBoxDynAny,
+            java_rust_obj::RustArcBoxDynAny,
             rust_bluedroid::{
                 Adapter as JavaAdapter, BluetoothDevice as JavaBluetoothDevice,
                 Service as JavaService,

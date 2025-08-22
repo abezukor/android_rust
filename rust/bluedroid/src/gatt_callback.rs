@@ -45,6 +45,13 @@ pub(super) const LE_SCAN_CALLBACK_NATIVE_METHODS: &[JNINativeMethod] = &[
         fnPtr: crate::device::Java_com_maticrobots_rust_1bluedroid_GattCallback_rustOnServicesDiscoveredCallback as *mut _,
     },
     JNINativeMethod {
+        name: c"rustOnCharacteristicChanged".as_ptr().cast_mut(),
+        signature: c"(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;[B)Z"
+            .as_ptr()
+            .cast_mut(),
+        fnPtr: crate::characteristic::Java_com_maticrobots_rust_1bluedroid_GattCallback_rustOnCharacteristicChanged as *mut _,
+    },
+    JNINativeMethod {
         name: c"rustOnDescriptorRead".as_ptr().cast_mut(),
         signature: c"(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;[BI)V"
             .as_ptr()
