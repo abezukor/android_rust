@@ -2,12 +2,11 @@ use std::task::{Context, Poll};
 
 use futures_core::Stream;
 use futures_lite::StreamExt;
-use java_owned_rust_object::to_java;
-use java_spaghetti::{
-    Env, Global, Local, Ref,
-    sys::{JNINativeMethod, jobject},
-};
+use java_spaghetti::{Env, Global, Local, Ref, sys::jobject};
 use thiserror::Error;
+
+use java_owned_rust_object::to_java;
+use java_spaghetti_class_loader::JNINativeMethod;
 
 use crate::{
     bindings::{
@@ -114,23 +113,20 @@ impl Drop for BluetoothScan {
 }
 
 pub(crate) const LE_SCAN_CALLBACK_CLASS: &str = "com.maticrobots.rust_bluedroid.LEScanCallback";
-pub(crate) const LE_SCAN_CALLBACK_NATIVE_METHODS: &[JNINativeMethod] = &[
-    JNINativeMethod {
-        name: c"processScanResult".as_ptr().cast_mut(),
-        signature:
-            c"(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;Landroid/bluetooth/le/ScanResult;)V"
-                .as_ptr()
-                .cast_mut(),
-        fnPtr: Java_com_maticrobots_rust_1bluedroid_LEScanCallback_processScanResult as *mut _,
-    },
-    JNINativeMethod {
-        name: c"processScanError".as_ptr().cast_mut(),
-        signature: c"(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;I)V"
-            .as_ptr()
-            .cast_mut(),
-        fnPtr: Java_com_maticrobots_rust_1bluedroid_LEScanCallback_processScanError as *mut _,
-    },
-];
+pub(crate) const LE_SCAN_CALLBACK_NATIVE_METHODS: &[JNINativeMethod] = unsafe {
+    &[
+        JNINativeMethod::new(
+            c"processScanResult",
+            c"(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;Landroid/bluetooth/le/ScanResult;)V",
+            Java_com_maticrobots_rust_1bluedroid_LEScanCallback_processScanResult as *mut _,
+        ),
+        JNINativeMethod::new(
+            c"processScanError",
+            c"(Lcom/maticrobots/java_rust_obj/RustArcBoxDynAny;I)V",
+            Java_com_maticrobots_rust_1bluedroid_LEScanCallback_processScanError as *mut _,
+        ),
+    ]
+};
 
 #[unsafe(no_mangle)]
 extern "system" fn Java_com_maticrobots_rust_1bluedroid_LEScanCallback_processScanResult(

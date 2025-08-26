@@ -78,7 +78,7 @@ extern "system" fn Java_com_maticrobots_rust_1android_1utilities_RustArcBoxDynAn
 #[cfg(target_os = "android")]
 /// Initialize this class ny loading it into the Java VM
 pub fn initialize() {
-    use java_spaghetti::sys::JNINativeMethod;
+    use java_spaghetti_class_loader::JNINativeMethod;
 
     const RUST_ARC_BOX_DYN_ANY_JAVA_BYTECODE: &[u8] =
         include_bytes!(concat!(env!("OUT_DIR"), "/classes.dex"));
@@ -87,18 +87,22 @@ pub fn initialize() {
         RUST_ARC_BOX_DYN_ANY_JAVA_BYTECODE,
     );
 
-    const RUST_ARC_BOX_DN_ANY_METHODS: &[JNINativeMethod] = &[
-        JNINativeMethod {
-        name: c"rust_object_destruct".as_ptr().cast_mut(),
-        signature: c"(J)V".as_ptr().cast_mut(),
-        fnPtr: Java_com_maticrobots_rust_1android_1utilities_RustArcBoxDynAny_rust_1object_1destruct as *mut _,
-    },
-    JNINativeMethod {
-        name: c"rust_object_clone".as_ptr().cast_mut(),
-        signature: c"(J)J".as_ptr().cast_mut(),
-        fnPtr: Java_com_maticrobots_rust_1android_1utilities_RustArcBoxDynAny_rust_1object_1clone as *mut _,
-    },
-];
+    const RUST_ARC_BOX_DN_ANY_METHODS: &[JNINativeMethod] = unsafe {
+        &[
+        JNINativeMethod::new(
+            c"rust_object_destruct",
+            c"(J)V",
+            Java_com_maticrobots_rust_1android_1utilities_RustArcBoxDynAny_rust_1object_1destruct
+                as *mut _,
+        ),
+        JNINativeMethod::new(
+            c"rust_object_clone",
+            c"(J)J",
+            Java_com_maticrobots_rust_1android_1utilities_RustArcBoxDynAny_rust_1object_1clone
+                as *mut _,
+        ),
+    ]
+    };
 
     java_spaghetti_class_loader::declare_native_class_methods(
         "com/maticrobots/java_rust_obj/RustArcBoxDynAny",

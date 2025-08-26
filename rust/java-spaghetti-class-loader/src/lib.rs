@@ -14,9 +14,7 @@ use std::{
     sync::{LazyLock, Mutex},
 };
 
-use java_spaghetti::{
-    ByteArray, Global, Local, PrimitiveArray, sys::JNINativeMethod as RawJNINativeMethod,
-};
+use java_spaghetti::{ByteArray, Global, Local, PrimitiveArray};
 use java_spaghetti_context::get_application_context;
 use log::trace;
 
@@ -33,9 +31,12 @@ use crate::bindings::{
     },
 };
 
+pub use jni_native_method::JNINativeMethod;
+mod jni_native_method;
+
 struct ClassNativeMethods {
     class: Global<Class>,
-    methods: &'static [RawJNINativeMethod],
+    methods: &'static [JNINativeMethod],
 }
 
 unsafe impl Send for ClassNativeMethods {}
@@ -112,10 +113,7 @@ pub fn load_bytecode(package: &'static str, bytecode: &'static [u8]) {
 /// To make the native methods available on the new class loader, the must be re-registered. This function provides a binding for registering
 /// native methods on the `java-spaghetti` class loader.
 /// It will also add the new binding to a list such that it will also be added to any subsequent class loaders in the chain.
-pub fn declare_native_class_methods(
-    class_name: &'static str,
-    methods: &'static [RawJNINativeMethod],
-) {
+pub fn declare_native_class_methods(class_name: &'static str, methods: &'static [JNINativeMethod]) {
     let mut class_loader_chain = CLASS_LOADERS.lock().unwrap();
 
     let ClassLoaderChain {
@@ -158,7 +156,9 @@ fn register_native_methods(last_loader: &Global<ClassLoader>, methods: &ClassNat
         ((**env).v1_2.RegisterNatives)(
             env,
             class.as_raw(),
-            methods.methods.as_ptr(),
+            // This cast is safe because the #[repr(transparent)] guarantees that
+            // JNINativeMethod and RawJNINativeMethod have the same memory layout
+            methods.methods.as_ptr().cast(),
             methods.methods.len().try_into().unwrap(),
         )
     });

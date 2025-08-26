@@ -32,62 +32,66 @@ pub fn jni_env(env: jni::JNIEnv<'_>) -> java_spaghetti::Env<'_> {
 }
 
 pub fn initialize() {
-    use java_spaghetti::sys::JNINativeMethod;
+    use java_spaghetti_class_loader::JNINativeMethod;
 
     java_owned_rust_object::initialize();
 
     const RUST_NSD_JAVA_BYTECODE: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/classes.dex"));
     java_spaghetti_class_loader::load_bytecode("com.maticrobots.nsd_rs", RUST_NSD_JAVA_BYTECODE);
 
-    const DISCOVERY_LISTENER_METHODS: &[JNINativeMethod] = &[
-        JNINativeMethod {
-        name: c"rustOnStartDiscoveryFailed".as_ptr().cast_mut(),
-        signature: c"(Ljava/lang/String;I)V".as_ptr().cast_mut(),
-        fnPtr: crate::nsd_discovery_listener::Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnStartDiscoveryFailed as *mut _,
-    },
-    JNINativeMethod {
-        name: c"rustOnStopDiscoveryFailed".as_ptr().cast_mut(),
-        signature: c"(Ljava/lang/String;I)V".as_ptr().cast_mut(),
-        fnPtr: crate::nsd_discovery_listener::Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnStopDiscoveryFailed as *mut _,
-    },
-    JNINativeMethod {
-        name: c"rustOnDiscoveryStarted".as_ptr().cast_mut(),
-        signature: c"(Ljava/lang/String;)V".as_ptr().cast_mut(),
-        fnPtr: crate::nsd_discovery_listener::Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnDiscoveryStarted as *mut _,
-    },
-    JNINativeMethod {
-        name: c"rustOnDiscoveryStopped".as_ptr().cast_mut(),
-        signature: c"(Ljava/lang/String;)V".as_ptr().cast_mut(),
-        fnPtr: crate::nsd_discovery_listener::Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnDiscoveryStopped as *mut _,
-    },
-    JNINativeMethod {
-        name: c"rustOnServiceFound".as_ptr().cast_mut(),
-        signature: c"(Landroid/net/nsd/NsdServiceInfo;J)V".as_ptr().cast_mut(),
-        fnPtr: crate::nsd_discovery_listener::Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnServiceFound as *mut _,
-    },
-    JNINativeMethod {
-        name: c"rustOnServiceLost".as_ptr().cast_mut(),
-        signature: c"(Landroid/net/nsd/NsdServiceInfo;)V".as_ptr().cast_mut(),
-        fnPtr: crate::nsd_discovery_listener::Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnServiceLost as *mut _,
-    },];
+    const DISCOVERY_LISTENER_METHODS: &[JNINativeMethod] = unsafe {
+        &[
+        JNINativeMethod::new(
+        c"rustOnStartDiscoveryFailed",
+        c"(Ljava/lang/String;I)V",
+        crate::nsd_discovery_listener::Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnStartDiscoveryFailed as *mut _,
+    ),
+    JNINativeMethod::new(
+        c"rustOnStopDiscoveryFailed",
+        c"(Ljava/lang/String;I)V",
+        crate::nsd_discovery_listener::Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnStopDiscoveryFailed as *mut _,
+    ),
+    JNINativeMethod::new(
+        c"rustOnDiscoveryStarted",
+        c"(Ljava/lang/String;)V",
+        crate::nsd_discovery_listener::Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnDiscoveryStarted as *mut _,
+    ),
+    JNINativeMethod::new(
+        c"rustOnDiscoveryStopped",
+        c"(Ljava/lang/String;)V",
+        crate::nsd_discovery_listener::Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnDiscoveryStopped as *mut _,
+    ),
+    JNINativeMethod::new(
+        c"rustOnServiceFound",
+        c"(Landroid/net/nsd/NsdServiceInfo;J)V",
+        crate::nsd_discovery_listener::Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnServiceFound as *mut _,
+    ),
+    JNINativeMethod::new(
+        c"rustOnServiceLost",
+        c"(Landroid/net/nsd/NsdServiceInfo;)V",
+        crate::nsd_discovery_listener::Java_com_maticrobots_nsd_1rs_NSDDiscoveryListener_rustOnServiceLost as *mut _,
+    ),]
+    };
 
     java_spaghetti_class_loader::declare_native_class_methods(
         "com/maticrobots/nsd_rs/NSDDiscoveryListener",
         DISCOVERY_LISTENER_METHODS,
     );
 
-    const RESOLVER_LISTENER_METHODS: &[JNINativeMethod] = &[
-        JNINativeMethod {
-        name: c"rustOnResolveFailed".as_ptr().cast_mut(),
-        signature: c"(JLandroid/net/nsd/NsdServiceInfo;I)V".as_ptr().cast_mut(),
-        fnPtr: crate::nsd_resolve_listener::Java_com_maticrobots_nsd_1rs_NSDServiceResolver_rustOnResolveFailed as *mut _,
-    },
-    JNINativeMethod {
-        name: c"rustOnServiceResolved".as_ptr().cast_mut(),
-        signature: c"(JLandroid/net/nsd/NsdServiceInfo;)V".as_ptr().cast_mut(),
-        fnPtr: crate::nsd_resolve_listener::Java_com_maticrobots_nsd_1rs_NSDServiceResolver_rustOnServiceResolved as *mut _,
-    },
-];
+    const RESOLVER_LISTENER_METHODS: &[JNINativeMethod] = unsafe {
+        &[
+            JNINativeMethod::new(
+            c"rustOnResolveFailed",
+            c"(JLandroid/net/nsd/NsdServiceInfo;I)V",
+            crate::nsd_resolve_listener::Java_com_maticrobots_nsd_1rs_NSDServiceResolver_rustOnResolveFailed as *mut _,
+        ),
+        JNINativeMethod::new(
+            c"rustOnServiceResolved",
+            c"(JLandroid/net/nsd/NsdServiceInfo;)V",
+            crate::nsd_resolve_listener::Java_com_maticrobots_nsd_1rs_NSDServiceResolver_rustOnServiceResolved as *mut _,
+        ),
+    ]
+    };
 
     java_spaghetti_class_loader::declare_native_class_methods(
         "com/maticrobots/nsd_rs/NSDServiceResolver",
