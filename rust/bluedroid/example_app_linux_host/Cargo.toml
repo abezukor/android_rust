@@ -3,7 +3,7 @@ name = "example_app_linux_host"
 version = "0.1.0"
 edition = "2024"
 
-[dependencies]
+[target.'cfg(target_os = "linux")'.dependencies]
 env_logger = "0.11.8"
 bluer = {version = "0.17.3", features = ["bluetoothd", "l2cap"]}
 tokio = {version = "1.45.1", features = ["rt", "rt-multi-thread"]}

@@ -138,10 +138,8 @@ impl Drop for JavaResolver {
                 casted_resolver.toString(),
                 stop_resolution
             );
-            if stop_resolution {
-                if let Err(e) = manager.stopServiceResolution(casted_resolver) {
-                    error!("error stopping resolution for {:?}", e.toString());
-                }
+            if stop_resolution && let Err(e) = manager.stopServiceResolution(casted_resolver) {
+                error!("error stopping resolution for {:?}", e.toString());
             }
         });
     }

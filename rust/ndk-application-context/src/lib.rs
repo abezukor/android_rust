@@ -86,7 +86,7 @@ pub fn rust_android_initialize_context_ctor() {
                 .cast(),
         );
     }
-    let _ = *NDK_CONTEXT_INITIALIZED;
+    *NDK_CONTEXT_INITIALIZED;
 }
 
 #[cfg(feature = "java-spaghetti")]
