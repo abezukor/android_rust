@@ -12,7 +12,8 @@ android {
         consumerProguardFiles("consumer-rules.pro")
         externalNativeBuild {
             cmake {
-                cppFlags += ""
+                //See https://developer.android.com/guide/practices/page-sizes#compile-16-kb-alignment
+                arguments += listOf("-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON")
             }
         }
     }
