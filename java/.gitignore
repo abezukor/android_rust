@@ -5,6 +5,7 @@
 .project
 org.eclipse*
 *.class
+local.properties
 
 # Ignore Gradle build output directory
 build
